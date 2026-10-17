@@ -3,2344 +3,752 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#07111f">
-  <meta name="description" content="Explore cybersecurity education, student projects, learning resources and department announcements at QUEST University Nawabshah.">
-  <title>Cybersecurity Department | QUEST University</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07152e">
+  <meta name="description" content="Cybersecurity Department student information portal for QUEST Nawabshah.">
+  <title>Cybersecurity | QUEST Nawabshah</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
   <style>
-    /* ==========================================
-       1. DESIGN SYSTEM
-    ========================================== */
     :root {
-      --bg: #07111f;
-      --bg-soft: #0b192a;
-      --panel: #102238;
-      --panel-light: #142b43;
-      --text: #edf5ff;
-      --muted: #a5b7cc;
-      --blue: #48a7ff;
-      --cyan: #55f0e0;
-      --border: rgba(160, 196, 230, 0.17);
-      --shadow: 0 18px 55px rgba(0, 0, 0, 0.25);
-      --radius: 18px;
-      --max-width: 1160px;
+      --bg: #07152e;
+      --panel: #0d2142;
+      --panel2: #10294f;
+      --blue: #2f80ed;
+      --cyan: #42e8e0;
+      --text: #eef5ff;
+      --muted: #a8bad4;
+      --border: rgba(255,255,255,.12);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 88px;
-    }
-
+    * { box-sizing: border-box; scroll-behavior: smooth; }
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.7;
-      overflow-x: hidden;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
     }
-
-    body.light-theme {
-      --bg: #f3f7fc;
-      --bg-soft: #eaf1fa;
-      --panel: #ffffff;
-      --panel-light: #eaf2fb;
-      --text: #14243a;
-      --muted: #53657a;
-      --blue: #086fc4;
-      --cyan: #007f8b;
-      --border: rgba(30, 65, 100, 0.17);
-      --shadow: 0 15px 40px rgba(20, 50, 80, 0.09);
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button, input, select, textarea {
-      font: inherit;
-    }
-
-    button, a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    section {
-      padding: 86px 0;
-    }
-
-    .container {
-      width: min(var(--max-width), 92%);
-      margin-inline: auto;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      color: var(--cyan);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 0.75rem;
-      font-weight: 800;
-      margin-bottom: 14px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 23px;
-      height: 2px;
-      background: var(--cyan);
-    }
-
-    .section-heading {
-      max-width: 720px;
-      margin-bottom: 36px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(2rem, 4vw, 3.1rem);
-      line-height: 1.15;
-      letter-spacing: -1px;
-      margin-bottom: 16px;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      max-width: 680px;
-    }
-
-    .gradient-text {
-      background: linear-gradient(100deg, var(--blue), var(--cyan));
-      color: transparent;
-      background-clip: text;
-      -webkit-background-clip: text;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      border: 1px solid transparent;
-      border-radius: 10px;
-      padding: 12px 18px;
-      font-weight: 700;
-      transition: transform 0.2s, background 0.2s;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-primary {
-      background: linear-gradient(110deg, #2588f4, #17b8c7);
-      color: #061322;
-    }
-
-    .btn-outline {
-      border-color: var(--border);
-      background: transparent;
-      color: var(--text);
-    }
-
-    .btn-outline:hover {
-      background: var(--panel-light);
-    }
-
-    .card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--panel);
-      box-shadow: var(--shadow);
-    }
-
-    .card-pad {
-      padding: 24px;
-    }
-
-    .notice-bar {
-      background: #102b45;
-      border-bottom: 1px solid var(--border);
-      color: #d9edff;
-      font-size: 0.84rem;
-      padding: 8px 0;
-    }
-
-    .notice-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    /* ==========================================
-       2. NAVIGATION
-    ========================================== */
+    a { text-decoration: none; }
     .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: var(--bg);
-      background: color-mix(in srgb, var(--bg) 91%, transparent);
-      backdrop-filter: blur(16px);
+      background: rgba(7,21,46,.96);
       border-bottom: 1px solid var(--border);
     }
-
-    .nav-inner {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 22px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
+    .navbar-brand { color: white; font-weight: 800; letter-spacing: .3px; }
     .brand-mark {
-      width: 43px;
-      height: 43px;
-      border-radius: 13px;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      background: linear-gradient(135deg, #2688f4, #48eadc);
-      color: #07111f;
-      font-size: 1.3rem;
-      font-weight: 900;
+      display: inline-grid; place-items: center;
+      width: 42px; height: 42px; border-radius: 12px;
+      background: linear-gradient(135deg,var(--blue),var(--cyan));
+      color: #07152e; margin-right: 9px;
     }
-
-    .brand-title {
-      display: block;
-      font-size: 0.95rem;
-      font-weight: 800;
-      line-height: 1.25;
-    }
-
-    .brand-subtitle {
-      display: block;
-      color: var(--muted);
-      font-size: 0.7rem;
-      margin-top: 3px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      font-size: 0.87rem;
-      font-weight: 700;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--cyan);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-    }
-
-    .icon-button {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      color: var(--text);
-      border-radius: 10px;
-    }
-
-    .menu-toggle {
-      display: none;
-    }
-
-    /* ==========================================
-       3. HERO
-    ========================================== */
+    .nav-link { color: #dce9fa; }
+    .nav-link:hover, .nav-link:focus { color: var(--cyan); }
     .hero {
-      position: relative;
-      min-height: 650px;
-      display: flex;
-      align-items: center;
-      padding: 80px 0;
-      overflow: hidden;
+      position: relative; overflow: hidden;
+      padding: 110px 0 90px;
       background:
-        radial-gradient(ellipse at 80% 25%, rgba(30, 137, 255, 0.17), transparent 40%),
-        radial-gradient(ellipse at 70% 90%, rgba(31, 224, 202, 0.09), transparent 36%);
+        radial-gradient(ellipse at 85% 20%,rgba(47,128,237,.25),transparent 35%),
+        radial-gradient(ellipse at 15% 80%,rgba(66,232,224,.10),transparent 30%),
+        linear-gradient(145deg,#07152e,#0b1e3b 60%,#10294f);
     }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: 0.16;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(83, 168, 244, 0.18) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(83, 168, 244, 0.18) 1px, transparent 1px);
-      background-size: 42px 42px;
-      mask-image: linear-gradient(to right, transparent, black);
+    .hero:after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+                        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+      background-size: 38px 38px;
+      mask-image: linear-gradient(to bottom,black,transparent);
     }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      align-items: center;
-      gap: 55px;
-      position: relative;
+    .hero .container { position: relative; z-index: 1; }
+    .eyebrow {
+      display: inline-block; padding: 7px 12px; border-radius: 30px;
+      color: var(--cyan); background: rgba(66,232,224,.08);
+      border: 1px solid rgba(66,232,224,.25); font-size: .82rem;
     }
-
-    .hero h1 {
-      font-size: clamp(2.7rem, 6vw, 5.2rem);
-      letter-spacing: -2.7px;
-      line-height: 1.04;
-      margin-bottom: 23px;
+    .hero h1 { font-weight: 850; letter-spacing: -1.4px; line-height: 1.1; }
+    .gradient-text {
+      background: linear-gradient(90deg,#42e8e0,#75aaff);
+      color: transparent; background-clip: text;
     }
-
-    .hero-description {
-      max-width: 620px;
-      font-size: 1.04rem;
-      color: var(--muted);
-      margin-bottom: 28px;
+    .muted { color: var(--muted); }
+    .btn-cyber {
+      color: #06152b; font-weight: 750; border: 0;
+      background: linear-gradient(100deg,var(--cyan),#7bb7ff);
     }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 32px;
+    .btn-cyber:hover { color: #06152b; filter: brightness(1.08); }
+    .btn-outline-cyber { color: white; border: 1px solid var(--border); }
+    .btn-outline-cyber:hover { background: var(--panel2); color: var(--cyan); }
+    .hero-visual {
+      min-height: 310px; display: grid; place-items: center;
+      border: 1px solid var(--border); border-radius: 30px;
+      background: radial-gradient(circle,rgba(47,128,237,.2),transparent 62%);
     }
-
-    .hero-points {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 17px;
-      color: var(--muted);
-      font-size: 0.82rem;
+    .shield { font-size: clamp(100px,15vw,180px); color: var(--cyan);
+      filter: drop-shadow(0 0 25px rgba(66,232,224,.25)); }
+    .section { padding: 78px 0; }
+    .section-title { font-weight: 800; letter-spacing: -.5px; }
+    .section-subtitle { color: var(--muted); max-width: 680px; }
+    .surface {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 20px;
     }
-
-    .hero-points span::before {
-      content: "✓";
-      color: var(--cyan);
-      margin-right: 7px;
-      font-weight: 900;
+    .stat-card { padding: 23px; height: 100%; }
+    .stat-number { color: var(--cyan); font-size: 2rem; font-weight: 850; }
+    .feature-card, .faculty-card { padding: 24px; height: 100%; transition: .2s ease; }
+    .feature-card:hover, .faculty-card:hover {
+      transform: translateY(-4px); border-color: rgba(66,232,224,.4);
     }
-
-    .cyber-visual {
-      min-height: 400px;
-      position: relative;
-      display: grid;
-      place-items: center;
-    }
-
-    .orbital {
-      width: min(350px, 80vw);
-      aspect-ratio: 1;
-      border: 1px solid rgba(72, 167, 255, 0.3);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      position: relative;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .orbital::before,
-    .orbital::after {
-      content: "";
-      position: absolute;
-      inset: 26px;
-      border: 1px dashed rgba(85, 240, 224, 0.35);
-      border-radius: 50%;
-    }
-
-    .orbital::after {
-      inset: 61px;
-      border-style: solid;
-      border-color: rgba(72, 167, 255, 0.28);
-    }
-
-    .shield {
-      width: 150px;
-      height: 175px;
-      display: grid;
-      place-items: center;
-      clip-path: polygon(50% 0, 94% 17%, 88% 67%, 50% 100%, 12% 67%, 6% 17%);
-      background: linear-gradient(145deg, #2e91f8, #4af0d9);
-      color: #07111f;
-      font-size: 4.5rem;
-      font-weight: 900;
-      filter: drop-shadow(0 0 28px rgba(72, 167, 255, 0.35));
-    }
-
-    .float-label {
-      position: absolute;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      padding: 11px 14px;
-      border-radius: 12px;
-      font-size: 0.8rem;
-      box-shadow: var(--shadow);
-    }
-
-    .float-label strong {
-      display: block;
-      color: var(--cyan);
-      font-size: 0.95rem;
-    }
-
-    .label-one { top: 9%; right: 0; }
-    .label-two { bottom: 12%; left: 0; }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    /* ==========================================
-       4. QUICK LINKS / STATS
-    ========================================== */
-    .quick-stats {
-      padding: 0 0 35px;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-
-    .stat-card {
-      padding: 22px;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      border-radius: 14px;
-    }
-
-    .stat-icon {
-      color: var(--cyan);
-      font-size: 1.45rem;
-      margin-bottom: 10px;
-    }
-
-    .stat-card h3 {
-      font-size: 1.03rem;
-      margin-bottom: 4px;
-    }
-
-    .stat-card p {
-      color: var(--muted);
-      font-size: 0.82rem;
-    }
-
-    /* ==========================================
-       5. ABOUT
-    ========================================== */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 42px;
-      align-items: start;
-    }
-
-    .feature-list {
-      display: grid;
-      gap: 14px;
-      margin-top: 25px;
-    }
-
-    .feature {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-
     .feature-icon {
-      width: 43px;
-      height: 43px;
-      flex-shrink: 0;
-      display: grid;
-      place-items: center;
-      color: var(--cyan);
-      background: var(--panel-light);
-      border-radius: 12px;
-      font-size: 1.2rem;
+      display: grid; place-items: center; width: 48px; height: 48px;
+      border-radius: 14px; background: rgba(66,232,224,.10);
+      color: var(--cyan); font-size: 1.4rem;
     }
-
-    .feature h3 {
-      font-size: 1rem;
-      margin-bottom: 4px;
-    }
-
-    .feature p {
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
-    .about-panel {
-      padding: 29px;
-      background:
-        radial-gradient(circle at 100% 0, rgba(49, 152, 255, 0.16), transparent 40%),
-        var(--panel);
-    }
-
-    .about-panel h3 {
-      margin-bottom: 13px;
-    }
-
-    .about-panel p {
-      color: var(--muted);
-      margin-bottom: 18px;
-    }
-
-    .info-line {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      padding: 13px 0;
-      border-top: 1px solid var(--border);
-      font-size: 0.88rem;
-    }
-
-    .info-line span:last-child {
-      color: var(--cyan);
-      text-align: right;
-    }
-
-    /* ==========================================
-       6. ACADEMICS
-    ========================================== */
-    .academics {
-      background: var(--bg-soft);
-    }
-
-    .three-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .academic-card {
-      padding: 25px;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-
-    .academic-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--blue);
-    }
-
-    .academic-icon {
+    .faculty-avatar {
+      display: grid; place-items: center; width: 66px; height: 66px;
+      border-radius: 18px; background: var(--panel2); color: var(--cyan);
       font-size: 1.8rem;
-      margin-bottom: 16px;
     }
-
-    .academic-card h3 {
-      margin-bottom: 10px;
-      font-size: 1.13rem;
-    }
-
-    .academic-card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 16px;
-    }
-
-    .text-link {
-      color: var(--cyan);
-      font-weight: 800;
-      font-size: 0.86rem;
-    }
-
-    /* ==========================================
-       7. CYBER LAB / LEARNING TOPICS
-    ========================================== */
-    .topics-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-    }
-
-    .topic {
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-    }
-
-    .topic-icon {
-      width: 48px;
-      height: 48px;
-      flex-shrink: 0;
-      display: grid;
-      place-items: center;
-      background: var(--panel-light);
-      border-radius: 13px;
-      color: var(--cyan);
-      font-size: 1.3rem;
-    }
-
-    .topic h3 {
-      font-size: 0.98rem;
-    }
-
-    .topic p {
-      color: var(--muted);
-      font-size: 0.79rem;
-      margin-top: 3px;
-    }
-
-    .ethics-note {
-      margin-top: 20px;
-      border-left: 3px solid var(--cyan);
-      padding: 14px 18px;
-      background: var(--panel);
-      color: var(--muted);
-      border-radius: 0 12px 12px 0;
-      font-size: 0.87rem;
-    }
-
-    /* ==========================================
-       8. FACULTY
-    ========================================== */
-    .faculty-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .faculty-card {
-      padding: 25px;
-      text-align: center;
-    }
-
-    .avatar {
-      width: 85px;
-      height: 85px;
-      border-radius: 50%;
-      margin: 0 auto 17px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, #2388f5, #47e4d3);
-      color: #061322;
-      font-size: 1.8rem;
-      font-weight: 900;
-    }
-
-    .faculty-card h3 {
-      font-size: 1.05rem;
-      margin-bottom: 6px;
-    }
-
-    .faculty-role {
-      color: var(--cyan);
-      font-size: 0.82rem;
-      margin-bottom: 10px;
-    }
-
-    .faculty-card p {
-      color: var(--muted);
-      font-size: 0.86rem;
-    }
-
-    .placeholder-note {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 17px;
-    }
-
-    /* ==========================================
-       9. ANNOUNCEMENTS
-    ========================================== */
-    .announcements {
-      background: var(--bg-soft);
-    }
-
-    .announcement-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .announcement {
-      display: grid;
-      grid-template-columns: 75px 1fr auto;
-      align-items: center;
-      gap: 18px;
-      padding: 20px;
-    }
-
-    .date-box {
-      text-align: center;
-      border-radius: 12px;
-      background: var(--panel-light);
-      padding: 10px 5px;
-      color: var(--cyan);
-      font-size: 0.78rem;
-      font-weight: 800;
-    }
-
-    .date-box strong {
-      display: block;
-      font-size: 1.3rem;
-    }
-
-    .announcement h3 {
-      font-size: 1rem;
-      margin-bottom: 4px;
-    }
-
-    .announcement p {
-      color: var(--muted);
-      font-size: 0.86rem;
-    }
-
-    .tag {
-      display: inline-block;
-      padding: 5px 9px;
-      border: 1px solid var(--border);
-      border-radius: 99px;
-      color: var(--cyan);
-      font-size: 0.72rem;
-      white-space: nowrap;
-    }
-
-    /* ==========================================
-       10. STUDENT PROJECTS
-    ========================================== */
-    .project-filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-bottom: 24px;
-    }
-
-    .filter-btn {
-      padding: 8px 14px;
-      border: 1px solid var(--border);
-      border-radius: 99px;
-      background: var(--panel);
-      color: var(--muted);
-    }
-
-    .filter-btn.active {
-      background: var(--blue);
-      color: #061322;
-      border-color: var(--blue);
-    }
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .project-card {
-      overflow: hidden;
-    }
-
-    .project-art {
-      min-height: 150px;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(72, 167, 255, 0.28), transparent 55%),
-        var(--panel-light);
-      font-size: 3rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .project-body {
-      padding: 21px;
-    }
-
-    .project-body h3 {
-      margin: 9px 0;
-      font-size: 1.08rem;
-    }
-
-    .project-body p {
-      color: var(--muted);
-      font-size: 0.87rem;
-      margin-bottom: 15px;
-    }
-
-    /* ==========================================
-       11. RESOURCES SEARCH
-    ========================================== */
-    .resources {
-      background: var(--bg-soft);
-    }
-
-    .search-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 22px;
-    }
-
-    .field {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: 11px;
-      padding: 13px 14px;
-      background: var(--panel);
-      color: var(--text);
-      outline: none;
-    }
-
-    .field:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(72, 167, 255, 0.12);
-    }
-
-    .resource-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .resource-card {
-      padding: 20px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: var(--panel);
-    }
-
-    .resource-card h3 {
-      font-size: 1rem;
-      margin: 9px 0 5px;
-    }
-
-    .resource-card p {
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin-bottom: 13px;
-    }
-
-    .empty-state {
-      padding: 25px;
-      color: var(--muted);
-      text-align: center;
-      grid-column: 1 / -1;
-    }
-
-    /* ==========================================
-       12. TIMETABLE
-    ========================================== */
-    .table-wrap {
-      overflow-x: auto;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: var(--panel);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 650px;
-    }
-
-    th, td {
-      text-align: left;
-      padding: 16px;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.88rem;
-    }
-
-    th {
-      background: var(--panel-light);
-      color: var(--cyan);
-    }
-
-    tr:last-child td {
-      border-bottom: 0;
-    }
-
-    .table-note {
-      margin-top: 13px;
-      color: var(--muted);
-      font-size: 0.83rem;
-    }
-
-    /* ==========================================
-       13. FAQ
-    ========================================== */
-    .faq-list {
-      max-width: 850px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .faq-item {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      overflow: hidden;
-    }
-
-    .faq-question {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      align-items: center;
-      padding: 18px 20px;
-      width: 100%;
-      background: transparent;
-      color: var(--text);
-      border: 0;
-      text-align: left;
-      font-weight: 800;
-    }
-
-    .faq-answer {
-      padding: 0 20px 19px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    /* ==========================================
-       14. CONTACT
-    ========================================== */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 25px;
-    }
-
-    .contact-info {
-      padding: 27px;
-    }
-
-    .contact-info h3 {
-      margin-bottom: 14px;
-    }
-
-    .contact-item {
-      padding: 15px 0;
-      border-bottom: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .contact-item strong {
-      display: block;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .contact-form {
-      padding: 27px;
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 7px;
-      font-size: 0.86rem;
-      font-weight: 700;
-    }
-
-    textarea.field {
-      min-height: 125px;
-      resize: vertical;
-    }
-
-    .form-status {
-      margin-top: 13px;
-      color: var(--cyan);
-      font-size: 0.88rem;
-    }
-
-    /* ==========================================
-       15. FOOTER
-    ========================================== */
-    footer {
-      background: var(--bg-soft);
-      border-top: 1px solid var(--border);
-      padding: 42px 0 20px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      gap: 30px;
-      padding-bottom: 30px;
-    }
-
-    .footer-grid h3 {
-      font-size: 0.95rem;
-      margin-bottom: 13px;
-    }
-
-    .footer-grid p,
-    .footer-grid a {
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
-
-    .footer-links {
-      display: grid;
-      gap: 8px;
-    }
-
-    .footer-links a:hover {
-      color: var(--cyan);
-    }
-
-    .footer-bottom {
-      padding-top: 19px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.78rem;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    /* ==========================================
-       16. CHATBOT
-    ========================================== */
-    .chat-launcher {
-      position: fixed;
-      z-index: 1100;
-      bottom: 23px;
-      right: 23px;
-      width: 61px;
-      height: 61px;
-      border: 0;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #2788f4, #42e8d8);
-      color: #07111f;
-      font-size: 1.55rem;
-      font-weight: 900;
-      box-shadow: 0 10px 35px rgba(38, 136, 244, 0.3);
-    }
-
-    .chat-panel {
-      position: fixed;
-      z-index: 1100;
-      right: 23px;
-      bottom: 96px;
-      width: min(370px, calc(100vw - 30px));
-      height: min(500px, calc(100dvh - 130px));
-      display: none;
-      flex-direction: column;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 19px;
-      background: var(--panel);
-      box-shadow: 0 25px 90px rgba(0, 0, 0, 0.45);
-    }
-
-    .chat-panel.open {
-      display: flex;
-    }
-
-    .chat-header {
-      padding: 16px;
-      background: var(--panel-light);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .chat-header h3 {
-      font-size: 0.98rem;
-    }
-
-    .chat-header p {
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    .chat-close {
-      border: 0;
-      background: transparent;
-      color: var(--text);
-      font-size: 1.3rem;
-    }
-
-    .chat-messages {
-      flex: 1;
-      padding: 15px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .message {
-      max-width: 88%;
-      padding: 11px 13px;
-      border-radius: 13px;
-      font-size: 0.85rem;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-    }
-
-    .message.bot {
-      align-self: flex-start;
-      background: var(--panel-light);
-      color: var(--text);
-    }
-
-    .message.user {
-      align-self: flex-end;
-      background: var(--blue);
-      color: #061322;
-    }
-
-    .chat-suggestions {
-      display: flex;
-      gap: 7px;
-      overflow-x: auto;
-      padding: 0 12px 11px;
-    }
-
-    .suggestion {
-      flex-shrink: 0;
-      border: 1px solid var(--border);
-      border-radius: 99px;
-      background: transparent;
-      color: var(--text);
-      padding: 7px 10px;
-      font-size: 0.74rem;
-    }
-
-    .chat-form {
-      display: flex;
-      gap: 8px;
-      padding: 12px;
-      border-top: 1px solid var(--border);
-    }
-
-    .chat-form .field {
-      min-width: 0;
-      padding: 10px;
-    }
-
-    .chat-form .btn {
-      padding: 10px 13px;
-    }
-
-    .chat-disclaimer {
-      padding: 0 13px 10px;
-      color: var(--muted);
-      font-size: 0.68rem;
-    }
-
-    /* ==========================================
-       17. ACCESSIBILITY / ANIMATION
-    ========================================== */
-    .skip-link {
-      position: absolute;
-      left: -9999px;
-      top: 0;
-      padding: 10px;
-      background: var(--panel);
-      color: var(--text);
-      z-index: 2000;
-    }
-
-    .skip-link:focus {
-      left: 10px;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.55s, transform 0.55s;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-      }
-
-      .reveal {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    /* ==========================================
-       18. RESPONSIVE DESIGN
-    ========================================== */
-    @media (max-width: 1000px) {
-      .nav-links {
-        gap: 12px;
-      }
-
-      .nav-links a {
-        font-size: 0.8rem;
-      }
-
-      .hero-grid {
-        gap: 25px;
-      }
-
-      .topics-grid,
-      .resource-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 780px) {
-      section {
-        padding: 65px 0;
-      }
-
-      .menu-toggle {
-        display: grid;
-      }
-
-      .nav-links {
-        display: none;
-        position: absolute;
-        left: 4%;
-        right: 4%;
-        top: calc(100% + 1px);
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        padding: 10px;
-        border: 1px solid var(--border);
-        border-radius: 0 0 15px 15px;
-        background: var(--panel);
-        box-shadow: var(--shadow);
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .nav-links a {
-        padding: 12px;
-        font-size: 0.92rem;
-      }
-
-      .nav-actions .btn {
-        display: none;
-      }
-
-      .hero {
-        min-height: auto;
-        padding: 65px 0 45px;
-      }
-
-      .hero-grid,
-      .about-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cyber-visual {
-        min-height: 340px;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .three-grid,
-      .faculty-grid,
-      .project-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .footer-grid > div:first-child {
-        grid-column: 1 / -1;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .brand-title {
-        font-size: 0.82rem;
-      }
-
-      .brand-subtitle {
-        font-size: 0.65rem;
-      }
-
-      .hero h1 {
-        letter-spacing: -1.4px;
-      }
-
-      .hero-actions .btn {
-        width: 100%;
-      }
-
-      .hero-points {
-        display: grid;
-        gap: 8px;
-      }
-
-      .three-grid,
-      .faculty-grid,
-      .project-grid,
-      .topics-grid,
-      .resource-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .announcement {
-        grid-template-columns: 60px 1fr;
-        gap: 12px;
-      }
-
-      .announcement .tag {
-        grid-column: 2;
-        justify-self: start;
-      }
-
-      .search-row {
-        flex-direction: column;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-grid > div:first-child {
-        grid-column: auto;
-      }
-
-      .label-one {
-        right: -5px;
-      }
-
-      .label-two {
-        left: -5px;
-      }
-
-      .chat-launcher {
-        right: 15px;
-        bottom: 15px;
-      }
-
-      .chat-panel {
-        right: 15px;
-        bottom: 86px;
-      }
+    .form-control, .form-select {
+      background-color: #081a35; color: white; border-color: var(--border);
+    }
+    .form-control:focus, .form-select:focus {
+      background-color: #081a35; color: white;
+      border-color: var(--cyan); box-shadow: 0 0 0 .2rem rgba(66,232,224,.1);
+    }
+    .form-select option { background: #081a35; color: white; }
+    .table { --bs-table-bg: transparent; --bs-table-color: var(--text); }
+    .table th { color: var(--cyan); white-space: nowrap; }
+    .table td, .table th { border-color: var(--border); padding: 13px; }
+    .table-responsive { border-radius: 14px; }
+    .live-box { padding: 20px; border-radius: 16px; height: 100%; }
+    .live-now { border: 1px solid rgba(66,232,224,.35); background: rgba(66,232,224,.07); }
+    .next-class { border: 1px solid rgba(123,183,255,.35); background: rgba(123,183,255,.07); }
+    .pill { border-radius: 30px; padding: 5px 10px; font-size: .78rem; }
+    .pill-live { background: rgba(66,232,224,.13); color: var(--cyan); }
+    .pill-demo { background: rgba(255,193,7,.13); color: #ffd36c; }
+    .qr-image { background: white; border-radius: 12px; padding: 10px; max-width: 160px; }
+    .footer { padding: 28px 0; border-top: 1px solid var(--border); color: var(--muted); }
+    #chat-toggle {
+      position: fixed; bottom: 22px; right: 22px; z-index: 1050;
+      width: 60px; height: 60px; border: 0; border-radius: 50%;
+      background: linear-gradient(135deg,var(--cyan),#7bb7ff);
+      color: #07152e; font-size: 1.6rem; box-shadow: 0 8px 28px #0005;
+    }
+    #chat-panel {
+      position: fixed; right: 20px; bottom: 94px; z-index: 1050;
+      width: min(390px,calc(100vw - 30px)); height: min(540px,70vh);
+      display: none; flex-direction: column; overflow: hidden;
+      border: 1px solid var(--border); border-radius: 20px;
+      background: #0a1b36; box-shadow: 0 20px 60px #0008;
+    }
+    #chat-panel.open { display: flex; }
+    .chat-head { padding: 15px; background: var(--panel2); }
+    #chat-messages { flex: 1; overflow-y: auto; padding: 14px; }
+    .chat-message {
+      max-width: 90%; padding: 10px 12px; border-radius: 14px;
+      margin-bottom: 10px; white-space: pre-wrap; overflow-wrap: anywhere;
+      font-size: .92rem;
+    }
+    .chat-user { margin-left: auto; background: #1e5da9; }
+    .chat-bot { background: #142b4d; border: 1px solid var(--border); }
+    .chat-form { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--border); }
+    .chat-form input { min-width: 0; }
+    .small-link { color: var(--cyan); }
+    @media(max-width:767px) {
+      .hero { padding: 75px 0 55px; }
+      .section { padding: 55px 0; }
+      .hero-visual { min-height: 210px; }
+      .hero h1 { letter-spacing: -.6px; }
     }
   </style>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
-
-  <div class="notice-bar">
-    <div class="container notice-inner">
-      <span>🔐 Learn. Build. Defend. — Cybersecurity education and innovation</span>
-      <a href="#announcements">View announcements →</a>
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="#home">
+      <span class="brand-mark"><i class="bi bi-shield-lock-fill"></i></span>
+      <span>QUEST <small class="d-block muted" style="font-size:.68rem">CYBERSECURITY PORTAL</small></span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faculty">Faculty</a></li>
+        <li class="nav-item"><a class="nav-link" href="#timetable">Timetable</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item"><a class="btn btn-cyber btn-sm ms-lg-2" href="#timetable">Student Portal <i class="bi bi-arrow-up-right"></i></a></li>
+      </ul>
     </div>
   </div>
+</nav>
 
-  <!-- NAVIGATION -->
-  <header class="navbar">
-    <div class="container nav-inner">
-      <a class="brand" href="#home" aria-label="Department homepage">
-        <span class="brand-mark">C</span>
-        <span>
-          <span class="brand-title">CYBERSECURITY</span>
-          <span class="brand-subtitle">QUEST University · Nawabshah</span>
-        </span>
-      </a>
-
-      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#academics">Academics</a>
-        <a href="#research">Learning</a>
-        <a href="#faculty">Faculty</a>
-        <a href="#announcements">News</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <div class="nav-actions">
-        <button class="icon-button" id="themeToggle"
-          type="button" aria-label="Toggle color theme" title="Toggle theme">☼</button>
-        <a class="btn btn-primary" href="#resources">Explore Resources ↗</a>
-        <button class="icon-button menu-toggle" id="menuToggle"
-          type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
-      </div>
-    </div>
-  </header>
-
-  <main id="main">
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">Cybersecurity education</span>
-          <h1>Secure the<br>digital <span class="gradient-text">future.</span></h1>
-          <p class="hero-description">
-            Discover cybersecurity concepts, develop technical skills,
-            explore student innovation, and learn how to protect the digital world.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#academics">Explore Academics →</a>
-            <a class="btn btn-outline" href="#projects">Discover Projects ↗</a>
-          </div>
-          <div class="hero-points">
-            <span>Learn security fundamentals</span>
-            <span>Build practical projects</span>
-            <span>Practice responsible security</span>
-          </div>
-        </div>
-
-        <div class="cyber-visual" aria-label="Decorative cybersecurity shield">
-          <div class="orbital">
-            <div class="shield" aria-hidden="true">⌑</div>
-          </div>
-          <div class="float-label label-one">
-            <strong>DEFEND</strong>
-            Protect digital systems
-          </div>
-          <div class="float-label label-two">
-            <strong>INNOVATE</strong>
-            Build safer technology
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- QUICK STATS: descriptive categories, not invented statistics -->
-    <div class="quick-stats">
-      <div class="container stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon">⌘</div>
-          <h3>Cybersecurity</h3>
-          <p>Core security concepts</p>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">⌨</div>
-          <h3>Programming</h3>
-          <p>Code and problem-solving</p>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">◈</div>
-          <h3>Research</h3>
-          <p>Explore emerging threats</p>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">◎</div>
-          <h3>Innovation</h3>
-          <p>Student-led projects</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="container about-grid">
-        <div class="reveal">
-          <span class="eyebrow">About the department</span>
-          <div class="section-heading">
-            <h2>Understand threats.<br><span class="gradient-text">Create solutions.</span></h2>
-            <p>
-              Cybersecurity combines computing, critical thinking, risk
-              management, and responsible technology use to help protect
-              information and digital systems.
-            </p>
-          </div>
-
-          <div class="feature-list">
-            <div class="feature">
-              <div class="feature-icon">⌘</div>
-              <div>
-                <h3>Technical foundations</h3>
-                <p>Explore networking, operating systems, programming, and information security.</p>
-              </div>
-            </div>
-            <div class="feature">
-              <div class="feature-icon">⌕</div>
-              <div>
-                <h3>Analytical thinking</h3>
-                <p>Learn to identify weaknesses, investigate problems, and evaluate possible solutions.</p>
-              </div>
-            </div>
-            <div class="feature">
-              <div class="feature-icon">♧</div>
-              <div>
-                <h3>Responsible practice</h3>
-                <p>Understand privacy, ethics, legal boundaries, and safe security testing.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <aside class="card about-panel reveal">
-          <span class="eyebrow">University profile</span>
-          <h3>QUEST University Nawabshah</h3>
-          <p>
-            This student-built website concept is designed to present
-            cybersecurity learning and department information in a clear,
-            accessible format.
-          </p>
-          <div class="info-line">
-            <span>University</span>
-            <span>QUEST</span>
-          </div>
-          <div class="info-line">
-            <span>Location</span>
-            <span>Nawabshah, Sindh</span>
-          </div>
-          <div class="info-line">
-            <span>Program information</span>
-            <span>Verify officially</span>
-          </div>
-          <div class="info-line">
-            <span>Website status</span>
-            <span>Student demo</span>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- ACADEMICS -->
-    <section class="academics" id="academics">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="eyebrow">Academics</span>
-          <h2>Build a strong <span class="gradient-text">foundation.</span></h2>
-          <p>
-            Example learning areas for a cybersecurity website. Replace these
-            with the university's verified program outline and course catalog.
-          </p>
-        </div>
-
-        <div class="three-grid">
-          <article class="card academic-card reveal">
-            <div class="academic-icon">⌨️</div>
-            <h3>Programming & Computing</h3>
-            <p>Learn programming logic, data structures, operating systems, and computing fundamentals.</p>
-            <a class="text-link" href="#resources">Explore resources →</a>
-          </article>
-          <article class="card academic-card reveal">
-            <div class="academic-icon">🌐</div>
-            <h3>Networks & Security</h3>
-            <p>Study networking concepts, secure communication, access control, and network defense.</p>
-            <a class="text-link" href="#research">Explore topics →</a>
-          </article>
-          <article class="card academic-card reveal">
-            <div class="academic-icon">🛡️</div>
-            <h3>Information Protection</h3>
-            <p>Understand encryption, security principles, risk assessment, and data protection.</p>
-            <a class="text-link" href="#faq">Read FAQs →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- LEARNING TOPICS -->
-    <section id="research">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="eyebrow">Learning & exploration</span>
-          <h2>Explore the world of <span class="gradient-text">cybersecurity.</span></h2>
-          <p>Browse topic areas that can become dedicated learning pages as the project grows.</p>
-        </div>
-
-        <div class="topics-grid">
-          <article class="topic reveal">
-            <div class="topic-icon">🌐</div>
-            <div><h3>Network Security</h3><p>Traffic, protocols, and defense</p></div>
-          </article>
-          <article class="topic reveal">
-            <div class="topic-icon">🔎</div>
-            <div><h3>Digital Forensics</h3><p>Evidence and investigation</p></div>
-          </article>
-          <article class="topic reveal">
-            <div class="topic-icon">🔐</div>
-            <div><h3>Cryptography</h3><p>Encryption and integrity</p></div>
-          </article>
-          <article class="topic reveal">
-            <div class="topic-icon">🤖</div>
-            <div><h3>AI & Security</h3><p>AI applications and risks</p></div>
-          </article>
-          <article class="topic reveal">
-            <div class="topic-icon">🧪</div>
-            <div><h3>Security Testing</h3><p>Authorized lab practice</p></div>
-          </article>
-          <article class="topic reveal">
-            <div class="topic-icon">🧩</div>
-            <div><h3>Secure Development</h3><p>Safer code and design</p></div>
-          </article>
-        </div>
-
-        <div class="ethics-note">
-          <strong>Ethical security reminder:</strong>
-          Only test systems you own or have explicit permission to assess.
-          Practice on intentionally vulnerable labs and authorized learning platforms.
-        </div>
-      </div>
-    </section>
-
-    <!-- FACULTY -->
-    <section id="faculty" class="academics">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="eyebrow">Faculty & team</span>
-          <h2>Meet the <span class="gradient-text">people behind learning.</span></h2>
-          <p>
-            Replace these demo profiles with real faculty names, approved
-            photographs, designations, research interests, and official contact links.
-          </p>
-        </div>
-
-        <div class="faculty-grid">
-          <article class="card faculty-card reveal">
-            <div class="avatar" aria-hidden="true">F1</div>
-            <h3>Faculty Profile One</h3>
-            <div class="faculty-role">Verified designation needed</div>
-            <p>Add an approved biography, qualifications, and teaching or research interests.</p>
-          </article>
-          <article class="card faculty-card reveal">
-            <div class="avatar" aria-hidden="true">F2</div>
-            <h3>Faculty Profile Two</h3>
-            <div class="faculty-role">Verified designation needed</div>
-            <p>Add an approved biography, qualifications, and teaching or research interests.</p>
-          </article>
-          <article class="card faculty-card reveal">
-            <div class="avatar" aria-hidden="true">F3</div>
-            <h3>Faculty Profile Three</h3>
-            <div class="faculty-role">Verified designation needed</div>
-            <p>Add an approved biography, qualifications, and teaching or research interests.</p>
-          </article>
-        </div>
-        <p class="placeholder-note">
-          Demo content only — these are not actual faculty identities or university appointments.
+<header class="hero" id="home">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <span class="eyebrow mb-4"><i class="bi bi-activity me-2"></i>LEARN • DEFEND • INNOVATE</span>
+        <h1 class="display-3 mb-4">Securing the <span class="gradient-text">Digital Future.</span></h1>
+        <p class="lead muted mb-4">
+          A central student information portal for cybersecurity learning,
+          department updates, faculty information and interactive class schedules.
         </p>
+        <div class="d-flex flex-wrap gap-3">
+          <a class="btn btn-cyber btn-lg" href="#timetable">View Timetable <i class="bi bi-arrow-right ms-1"></i></a>
+          <a class="btn btn-outline-cyber btn-lg" href="#about">Explore Department</a>
+        </div>
+        <p class="small muted mt-4 mb-0"><i class="bi bi-info-circle me-1"></i>Student project prototype. Verify official information before publication.</p>
       </div>
-    </section>
-
-    <!-- ANNOUNCEMENTS -->
-    <section id="announcements" class="announcements">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="eyebrow">News & announcements</span>
-          <h2>Stay informed. <span class="gradient-text">Stay prepared.</span></h2>
-          <p>Use this area for verified notices, events, workshops, deadlines, and department updates.</p>
-        </div>
-
-        <div class="announcement-list">
-          <article class="card announcement reveal">
-            <div class="date-box"><strong>01</strong>UPDATE</div>
-            <div>
-              <h3>Department notice placeholder</h3>
-              <p>Replace this text with a verified announcement and its publication date.</p>
+      <div class="col-lg-5">
+        <div class="hero-visual">
+          <div class="text-center">
+            <i class="bi bi-shield-fill-check shield"></i>
+            <div class="mt-2 fw-bold fs-5">CYBERSECURITY</div>
+            <div class="muted">Protecting systems. Empowering people.</div>
+            <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap">
+              <span class="eyebrow">Network Security</span>
+              <span class="eyebrow">Ethical Hacking</span>
             </div>
-            <span class="tag">Notice</span>
-          </article>
-          <article class="card announcement reveal">
-            <div class="date-box"><strong>02</strong>EVENT</div>
-            <div>
-              <h3>Cybersecurity workshop placeholder</h3>
-              <p>Add the approved event description, date, venue, and registration instructions.</p>
-            </div>
-            <span class="tag">Event</span>
-          </article>
-          <article class="card announcement reveal">
-            <div class="date-box"><strong>03</strong>NEWS</div>
-            <div>
-              <h3>Student achievement placeholder</h3>
-              <p>Share approved news about a student project, competition, or research achievement.</p>
-            </div>
-            <span class="tag">Achievement</span>
-          </article>
-        </div>
-        <p class="placeholder-note">These are example cards, not real or current university announcements.</p>
-      </div>
-    </section>
-
-    <!-- PROJECT SHOWCASE -->
-    <section id="projects">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="eyebrow">Student innovation</span>
-          <h2>Ideas become <span class="gradient-text">real projects.</span></h2>
-          <p>Showcase student-built websites, secure coding projects, awareness campaigns, and research prototypes.</p>
-        </div>
-
-        <div class="project-filters" role="group" aria-label="Filter student projects">
-          <button class="filter-btn active" data-filter="all" type="button">All projects</button>
-          <button class="filter-btn" data-filter="web" type="button">Web development</button>
-          <button class="filter-btn" data-filter="security" type="button">Security</button>
-          <button class="filter-btn" data-filter="awareness" type="button">Awareness</button>
-        </div>
-
-        <div class="project-grid" id="projectGrid">
-          <article class="card project-card reveal" data-category="web">
-            <div class="project-art" aria-hidden="true">💻</div>
-            <div class="project-body">
-              <span class="tag">Web development</span>
-              <h3>Department Website</h3>
-              <p>A responsive website concept for presenting learning resources and department information.</p>
-              <a class="text-link" href="#home">View website sections ↑</a>
-            </div>
-          </article>
-          <article class="card project-card reveal" data-category="security">
-            <div class="project-art" aria-hidden="true">🔐</div>
-            <div class="project-body">
-              <span class="tag">Security</span>
-              <h3>Password Safety Guide</h3>
-              <p>An educational prototype explaining strong passwords, MFA, and account protection.</p>
-              <a class="text-link" href="#resources">Explore learning resources →</a>
-            </div>
-          </article>
-          <article class="card project-card reveal" data-category="awareness">
-            <div class="project-art" aria-hidden="true">📢</div>
-            <div class="project-body">
-              <span class="tag">Awareness</span>
-              <h3>Phishing Awareness</h3>
-              <p>A sample awareness campaign that teaches users to recognize suspicious messages.</p>
-              <a class="text-link" href="#faq">Read safety FAQs →</a>
-            </div>
-          </article>
-        </div>
-        <p class="placeholder-note">Example showcase items — replace with real projects and obtain permission before publishing student details.</p>
-      </div>
-    </section>
-
-    <!-- SEARCHABLE RESOURCES -->
-    <section id="resources" class="resources">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="eyebrow">Student resources</span>
-          <h2>Find your next <span class="gradient-text">learning step.</span></h2>
-          <p>Search these starter topics. Later, link them to lecture notes, official course materials, and approved resources.</p>
-        </div>
-
-        <div class="search-row">
-          <input class="field" type="search" id="resourceSearch"
-            placeholder="Search networking, Python, cryptography..."
-            aria-label="Search learning resources">
-          <button class="btn btn-primary" id="clearSearch" type="button">Clear</button>
-        </div>
-
-        <div class="resource-grid" id="resourceGrid">
-          <article class="resource-card" data-search="python programming beginner code">
-            <span class="tag">Programming</span>
-            <h3>Python Fundamentals</h3>
-            <p>Variables, data types, conditions, loops, lists, and functions.</p>
-            <a class="text-link" href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener noreferrer">Official Python tutorial ↗</a>
-          </article>
-          <article class="resource-card" data-search="networking tcp ip protocols computer networks">
-            <span class="tag">Networking</span>
-            <h3>Networking Basics</h3>
-            <p>Understand IP addressing, network protocols, and communication.</p>
-            <a class="text-link" href="https://www.cloudflare.com/learning/network-layer/what-is-a-computer-network/" target="_blank" rel="noopener noreferrer">Networking introduction ↗</a>
-          </article>
-          <article class="resource-card" data-search="owasp web security vulnerabilities secure website">
-            <span class="tag">Web security</span>
-            <h3>OWASP Web Security</h3>
-            <p>Explore common web security risks and ways developers reduce them.</p>
-            <a class="text-link" href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener noreferrer">OWASP Top 10 ↗</a>
-          </article>
-          <article class="resource-card" data-search="cryptography encryption keys integrity">
-            <span class="tag">Cryptography</span>
-            <h3>Cryptography Concepts</h3>
-            <p>Learn about encryption, keys, hashes, and data integrity.</p>
-            <a class="text-link" href="https://csrc.nist.gov/" target="_blank" rel="noopener noreferrer">NIST resources ↗</a>
-          </article>
-          <article class="resource-card" data-search="linux command line operating system">
-            <span class="tag">Operating systems</span>
-            <h3>Linux Learning</h3>
-            <p>Explore command-line concepts and responsible system administration.</p>
-            <a class="text-link" href="https://www.kernel.org/doc/html/latest/" target="_blank" rel="noopener noreferrer">Linux documentation ↗</a>
-          </article>
-          <article class="resource-card" data-search="cybersecurity awareness phishing privacy authentication">
-            <span class="tag">Security awareness</span>
-            <h3>Stay Safe Online</h3>
-            <p>Learn about phishing, account protection, privacy, and safe browsing.</p>
-            <a class="text-link" href="https://www.cisa.gov/secure-our-world" target="_blank" rel="noopener noreferrer">CISA security tips ↗</a>
-          </article>
-        </div>
-        <p id="resourceEmpty" class="empty-state" hidden>No matching resources. Try another keyword.</p>
-      </div>
-    </section>
-
-    <!-- TIMETABLE -->
-    <section id="timetable">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="eyebrow">Academic information</span>
-          <h2>Timetable & <span class="gradient-text">course schedule.</span></h2>
-          <p>A sample timetable layout. Replace the rows below with the current, officially approved schedule.</p>
-        </div>
-
-        <div class="table-wrap reveal">
-          <table>
-            <thead>
-              <tr>
-                <th>Day</th>
-                <th>Time</th>
-                <th>Course</th>
-                <th>Room</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Sample day</td>
-                <td>Verified time needed</td>
-                <td>Course name needed</td>
-                <td>Room needed</td>
-                <td>Demo</td>
-              </tr>
-              <tr>
-                <td>Sample day</td>
-                <td>Verified time needed</td>
-                <td>Course name needed</td>
-                <td>Room needed</td>
-                <td>Demo</td>
-              </tr>
-              <tr>
-                <td>Sample day</td>
-                <td>Verified time needed</td>
-                <td>Course name needed</td>
-                <td>Room needed</td>
-                <td>Demo</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="table-note">Important: do not use this demo as an actual class schedule.</p>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="academics">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="eyebrow">Help center</span>
-          <h2>Frequently asked <span class="gradient-text">questions.</span></h2>
-          <p>Starter answers for visitors. Verify admission, fees, eligibility, and university policies with official sources.</p>
-        </div>
-
-        <div class="faq-list">
-          <article class="faq-item">
-            <button class="faq-question" aria-expanded="false" type="button">
-              What is cybersecurity? <span>＋</span>
-            </button>
-            <div class="faq-answer" hidden>
-              Cybersecurity is the practice of protecting computers, networks,
-              applications, and information from unauthorized access, misuse,
-              disruption, or damage.
-            </div>
-          </article>
-          <article class="faq-item">
-            <button class="faq-question" aria-expanded="false" type="button">
-              How can I find official admission information? <span>＋</span>
-            </button>
-            <div class="faq-answer" hidden>
-              Check the official university website and admissions office for
-              current eligibility requirements, deadlines, fees, and application procedures.
-              This demo does not confirm current admission details.
-            </div>
-          </article>
-          <article class="faq-item">
-            <button class="faq-question" aria-expanded="false" type="button">
-              Do I need programming before learning cybersecurity? <span>＋</span>
-            </button>
-            <div class="faq-answer" hidden>
-              Beginners can start with basic computer knowledge and gradually
-              learn programming, networking, Linux, and security fundamentals.
-            </div>
-          </article>
-          <article class="faq-item">
-            <button class="faq-question" aria-expanded="false" type="button">
-              Can I practice ethical hacking on any website? <span>＋</span>
-            </button>
-            <div class="faq-answer" hidden>
-              No. Only test systems you own or have explicit permission to test.
-              Use legal training labs and follow applicable laws and policies.
-            </div>
-          </article>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</header>
 
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="eyebrow">Get in touch</span>
-          <h2>Questions? Let's <span class="gradient-text">connect.</span></h2>
-          <p>Replace the placeholders with the department's verified contact information before publishing.</p>
+<section class="py-4">
+  <div class="container">
+    <div class="row g-3">
+      <div class="col-6 col-lg-3"><div class="surface stat-card">
+        <div class="stat-number">4</div><div class="muted">Batch groups</div>
+      </div></div>
+      <div class="col-6 col-lg-3"><div class="surface stat-card">
+        <div class="stat-number"><i class="bi bi-calendar-week"></i></div><div class="muted">Interactive schedule</div>
+      </div></div>
+      <div class="col-6 col-lg-3"><div class="surface stat-card">
+        <div class="stat-number"><i class="bi bi-qr-code-scan"></i></div><div class="muted">QR quick access</div>
+      </div></div>
+      <div class="col-6 col-lg-3"><div class="surface stat-card">
+        <div class="stat-number"><i class="bi bi-chat-dots"></i></div><div class="muted">Department assistant</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6">
+        <span class="eyebrow mb-3">ABOUT THE PORTAL</span>
+        <h2 class="section-title display-6 mb-3">One place for department information.</h2>
+        <p class="section-subtitle">
+          This portal is designed to make important academic information easier
+          to find on desktop and mobile devices.
+        </p>
+        <p class="muted">Replace this paragraph with the department's approved
+          vision, mission, programme description and official university information.</p>
+      </div>
+      <div class="col-lg-6">
+        <div class="row g-3">
+          <div class="col-sm-6"><div class="surface feature-card">
+            <div class="feature-icon mb-3"><i class="bi bi-calendar2-check"></i></div>
+            <h5>Live Schedule</h5><p class="muted mb-0">Find the current and upcoming class using the selected batch timetable.</p>
+          </div></div>
+          <div class="col-sm-6"><div class="surface feature-card">
+            <div class="feature-icon mb-3"><i class="bi bi-people"></i></div>
+            <h5>Faculty Directory</h5><p class="muted mb-0">View approved staff profiles, qualifications and research areas.</p>
+          </div></div>
+          <div class="col-sm-6"><div class="surface feature-card">
+            <div class="feature-icon mb-3"><i class="bi bi-qr-code"></i></div>
+            <h5>Quick QR Access</h5><p class="muted mb-0">Open a particular batch schedule on a mobile phone.</p>
+          </div></div>
+          <div class="col-sm-6"><div class="surface feature-card">
+            <div class="feature-icon mb-3"><i class="bi bi-robot"></i></div>
+            <h5>AI Assistant</h5><p class="muted mb-0">Ask questions about the information maintained by the department.</p>
+          </div></div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="contact-grid">
-          <aside class="card contact-info reveal">
-            <h3>Department contact</h3>
-            <p class="muted">Official contact details have not yet been configured.</p>
-            <div class="contact-item">
-              <strong>📍 Location</strong>
-              QUEST University, Nawabshah, Sindh, Pakistan
-            </div>
-            <div class="contact-item">
-              <strong>✉️ Email</strong>
-              Add the verified department email
-            </div>
-            <div class="contact-item">
-              <strong>🌐 University website</strong>
-              <a class="text-link" href="https://quest.edu.pk/" target="_blank" rel="noopener noreferrer">Visit university website ↗</a>
-            </div>
-          </aside>
+<section class="section" id="faculty" style="background:#091a34">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-4">
+      <div><span class="eyebrow mb-3">MEET THE TEAM</span>
+        <h2 class="section-title display-6 mb-2">Faculty Directory</h2>
+        <p class="section-subtitle mb-0">Replace the demo entries with verified faculty information.</p>
+      </div>
+      <span class="pill pill-demo">Demo profiles until verified</span>
+    </div>
+    <div class="row g-3" id="faculty-list">
+      <div class="col-12"><p class="muted">Loading faculty information…</p></div>
+    </div>
+  </div>
+</section>
 
-          <form class="card contact-form reveal" id="contactForm">
-            <div class="form-group">
-              <label for="visitorName">Your name</label>
-              <input class="field" id="visitorName" name="name" required maxlength="100" autocomplete="name" placeholder="Enter your name">
-            </div>
-            <div class="form-group">
-              <label for="visitorEmail">Email address</label>
-              <input class="field" id="visitorEmail" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="you@example.com">
-            </div>
-            <div class="form-group">
-              <label for="visitorTopic">Topic</label>
-              <select class="field" id="visitorTopic" name="topic" required>
-                <option value="">Choose a topic</option>
-                <option>General inquiry</option>
-                <option>Academic information</option>
-                <option>Student project</option>
-                <option>Website feedback</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="visitorMessage">Message</label>
-              <textarea class="field" id="visitorMessage" name="message" required maxlength="2000" placeholder="Write your message..."></textarea>
-            </div>
-            <button class="btn btn-primary" type="submit">Prepare email draft ↗</button>
-            <p id="contactStatus" class="form-status" role="status"></p>
-            <p class="placeholder-note">
-              This demo does not send or store messages. It prepares an email draft in your email application.
-            </p>
+<section class="section" id="timetable">
+  <div class="container">
+    <span class="eyebrow mb-3">STUDENT SCHEDULE</span>
+    <h2 class="section-title display-6">Live Class Timetable</h2>
+    <p class="section-subtitle mb-4">
+      Select a batch to view its schedule. Live class detection uses the
+      browser's local time; confirm the correct campus timezone and timetable.
+    </p>
+
+    <div class="surface p-3 p-md-4 mb-4">
+      <div class="row align-items-end g-3">
+        <div class="col-md-5">
+          <label for="batch-select" class="form-label">Select batch</label>
+          <select class="form-select" id="batch-select">
+            <option value="23CYS">23CYS</option>
+            <option value="24CYS">24CYS</option>
+            <option value="25CYS">25CYS</option>
+            <option value="26CYS" selected>26CYS</option>
+          </select>
+        </div>
+        <div class="col-md-7 d-flex flex-wrap gap-2">
+          <button class="btn btn-cyber" id="today-btn"><i class="bi bi-clock me-1"></i>Check live classes</button>
+          <button class="btn btn-outline-cyber" id="qr-btn"><i class="bi bi-qr-code me-1"></i>Show batch QR</button>
+        </div>
+      </div>
+      <div class="small muted mt-3" id="clock-status" aria-live="polite">Checking schedule…</div>
+    </div>
+
+    <div class="row g-3 mb-4">
+      <div class="col-md-6">
+        <div class="live-box live-now">
+          <div class="d-flex justify-content-between gap-2 mb-2">
+            <span class="fw-bold"><i class="bi bi-broadcast me-2"></i>Current Ongoing Class</span>
+            <span class="pill pill-live">LIVE</span>
+          </div>
+          <h4 id="current-class">Checking…</h4>
+          <p class="muted mb-0" id="current-details">Please wait.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="live-box next-class">
+          <div class="fw-bold mb-2"><i class="bi bi-arrow-right-circle me-2"></i>Upcoming Next Class</div>
+          <h4 id="next-class">Checking…</h4>
+          <p class="muted mb-0" id="next-details">Please wait.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="surface p-3 p-md-4">
+      <div class="d-flex justify-content-between flex-wrap gap-2 align-items-center mb-3">
+        <h5 class="mb-0"><span id="schedule-batch">26CYS</span> — Weekly Schedule</h5>
+        <span class="pill pill-demo" id="schedule-label">DEMO DATA</span>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-middle mb-0">
+          <thead><tr><th>Day</th><th>Time</th><th>Subject</th><th>Room</th><th>Instructor</th></tr></thead>
+          <tbody id="timetable-body">
+            <tr><td colspan="5" class="muted">Loading timetable…</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="small muted mt-3">The live indicator is only as accurate as the stored timetable data.</div>
+    </div>
+
+    <div class="surface p-4 mt-4 d-none" id="qr-area">
+      <div class="row align-items-center g-4">
+        <div class="col-sm-auto"><img id="qr-image" class="qr-image" alt="QR code for the selected batch timetable"></div>
+        <div class="col">
+          <h5>Scan to open this batch schedule</h5>
+          <p class="muted mb-2">Scan with your phone camera. The link must be publicly accessible.</p>
+          <a class="small-link" id="qr-link" href="#timetable">Open batch schedule</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact" style="background:#091a34">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-6">
+        <span class="eyebrow mb-3">GET IN TOUCH</span>
+        <h2 class="section-title display-6">Contact the Department</h2>
+        <p class="muted">Add the official department email, phone number, office hours and approved university address before launch.</p>
+        <div class="surface p-4 mt-4">
+          <p><i class="bi bi-geo-alt me-2" style="color:var(--cyan)"></i>QUEST, Nawabshah, Sindh, Pakistan</p>
+          <p><i class="bi bi-envelope me-2" style="color:var(--cyan)"></i><span class="muted">Add verified official email</span></p>
+          <p class="mb-0"><i class="bi bi-globe me-2" style="color:var(--cyan)"></i><span class="muted">Add approved department website link</span></p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="surface p-4">
+          <h5 class="mb-3">Quick message</h5>
+          <form id="contact-form">
+            <label class="form-label" for="contact-name">Your name</label>
+            <input class="form-control mb-3" id="contact-name" maxlength="100" required>
+            <label class="form-label" for="contact-email">Your email</label>
+            <input class="form-control mb-3" id="contact-email" type="email" maxlength="160" required>
+            <label class="form-label" for="contact-message">Message</label>
+            <textarea class="form-control mb-3" id="contact-message" rows="4" maxlength="1500" required></textarea>
+            <button class="btn btn-cyber" type="submit">Prepare email <i class="bi bi-send ms-1"></i></button>
+            <p class="muted small mt-3 mb-0">This prototype opens the user's email app; it does not secretly send or store messages.</p>
           </form>
         </div>
       </div>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <a class="brand" href="#home">
-            <span class="brand-mark">C</span>
-            <span>
-              <span class="brand-title">CYBERSECURITY</span>
-              <span class="brand-subtitle">QUEST University · Nawabshah</span>
-            </span>
-          </a>
-          <p style="margin-top: 15px; max-width: 360px;">
-            A student website concept for cybersecurity education, learning
-            resources, and innovation.
-          </p>
-        </div>
-        <div>
-          <h3>Explore</h3>
-          <div class="footer-links">
-            <a href="#about">About</a>
-            <a href="#academics">Academics</a>
-            <a href="#projects">Student projects</a>
-            <a href="#resources">Learning resources</a>
-          </div>
-        </div>
-        <div>
-          <h3>Useful links</h3>
-          <div class="footer-links">
-            <a href="https://quest.edu.pk/" target="_blank" rel="noopener noreferrer">QUEST website ↗</a>
-            <a href="https://owasp.org/" target="_blank" rel="noopener noreferrer">OWASP ↗</a>
-            <a href="https://www.cisa.gov/" target="_blank" rel="noopener noreferrer">CISA ↗</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© <span id="currentYear"></span> Cybersecurity Website Demo</span>
-        <span>Independent student project · Not an official university website</span>
-      </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- CHATBOT -->
-  <section class="chat-panel" id="chatPanel" aria-label="Cybersecurity assistant" aria-hidden="true">
-    <div class="chat-header">
-      <div>
-        <h3>Cyber Assistant 🤖</h3>
-        <p>Department FAQ demo · Offline mode</p>
-      </div>
-      <button class="chat-close" id="chatClose" type="button" aria-label="Close chat">×</button>
+<footer class="footer">
+  <div class="container d-flex flex-wrap justify-content-between gap-2">
+    <span>© <span id="year"></span> QUEST Cybersecurity Portal — student project prototype.</span>
+    <a href="#home" class="small-link">Back to top ↑</a>
+  </div>
+</footer>
+
+<button id="chat-toggle" type="button" aria-label="Open department assistant" aria-expanded="false">
+  <i class="bi bi-chat-dots-fill"></i>
+</button>
+<section id="chat-panel" aria-label="Department assistant">
+  <div class="chat-head d-flex justify-content-between align-items-center">
+    <div><strong><i class="bi bi-robot me-2"></i>Department Assistant</strong>
+      <div class="small muted">Ask about schedules and department information</div>
     </div>
+    <button id="chat-close" class="btn btn-sm btn-outline-light" aria-label="Close chat">×</button>
+  </div>
+  <div id="chat-messages" aria-live="polite">
+    <div class="chat-message chat-bot">Hello! I can help with department information available in the portal. What would you like to know?</div>
+  </div>
+  <form class="chat-form" id="chat-form">
+    <input class="form-control" id="chat-input" maxlength="500" placeholder="Ask a question…" aria-label="Your question" required>
+    <button class="btn btn-cyber" type="submit" aria-label="Send message"><i class="bi bi-send-fill"></i></button>
+  </form>
+</section>
 
-    <div class="chat-messages" id="chatMessages" aria-live="polite">
-      <div class="message bot">
-        Hello! I'm the website's demo assistant. Ask me about cybersecurity, learning resources, ethical hacking, or admission information.
-      </div>
-    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+"use strict";
 
-    <div class="chat-suggestions">
-      <button class="suggestion" type="button" data-question="What is cybersecurity?">Cybersecurity</button>
-      <button class="suggestion" type="button" data-question="How do I start learning?">Start learning</button>
-      <button class="suggestion" type="button" data-question="Admission information">Admissions</button>
-      <button class="suggestion" type="button" data-question="What is ethical hacking?">Ethical hacking</button>
-    </div>
+/*
+ * Paste your deployed Google Apps Script /exec URL here.
+ * Until configured, this site uses demo data and a local FAQ fallback.
+ */
+const API_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
 
-    <form class="chat-form" id="chatForm">
-      <input class="field" id="chatInput" maxlength="500"
-        aria-label="Your message" placeholder="Ask a question..." required>
-      <button class="btn btn-primary" type="submit">Send</button>
-    </form>
-    <p class="chat-disclaimer">Demo FAQ bot, not a live AI model. Do not enter passwords or private information.</p>
-  </section>
+/* Clearly marked demo data. Replace with verified official timetable records. */
+const DEMO_FACULTY = [
+  {name:"Faculty Member 1", title:"Add verified designation", qualification:"Add verified qualification", specialization:"Network Security", email:""},
+  {name:"Faculty Member 2", title:"Add verified designation", qualification:"Add verified qualification", specialization:"Digital Forensics", email:""},
+  {name:"Faculty Member 3", title:"Add verified designation", qualification:"Add verified qualification", specialization:"Information Security", email:""},
+  {name:"Faculty Member 4", title:"Add verified designation", qualification:"Add verified qualification", specialization:"Secure Software", email:""},
+  {name:"Faculty Member 5", title:"Add verified designation", qualification:"Add verified qualification", specialization:"Cryptography", email:""},
+  {name:"Faculty Member 6", title:"Add verified designation", qualification:"Add verified qualification", specialization:"Network Defence", email:""}
+];
 
-  <button class="chat-launcher" id="chatLauncher" type="button"
-    aria-label="Open Cyber Assistant" aria-expanded="false" aria-controls="chatPanel">✳</button>
+/*
+ * Demo schedule entries: times and subjects below are examples only.
+ * Use actual 24-hour times, e.g. 09:00 and 10:00.
+ * day must be Monday, Tuesday, Wednesday, Thursday, Friday, Saturday or Sunday.
+ */
+const DEMO_TIMETABLE = [
+  {batch:"26CYS",day:"Monday",start:"09:00",end:"10:00",subject:"Introduction to Cybersecurity (DEMO)",room:"Lab 1 (DEMO)",instructor:"Instructor (DEMO)"},
+  {batch:"26CYS",day:"Monday",start:"10:15",end:"11:15",subject:"Programming Fundamentals (DEMO)",room:"Room 2 (DEMO)",instructor:"Instructor (DEMO)"},
+  {batch:"26CYS",day:"Tuesday",start:"09:00",end:"10:00",subject:"Computer Networks (DEMO)",room:"Room 3 (DEMO)",instructor:"Instructor (DEMO)"},
+  {batch:"25CYS",day:"Monday",start:"11:00",end:"12:00",subject:"Network Security (DEMO)",room:"Lab 2 (DEMO)",instructor:"Instructor (DEMO)"},
+  {batch:"24CYS",day:"Wednesday",start:"10:00",end:"11:00",subject:"Digital Forensics (DEMO)",room:"Lab 1 (DEMO)",instructor:"Instructor (DEMO)"},
+  {batch:"23CYS",day:"Thursday",start:"12:00",end:"13:00",subject:"Information Assurance (DEMO)",room:"Room 4 (DEMO)",instructor:"Instructor (DEMO)"}
+];
 
-  <script>
-    "use strict";
+const LOCAL_FAQS = [
+  {keywords:["admission","apply","eligibility"], answer:"For admissions, check the latest official QUEST admission notice or contact the university admission office. I cannot verify current deadlines from this demo."},
+  {keywords:["timetable","schedule","class","lecture"], answer:"Choose your batch in the Live Class Timetable section. This demo contains sample entries only; use the approved department timetable for real class times."},
+  {keywords:["faculty","teacher","professor"], answer:"The Faculty Directory is available above. Its current entries are placeholders and must be replaced with verified faculty information."},
+  {keywords:["syllabus","course","subject"], answer:"Please consult the officially approved programme scheme or course outline. Add verified syllabus information to the department database to enable specific answers."},
+  {keywords:["contact","email","phone"], answer:"Please use the official QUEST website or the verified department contact details once they have been added to this portal."}
+];
 
-    /* ==========================================
-       1. MOBILE NAVIGATION
-    ========================================== */
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
+const $ = (id) => document.getElementById(id);
+const DAYS = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+let facultyData = DEMO_FACULTY;
+let timetableData = DEMO_TIMETABLE;
+let dataIsOfficial = false;
 
-    menuToggle.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("open");
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
-      menuToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
-      menuToggle.textContent = isOpen ? "×" : "☰";
-    });
+$("year").textContent = new Date().getFullYear();
 
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation");
-        menuToggle.textContent = "☰";
-      });
-    });
+/* Safe DOM construction: never insert user or API text using innerHTML. */
+function makeText(tag, className, value) {
+  const el = document.createElement(tag);
+  if (className) el.className = className;
+  el.textContent = value == null ? "" : String(value);
+  return el;
+}
 
-    /* ==========================================
-       2. LIGHT / DARK THEME
-    ========================================== */
-    const themeToggle = document.getElementById("themeToggle");
-
-    themeToggle.addEventListener("click", () => {
-      const isLight = document.body.classList.toggle("light-theme");
-      themeToggle.textContent = isLight ? "☾" : "☼";
-      themeToggle.setAttribute(
-        "aria-label",
-        isLight ? "Switch to dark theme" : "Switch to light theme"
-      );
-    });
-
-    /* ==========================================
-       3. REVEAL SECTIONS ON SCROLL
-    ========================================== */
-    const revealElements = document.querySelectorAll(".reveal");
-
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.08 });
-
-      revealElements.forEach(element => observer.observe(element));
-    } else {
-      revealElements.forEach(element => element.classList.add("visible"));
+function renderFaculty() {
+  const root = $("faculty-list");
+  root.replaceChildren();
+  facultyData.forEach((person) => {
+    const col = document.createElement("div");
+    col.className = "col-md-6 col-xl-4";
+    const card = makeText("div", "surface faculty-card", "");
+    const top = makeText("div", "d-flex gap-3 align-items-start mb-3", "");
+    const avatar = makeText("div", "faculty-avatar", "");
+    const icon = document.createElement("i");
+    icon.className = "bi bi-person-badge";
+    avatar.replaceChildren(icon);
+    const info = document.createElement("div");
+    info.append(makeText("h5", "mb-1", person.name),
+                makeText("div", "muted small", person.title || "Designation not supplied"));
+    top.append(avatar, info);
+    card.append(top,
+      makeText("p", "small mb-2", person.qualification || "Qualification not supplied"),
+      makeText("p", "mb-0", "Specialization: " + (person.specialization || "Not supplied")));
+    if (person.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(person.email)) {
+      const link = document.createElement("a");
+      link.className = "small-link d-inline-block mt-3";
+      link.href = "mailto:" + person.email;
+      link.textContent = "Contact faculty";
+      card.append(link);
     }
+    col.append(card);
+    root.append(col);
+  });
+}
 
-    /* ==========================================
-       4. PROJECT FILTERS
-    ========================================== */
-    const filterButtons = document.querySelectorAll(".filter-btn");
-    const projectCards = document.querySelectorAll(".project-card");
+function batchRows() {
+  return timetableData.filter(x => x.batch === $("batch-select").value);
+}
+function toMinutes(time) {
+  if (!/^\d{2}:\d{2}$/.test(String(time))) return NaN;
+  const [h,m] = time.split(":").map(Number);
+  if (h > 23 || m > 59) return NaN;
+  return h * 60 + m;
+}
+function validRow(x) {
+  return DAYS.includes(x.day) && toMinutes(x.start) < toMinutes(x.end) &&
+    Number.isFinite(toMinutes(x.start)) && Number.isFinite(toMinutes(x.end));
+}
+function sortedRows(rows) {
+  return rows.filter(validRow).slice().sort((a,b) =>
+    DAYS.indexOf(a.day)-DAYS.indexOf(b.day) || toMinutes(a.start)-toMinutes(b.start));
+}
+function renderTimetable() {
+  const batch = $("batch-select").value;
+  $("schedule-batch").textContent = batch;
+  const root = $("timetable-body");
+  root.replaceChildren();
+  const rows = sortedRows(batchRows());
+  if (!rows.length) {
+    const tr = document.createElement("tr");
+    tr.append(makeText("td","muted","No timetable entries found for this batch."));
+    tr.firstChild.colSpan = 5;
+    root.append(tr);
+    return;
+  }
+  rows.forEach(x => {
+    const tr = document.createElement("tr");
+    [x.day, x.start + "–" + x.end, x.subject, x.room, x.instructor].forEach(value =>
+      tr.append(makeText("td","",value)));
+    root.append(tr);
+  });
+}
 
-    filterButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        const filter = button.dataset.filter;
+function updateLiveClasses() {
+  const now = new Date();
+  const day = DAYS[now.getDay()];
+  const minute = now.getHours() * 60 + now.getMinutes();
+  const rows = sortedRows(batchRows()).filter(x => x.day === day);
+  const current = rows.find(x => minute >= toMinutes(x.start) && minute < toMinutes(x.end));
+  const next = rows.find(x => toMinutes(x.start) > minute);
 
-        filterButtons.forEach(item => item.classList.remove("active"));
-        button.classList.add("active");
+  $("clock-status").textContent =
+    "Your browser time: " + now.toLocaleString() + " · Day: " + day +
+    (dataIsOfficial ? " · Department data loaded" : " · Demo data");
 
-        projectCards.forEach(card => {
-          const matches = filter === "all" || card.dataset.category === filter;
-          card.hidden = !matches;
-        });
-      });
-    });
+  $("current-class").textContent = current ? current.subject : "No class currently scheduled";
+  $("current-details").textContent = current
+    ? current.start + "–" + current.end + " · " + current.room + " · " + current.instructor
+    : "No matching class is scheduled at this time. Check the timetable below.";
 
-    /* ==========================================
-       5. RESOURCE SEARCH
-    ========================================== */
-    const resourceSearch = document.getElementById("resourceSearch");
-    const clearSearch = document.getElementById("clearSearch");
-    const resourceCards = Array.from(document.querySelectorAll(".resource-card"));
-    const resourceEmpty = document.getElementById("resourceEmpty");
+  $("next-class").textContent = next ? next.subject : "No later class listed today";
+  $("next-details").textContent = next
+    ? next.start + "–" + next.end + " · " + next.room + " · " + next.instructor
+    : "Check another day or confirm that the timetable is complete.";
+}
+function refreshSchedule() { renderTimetable(); updateLiveClasses(); }
 
-    function filterResources() {
-      const query = resourceSearch.value.trim().toLowerCase();
-      let visibleCount = 0;
+$("batch-select").addEventListener("change", () => {
+  refreshSchedule();
+  $("qr-area").classList.add("d-none");
+});
+$("today-btn").addEventListener("click", updateLiveClasses);
 
-      resourceCards.forEach(card => {
-        const searchableText =
-          (card.dataset.search || "") + " " + card.textContent.toLowerCase();
-        const matches = searchableText.toLowerCase().includes(query);
+$("qr-btn").addEventListener("click", () => {
+  const area = $("qr-area");
+  area.classList.remove("d-none");
+  const url = new URL(window.location.href);
+  url.hash = "timetable";
+  url.searchParams.set("batch", $("batch-select").value);
+  $("qr-link").href = url.toString();
+  $("qr-link").textContent = url.toString();
 
-        card.hidden = !matches;
-        if (matches) visibleCount++;
-      });
+  const image = $("qr-image");
+  image.replaceWith(image.cloneNode(false));
+  const newImage = $("qr-area").querySelector("#qr-image");
+  newImage.alt = "QR code for " + $("batch-select").value;
+  if (typeof QRCode === "undefined") {
+    newImage.alt = "QR code library unavailable. Use the link beside this message.";
+    newImage.removeAttribute("src");
+    return;
+  }
+  const holder = document.createElement("div");
+  holder.id = "qr-generator";
+  holder.className = "d-none";
+  $("qr-area").append(holder);
+  holder.replaceChildren();
+  new QRCode(holder, {text:url.toString(),width:140,height:140});
+  const canvas = holder.querySelector("canvas");
+  const qrImg = holder.querySelector("img");
+  if (canvas) newImage.src = canvas.toDataURL("image/png");
+  else if (qrImg) newImage.src = qrImg.src;
+  holder.remove();
+});
 
-      resourceEmpty.hidden = visibleCount !== 0;
+/* Optional deep link: ?batch=23CYS */
+const requestedBatch = new URLSearchParams(window.location.search).get("batch");
+if (["23CYS","24CYS","25CYS","26CYS"].includes(requestedBatch)) {
+  $("batch-select").value = requestedBatch;
+}
+renderFaculty();
+refreshSchedule();
+setInterval(updateLiveClasses, 30000);
+
+/*
+ * Apps Script JSONP helper.
+ * JSONP is used because Apps Script ContentService can cause browser CORS
+ * problems when called directly from a separate GitHub Pages origin.
+ * Do not use JSONP with secrets in URLs. This implementation only sends
+ * public timetable questions and the API key stays in Apps Script properties.
+ */
+function jsonp(action, params = {}, timeoutMs = 12000) {
+  return new Promise((resolve, reject) => {
+    if (!API_URL.startsWith("https://script.google.com/")) {
+      reject(new Error("Backend not configured"));
+      return;
     }
-
-    resourceSearch.addEventListener("input", filterResources);
-
-    clearSearch.addEventListener("click", () => {
-      resourceSearch.value = "";
-      filterResources();
-      resourceSearch.focus();
-    });
-
-    /* ==========================================
-       6. FAQ ACCORDION
-    ========================================== */
-    document.querySelectorAll(".faq-question").forEach(button => {
-      button.addEventListener("click", () => {
-        const answer = button.nextElementSibling;
-        const currentlyExpanded = button.getAttribute("aria-expanded") === "true";
-
-        button.setAttribute("aria-expanded", String(!currentlyExpanded));
-        answer.hidden = currentlyExpanded;
-
-        const symbol = button.querySelector("span");
-        if (symbol) symbol.textContent = currentlyExpanded ? "＋" : "−";
-      });
-    });
-
-    /* ==========================================
-       7. CONTACT FORM DEMO
-       This prepares an email draft; it does not send data.
-    ========================================== */
-    const contactForm = document.getElementById("contactForm");
-    const contactStatus = document.getElementById("contactStatus");
-
-    contactForm.addEventListener("submit", event => {
-      event.preventDefault();
-
-      if (!contactForm.reportValidity()) return;
-
-      const formData = new FormData(contactForm);
-      const name = String(formData.get("name") || "");
-      const email = String(formData.get("email") || "");
-      const topic = String(formData.get("topic") || "");
-      const message = String(formData.get("message") || "");
-
-      const subject = encodeURIComponent("Website inquiry: " + topic);
-      const body = encodeURIComponent(
-        "Name: " + name + "\n" +
-        "Email: " + email + "\n" +
-        "Topic: " + topic + "\n\n" +
-        "Message:\n" + message
-      );
-
-      // Replace this with the real, verified department email.
-      const departmentEmail = "REPLACE_WITH_OFFICIAL_EMAIL";
-
-      if (departmentEmail === "REPLACE_WITH_OFFICIAL_EMAIL") {
-        contactStatus.textContent =
-          "Demo only: add the verified department email in the code before using this form.";
-        return;
-      }
-
-      contactStatus.textContent = "Opening your email application...";
-      window.location.href =
-        "mailto:" + departmentEmail + "?subject=" + subject + "&body=" + body;
-    });
-
-    /* ==========================================
-       8. CHATBOT
-       Safe rendering: messages use textContent, never user-controlled innerHTML.
-       These are predefined answers, not actual generative AI.
-    ========================================== */
-    const chatPanel = document.getElementById("chatPanel");
-    const chatLauncher = document.getElementById("chatLauncher");
-    const chatClose = document.getElementById("chatClose");
-    const chatMessages = document.getElementById("chatMessages");
-    const chatForm = document.getElementById("chatForm");
-    const chatInput = document.getElementById("chatInput");
-
-    function setChatOpen(isOpen) {
-      chatPanel.classList.toggle("open", isOpen);
-      chatPanel.setAttribute("aria-hidden", String(!isOpen));
-      chatLauncher.setAttribute("aria-expanded", String(isOpen));
-
-      if (isOpen) chatInput.focus();
-      else chatLauncher.focus();
+    const callback = "__questCallback" + Date.now() + Math.floor(Math.random()*100000);
+    const script = document.createElement("script");
+    const url = new URL(API_URL);
+    url.searchParams.set("action", action);
+    url.searchParams.set("callback", callback);
+    Object.entries(params).forEach(([key,value]) => url.searchParams.set(key, value));
+    let finished = false;
+    const timer = setTimeout(() => finish(new Error("Request timed out")), timeoutMs);
+    function finish(error, data) {
+      if (finished) return;
+      finished = true;
+      clearTimeout(timer);
+      delete window[callback];
+      script.remove();
+      if (error) reject(error); else resolve(data);
     }
+    window[callback] = (data) => finish(null, data);
+    script.onerror = () => finish(new Error("Backend unavailable"));
+    script.src = url.toString();
+    document.head.append(script);
+  });
+}
 
-    chatLauncher.addEventListener("click", () => {
-      setChatOpen(!chatPanel.classList.contains("open"));
-    });
+async function loadDepartmentData() {
+  try {
+    const data = await jsonp("data");
+    if (!data || data.ok !== true) throw new Error("Invalid data response");
+    if (Array.isArray(data.faculty)) facultyData = data.faculty;
+    if (Array.isArray(data.timetable)) timetableData = data.timetable;
+    dataIsOfficial = true;
+    renderFaculty();
+    refreshSchedule();
+    $("schedule-label").textContent = "CONNECTED DATA";
+    $("schedule-label").className = "pill pill-live";
+  } catch (err) {
+    dataIsOfficial = false;
+    $("schedule-label").textContent = "DEMO DATA";
+    $("schedule-label").className = "pill pill-demo";
+    console.warn("Using demo data:", err.message);
+  }
+}
+loadDepartmentData();
 
-    chatClose.addEventListener("click", () => setChatOpen(false));
+$("contact-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const name = $("contact-name").value.trim();
+  const email = $("contact-email").value.trim();
+  const message = $("contact-message").value.trim();
+  if (!name || !email || !message) return;
+  const subject = encodeURIComponent("Department website enquiry");
+  const body = encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\n" + message);
+  /*
+   * Replace with a verified official email address.
+   * No mailto address is invented here.
+   */
+  alert("Add the verified official department email address in the contact form code before using this feature.");
+});
 
-    function addMessage(text, sender) {
-      const message = document.createElement("div");
-      message.className = "message " + sender;
-      message.textContent = text;
-      chatMessages.appendChild(message);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
+const chatPanel = $("chat-panel");
+$("chat-toggle").addEventListener("click", () => {
+  const open = chatPanel.classList.toggle("open");
+  $("chat-toggle").setAttribute("aria-expanded", String(open));
+  if (open) $("chat-input").focus();
+});
+$("chat-close").addEventListener("click", () => {
+  chatPanel.classList.remove("open");
+  $("chat-toggle").setAttribute("aria-expanded", "false");
+});
 
-    function getBotReply(question) {
-      const q = question.toLowerCase();
-
-      if (q.includes("hello") || q.includes("hi ") || q === "hi" || q.includes("assalam")) {
-        return "Hello! Welcome to the cybersecurity website demo. What would you like to learn?";
-      }
-
-      if (q.includes("what is cybersecurity") || q.includes("cybersecurity meaning")) {
-        return "Cybersecurity protects computers, networks, applications, and information from digital attacks, unauthorized access, and damage.";
-      }
-
-      if (q.includes("start learning") || q.includes("beginner") || q.includes("learn cybersecurity")) {
-        return "A useful beginner path is: 1) computer fundamentals, 2) Python basics, 3) networking, 4) Linux, 5) security fundamentals, and 6) legal practice labs. Learn step by step.";
-      }
-
-      if (q.includes("ethical hacking") || q.includes("hack")) {
-        return "Ethical hacking means testing security with proper authorization. Never test someone else's system without explicit permission. Practice in legal training labs.";
-      }
-
-      if (q.includes("admission") || q.includes("fee") || q.includes("eligibility") || q.includes("apply")) {
-        return "For current admission dates, eligibility, fees, and application rules, check the official QUEST website or contact its admissions office. This demo cannot confirm current policies.";
-      }
-
-      if (q.includes("faculty") || q.includes("teacher") || q.includes("professor")) {
-        return "The faculty section is a template. Add verified names, designations, research interests, and approved contact details before publishing.";
-      }
-
-      if (q.includes("timetable") || q.includes("schedule") || q.includes("class time")) {
-        return "The timetable shown on this demo is placeholder content. Please confirm the current schedule through an official department notice.";
-      }
-
-      if (q.includes("python") || q.includes("programming")) {
-        return "Start with variables, data types, input/output, conditions, loops, lists, and functions. The official Python tutorial is linked in the Student Resources section.";
-      }
-
-      if (q.includes("network") || q.includes("tcp") || q.includes("ip address")) {
-        return "Begin with IP addresses, DNS, TCP and UDP, HTTP and HTTPS, routers, ports, and the basics of network troubleshooting.";
-      }
-
-      if (q.includes("cryptography") || q.includes("encryption")) {
-        return "Cryptography helps protect information through techniques such as encryption, digital signatures, and cryptographic hashes. Study key management and safe use as well.";
-      }
-
-      if (q.includes("project") || q.includes("portfolio")) {
-        return "You can showcase safe student projects such as a phishing-awareness website, password-safety guide, secure coding demo, or a network-monitoring lab using authorized test data.";
-      }
-
-      if (q.includes("contact") || q.includes("email")) {
-        return "Use the Contact section for the demo layout. The official department email has not been configured yet, so verify it before publishing.";
-      }
-
-      if (q.includes("ai") || q.includes("artificial intelligence")) {
-        return "AI can help analyze security alerts, identify patterns, and support defensive work. It can also be misused, so human review, privacy, and responsible deployment matter.";
-      }
-
-      return "I don't have a predefined answer for that yet. Try asking about cybersecurity, Python, networking, ethical hacking, projects, or admission information. This demo bot is not connected to a live AI model.";
-    }
-
-    function sendChatMessage(text) {
-      const cleanText = text.trim();
-      if (!cleanText) return;
-
-      addMessage(cleanText, "user");
-      chatInput.value = "";
-
-      // The short delay makes the demo feel conversational.
-      window.setTimeout(() => {
-        addMessage(getBotReply(cleanText), "bot");
-      }, 250);
-    }
-
-    chatForm.addEventListener("submit", event => {
-      event.preventDefault();
-      sendChatMessage(chatInput.value);
-    });
-
-    document.querySelectorAll(".suggestion").forEach(button => {
-      button.addEventListener("click", () => {
-        sendChatMessage(button.dataset.question || "");
-      });
-    });
-
-    /* ==========================================
-       9. FOOTER YEAR
-    ========================================== */
-    document.getElementById("currentYear").textContent =
-      String(new Date().getFullYear());
-  </script>
+function addChatMessage(text, who) {
+  const node = makeText("div", "chat-message " + (who === "user" ? "chat-user" : "chat-bot"), text);
+  $("chat-messages").append(node);
+  $("chat-messages").scrollTop = $("chat-messages").scrollHeight;
+  return node;
+}
+function localAnswer(question) {
+  const q = question.toLowerCase();
+  const match = LOCAL_FAQS.find(item => item.keywords.some(word => q.includes(word)));
+  return match ? match.answer :
+    "I couldn't verify an answer from the local demo information. Please ask about admissions, timetable, faculty or syllabus, or connect the official department database.";
+}
+async function askAssistant(question) {
+  try {
+    const response = await jsonp("ask", {q:question});
+    if (response && response.ok && typeof response.answer === "string") return response.answer;
+    throw new Error("No valid answer returned");
+  } catch (err) {
+    console.warn("Assistant fallback:", err.message);
+    return localAnswer(question) + "\n\nThe online assistant is temporarily unavailable; this is the local fallback response.";
+  }
+}
+$("chat-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const input = $("chat-input");
+  const question = input.value.trim().slice(0,500);
+  if (!question) return;
+  input.value = "";
+  addChatMessage(question,"user");
+  const pending = addChatMessage("Checking department information…","bot");
+  const submit = $("chat-form").querySelector('button[type="submit"]');
+  submit.disabled = true;
+  try {
+    const answer = await askAssistant(question);
+    pending.textContent = answer;
+  } catch {
+    pending.textContent = "Sorry, I could not process that request right now. Please try again later.";
+  } finally {
+    submit.disabled = false;
+    $("chat-messages").scrollTop = $("chat-messages").scrollHeight;
+  }
+});
+</script>
 </body>
 </html>
