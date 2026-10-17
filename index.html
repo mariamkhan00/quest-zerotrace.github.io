@@ -74,14 +74,23 @@ footer p { margin: 0; }
       <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
     </button>
     <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="about.html">About Department</a></li>
+        
+        <!-- ABOUT DROPDOWN -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About Department</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="chairman.html">Chairman & Dean</a></li>
+            <li><a class="dropdown-item" href="department.html">Department</a></li>
+            <li><a class="dropdown-item" href="labs.html">Laboratories</a></li>
+          </ul>
+        </li>
+        
         <li class="nav-item"><a class="nav-link" href="programs.html">Programs</a></li>
         <li class="nav-item"><a class="nav-link" href="timetable.html">Timetable & AI</a></li>
         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
       </ul>
-    </div>
   </div>
 </nav>
 
