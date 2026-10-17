@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QUEST Cyber Security Department</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --primary: #0B72B9;
+  --dark: #0A1929;
+  --accent: #00D4FF;
+  --success: #00FF88;
+  --light: #F8F9FA;
+  --text: #212121;
+  --muted: #666;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* NAVBAR */
+.navbar {
+  background: var(--dark) !important;
+  padding: 15px 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  color: white !important;
+  font-weight: 700;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-brand .logo-badge {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+  font-size: 1rem;
+}
+
+.nav-link {
+  color: rgba(255,255,255,0.85) !important;
+  font-weight: 500;
+  margin: 0 5px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--accent) !important;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #0A1929 0%, #0B72B9 100%);
+  color: white;
+  padding: 120px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  position: relative;
+  animation: fadeInUp 1s ease;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  opacity: 0.95;
+  max-width: 800px;
+  margin: 0 auto 15px;
+  position: relative;
+  animation: fadeInUp 1s ease 0.2s backwards;
+}
+
+.hero .btn-group-hero {
+  margin-top: 30px;
+  position: relative;
+  animation: fadeInUp 1s ease 0.4s backwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-primary-custom {
+  background: var(--accent);
+  color: var(--dark);
+  border: none;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 5px;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary-custom:hover {
+  background: var(--success);
+  color: var(--dark);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+}
+
+.btn-outline-custom {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: 700;
+  margin: 5px;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-outline-custom:hover {
+  background: white;
+  color: var(--dark);
+}
+
+/* SECTIONS */
+.section {
+  padding: 80px 20px;
+}
+
+.section-title {
+  color: var(--dark);
+  font-size: 2.3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  margin: 15px auto 0;
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin-bottom: 50px;
+}
+
+/* STATS */
+.stats-section {
+  background: linear-gradient(135deg, #0A1929, #1a2a3a);
+  color: white;
+  padding: 60px 20px;
+}
+
+.stat-box {
+  text-align: center;
+  padding: 30px 15px;
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--success));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.8);
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+/* CARDS */
+.card-custom {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  padding: 30px;
+  height: 100%;
+  background: white;
+  border-top: 4px solid var(--primary);
+}
+
+.card-custom:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(11, 114, 185, 0.15);
+  border-top-color: var(--accent);
+}
+
+.card-custom h4 {
+  color: var(--dark);
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.card-custom h5 {
+  color: var(--dark);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.card-custom .designation {
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.card-custom .qualification {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.card-custom .email {
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.card-custom .email i {
+  color: var(--primary);
+  margin-right: 5px;
+}
+
+/* FACULTY PHOTO */
+.faculty-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 auto 20px;
+  border: 4px solid white;
+  box-shadow: 0 5px 15px rgba(11, 114, 185, 0.3);
+}
+
+/* TIMETABLE */
+.timetable-container {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+  margin-bottom: 25px;
+}
+
+.timetable-header {
+  background: linear-gradient(135deg, var(--dark), var(--primary));
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.timetable-header h4 {
+  margin: 0;
+  font-weight: 700;
+}
+
+.timetable-header .live-badge {
+  background: var(--success);
+  color: var(--dark);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.current-class {
+  background: linear-gradient(135deg, #00FF88, #00D4FF);
+  color: var(--dark);
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.current-class i {
+  font-size: 1.5rem;
+}
+
+.timetable-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.timetable-table th {
+  background: var(--dark);
+  color: white;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.timetable-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.timetable-table tr:hover {
+  background: #f0f7ff;
+}
+
+.timetable-table tr.current-row {
+  background: #e8fff5;
+  border-left: 4px solid var(--success);
+}
+
+.timetable-table tr.current-row td {
+  font-weight: 600;
+}
+
+/* LABS */
+.lab-card {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+  height: 100%;
+  border-left: 5px solid var(--primary);
+  transition: all 0.3s;
+}
+
+.lab-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 10px 35px rgba(11, 114, 185, 0.15);
+}
+
+.lab-card .lab-icon {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+.lab-card h4 {
+  color: var(--dark);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.lab-card .supervisor {
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* CHATBOT */
+.chatbot-section {
+  background: linear-gradient(135deg, #0A1929, #0B72B9);
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.chatbot-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.chatbot-section p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  opacity: 0.95;
+}
+
+/* FOOTER */
+footer {
+  background: var(--dark);
+  color: white;
+  padding: 50px 20px 30px;
+  text-align: center;
+}
+
+footer h5 {
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+footer a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: var(--accent);
+}
+
+footer .copyright {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+  margin-top: 30px;
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2rem; }
+  .hero p { font-size: 1rem; }
+  .section-title { font-size: 1.8rem; }
+  .stat-number { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <span class="logo-badge">QS</span>
+      QUEST Cyber Security
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faculty">Faculty</a></li>
+        <li class="nav-item"><a class="nav-link" href="#timetable">Timetable</a></li>
+        <li class="nav-item"><a class="nav-link" href="#labs">Labs</a></li>
+        <li class="nav-item"><a class="nav-link" href="#chatbot">AI Assistant</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1>Cyber Security Department</h1>
+    <p>Quaid-e-Awam University of Engineering, Science & Technology, Nawabshah</p>
+    <p style="font-size: 1rem; opacity: 0.8;">Protecting Pakistan's Digital Future Since 2022</p>
+    <div class="btn-group-hero">
+      <a href="#faculty" class="btn-primary-custom">Explore Department</a>
+      <a href="#chatbot" class="btn-outline-custom">Try AI Assistant</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-6 stat-box">
+        <div class="stat-number">135</div>
+        <div class="stat-label">Credit Hours</div>
+      </div>
+      <div class="col-md-3 col-6 stat-box">
+        <div class="stat-number">6</div>
+        <div class="stat-label">PhD Faculty</div>
+      </div>
+      <div class="col-md-3 col-6 stat-box">
+        <div class="stat-number">8</div>
+        <div class="stat-label">Semesters</div>
+      </div>
+      <div class="col-md-3 col-6 stat-box">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Research Labs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <h2 class="section-title">About Our Department</h2>
+    <p class="section-subtitle">Excellence in Cybersecurity Education</p>
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center">
+        <p style="font-size: 1.1rem; line-height: 1.9; color: #555;">
+          The Cyber Security Department at QUEST Nawabshah was established in 2022 
+          under the Faculty of Science as a stream program of the Department of 
+          Information Technology. We offer a 4-year BS Cyber Security program designed 
+          to prepare students for the growing cybersecurity industry. Our department is 
+          equipped with 6 qualified PhD faculty members, advanced research labs, and an 
+          industry-focused curriculum that prepares students for real-world cybersecurity 
+          challenges.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACULTY -->
+<section class="section" id="faculty" style="background: #f8f9fa;">
+  <div class="container">
+    <h2 class="section-title">Our Faculty Members</h2>
+    <p class="section-subtitle">Meet our team of expert educators and researchers</p>
+    <div class="row g-4">
+      
+      <div class="col-md-4 col-sm-6">
+        <div class="card-custom text-center">
+          <div class="faculty-photo">IC</div>
+          <h5>Prof. Dr. Muhammad Ibrahim Channa</h5>
+          <div class="designation">Dean / Professor</div>
+          <div class="qualification">PhD (AIT Thailand), MS (NUST), MSc (Sindh University)</div>
+          <div class="email"><i class="fas fa-envelope"></i>ibrahim.channa@quest.edu.pk</div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6">
+        <div class="card-custom text-center">
+          <div class="faculty-photo">AA</div>
+          <h5>Dr. Adnan Ahmed</h5>
+          <div class="designation">Chairman / Associate Professor</div>
+          <div class="qualification">PhD (UTM Malaysia), ME (QUEST), BE (QUEST)</div>
+          <div class="email"><i class="fas fa-envelope"></i>adnan.ahmed03@quest.edu.pk</div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6">
+        <div class="card-custom text-center">
+          <div class="faculty-photo">SM</div>
+          <h5>Dr. Saifullah Memon</h5>
+          <div class="designation">Professor</div>
+          <div class="qualification">PhD</div>
+          <div class="email"><i class="fas fa-envelope"></i>memonsaifullah@quest.edu.pk</div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6">
+        <div class="card-custom text-center">
+          <div class="faculty-photo">MR</div>
+          <h5>Dr. Muhammad Awais Rajput</h5>
+          <div class="designation">Assistant Professor</div>
+          <div class="qualification">PhD</div>
+          <div class="email"><i class="fas fa-envelope"></i>awaisrajput@quest.edu.pk</div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6">
+        <div class="card-custom text-center">
+          <div class="faculty-photo">MA</div>
+          <h5>Mr. Muhammad Aurangzeb</h5>
+          <div class="designation">Lecturer</div>
+          <div class="qualification">MS (FAST-NUCES), BS (QUEST)</div>
+          <div class="email"><i class="fas fa-envelope"></i>m.aurangzeb@quest.edu.pk</div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-6">
+        <div class="card-custom text-center">
+          <div class="faculty-photo">MU</div>
+          <h5>Mr. Muhammad Umar</h5>
+          <div class="designation">Teaching Assistant</div>
+          <div class="qualification">MS Cybersecurity (MUET)</div>
+          <div class="email"><i class="fas fa-envelope"></i>muhammadumar@quest.edu.pk</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TIMETABLE -->
+<section class="section" id="timetable">
+  <div class="container">
+    <h2 class="section-title">Live Class Timetable</h2>
+    <p class="section-subtitle">Real-time class schedule for all batches</p>
+
+    <!-- 24CYS -->
+    <div class="timetable-container">
+      <div class="timetable-header">
+        <h4>24CYS Batch (3rd Year, 1st Semester)</h4>
+        <span class="live-badge">● LIVE</span>
+      </div>
+      <div class="current-class">
+        <i class="fas fa-play-circle"></i>
+        <span id="current-24cys">Loading current class...</span>
+      </div>
+      <table class="timetable-table">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Subject</th>
+            <th>Teacher</th>
+            <th>Room</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Monday</td><td>8:30-9:30</td><td>CL&E</td><td>Mr. Muhammad Aurangzeb</td><td>Network Security Lab</td></tr>
+          <tr><td>Monday</td><td>9:30-10:30</td><td>ML</td><td>Prof. Dr. Ibrahim Channa</td><td>Network Security Lab</td></tr>
+          <tr><td>Monday</td><td>11:00-12:00</td><td>ML</td><td>Prof. Dr. Ibrahim Channa</td><td>Network Security Lab</td></tr>
+          <tr><td>Monday</td><td>12:00-1:00</td><td>NS (Pr)</td><td>Mr. Muhammad Umar</td><td>Networking Lab</td></tr>
+          <tr><td>Tuesday</td><td>8:30-9:30</td><td>OS</td><td>Prof. Dr. Saifullah Memon</td><td>Network Security Lab</td></tr>
+          <tr><td>Tuesday</td><td>9:30-10:30</td><td>ML</td><td>Prof. Dr. Ibrahim Channa</td><td>Network Security Lab</td></tr>
+          <tr><td>Tuesday</td><td>11:00-12:00</td><td>DM</td><td>Mr. Saeed Ahmed Shah</td><td>25TC Room</td></tr>
+          <tr><td>Tuesday</td><td>12:00-1:00</td><td>OS</td><td>Prof. Dr. Saifullah Memon</td><td>25TC Room</td></tr>
+          <tr><td>Wednesday</td><td>8:30-9:30</td><td>SSD</td><td>Mr. Muhammad Umar</td><td>Network Security Lab</td></tr>
+          <tr><td>Wednesday</td><td>9:30-10:30</td><td>SSD</td><td>Mr. Muhammad Umar</td><td>Network Security Lab</td></tr>
+          <tr><td>Wednesday</td><td>11:00-12:00</td><td>OS</td><td>Prof. Dr. Saifullah Memon</td><td>25TC Room</td></tr>
+          <tr><td>Wednesday</td><td>12:00-1:00</td><td>DM</td><td>Mr. Saeed Ahmed Shah</td><td>25TC Room</td></tr>
+          <tr><td>Thursday</td><td>8:30-9:30</td><td>NS</td><td>Dr. Adnan Ahmed Arain</td><td>Network Security Lab</td></tr>
+          <tr><td>Thursday</td><td>9:30-10:30</td><td>NS</td><td>Dr. Adnan Ahmed Arain</td><td>Network Security Lab</td></tr>
+          <tr><td>Thursday</td><td>11:00-12:00</td><td>DM</td><td>Mr. Saeed Ahmed Shah</td><td>25TC Room</td></tr>
+          <tr><td>Friday</td><td>8:30-9:30</td><td>ML (Pr)</td><td>Ms. Tabassum Jalbani</td><td>FYDP Lab</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 25CYS -->
+    <div class="timetable-container">
+      <div class="timetable-header">
+        <h4>25CYS Batch (2nd Year, 2nd Semester)</h4>
+        <span class="live-badge">● LIVE</span>
+      </div>
+      <div class="current-class">
+        <i class="fas fa-play-circle"></i>
+        <span id="current-25cys">Loading current class...</span>
+      </div>
+      <table class="timetable-table">
+        <thead>
+          <tr><th>Day</th><th>Time</th><th>Subject</th><th>Teacher</th><th>Room</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Monday</td><td>8:30-9:30</td><td>DSA</td><td>Prof. Dr. Adnan Ahmed Arain</td><td>CYS Room:02</td></tr>
+          <tr><td>Monday</td><td>9:30-10:30</td><td>DSA</td><td>Prof. Dr. Adnan Ahmed Arain</td><td>CYS Room:02</td></tr>
+          <tr><td>Monday</td><td>11:00-12:00</td><td>CS</td><td>Mr. Shan Kumar</td><td>CYS Room:02</td></tr>
+          <tr><td>Tuesday</td><td>8:30-9:30</td><td>DBS</td><td>Mr. Muhammad Aurangzeb</td><td>AI Room:01</td></tr>
+          <tr><td>Tuesday</td><td>9:30-10:30</td><td>DBS</td><td>Mr. Muhammad Aurangzeb</td><td>AI Room:01</td></tr>
+          <tr><td>Tuesday</td><td>11:00-12:00</td><td>DSA</td><td>Prof. Dr. Adnan Ahmed Arain</td><td>AI Room:01</td></tr>
+          <tr><td>Tuesday</td><td>12:00-1:00</td><td>AC</td><td>Mr. Mumtaz Kahri</td><td>AI Room:01</td></tr>
+          <tr><td>Wednesday</td><td>8:30-9:30</td><td>AI</td><td>Prof. Dr. Saifullah Memon</td><td>AI Room:01</td></tr>
+          <tr><td>Wednesday</td><td>9:30-10:30</td><td>AI</td><td>Prof. Dr. Saifullah Memon</td><td>AI Room:01</td></tr>
+          <tr><td>Thursday</td><td>8:30-9:30</td><td>AI</td><td>Prof. Dr. Saifullah Memon</td><td>CYS Room:02</td></tr>
+          <tr><td>Thursday</td><td>9:30-10:30</td><td>CS</td><td>Mr. Shan Kumar</td><td>CYS Room:02</td></tr>
+          <tr><td>Thursday</td><td>11:00-12:00</td><td>DBS</td><td>Mr. Muhammad Aurangzeb</td><td>AI Room:02</td></tr>
+          <tr><td>Friday</td><td>8:30-9:30</td><td>AI (Pr)</td><td>Ms. Tooba Ali</td><td>Networking Lab</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 26CYS -->
+    <div class="timetable-container">
+      <div class="timetable-header">
+        <h4>26CYS Batch (1st Year, 1st Semester)</h4>
+        <span class="live-badge">● LIVE</span>
+      </div>
+      <div class="current-class">
+        <i class="fas fa-play-circle"></i>
+        <span id="current-26cys">Loading current class...</span>
+      </div>
+      <table class="timetable-table">
+        <thead>
+          <tr><th>Day</th><th>Time</th><th>Subject</th><th>Teacher</th><th>Room</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Monday</td><td>8:30-9:30</td><td>PF</td><td>Mr. Muhammad Umar</td><td>CYS Room:01</td></tr>
+          <tr><td>Monday</td><td>9:30-10:30</td><td>PS</td><td>Ms. Warkha Bashir</td><td>CYS Room:01</td></tr>
+          <tr><td>Monday</td><td>11:00-12:00</td><td>FE</td><td>Mr. Shuja Hussain</td><td>CYS Room:01</td></tr>
+          <tr><td>Tuesday</td><td>8:30-9:30</td><td>CF</td><td>Mr. Aamir Rasool Memon</td><td>CYS Room:01</td></tr>
+          <tr><td>Tuesday</td><td>9:30-10:30</td><td>CF</td><td>Mr. Aamir Rasool Memon</td><td>CYS Room:01</td></tr>
+          <tr><td>Tuesday</td><td>11:00-12:00</td><td>PS</td><td>Ms. Warkha Bashir</td><td>CYS Room:01</td></tr>
+          <tr><td>Wednesday</td><td>8:30-9:30</td><td>IS</td><td>Mr. Fareed Ahmed</td><td>CYS Room:01</td></tr>
+          <tr><td>Wednesday</td><td>9:30-10:30</td><td>IS</td><td>Mr. Fareed Ahmed</td><td>CYS Room:01</td></tr>
+          <tr><td>Thursday</td><td>8:30-9:30</td><td>PF</td><td>Mr. Muhammad Umar</td><td>CYS Room:01</td></tr>
+          <tr><td>Thursday</td><td>9:30-10:30</td><td>PF</td><td>Mr. Muhammad Umar</td><td>CYS Room:01</td></tr>
+          <tr><td>Friday</td><td>8:30-9:30</td><td>PF (Pr)</td><td>Mr. Muhammad Umar</td><td>CYS Room:01</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 23CYS -->
+    <div class="timetable-container">
+      <div class="timetable-header">
+        <h4>23CYS Batch (4th Year, 1st Semester)</h4>
+        <span class="live-badge">● LIVE</span>
+      </div>
+      <div class="current-class">
+        <i class="fas fa-play-circle"></i>
+        <span id="current-23cys">Loading current class...</span>
+      </div>
+      <table class="timetable-table">
+        <thead>
+          <tr><th>Day</th><th>Time</th><th>Subject</th><th>Teacher</th><th>Room</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Monday</td><td>8:30-9:30</td><td>FYP-I</td><td>-</td><td>CYS Room:02</td></tr>
+          <tr><td>Monday</td><td>11:00-12:00</td><td>FYP-I</td><td>-</td><td>CYS Room:02</td></tr>
+          <tr><td>Tuesday</td><td>8:30-9:30</td><td>IM</td><td>Ms. Faryal Adil</td><td>CYS Room:02</td></tr>
+          <tr><td>Tuesday</td><td>9:30-10:30</td><td>IM</td><td>Ms. Faryal Adil</td><td>CYS Room:02</td></tr>
+          <tr><td>Tuesday</td><td>11:00-12:00</td><td>DM</td><td>Mr. Aamir Rasool Memon</td><td>CYS Room:02</td></tr>
+          <tr><td>Wednesday</td><td>8:30-9:30</td><td>DM</td><td>Mr. Aamir Rasool Memon</td><td>CYS Room:02</td></tr>
+          <tr><td>Wednesday</td><td>9:30-10:30</td><td>IA</td><td>Mr. Muhammad Aurangzeb</td><td>CYS Room:02</td></tr>
+          <tr><td>Thursday</td><td>8:30-10:30</td><td>DS&A (Pr)</td><td>Mr. Aamir Rasool Memon</td><td>HPC Lab</td></tr>
+          <tr><td>Friday</td><td>8:30-9:30</td><td>DS&A</td><td>Mr. Aamir Rasool Memon</td><td>CYS Room:02</td></tr>
+          <tr><td>Friday</td><td>9:30-10:30</td><td>DS&A</td><td>Mr. Aamir Rasool Memon</td><td>CYS Room:02</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<!-- LABS -->
+<section class="section" id="labs" style="background: #f8f9fa;">
+  <div class="container">
+    <h2 class="section-title">Research Labs</h2>
+    <p class="section-subtitle">State-of-the-art facilities for cybersecurity research</p>
+    <div class="row g-4">
+      
+      <div class="col-md-4">
+        <div class="lab-card">
+          <div class="lab-icon"><i class="fas fa-brain"></i></div>
+          <h4>AI Security Lab</h4>
+          <div class="supervisor">Supervisor: Dr. Saifullah Memon</div>
+          <p>Research in machine learning security, adversarial attacks, AI threat detection, and intelligent cyber defense systems.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="lab-card">
+          <div class="lab-icon"><i class="fas fa-search"></i></div>
+          <h4>Digital Forensics Lab</h4>
+          <div class="supervisor">Supervisor: Prof. Dr. Ibrahim Channa</div>
+          <p>Digital evidence analysis, forensic investigation, and cyber crime analysis tools for real-world investigations.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="lab-card">
+          <div class="lab-icon"><i class="fas fa-lock"></i></div>
+          <h4>Cryptography Lab</h4>
+          <div class="supervisor">Supervisor: Dr. Adnan Ahmed</div>
+          <p>Research on encryption algorithms, blockchain security, and secure communication protocols.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CHATBOT SECTION -->
+<section class="chatbot-section" id="chatbot">
+  <div class="container">
+    <h2>🤖 Try Our AI Assistant</h2>
+    <p>Get instant answers to your questions about the department, faculty, timetable, syllabus, and more — powered by Google Gemini AI.</p>
+    <a href="YOUR_CHATBOT_URL_HERE" target="_blank" class="btn-primary-custom" style="font-size: 1.1rem; padding: 16px 40px;">
+      <i class="fas fa-comments"></i> Chat with AI Assistant
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="container">
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-subtitle">Get in touch with the Cyber Security Department</p>
+    <div class="row text-center g-4">
+      <div class="col-md-4">
+        <div class="card-custom">
+          <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h5>Email</h5>
+          <p>info@quest.edu.pk</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-custom">
+          <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;">
+            <i class="fas fa-phone"></i>
+          </div>
+          <h5>Phone</h5>
+          <p>+92 244 9370367</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-custom">
+          <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h5>Address</h5>
+          <p>Nawabshah, Sindh, Pakistan</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <h5>QUEST Cyber Security</h5>
+        <p style="opacity: 0.8;">Protecting Pakistan's Digital Future</p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Quick Links</h5>
+        <p><a href="#about">About</a></p>
+        <p><a href="#faculty">Faculty</a></p>
+        <p><a href="#timetable">Timetable</a></p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Contact</h5>
+        <p style="opacity: 0.8;">📧 info@quest.edu.pk</p>
+        <p style="opacity: 0.8;">📞 +92 244 9370367</p>
+        <p style="opacity: 0.8;">📍 Nawabshah, Sindh</p>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2026 Cyber Security Department, QUEST Nawabshah | Built by Team ZeroTrace
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// ═══════════════════════════════════════════════════
+// LIVE TIMETABLE LOGIC — Auto-detect current class
+// ═══════════════════════════════════════════════════
+
+// Timetable data — har batch ka
+const timetables = {
+  '24cys': {
+    'Monday': [
+      {start: '08:30', end: '09:30', subject: 'CL&E', teacher: 'Mr. Muhammad Aurangzeb', room: 'Network Security Lab'},
+      {start: '09:30', end: '10:30', subject: 'ML', teacher: 'Prof. Dr. Ibrahim Channa', room: 'Network Security Lab'},
+      {start: '11:00', end: '12:00', subject: 'ML', teacher: 'Prof. Dr. Ibrahim Channa', room: 'Network Security Lab'},
+      {start: '12:00', end: '13:00', subject: 'NS (Pr)', teacher: 'Mr. Muhammad Umar', room: 'Networking Lab'}
+    ],
+    'Tuesday': [
+      {start: '08:30', end: '09:30', subject: 'OS', teacher: 'Prof. Dr. Saifullah Memon', room: 'Network Security Lab'},
+      {start: '09:30', end: '10:30', subject: 'ML', teacher: 'Prof. Dr. Ibrahim Channa', room: 'Network Security Lab'},
+      {start: '11:00', end: '12:00', subject: 'DM', teacher: 'Mr. Saeed Ahmed Shah', room: '25TC Room'},
+      {start: '12:00', end: '13:00', subject: 'OS', teacher: 'Prof. Dr. Saifullah Memon', room: '25TC Room'}
+    ],
+    'Wednesday': [
+      {start: '08:30', end: '09:30', subject: 'SSD', teacher: 'Mr. Muhammad Umar', room: 'Network Security Lab'},
+      {start: '09:30', end: '10:30', subject: 'SSD', teacher: 'Mr. Muhammad Umar', room: 'Network Security Lab'},
+      {start: '11:00', end: '12:00', subject: 'OS', teacher: 'Prof. Dr. Saifullah Memon', room: '25TC Room'},
+      {start: '12:00', end: '13:00', subject: 'DM', teacher: 'Mr. Saeed Ahmed Shah', room: '25TC Room'}
+    ],
+    'Thursday': [
+      {start: '08:30', end: '09:30', subject: 'NS', teacher: 'Dr. Adnan Ahmed Arain', room: 'Network Security Lab'},
+      {start: '09:30', end: '10:30', subject: 'NS', teacher: 'Dr. Adnan Ahmed Arain', room: 'Network Security Lab'},
+      {start: '11:00', end: '12:00', subject: 'DM', teacher: 'Mr. Saeed Ahmed Shah', room: '25TC Room'}
+    ],
+    'Friday': [
+      {start: '08:30', end: '09:30', subject: 'ML (Pr)', teacher: 'Ms. Tabassum Jalbani', room: 'FYDP Lab'}
+    ]
+  },
+  '25cys': {
+    'Monday': [
+      {start: '08:30', end: '09:30', subject: 'DSA', teacher: 'Prof. Dr. Adnan Ahmed Arain', room: 'CYS Room:02'},
+      {start: '09:30', end: '10:30', subject: 'DSA', teacher: 'Prof. Dr. Adnan Ahmed Arain', room: 'CYS Room:02'},
+      {start: '11:00', end: '12:00', subject: 'CS', teacher: 'Mr. Shan Kumar', room: 'CYS Room:02'}
+    ],
+    'Tuesday': [
+      {start: '08:30', end: '09:30', subject: 'DBS', teacher: 'Mr. Muhammad Aurangzeb', room: 'AI Room:01'},
+      {start: '09:30', end: '10:30', subject: 'DBS', teacher: 'Mr. Muhammad Aurangzeb', room: 'AI Room:01'},
+      {start: '11:00', end: '12:00', subject: 'DSA', teacher: 'Prof. Dr. Adnan Ahmed Arain', room: 'AI Room:01'},
+      {start: '12:00', end: '13:00', subject: 'AC', teacher: 'Mr. Mumtaz Kahri', room: 'AI Room:01'}
+    ],
+    'Wednesday': [
+      {start: '08:30', end: '09:30', subject: 'AI', teacher: 'Prof. Dr. Saifullah Memon', room: 'AI Room:01'},
+      {start: '09:30', end: '10:30', subject: 'AI', teacher: 'Prof. Dr. Saifullah Memon', room: 'AI Room:01'}
+    ],
+    'Thursday': [
+      {start: '08:30', end: '09:30', subject: 'AI', teacher: 'Prof. Dr. Saifullah Memon', room: 'CYS Room:02'},
+      {start: '09:30', end: '10:30', subject: 'CS', teacher: 'Mr. Shan Kumar', room: 'CYS Room:02'},
+      {start: '11:00', end: '12:00', subject: 'DBS', teacher: 'Mr. Muhammad Aurangzeb', room: 'AI Room:02'}
+    ],
+    'Friday': [
+      {start: '08:30', end: '09:30', subject: 'AI (Pr)', teacher: 'Ms. Tooba Ali', room: 'Networking Lab'}
+    ]
+  },
+  '26cys': {
+    'Monday': [
+      {start: '08:30', end: '09:30', subject: 'PF', teacher: 'Mr. Muhammad Umar', room: 'CYS Room:01'},
+      {start: '09:30', end: '10:30', subject: 'PS', teacher: 'Ms. Warkha Bashir', room: 'CYS Room:01'},
+      {start: '11:00', end: '12:00', subject: 'FE', teacher: 'Mr. Shuja Hussain', room: 'CYS Room:01'}
+    ],
+    'Tuesday': [
+      {start: '08:30', end: '09:30', subject: 'CF', teacher: 'Mr. Aamir Rasool Memon', room: 'CYS Room:01'},
+      {start: '09:30', end: '10:30', subject: 'CF', teacher: 'Mr. Aamir Rasool Memon', room: 'CYS Room:01'},
+      {start: '11:00', end: '12:00', subject: 'PS', teacher: 'Ms. Warkha Bashir', room: 'CYS Room:01'}
+    ],
+    'Wednesday': [
+      {start: '08:30', end: '09:30', subject: 'IS', teacher: 'Mr. Fareed Ahmed', room: 'CYS Room:01'},
+      {start: '09:30', end: '10:30', subject: 'IS', teacher: 'Mr. Fareed Ahmed', room: 'CYS Room:01'}
+    ],
+    'Thursday': [
+      {start: '08:30', end: '09:30', subject: 'PF', teacher: 'Mr. Muhammad Umar', room: 'CYS Room:01'},
+      {start: '09:30', end: '10:30', subject: 'PF', teacher: 'Mr. Muhammad Umar', room: 'CYS Room:01'}
+    ],
+    'Friday': [
+      {start: '08:30', end: '09:30', subject: 'PF (Pr)', teacher: 'Mr. Muhammad Umar', room: 'CYS Room:01'}
+    ]
+  },
+  '23cys': {
+    'Monday': [
+      {start: '08:30', end: '09:30', subject: 'FYP-I', teacher: '-', room: 'CYS Room:02'},
+      {start: '11:00', end: '12:00', subject: 'FYP-I', teacher: '-', room: 'CYS Room:02'}
+    ],
+    'Tuesday': [
+      {start: '08:30', end: '09:30', subject: 'IM', teacher: 'Ms. Faryal Adil', room: 'CYS Room:02'},
+      {start: '09:30', end: '10:30', subject: 'IM', teacher: 'Ms. Faryal Adil', room: 'CYS Room:02'},
+      {start: '11:00', end: '12:00', subject: 'DM', teacher: 'Mr. Aamir Rasool Memon', room: 'CYS Room:02'}
+    ],
+    'Wednesday': [
+      {start: '08:30', end: '09:30', subject: 'DM', teacher: 'Mr. Aamir Rasool Memon', room: 'CYS Room:02'},
+      {start: '09:30', end: '10:30', subject: 'IA', teacher: 'Mr. Muhammad Aurangzeb', room: 'CYS Room:02'}
+    ],
+    'Thursday': [
+      {start: '08:30', end: '10:30', subject: 'DS&A (Pr)', teacher: 'Mr. Aamir Rasool Memon', room: 'HPC Lab'}
+    ],
+    'Friday': [
+      {start: '08:30', end: '09:30', subject: 'DS&A', teacher: 'Mr. Aamir Rasool Memon', room: 'CYS Room:02'},
+      {start: '09:30', end: '10:30', subject: 'DS&A', teacher: 'Mr. Aamir Rasool Memon', room: 'CYS Room:02'}
+    ]
+  }
+};
+
+// ═══════════════════════════════════════════════════
+// Get current class based on current time
+// ═══════════════════════════════════════════════════
+function getCurrentClass(batch) {
+  const now = new Date();
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const currentDay = days[now.getDay()];
+  
+  const currentHour = now.getHours();
+  const currentMinute = now.getMinutes();
+  const currentTime = currentHour * 60 + currentMinute;
+  
+  if (!timetables[batch] || !timetables[batch][currentDay]) {
+    return { status: 'holiday', message: 'No classes today (Weekend)' };
+  }
+  
+  const daySchedule = timetables[batch][currentDay];
+  let currentClass = null;
+  let nextClass = null;
+  
+  for (let i = 0; i < daySchedule.length; i++) {
+    const cls = daySchedule[i];
+    const [startH, startM] = cls.start.split(':').map(Number);
+    const [endH, endM] = cls.end.split(':').map(Number);
+    const startTime = startH * 60 + startM;
+    const endTime = endH * 60 + endM;
+    
+    if (currentTime >= startTime && currentTime < endTime) {
+      currentClass = cls;
+      nextClass = daySchedule[i + 1] || null;
+      break;
+    }
+    
+    if (currentTime < startTime && !nextClass) {
+      nextClass = cls;
+    }
+  }
+  
+  if (currentClass) {
+    return {
+      status: 'ongoing',
+      current: currentClass,
+      next: nextClass
+    };
+  } else if (nextClass) {
+    return {
+      status: 'break',
+      next: nextClass
+    };
+  } else {
+    return {
+      status: 'done',
+      message: 'All classes for today are finished'
+    };
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// Update UI for all batches
+// ═══════════════════════════════════════════════════
+function updateLiveStatus() {
+  const batches = ['24cys', '25cys', '26cys', '23cys'];
+  
+  batches.forEach(batch => {
+    const element = document.getElementById('current-' + batch);
+    if (!element) return;
+    
+    const result = getCurrentClass(batch);
+    
+    if (result.status === 'ongoing') {
+      let text = `🟢 NOW: ${result.current.subject} (${result.current.start}-${result.current.end}) — ${result.current.teacher} — ${result.current.room}`;
+      if (result.next) {
+        text += ` | ⏭️ NEXT: ${result.next.subject} (${result.next.start}-${result.next.end})`;
+      }
+      element.textContent = text;
+    } else if (result.status === 'break') {
+      element.textContent = `⏸️ BREAK | ⏭️ NEXT: ${result.next.subject} at ${result.next.start} — ${result.next.teacher} — ${result.next.room}`;
+    } else if (result.status === 'done') {
+      element.textContent = '✅ ' + result.message;
+    } else {
+      element.textContent = '🎉 ' + result.message;
+    }
+  });
+}
+
+// Run on load and every 30 seconds
+updateLiveStatus();
+setInterval(updateLiveStatus, 30000);
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
