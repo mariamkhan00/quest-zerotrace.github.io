@@ -23,6 +23,8 @@
 .chat-msg { margin-bottom: 10px; padding: 10px 15px; border-radius: 15px; max-width: 85%; font-size: 0.9rem; line-height: 1.4; }
 .msg-bot { background: #e3f2fd; color: var(--dark); border-bottom-left-radius: 0; }
 .msg-user { background: var(--primary); color: white; margin-left: auto; border-bottom-right-radius: 0; }
+
+/* GENERAL */
 body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background-color: #ffffff; }
 .navbar { background: var(--dark) !important; padding: 15px 0; }
 .navbar-brand { color: white !important; font-weight: 700; display: flex; align-items: center; gap: 10px; }
@@ -32,7 +34,7 @@ body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background-color: #ff
 
 /* HERO SECTION */
 .hero {
-  background: url('https://i.ibb.co/6P3K5bZ/image.png') center/cover no-repeat; /* Yahan tum building ki pic ka link dalo */
+  background: url('https://i.ibb.co/b5BmC0BQ/telecom-building.jpg') center/cover no-repeat;
   height: 60vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center;
 }
 .hero::before { content: ''; position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(10, 25, 41, 0.7); }
@@ -42,13 +44,19 @@ body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background-color: #ff
 
 /* NEWS & EVENTS */
 .section-title { text-align: center; color: var(--dark); font-weight: 700; margin-bottom: 40px; margin-top: 60px; }
-.news-card { border: none; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); overflow: hidden; transition: 0.3s; height: 100%; background: white;}
+.news-card { border: none; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); overflow: hidden; transition: 0.3s; height: 100%; background: white; cursor: pointer; }
 .news-card:hover { transform: translateY(-5px); }
+.news-card:hover .news-title { text-decoration: underline; }
 .news-img { width: 100%; height: 200px; object-fit: cover; }
 .news-body { padding: 20px; }
 .news-date { color: #888; font-size: 0.9rem; margin-bottom: 10px; display: block; }
 .news-title { font-size: 1.2rem; font-weight: 700; color: var(--primary); text-decoration: none; }
 .news-text { color: #555; font-size: 0.95rem; margin-top: 10px; }
+
+/* MODAL POPUP */
+.modal-content { border-radius: 15px; border: none; }
+.modal-header { background: var(--primary); color: white; }
+.modal-header .btn-close { filter: invert(1); }
 
 /* CONTACT */
 .contact-section { background: var(--light); padding: 60px 20px; margin-top: 60px; }
@@ -65,7 +73,7 @@ footer p { margin: 0; }
 <nav class="navbar navbar-expand-lg">
   <div class="container">
     <a class="navbar-brand" href="index.html">
-      <img src="https://i.ibb.co/3Wq1rB5/logo.png" alt="QUEST Logo" class="university-logo">
+      <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo" class="university-logo">
       <div>
         <span style="display: block; line-height: 1.2;">QUEST Cyber Security</span>
         <span style="font-size: 0.7rem; color: #aaa;">Department Portal</span>
@@ -99,39 +107,93 @@ footer p { margin: 0; }
   <h2 class="section-title">News & Announcements</h2>
   <div class="row g-4">
     
+    <!-- News 1 -->
     <div class="col-md-4">
-      <div class="news-card">
-       <img src="https://i.ibb.co/2Wq1rB5/hackathon.png" class="news-img" alt="Hackathon">
+      <div class="news-card" data-bs-toggle="modal" data-bs-target="#newsModal1">
+       <img src="https://i.ibb.co/ZRgvLSq2/event.png" class="news-img" alt="Hackathon">
         <div class="news-body">
           <span class="news-date">October 15, 2026</span>
-          <a href="#" class="news-title">BSCYS QUIZ & CTF Hackathon</a>
-          <p class="news-text">Cyber Security Department organized a successful Capture The Flag competition for students.</p>
+          <div class="news-title">BSCYS QUIZ & CTF Hackathon</div>
+          <p class="news-text">Cyber Security Department organized a successful Capture The Flag competition...</p>
+          <a href="#" class="text-primary fw-bold mt-2 d-inline-block">Read More &rarr;</a>
         </div>
       </div>
     </div>
 
+    <!-- News 2 -->
     <div class="col-md-4">
-      <div class="news-card">
-        <img src="https://i.ibb.co/8Yq1rB5/workshop.png" class="news-img" alt="Seminar">
+      <div class="news-card" data-bs-toggle="modal" data-bs-target="#newsModal2">
+        <img src="https://i.ibb.co/Qv3Fqh4H/workshop.png" class="news-img" alt="Seminar">
         <div class="news-body">
           <span class="news-date">October 10, 2026</span>
-          <a href="#" class="news-title">Cybersecurity Awareness Seminar</a>
-          <p class="news-text">A seminar was conducted to spread awareness about phishing attacks and digital safety.</p>
+          <div class="news-title">Cybersecurity Awareness Seminar</div>
+          <p class="news-text">A seminar was conducted to spread awareness about phishing attacks...</p>
+          <a href="#" class="text-primary fw-bold mt-2 d-inline-block">Read More &rarr;</a>
         </div>
       </div>
     </div>
 
+    <!-- News 3 -->
     <div class="col-md-4">
-      <div class="news-card">
-        <img src="https://i.ibb.co/ZRgvLSq2/event.png" class="news-img" alt="Workshop">
+      <div class="news-card" data-bs-toggle="modal" data-bs-target="#newsModal3">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="news-img" alt="Workshop">
         <div class="news-body">
           <span class="news-date">October 05, 2026</span>
-          <a href="#" class="news-title">Industry Visit to PTA</a>
-          <p class="news-text">Students visited Pakistan Telecommunication Authority to learn about real-world cybersecurity.</p>
+          <div class="news-title">Industry Visit to PTA</div>
+          <p class="news-text">Students visited Pakistan Telecommunication Authority to learn about real-world cybersecurity...</p>
+          <a href="#" class="text-primary fw-bold mt-2 d-inline-block">Read More &rarr;</a>
         </div>
       </div>
     </div>
 
+  </div>
+</div>
+
+<!-- MODALS (NEWS POPUPS) -->
+<div class="modal fade" id="newsModal1" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">BSCYS QUIZ & CTF Hackathon</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <img src="https://i.ibb.co/ZRgvLSq2/event.png" class="img-fluid rounded mb-3" alt="Hackathon">
+        <p class="text-muted">Date: October 15, 2026</p>
+        <p>The Cyber Security Department at QUEST successfully organized a Capture The Flag (CTF) Hackathon. Students from different batches participated with great enthusiasm. The event aimed to enhance practical cybersecurity skills, problem-solving, and teamwork. Winners were awarded certificates and prizes by the Chairman.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="newsModal2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cybersecurity Awareness Seminar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <img src="https://i.ibb.co/Qv3Fqh4H/workshop.png" class="img-fluid rounded mb-3" alt="Seminar">
+        <p class="text-muted">Date: October 10, 2026</p>
+        <p>A highly informative seminar was conducted to spread awareness about phishing attacks, digital safety, and how to protect personal data. Faculty members and students discussed real-world cyber threats and preventive measures.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="newsModal3" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Industry Visit to PTA</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted">Date: October 05, 2026</p>
+        <p>Students visited Pakistan Telecommunication Authority (PTA) to learn about real-world cybersecurity operations, network defense, and how national institutions protect digital infrastructure. The visit provided practical exposure to industry standards.</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -171,8 +233,7 @@ footer p { margin: 0; }
   <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Developed by Team ZeroTrace</p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- FLOATING CHATBOT -->
+<!-- FLOATING CHATBOT -->
 <button class="chat-btn" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
 <div class="chat-window" id="chatWindow">
   <div class="chat-header">
@@ -188,7 +249,9 @@ footer p { margin: 0; }
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+// Chatbot Logic
 function toggleChat() {
   const w = document.getElementById('chatWindow');
   w.style.display = (w.style.display === 'flex') ? 'none' : 'flex';
@@ -208,19 +271,12 @@ function sendMessage() {
   body.innerHTML += `<div class="chat-msg msg-bot" id="${loadId}">Thinking...</div>`;
   body.scrollTop = body.scrollHeight;
 
-  // 👇 YAHAN APNA APPS SCRIPT CHATBOT URL DAALNA HAI
+  // Yahan apna Chatbot URL dala hua hai
   const API_URL = "https://script.google.com/macros/s/AKfycbzROCQko4ITvjpz94TOkDvYikjtEM8POETZU-jakQFCg7lqaL9jCwdTEdB52IZrG2Oh3g/exec";  
-  
-  if(API_URL.includes("YOUR_CHATBOT")) {
-      setTimeout(() => { document.getElementById(loadId).innerText = "Chatbot URL is not configured yet."; }, 1000);
-      return;
-  }
 
-    fetch(API_URL, {
+  fetch(API_URL, {
     method: 'POST',
-    headers: { 
-        'Content-Type': 'text/plain;charset=utf-8' 
-    },
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
     body: JSON.stringify({ message: msg }),
     redirect: 'follow'
   })
@@ -234,15 +290,6 @@ function sendMessage() {
   })
   .catch(err => {
     document.getElementById(loadId).innerText = "The AI server is currently busy. Please try again in a minute.";
-    body.scrollTop = body.scrollHeight;
-  });
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById(loadId).innerText = data.reply;
-    body.scrollTop = body.scrollHeight;
-  })
-  .catch(err => {
-    document.getElementById(loadId).innerText = "The AI server is currently busy. Please check the Timetable or Faculty sections above.";
     body.scrollTop = body.scrollHeight;
   });
 }
