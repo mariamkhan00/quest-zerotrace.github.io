@@ -41,7 +41,7 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; }
 <!-- ARTICLE HEADER -->
 <div class="article-header text-center">
   <div class="container">
-    <h1 class="article-title">BSCYS QUIZ & CTF Hackathon</h1>
+    <h1 class="article-title" id="newsTitle">BSCYS QUIZ & CTF Hackathon</h1>
     <p class="article-date"><i class="far fa-calendar-alt"></i> October 15, 2026 | <i class="fas fa-tag"></i> Events</p>
   </div>
 </div>
@@ -52,14 +52,14 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; }
     <div class="col-lg-8 mx-auto">
       <div class="article-content">
         <!-- Badi Picture -->
-        <img src="https://i.ibb.co/ZRgvLSq2/event.png" alt="Hackathon" class="article-img">
+        <img id="newsImage" src="https://i.ibb.co/ZRgvLSq2/event.png" alt="Hackathon" class="article-img">
         
-        <!-- Tafseel (MUET Style) -->
-        <p>The Cyber Security Department at Quaid-e-Awam University of Engineering, Science & Technology (QUEST), Nawabshah, successfully organized a highly competitive <strong>Capture The Flag (CTF) Hackathon and Quiz</strong>. The event brought together talented students from various batches to test their practical cybersecurity skills.</p>
+        <!-- Tafseel -->
+        <p id="newsText">The Cyber Security Department at Quaid-e-Awam University of Engineering, Science & Technology (QUEST), Nawabshah, successfully organized a highly competitive <strong>Capture The Flag (CTF) Hackathon and Quiz</strong>. The event brought together talented students from various batches to test their practical cybersecurity skills.</p>
         
         <p>Students participated with great enthusiasm, solving complex challenges related to cryptography, web exploitation, reverse engineering, and digital forensics. The primary objective of this event was to bridge the gap between theoretical knowledge and real-world industry requirements.</p>
         
-        <p>The worthy Chairman of the Department, along with faculty members, appreciated the participants' efforts. Winners were awarded certificates and cash prizes to encourage their journey in the field of cybersecurity. Such initiatives reflect the department's commitment to producing world-class cyber defenders for Pakistan.</p>
+        <p>The worthy Chairman of the Department, along with faculty members, appreciated the participants' efforts. Winners were awarded certificates and cash prizes to encourage their journey in the field of cybersecurity.</p>
         
         <br>
         <a href="index.html" class="btn btn-primary" style="background: var(--primary);">&larr; Back to Home</a>
@@ -67,6 +67,24 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; }
     </div>
   </div>
 </div>
+
+<!-- SCRIPT TO CHANGE CONTENT BASED ON CLICK -->
+<script>
+  // URL se check karo ke user ne kaunsi news pe click kiya hai (?id=1, ?id=2, ?id=3)
+  const urlParams = new URLSearchParams(window.location.search);
+  const newsId = urlParams.get('id');
+
+  if (newsId === '2') {
+    document.getElementById('newsTitle').innerText = "Cybersecurity Awareness Seminar";
+    document.getElementById('newsImage').src = "https://i.ibb.co/Qv3Fqh4H/workshop.png";
+    document.getElementById('newsText').innerHTML = "A highly informative seminar was conducted by the Cyber Security Department to spread awareness about phishing attacks, digital safety, and how to protect personal data from modern cyber threats.";
+  } 
+  else if (newsId === '3') {
+    document.getElementById('newsTitle').innerText = "Industry Visit to PTA";
+    document.getElementById('newsImage').src = "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+    document.getElementById('newsText').innerHTML = "Students of the Cyber Security Department visited Pakistan Telecommunication Authority (PTA). The visit provided practical exposure to industry standards, network defense, and how national institutions protect digital infrastructure.";
+  }
+</script>
 
 </body>
 </html>
