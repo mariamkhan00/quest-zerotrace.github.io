@@ -38,7 +38,7 @@ body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background-color: #ff
 .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 15px; }
 .hero p { font-size: 1.3rem; }
 
-/* NEWS & EVENTS */
+/* NEWS & QUICK LINKS CARDS */
 .section-title { text-align: center; color: var(--dark); font-weight: 700; margin-bottom: 40px; margin-top: 60px; }
 .news-card { border: none; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); overflow: hidden; transition: 0.3s; height: 100%; background: white; cursor: pointer; }
 .news-card:hover { transform: translateY(-5px); }
@@ -73,12 +73,12 @@ footer p { margin: 0; }
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
     </button>
+    
     <div class="collapse navbar-collapse" id="navMenu">
-                <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
         
-        <!-- ABOUT DROPDOWN (Ab sirf 'About' likha hai) -->
+        <!-- ABOUT DROPDOWN -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
           <ul class="dropdown-menu">
@@ -93,7 +93,6 @@ footer p { margin: 0; }
         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
       </ul>
     </div>
-     </div>
   </div>
 </nav>
 
@@ -105,15 +104,40 @@ footer p { margin: 0; }
   </div>
 </section>
 
+<!-- QUICK LINKS (Undergraduate, Research, Admissions) -->
+<div class="container mt-5">
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="news-card p-4 h-100">
+        <h5 class="fw-bold" style="color: var(--primary);">Undergraduate Program</h5>
+        <p class="text-muted mt-2">Industry focused BS Cyber Security program covering ethical hacking, AI security and digital forensics.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="news-card p-4 h-100">
+        <h5 class="fw-bold" style="color: var(--primary);">Research Labs</h5>
+        <p class="text-muted mt-2">Advanced labs for malware analysis, cryptography, AI threat detection and cyber intelligence.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="news-card p-4 h-100">
+        <h5 class="fw-bold" style="color: var(--primary);">Admissions</h5>
+        <p class="text-muted mt-2">Applications open for BS Cyber Security program. Join Pakistan’s digital defense future.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- NEWS & EVENTS -->
 <div class="container">
   <h2 class="section-title">News & Announcements</h2>
   <div class="row g-4">
     
-    <!-- News 1 (Goes to news.html) -->
+    <!-- News 1 (Hackathon) -->
     <div class="col-md-4">
       <a href="news.html" style="text-decoration: none; color: inherit;">
         <div class="news-card">
+         <!-- Yahan maine tumhari nayi picture lagadi hai -->
          <img src="https://i.ibb.co/ZRgvLSq2/event.png" class="news-img" alt="Hackathon">
           <div class="news-body">
             <span class="news-date">October 15, 2026</span>
@@ -125,10 +149,14 @@ footer p { margin: 0; }
       </a>
     </div>
 
-    <!-- News 2 -->
+    <!-- News 2 (Workshop with 2 images) -->
     <div class="col-md-4">
       <div class="news-card">
-        <img src="https://i.ibb.co/Qv3Fqh4H/workshop.png" class="news-img" alt="Seminar">
+        <!-- Yahan dono workshop pictures side by side lagadi hain -->
+        <div class="d-flex gap-1">
+            <img src="https://i.ibb.co/Qv3Fqh4H/workshop.png" class="news-img" style="width: 50%;" alt="Workshop 1">
+            <img src="https://i.ibb.co/8Yq1rB5/workshop.png" class="news-img" style="width: 50%;" alt="Workshop 2">
+        </div>
         <div class="news-body">
           <span class="news-date">October 10, 2026</span>
           <div class="news-title">Cybersecurity Awareness Seminar</div>
