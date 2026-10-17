@@ -4,161 +4,207 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#07152e">
-  <meta name="description" content="Cybersecurity Department student information portal for QUEST Nawabshah.">
-  <title>Cybersecurity | QUEST Nawabshah</title>
+  <meta name="theme-color" content="#071a33">
+  <meta name="description" content="ZeroTrace — Cyber Security Department student portal at QUEST Nawabshah.">
+  <title>ZeroTrace | QUEST Cyber Security</title>
 
+  <link rel="icon" href="assets/quest-logo.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #07152e;
-      --panel: #0d2142;
-      --panel2: #10294f;
-      --blue: #2f80ed;
-      --cyan: #42e8e0;
-      --text: #eef5ff;
-      --muted: #a8bad4;
-      --border: rgba(255,255,255,.12);
+      --navy: #071a33;
+      --navy2: #0c2a4d;
+      --blue: #087fcb;
+      --cyan: #27d9ff;
+      --pale: #edf7ff;
+      --ink: #142238;
+      --muted: #64748b;
+      --white: #fff;
     }
 
-    * { box-sizing: border-box; scroll-behavior: smooth; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
     body {
       margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #f5f8fc;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
     }
     a { text-decoration: none; }
     .navbar {
-      background: rgba(7,21,46,.96);
-      border-bottom: 1px solid var(--border);
+      background: rgba(7,26,51,.97);
+      border-bottom: 1px solid rgba(39,217,255,.2);
     }
-    .navbar-brand { color: white; font-weight: 800; letter-spacing: .3px; }
-    .brand-mark {
-      display: inline-grid; place-items: center;
-      width: 42px; height: 42px; border-radius: 12px;
-      background: linear-gradient(135deg,var(--blue),var(--cyan));
-      color: #07152e; margin-right: 9px;
+    .navbar-brand { color: white !important; font-weight: 800; }
+    .brand-logo {
+      width: 43px; height: 43px; object-fit: contain;
+      background: white; border-radius: 50%; padding: 3px;
     }
-    .nav-link { color: #dce9fa; }
-    .nav-link:hover, .nav-link:focus { color: var(--cyan); }
+    .nav-link { color: #dbeafe !important; font-weight: 600; }
+    .nav-link:hover, .nav-link.active { color: var(--cyan) !important; }
+    .navbar-toggler { border-color: #6b829c; }
+    .navbar-toggler-icon { filter: invert(1); }
+
     .hero {
-      position: relative; overflow: hidden;
-      padding: 110px 0 90px;
+      min-height: 590px;
+      display: flex;
+      align-items: center;
+      color: white;
       background:
-        radial-gradient(ellipse at 85% 20%,rgba(47,128,237,.25),transparent 35%),
-        radial-gradient(ellipse at 15% 80%,rgba(66,232,224,.10),transparent 30%),
-        linear-gradient(145deg,#07152e,#0b1e3b 60%,#10294f);
+        linear-gradient(100deg, rgba(5,20,42,.94), rgba(5,35,69,.65)),
+        url("assets/campus.png") center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
     }
     .hero:after {
-      content: ""; position: absolute; inset: 0; pointer-events: none;
-      background-image: linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-                        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-      background-size: 38px 38px;
-      mask-image: linear-gradient(to bottom,black,transparent);
+      content: "";
+      position: absolute;
+      width: 360px; height: 360px;
+      border: 1px solid rgba(39,217,255,.22);
+      border-radius: 50%;
+      right: -100px; bottom: -170px;
+      box-shadow: 0 0 0 35px rgba(39,217,255,.035),
+                  0 0 0 70px rgba(39,217,255,.025);
     }
-    .hero .container { position: relative; z-index: 1; }
+    .hero-content { position: relative; z-index: 1; }
     .eyebrow {
-      display: inline-block; padding: 7px 12px; border-radius: 30px;
-      color: var(--cyan); background: rgba(66,232,224,.08);
-      border: 1px solid rgba(66,232,224,.25); font-size: .82rem;
+      color: var(--cyan); font-size: .8rem; letter-spacing: 2px;
+      font-weight: 800; text-transform: uppercase;
     }
-    .hero h1 { font-weight: 850; letter-spacing: -1.4px; line-height: 1.1; }
-    .gradient-text {
-      background: linear-gradient(90deg,#42e8e0,#75aaff);
-      color: transparent; background-clip: text;
+    .hero h1 {
+      font-weight: 900; line-height: 1.08;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      max-width: 850px;
     }
-    .muted { color: var(--muted); }
-    .btn-cyber {
-      color: #06152b; font-weight: 750; border: 0;
-      background: linear-gradient(100deg,var(--cyan),#7bb7ff);
+    .hero p { max-width: 720px; color: #e0ecf9; line-height: 1.8; }
+    .btn-cyan {
+      color: #062039; background: var(--cyan);
+      border: 0; font-weight: 800;
     }
-    .btn-cyber:hover { color: #06152b; filter: brightness(1.08); }
-    .btn-outline-cyber { color: white; border: 1px solid var(--border); }
-    .btn-outline-cyber:hover { background: var(--panel2); color: var(--cyan); }
-    .hero-visual {
-      min-height: 310px; display: grid; place-items: center;
-      border: 1px solid var(--border); border-radius: 30px;
-      background: radial-gradient(circle,rgba(47,128,237,.2),transparent 62%);
-    }
-    .shield { font-size: clamp(100px,15vw,180px); color: var(--cyan);
-      filter: drop-shadow(0 0 25px rgba(66,232,224,.25)); }
+    .btn-cyan:hover { color: #062039; background: #9aedff; }
+    .btn-outline-light { font-weight: 700; }
     .section { padding: 78px 0; }
-    .section-title { font-weight: 800; letter-spacing: -.5px; }
-    .section-subtitle { color: var(--muted); max-width: 680px; }
-    .surface {
-      background: var(--panel); border: 1px solid var(--border);
-      border-radius: 20px;
+    .section-alt { background: #eaf3fb; }
+    .section-title { color: var(--navy); font-weight: 900; }
+    .section-lead { max-width: 700px; margin: auto; color: var(--muted); }
+    .section-kicker {
+      color: var(--blue); font-weight: 800;
+      text-transform: uppercase; font-size: .78rem; letter-spacing: 1.5px;
     }
-    .stat-card { padding: 23px; height: 100%; }
-    .stat-number { color: var(--cyan); font-size: 2rem; font-weight: 850; }
-    .feature-card, .faculty-card { padding: 24px; height: 100%; transition: .2s ease; }
-    .feature-card:hover, .faculty-card:hover {
-      transform: translateY(-4px); border-color: rgba(66,232,224,.4);
+
+    .stat-card, .portal-card, .faculty-card, .batch-card, .lab-card {
+      background: white; border: 1px solid #e0eaf4;
+      border-radius: 18px; height: 100%;
+      box-shadow: 0 10px 28px rgba(12,42,77,.055);
+    }
+    .stat-card { padding: 24px; }
+    .stat-number { color: var(--blue); font-size: 2rem; font-weight: 900; }
+    .portal-card {
+      padding: 27px; transition: transform .2s, box-shadow .2s;
+    }
+    .portal-card:hover, .faculty-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 35px rgba(12,42,77,.11);
     }
     .feature-icon {
-      display: grid; place-items: center; width: 48px; height: 48px;
-      border-radius: 14px; background: rgba(66,232,224,.10);
-      color: var(--cyan); font-size: 1.4rem;
+      width: 55px; height: 55px; display: grid; place-items: center;
+      border-radius: 15px; background: var(--pale);
+      color: var(--blue); font-size: 1.45rem; margin-bottom: 18px;
+    }
+    .faculty-card {
+      padding: 25px; text-align: center;
+      transition: transform .2s;
     }
     .faculty-avatar {
-      display: grid; place-items: center; width: 66px; height: 66px;
-      border-radius: 18px; background: var(--panel2); color: var(--cyan);
-      font-size: 1.8rem;
+      width: 88px; height: 88px; display: grid; place-items: center;
+      margin: 0 auto 17px; border-radius: 50%;
+      background: linear-gradient(135deg, #d9f4ff, #e9eaff);
+      border: 3px solid #c5e9fa; color: #1265a0; font-size: 2rem;
     }
-    .form-control, .form-select {
-      background-color: #081a35; color: white; border-color: var(--border);
+    .faculty-role { color: var(--blue); font-weight: 800; font-size: .88rem; }
+    .specialty { color: var(--muted); font-size: .9rem; }
+    .batch-card { padding: 23px; }
+    .batch-label {
+      display: inline-block; background: #e1f5ff;
+      color: #075985; padding: 5px 11px;
+      border-radius: 30px; font-size: .8rem; font-weight: 800;
     }
-    .form-control:focus, .form-select:focus {
-      background-color: #081a35; color: white;
-      border-color: var(--cyan); box-shadow: 0 0 0 .2rem rgba(66,232,224,.1);
+    .live-panel {
+      color: white; background: linear-gradient(135deg, var(--navy), #0c4777);
+      border-radius: 18px; padding: 27px;
     }
-    .form-select option { background: #081a35; color: white; }
-    .table { --bs-table-bg: transparent; --bs-table-color: var(--text); }
-    .table th { color: var(--cyan); white-space: nowrap; }
-    .table td, .table th { border-color: var(--border); padding: 13px; }
-    .table-responsive { border-radius: 14px; }
-    .live-box { padding: 20px; border-radius: 16px; height: 100%; }
-    .live-now { border: 1px solid rgba(66,232,224,.35); background: rgba(66,232,224,.07); }
-    .next-class { border: 1px solid rgba(123,183,255,.35); background: rgba(123,183,255,.07); }
-    .pill { border-radius: 30px; padding: 5px 10px; font-size: .78rem; }
-    .pill-live { background: rgba(66,232,224,.13); color: var(--cyan); }
-    .pill-demo { background: rgba(255,193,7,.13); color: #ffd36c; }
-    .qr-image { background: white; border-radius: 12px; padding: 10px; max-width: 160px; }
-    .footer { padding: 28px 0; border-top: 1px solid var(--border); color: var(--muted); }
-    #chat-toggle {
-      position: fixed; bottom: 22px; right: 22px; z-index: 1050;
-      width: 60px; height: 60px; border: 0; border-radius: 50%;
-      background: linear-gradient(135deg,var(--cyan),#7bb7ff);
-      color: #07152e; font-size: 1.6rem; box-shadow: 0 8px 28px #0005;
+    .live-dot {
+      width: 10px; height: 10px; display: inline-block;
+      background: #4ade80; border-radius: 50%;
+      box-shadow: 0 0 0 5px rgba(74,222,128,.14);
     }
-    #chat-panel {
-      position: fixed; right: 20px; bottom: 94px; z-index: 1050;
-      width: min(390px,calc(100vw - 30px)); height: min(540px,70vh);
-      display: none; flex-direction: column; overflow: hidden;
-      border: 1px solid var(--border); border-radius: 20px;
-      background: #0a1b36; box-shadow: 0 20px 60px #0008;
+    .class-box {
+      padding: 18px; border-radius: 13px;
+      background: rgba(255,255,255,.08); height: 100%;
     }
-    #chat-panel.open { display: flex; }
-    .chat-head { padding: 15px; background: var(--panel2); }
-    #chat-messages { flex: 1; overflow-y: auto; padding: 14px; }
+    .table thead th { background: var(--navy); color: white; white-space: nowrap; }
+    .table td { vertical-align: middle; }
+    .status-pill {
+      display: inline-block; border-radius: 30px; padding: 5px 10px;
+      background: #dcfce7; color: #166534; font-size: .78rem; font-weight: 800;
+    }
+    .status-next { background: #dbeafe; color: #1d4ed8; }
+    .syllabus-item {
+      border: 1px solid #dbe7f2; background: white;
+      border-radius: 12px; padding: 14px 16px; margin-bottom: 10px;
+    }
+    .syllabus-item summary { cursor: pointer; font-weight: 800; color: var(--navy); }
+    .course-list { margin-top: 13px; color: #43556b; line-height: 1.9; }
+    .lab-card { padding: 27px; }
+    .contact-card {
+      border-radius: 18px; background: white; padding: 25px;
+      border: 1px solid #e0eaf4; height: 100%;
+    }
+    footer { background: #041225; color: #cbd5e1; padding: 45px 0 20px; }
+    footer a { color: #a5eaff; }
+    .chat-launcher {
+      position: fixed; right: 22px; bottom: 22px; z-index: 1050;
+      width: 62px; height: 62px; border: 0; border-radius: 50%;
+      background: var(--cyan); color: #062039; font-size: 1.5rem;
+      box-shadow: 0 8px 30px #001b3870;
+    }
+    .chat-window {
+      position: fixed; right: 22px; bottom: 96px; z-index: 1050;
+      width: min(390px, calc(100vw - 28px)); height: 490px;
+      background: white; border: 1px solid #d8e5f0; border-radius: 18px;
+      box-shadow: 0 20px 60px #001b3835; overflow: hidden;
+      display: none; flex-direction: column;
+    }
+    .chat-window.open { display: flex; }
+    .chat-head {
+      background: var(--navy); color: white; padding: 16px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .chat-messages {
+      flex: 1; overflow-y: auto; padding: 15px;
+      background: #f5f9fd;
+    }
     .chat-message {
-      max-width: 90%; padding: 10px 12px; border-radius: 14px;
-      margin-bottom: 10px; white-space: pre-wrap; overflow-wrap: anywhere;
-      font-size: .92rem;
+      max-width: 90%; white-space: pre-wrap; overflow-wrap: anywhere;
+      padding: 11px 13px; border-radius: 13px; margin-bottom: 10px;
+      font-size: .91rem; line-height: 1.5;
     }
-    .chat-user { margin-left: auto; background: #1e5da9; }
-    .chat-bot { background: #142b4d; border: 1px solid var(--border); }
-    .chat-form { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--border); }
-    .chat-form input { min-width: 0; }
-    .small-link { color: var(--cyan); }
-    @media(max-width:767px) {
-      .hero { padding: 75px 0 55px; }
+    .bot-message { background: white; border: 1px solid #e1eaf2; }
+    .user-message { background: #dff6ff; margin-left: auto; }
+    .chat-form { padding: 12px; border-top: 1px solid #e1eaf2; display: flex; gap: 8px; }
+    .chat-form input { min-width: 0; flex: 1; }
+    .small-note { font-size: .82rem; color: var(--muted); }
+    @media (max-width: 767px) {
+      .hero { min-height: 520px; }
       .section { padding: 55px 0; }
-      .hero-visual { min-height: 210px; }
-      .hero h1 { letter-spacing: -.6px; }
+      .hero h1 { font-size: 2.6rem; }
+      .chat-launcher { right: 15px; bottom: 15px; }
+      .chat-window { right: 14px; bottom: 86px; height: 65vh; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
     }
   </style>
 </head>
@@ -166,9 +212,9 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
   <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="#home">
-      <span class="brand-mark"><i class="bi bi-shield-lock-fill"></i></span>
-      <span>QUEST <small class="d-block muted" style="font-size:.68rem">CYBERSECURITY PORTAL</small></span>
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+      <img class="brand-logo" src="assets/quest-logo.png" alt="QUEST logo">
+      <span>ZEROTRACE<small class="d-block fw-normal" style="font-size:.68rem;color:#b7d8ef">QUEST Cyber Security Portal</small></span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
       data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false"
@@ -176,65 +222,57 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+      <ul class="navbar-nav ms-auto gap-lg-2">
+        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
         <li class="nav-item"><a class="nav-link" href="#faculty">Faculty</a></li>
         <li class="nav-item"><a class="nav-link" href="#timetable">Timetable</a></li>
+        <li class="nav-item"><a class="nav-link" href="#syllabus">Syllabus</a></li>
+        <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        <li class="nav-item"><a class="btn btn-cyber btn-sm ms-lg-2" href="#timetable">Student Portal <i class="bi bi-arrow-up-right"></i></a></li>
+        <li class="nav-item"><button class="btn btn-sm btn-cyan ms-lg-2 mt-2 mt-lg-0" id="navChat">Ask Assistant</button></li>
       </ul>
     </div>
   </div>
 </nav>
 
 <header class="hero" id="home">
-  <div class="container">
-    <div class="row align-items-center g-5">
-      <div class="col-lg-7">
-        <span class="eyebrow mb-4"><i class="bi bi-activity me-2"></i>LEARN • DEFEND • INNOVATE</span>
-        <h1 class="display-3 mb-4">Securing the <span class="gradient-text">Digital Future.</span></h1>
-        <p class="lead muted mb-4">
-          A central student information portal for cybersecurity learning,
-          department updates, faculty information and interactive class schedules.
-        </p>
-        <div class="d-flex flex-wrap gap-3">
-          <a class="btn btn-cyber btn-lg" href="#timetable">View Timetable <i class="bi bi-arrow-right ms-1"></i></a>
-          <a class="btn btn-outline-cyber btn-lg" href="#about">Explore Department</a>
-        </div>
-        <p class="small muted mt-4 mb-0"><i class="bi bi-info-circle me-1"></i>Student project prototype. Verify official information before publication.</p>
-      </div>
-      <div class="col-lg-5">
-        <div class="hero-visual">
-          <div class="text-center">
-            <i class="bi bi-shield-fill-check shield"></i>
-            <div class="mt-2 fw-bold fs-5">CYBERSECURITY</div>
-            <div class="muted">Protecting systems. Empowering people.</div>
-            <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap">
-              <span class="eyebrow">Network Security</span>
-              <span class="eyebrow">Ethical Hacking</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="container hero-content py-5">
+    <div class="eyebrow mb-3"><i class="fa-solid fa-shield-halved me-2"></i>Learn • Defend • Innovate</div>
+    <h1>Building a Safer<br><span style="color:var(--cyan)">Digital Future.</span></h1>
+    <p class="mt-4">
+      Welcome to the ZeroTrace student portal for the Cyber Security Department
+      at Quaid-e-Awam University of Engineering, Science & Technology, Nawabshah.
+      Explore department information, academic resources and student support in one place.
+    </p>
+    <div class="d-flex gap-3 flex-wrap mt-4">
+      <a class="btn btn-cyan btn-lg px-4" href="#timetable">View Timetable <i class="fa-solid fa-arrow-right ms-2"></i></a>
+      <a class="btn btn-outline-light btn-lg px-4" href="#about">Explore Department</a>
+    </div>
+    <div class="mt-4 small text-white-50">
+      <i class="fa-solid fa-circle-check me-2"></i>Mobile-friendly student information portal
     </div>
   </div>
 </header>
 
-<section class="py-4">
+<section class="section pt-4 pb-3">
   <div class="container">
     <div class="row g-3">
-      <div class="col-6 col-lg-3"><div class="surface stat-card">
-        <div class="stat-number">4</div><div class="muted">Batch groups</div>
+      <div class="col-6 col-lg-3"><div class="stat-card">
+        <div class="stat-number">4</div><div class="fw-bold">Active batches</div>
+        <div class="small-note">23CYS – 26CYS</div>
       </div></div>
-      <div class="col-6 col-lg-3"><div class="surface stat-card">
-        <div class="stat-number"><i class="bi bi-calendar-week"></i></div><div class="muted">Interactive schedule</div>
+      <div class="col-6 col-lg-3"><div class="stat-card">
+        <div class="stat-number">8</div><div class="fw-bold">Semester outlines</div>
+        <div class="small-note">Course information</div>
       </div></div>
-      <div class="col-6 col-lg-3"><div class="surface stat-card">
-        <div class="stat-number"><i class="bi bi-qr-code-scan"></i></div><div class="muted">QR quick access</div>
+      <div class="col-6 col-lg-3"><div class="stat-card">
+        <div class="stat-number">6</div><div class="fw-bold">Faculty profiles</div>
+        <div class="small-note">Confirm official details</div>
       </div></div>
-      <div class="col-6 col-lg-3"><div class="surface stat-card">
-        <div class="stat-number"><i class="bi bi-chat-dots"></i></div><div class="muted">Department assistant</div>
+      <div class="col-6 col-lg-3"><div class="stat-card">
+        <div class="stat-number"><i class="fa-solid fa-robot"></i></div><div class="fw-bold">Department assistant</div>
+        <div class="small-note">Backend connection required</div>
       </div></div>
     </div>
   </div>
@@ -242,513 +280,651 @@
 
 <section class="section" id="about">
   <div class="container">
-    <div class="row g-5 align-items-center">
-      <div class="col-lg-6">
-        <span class="eyebrow mb-3">ABOUT THE PORTAL</span>
-        <h2 class="section-title display-6 mb-3">One place for department information.</h2>
-        <p class="section-subtitle">
-          This portal is designed to make important academic information easier
-          to find on desktop and mobile devices.
-        </p>
-        <p class="muted">Replace this paragraph with the department's approved
-          vision, mission, programme description and official university information.</p>
+    <div class="text-center mb-5">
+      <div class="section-kicker">About the department</div>
+      <h2 class="section-title mt-2">Cyber Security at QUEST</h2>
+      <p class="section-lead">A student-focused digital space for academic information, cybersecurity learning and department communication.</p>
+    </div>
+    <div class="row g-4 align-items-stretch">
+      <div class="col-lg-7">
+        <div class="portal-card">
+          <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3 class="h4 fw-bold">Our mission</h3>
+          <p class="text-secondary">Support students in finding academic information, understanding course pathways and accessing department resources through one organized portal.</p>
+          <p class="text-secondary mb-0">The portal is a student-built project by Team ZeroTrace. Official university policies and academic information should be confirmed with the department.</p>
+        </div>
       </div>
-      <div class="col-lg-6">
-        <div class="row g-3">
-          <div class="col-sm-6"><div class="surface feature-card">
-            <div class="feature-icon mb-3"><i class="bi bi-calendar2-check"></i></div>
-            <h5>Live Schedule</h5><p class="muted mb-0">Find the current and upcoming class using the selected batch timetable.</p>
-          </div></div>
-          <div class="col-sm-6"><div class="surface feature-card">
-            <div class="feature-icon mb-3"><i class="bi bi-people"></i></div>
-            <h5>Faculty Directory</h5><p class="muted mb-0">View approved staff profiles, qualifications and research areas.</p>
-          </div></div>
-          <div class="col-sm-6"><div class="surface feature-card">
-            <div class="feature-icon mb-3"><i class="bi bi-qr-code"></i></div>
-            <h5>Quick QR Access</h5><p class="muted mb-0">Open a particular batch schedule on a mobile phone.</p>
-          </div></div>
-          <div class="col-sm-6"><div class="surface feature-card">
-            <div class="feature-icon mb-3"><i class="bi bi-robot"></i></div>
-            <h5>AI Assistant</h5><p class="muted mb-0">Ask questions about the information maintained by the department.</p>
-          </div></div>
+      <div class="col-lg-5">
+        <div class="portal-card">
+          <h3 class="h5 fw-bold mb-3">Explore the portal</h3>
+          <a class="d-flex gap-3 align-items-center py-3 border-bottom" href="#faculty">
+            <i class="fa-solid fa-users text-primary fa-lg"></i><span><strong>Faculty directory</strong><small class="d-block text-secondary">Roles and specializations</small></span>
+          </a>
+          <a class="d-flex gap-3 align-items-center py-3 border-bottom" href="#timetable">
+            <i class="fa-solid fa-calendar-days text-primary fa-lg"></i><span><strong>Timetable & live status</strong><small class="d-block text-secondary">Search batches and class times</small></span>
+          </a>
+          <a class="d-flex gap-3 align-items-center py-3" href="#syllabus">
+            <i class="fa-solid fa-book-open text-primary fa-lg"></i><span><strong>Semester syllabus</strong><small class="d-block text-secondary">Browse course outlines</small></span>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section" id="faculty" style="background:#091a34">
+<section class="section section-alt" id="faculty">
   <div class="container">
-    <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-4">
-      <div><span class="eyebrow mb-3">MEET THE TEAM</span>
-        <h2 class="section-title display-6 mb-2">Faculty Directory</h2>
-        <p class="section-subtitle mb-0">Replace the demo entries with verified faculty information.</p>
-      </div>
-      <span class="pill pill-demo">Demo profiles until verified</span>
+    <div class="text-center mb-5">
+      <div class="section-kicker">People behind the program</div>
+      <h2 class="section-title mt-2">Faculty Directory</h2>
+      <p class="section-lead">Use verified names, designations, specializations and contact details before publishing.</p>
     </div>
-    <div class="row g-3" id="faculty-list">
-      <div class="col-12"><p class="muted">Loading faculty information…</p></div>
-    </div>
+    <div class="row g-4" id="facultyGrid"></div>
+    <p class="small-note mt-3">Faculty information supplied for this student project is not independently verified here. Please confirm titles and email addresses with QUEST before public use.</p>
   </div>
 </section>
 
 <section class="section" id="timetable">
   <div class="container">
-    <span class="eyebrow mb-3">STUDENT SCHEDULE</span>
-    <h2 class="section-title display-6">Live Class Timetable</h2>
-    <p class="section-subtitle mb-4">
-      Select a batch to view its schedule. Live class detection uses the
-      browser's local time; confirm the correct campus timezone and timetable.
-    </p>
+    <div class="text-center mb-5">
+      <div class="section-kicker">Academic planner</div>
+      <h2 class="section-title mt-2">Timetable & Live Class Status</h2>
+      <p class="section-lead">Choose a batch, search the schedule and generate a QR code that opens this timetable on a phone.</p>
+    </div>
 
-    <div class="surface p-3 p-md-4 mb-4">
-      <div class="row align-items-end g-3">
-        <div class="col-md-5">
-          <label for="batch-select" class="form-label">Select batch</label>
-          <select class="form-select" id="batch-select">
-            <option value="23CYS">23CYS</option>
-            <option value="24CYS">24CYS</option>
-            <option value="25CYS">25CYS</option>
-            <option value="26CYS" selected>26CYS</option>
+    <div class="live-panel mb-4">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+          <div class="eyebrow mb-2"><span class="live-dot me-2"></span>LIVE STATUS</div>
+          <h3 class="h4 fw-bold mb-1" id="clock">Checking local time…</h3>
+          <p class="mb-0 text-white-50 small">Based on this device's date and time.</p>
+        </div>
+        <span class="badge text-bg-warning">Demo schedule until verified</span>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-6"><div class="class-box">
+          <div class="small text-white-50 mb-2">CURRENT / ONGOING CLASS</div>
+          <h4 class="h5 fw-bold" id="currentClass">No class data yet</h4>
+          <p class="mb-0" id="currentDetails">Select a batch to check the schedule.</p>
+        </div></div>
+        <div class="col-md-6"><div class="class-box">
+          <div class="small text-white-50 mb-2">UPCOMING NEXT CLASS</div>
+          <h4 class="h5 fw-bold" id="nextClass">Checking schedule…</h4>
+          <p class="mb-0" id="nextDetails"></p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="batch-card mb-4">
+      <div class="row g-3 align-items-end">
+        <div class="col-md-4">
+          <label for="batchSelect" class="form-label fw-bold">Select batch</label>
+          <select id="batchSelect" class="form-select">
+            <option value="23CYS">23CYS — 4th year</option>
+            <option value="24CYS">24CYS — 3rd year</option>
+            <option value="25CYS">25CYS — 2nd year</option>
+            <option value="26CYS" selected>26CYS — 1st year</option>
           </select>
         </div>
-        <div class="col-md-7 d-flex flex-wrap gap-2">
-          <button class="btn btn-cyber" id="today-btn"><i class="bi bi-clock me-1"></i>Check live classes</button>
-          <button class="btn btn-outline-cyber" id="qr-btn"><i class="bi bi-qr-code me-1"></i>Show batch QR</button>
+        <div class="col-md-4">
+          <label for="dayFilter" class="form-label fw-bold">Filter by day</label>
+          <select id="dayFilter" class="form-select">
+            <option value="all">All days</option>
+            <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+            <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="scheduleSearch" class="form-label fw-bold">Search schedule</label>
+          <input id="scheduleSearch" class="form-control" placeholder="Subject, room or teacher">
         </div>
       </div>
-      <div class="small muted mt-3" id="clock-status" aria-live="polite">Checking schedule…</div>
-    </div>
-
-    <div class="row g-3 mb-4">
-      <div class="col-md-6">
-        <div class="live-box live-now">
-          <div class="d-flex justify-content-between gap-2 mb-2">
-            <span class="fw-bold"><i class="bi bi-broadcast me-2"></i>Current Ongoing Class</span>
-            <span class="pill pill-live">LIVE</span>
-          </div>
-          <h4 id="current-class">Checking…</h4>
-          <p class="muted mb-0" id="current-details">Please wait.</p>
+      <div class="d-flex flex-wrap align-items-center gap-3 mt-4">
+        <div>
+          <strong id="selectedBatchTitle">26CYS timetable</strong>
+          <div class="small-note">Use the QR code to open this portal on a mobile device.</div>
+        </div>
+        <div class="ms-md-auto text-center">
+          <img id="qrCode" width="112" height="112" alt="QR code for selected batch timetable">
+          <a id="qrOpenLink" href="#timetable" class="d-block small">Open batch timetable</a>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="live-box next-class">
-          <div class="fw-bold mb-2"><i class="bi bi-arrow-right-circle me-2"></i>Upcoming Next Class</div>
-          <h4 id="next-class">Checking…</h4>
-          <p class="muted mb-0" id="next-details">Please wait.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="surface p-3 p-md-4">
-      <div class="d-flex justify-content-between flex-wrap gap-2 align-items-center mb-3">
-        <h5 class="mb-0"><span id="schedule-batch">26CYS</span> — Weekly Schedule</h5>
-        <span class="pill pill-demo" id="schedule-label">DEMO DATA</span>
-      </div>
-      <div class="table-responsive">
-        <table class="table align-middle mb-0">
-          <thead><tr><th>Day</th><th>Time</th><th>Subject</th><th>Room</th><th>Instructor</th></tr></thead>
-          <tbody id="timetable-body">
-            <tr><td colspan="5" class="muted">Loading timetable…</td></tr>
-          </tbody>
+      <div class="table-responsive mt-4">
+        <table class="table table-hover align-middle">
+          <thead><tr><th>Day</th><th>Time</th><th>Subject</th><th>Teacher</th><th>Room</th><th>Status</th></tr></thead>
+          <tbody id="timetableBody"></tbody>
         </table>
       </div>
-      <div class="small muted mt-3">The live indicator is only as accurate as the stored timetable data.</div>
-    </div>
-
-    <div class="surface p-4 mt-4 d-none" id="qr-area">
-      <div class="row align-items-center g-4">
-        <div class="col-sm-auto"><img id="qr-image" class="qr-image" alt="QR code for the selected batch timetable"></div>
-        <div class="col">
-          <h5>Scan to open this batch schedule</h5>
-          <p class="muted mb-2">Scan with your phone camera. The link must be publicly accessible.</p>
-          <a class="small-link" id="qr-link" href="#timetable">Open batch schedule</a>
-        </div>
-      </div>
+      <p class="small-note mb-0">The QR generator uses an external service. If that service is unavailable, the timetable still works using the page itself.</p>
     </div>
   </div>
 </section>
 
-<section class="section" id="contact" style="background:#091a34">
+<section class="section section-alt" id="syllabus">
   <div class="container">
-    <div class="row g-5">
-      <div class="col-lg-6">
-        <span class="eyebrow mb-3">GET IN TOUCH</span>
-        <h2 class="section-title display-6">Contact the Department</h2>
-        <p class="muted">Add the official department email, phone number, office hours and approved university address before launch.</p>
-        <div class="surface p-4 mt-4">
-          <p><i class="bi bi-geo-alt me-2" style="color:var(--cyan)"></i>QUEST, Nawabshah, Sindh, Pakistan</p>
-          <p><i class="bi bi-envelope me-2" style="color:var(--cyan)"></i><span class="muted">Add verified official email</span></p>
-          <p class="mb-0"><i class="bi bi-globe me-2" style="color:var(--cyan)"></i><span class="muted">Add approved department website link</span></p>
+    <div class="text-center mb-5">
+      <div class="section-kicker">Academic resources</div>
+      <h2 class="section-title mt-2">Semester-wise Syllabus</h2>
+      <p class="section-lead">Expand a semester to review the supplied course codes. Verify spelling, course titles and codes against the approved scheme of studies.</p>
+    </div>
+    <div id="syllabusList" class="row g-3"></div>
+  </div>
+</section>
+
+<section class="section" id="research">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-kicker">Practical learning</div>
+      <h2 class="section-title mt-2">Research & Laboratory</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <div class="lab-card">
+          <div class="feature-icon"><i class="fa-solid fa-network-wired"></i></div>
+          <h3 class="h4 fw-bold">Network Security Lab</h3>
+          <p class="text-secondary">The supplied project description covers network defense, routing, switching, cybersecurity practicals, security simulations and threat analysis.</p>
+          <p class="small-note mb-0">Confirm lab facilities and equipment with the department before describing them as officially available.</p>
         </div>
       </div>
-      <div class="col-lg-6">
-        <div class="surface p-4">
-          <h5 class="mb-3">Quick message</h5>
-          <form id="contact-form">
-            <label class="form-label" for="contact-name">Your name</label>
-            <input class="form-control mb-3" id="contact-name" maxlength="100" required>
-            <label class="form-label" for="contact-email">Your email</label>
-            <input class="form-control mb-3" id="contact-email" type="email" maxlength="160" required>
-            <label class="form-label" for="contact-message">Message</label>
-            <textarea class="form-control mb-3" id="contact-message" rows="4" maxlength="1500" required></textarea>
-            <button class="btn btn-cyber" type="submit">Prepare email <i class="bi bi-send ms-1"></i></button>
-            <p class="muted small mt-3 mb-0">This prototype opens the user's email app; it does not secretly send or store messages.</p>
-          </form>
+      <div class="col-lg-5">
+        <div class="lab-card">
+          <div class="feature-icon"><i class="fa-solid fa-user-shield"></i></div>
+          <h3 class="h5 fw-bold">Learn responsibly</h3>
+          <p class="text-secondary mb-0">Practice only in authorized labs, systems you own, or environments where you have explicit permission. Use cybersecurity knowledge to protect systems and people.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<footer class="footer">
-  <div class="container d-flex flex-wrap justify-content-between gap-2">
-    <span>© <span id="year"></span> QUEST Cybersecurity Portal — student project prototype.</span>
-    <a href="#home" class="small-link">Back to top ↑</a>
+<section class="section section-alt" id="contact">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-kicker">Get in touch</div>
+      <h2 class="section-title mt-2">Department Contact</h2>
+      <p class="section-lead">Confirm these contact details are correct and approved before publishing.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4"><div class="contact-card">
+        <i class="fa-solid fa-location-dot text-primary fa-xl mb-3"></i>
+        <h3 class="h6 fw-bold">Location</h3><p class="text-secondary mb-0">QUEST, Nawabshah, Sindh, Pakistan</p>
+      </div></div>
+      <div class="col-md-4"><div class="contact-card">
+        <i class="fa-solid fa-envelope text-primary fa-xl mb-3"></i>
+        <h3 class="h6 fw-bold">Email</h3>
+        <a href="mailto:info@quest.edu.pk">info@quest.edu.pk</a>
+        <p class="small-note mt-2 mb-0">General university email supplied for this project.</p>
+      </div></div>
+      <div class="col-md-4"><div class="contact-card">
+        <i class="fa-solid fa-phone text-primary fa-xl mb-3"></i>
+        <h3 class="h6 fw-bold">Phone</h3><a href="tel:+922449370367">+92 244 9370367</a>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-7">
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <img src="assets/quest-logo.png" width="48" height="48" alt="QUEST logo" style="object-fit:contain;background:white;border-radius:50%;padding:3px">
+          <div><strong class="text-white">ZEROTRACE</strong><div class="small">Cyber Security Department Portal</div></div>
+        </div>
+        <p class="small">A student-developed academic portal concept for QUEST Nawabshah. This is not an official university system unless formally approved.</p>
+      </div>
+      <div class="col-md-5">
+        <strong class="text-white">Quick links</strong>
+        <div class="d-flex flex-wrap gap-3 mt-3">
+          <a href="#faculty">Faculty</a><a href="#timetable">Timetable</a>
+          <a href="#syllabus">Syllabus</a><a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <hr class="border-secondary">
+    <div class="d-flex flex-wrap justify-content-between gap-2 small">
+      <span>© <span id="year"></span> Team ZeroTrace</span>
+      <span>Built with HTML, CSS, Bootstrap and JavaScript</span>
+    </div>
   </div>
 </footer>
 
-<button id="chat-toggle" type="button" aria-label="Open department assistant" aria-expanded="false">
-  <i class="bi bi-chat-dots-fill"></i>
+<button class="chat-launcher" id="chatLauncher" aria-label="Open department assistant" aria-expanded="false">
+  <i class="fa-solid fa-comments"></i>
 </button>
-<section id="chat-panel" aria-label="Department assistant">
-  <div class="chat-head d-flex justify-content-between align-items-center">
-    <div><strong><i class="bi bi-robot me-2"></i>Department Assistant</strong>
-      <div class="small muted">Ask about schedules and department information</div>
-    </div>
-    <button id="chat-close" class="btn btn-sm btn-outline-light" aria-label="Close chat">×</button>
+<section class="chat-window" id="chatWindow" aria-label="Department assistant" aria-hidden="true">
+  <div class="chat-head">
+    <div><strong><i class="fa-solid fa-robot me-2"></i>ZeroTrace Assistant</strong>
+      <div class="small text-white-50">Department information helper</div></div>
+    <button id="chatClose" class="btn btn-sm btn-outline-light" aria-label="Close assistant"><i class="fa-solid fa-xmark"></i></button>
   </div>
-  <div id="chat-messages" aria-live="polite">
-    <div class="chat-message chat-bot">Hello! I can help with department information available in the portal. What would you like to know?</div>
+  <div class="chat-messages" id="chatMessages" aria-live="polite">
+    <div class="chat-message bot-message">Hello! Ask me about batches, subjects, faculty specializations or the syllabus. I can use the connected department knowledge base when configured.</div>
   </div>
-  <form class="chat-form" id="chat-form">
-    <input class="form-control" id="chat-input" maxlength="500" placeholder="Ask a question…" aria-label="Your question" required>
-    <button class="btn btn-cyber" type="submit" aria-label="Send message"><i class="bi bi-send-fill"></i></button>
+  <form class="chat-form" id="chatForm">
+    <input id="chatInput" class="form-control" maxlength="500" placeholder="Type your question…" autocomplete="off" required>
+    <button class="btn btn-primary" id="chatSend" aria-label="Send message"><i class="fa-solid fa-paper-plane"></i></button>
   </form>
+  <div class="px-3 pb-2 small-note">Do not enter passwords, private student records or sensitive personal information.</div>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script>
 "use strict";
 
-/*
- * Paste your deployed Google Apps Script /exec URL here.
- * Until configured, this site uses demo data and a local FAQ fallback.
- */
-const API_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+/* -------------------------------------------------------
+   1. CONFIGURATION
+   -------------------------------------------------------
+   Keep the Gemini API key on the Apps Script server.
+   Never put a secret API key in this public HTML file.
+*/
+const CONFIG = {
+  // Paste the deployed Apps Script web-app URL here.
+  // Example format: https://script.google.com/macros/s/DEPLOYMENT_ID/exec
+  CHAT_API_URL: ""
+};
 
-/* Clearly marked demo data. Replace with verified official timetable records. */
-const DEMO_FACULTY = [
-  {name:"Faculty Member 1", title:"Add verified designation", qualification:"Add verified qualification", specialization:"Network Security", email:""},
-  {name:"Faculty Member 2", title:"Add verified designation", qualification:"Add verified qualification", specialization:"Digital Forensics", email:""},
-  {name:"Faculty Member 3", title:"Add verified designation", qualification:"Add verified qualification", specialization:"Information Security", email:""},
-  {name:"Faculty Member 4", title:"Add verified designation", qualification:"Add verified qualification", specialization:"Secure Software", email:""},
-  {name:"Faculty Member 5", title:"Add verified designation", qualification:"Add verified qualification", specialization:"Cryptography", email:""},
-  {name:"Faculty Member 6", title:"Add verified designation", qualification:"Add verified qualification", specialization:"Network Defence", email:""}
+/* -------------------------------------------------------
+   2. FACULTY DATA
+   Verify names, designations and emails before publishing.
+   ------------------------------------------------------- */
+const faculty = [
+  {
+    name: "Prof. Dr. Muhammad Ibrahim Channa",
+    role: "Dean / Professor",
+    specialty: "Big Data, Digital Forensics",
+    email: "ibrahim.channa@quest.edu.pk"
+  },
+  {
+    name: "Dr. Adnan Ahmed",
+    role: "Chairman / Associate Professor",
+    specialty: "Software-Defined Networking, Wireless Security",
+    email: "adnan.ahmed03@quest.edu.pk"
+  },
+  {
+    name: "Dr. Saifullah Memon",
+    role: "Professor",
+    specialty: "Artificial Intelligence, Machine Learning",
+    email: "memonsaifullah@quest.edu.pk"
+  },
+  {
+    name: "Dr. Muhammad Awais Rajput",
+    role: "Assistant Professor",
+    specialty: "Cyber Security, Artificial Intelligence",
+    email: "awaisrajput@quest.edu.pk"
+  },
+  {
+    name: "Mr. Muhammad Aurangzeb",
+    role: "Lecturer",
+    specialty: "Digital Twins",
+    email: "m.aurangzeb@quest.edu.pk"
+  },
+  {
+    name: "Mr. Muhammad Umar",
+    role: "Teaching Assistant",
+    specialty: "Internet of Things Security",
+    email: "muhammadumar@quest.edu.pk"
+  }
 ];
 
-/*
- * Demo schedule entries: times and subjects below are examples only.
- * Use actual 24-hour times, e.g. 09:00 and 10:00.
- * day must be Monday, Tuesday, Wednesday, Thursday, Friday, Saturday or Sunday.
- */
-const DEMO_TIMETABLE = [
-  {batch:"26CYS",day:"Monday",start:"09:00",end:"10:00",subject:"Introduction to Cybersecurity (DEMO)",room:"Lab 1 (DEMO)",instructor:"Instructor (DEMO)"},
-  {batch:"26CYS",day:"Monday",start:"10:15",end:"11:15",subject:"Programming Fundamentals (DEMO)",room:"Room 2 (DEMO)",instructor:"Instructor (DEMO)"},
-  {batch:"26CYS",day:"Tuesday",start:"09:00",end:"10:00",subject:"Computer Networks (DEMO)",room:"Room 3 (DEMO)",instructor:"Instructor (DEMO)"},
-  {batch:"25CYS",day:"Monday",start:"11:00",end:"12:00",subject:"Network Security (DEMO)",room:"Lab 2 (DEMO)",instructor:"Instructor (DEMO)"},
-  {batch:"24CYS",day:"Wednesday",start:"10:00",end:"11:00",subject:"Digital Forensics (DEMO)",room:"Lab 1 (DEMO)",instructor:"Instructor (DEMO)"},
-  {batch:"23CYS",day:"Thursday",start:"12:00",end:"13:00",subject:"Information Assurance (DEMO)",room:"Room 4 (DEMO)",instructor:"Instructor (DEMO)"}
+const facultyGrid = document.getElementById("facultyGrid");
+faculty.forEach(person => {
+  const col = document.createElement("div");
+  col.className = "col-md-6 col-lg-4";
+
+  const card = document.createElement("article");
+  card.className = "faculty-card";
+
+  const avatar = document.createElement("div");
+  avatar.className = "faculty-avatar";
+  const avatarIcon = document.createElement("i");
+  avatarIcon.className = "fa-solid fa-user-tie";
+  avatarIcon.setAttribute("aria-hidden", "true");
+  avatar.appendChild(avatarIcon);
+
+  const name = document.createElement("h3");
+  name.className = "h6 fw-bold";
+  name.textContent = person.name;
+
+  const role = document.createElement("div");
+  role.className = "faculty-role mb-2";
+  role.textContent = person.role;
+
+  const specialty = document.createElement("p");
+  specialty.className = "specialty";
+  specialty.textContent = person.specialty;
+
+  const email = document.createElement("a");
+  email.href = "mailto:" + person.email;
+  email.className = "small";
+  email.textContent = person.email;
+
+  card.append(avatar, name, role, specialty, email);
+  col.appendChild(card);
+  facultyGrid.appendChild(col);
+});
+
+/* -------------------------------------------------------
+   3. SYLLABUS
+   The supplied codes are shown as provided, not certified.
+   ------------------------------------------------------- */
+const syllabus = [
+  ["Semester 1", ["CYS111 — Computer Fundamentals", "CYS112 — Programming Fundamentals", "MTH414", "MTH-113", "MTH 115", "MTH-115"]],
+  ["Semester 2", ["CY124 — Introduction to Cyber Security", "CYS121 — Object-Oriented Programming", "CYS122 — Networks", "MTH-115", "CYS123 — Digital Logic", "MS124"]],
+  ["Semester 3", ["CYS212 — Data Structures and Algorithms", "CYS213 — Database", "CYS214 — Artificial Intelligence", "MTH-215", "MTH211"]],
+  ["Semester 4", ["CYS224 — Software Engineering", "MTH226", "CYS221 — Network Security", "CYS222 — Cyber Laws", "CYS223 — Assembly", "CYS225"]],
+  ["Semester 5", ["CYS311 — SSD", "CYS312 — Information Assurance", "CYS313 — Operating Systems", "CYS314 — Machine Learning", "MTH315"]],
+  ["Semester 6", ["CY322 — Digital Forensics", "CY323 — Ethical Hacking", "CYS324 — Embedded Systems", "MTH321", "MTH322", "CY321 — Vulnerability"]],
+  ["Semester 7", ["CYS412 — Parallel Computing", "CY413 — Data Science", "MTH415", "CYS416 — Final Year Project I", "CYS411 — Cryptography"]],
+  ["Semester 8", ["CYS421 — Cloud Security", "CYS422 — Mobile Security", "MTH423", "CYS426 — Final Year Project II", "MTH424", "MTH425"]]
 ];
 
-const LOCAL_FAQS = [
-  {keywords:["admission","apply","eligibility"], answer:"For admissions, check the latest official QUEST admission notice or contact the university admission office. I cannot verify current deadlines from this demo."},
-  {keywords:["timetable","schedule","class","lecture"], answer:"Choose your batch in the Live Class Timetable section. This demo contains sample entries only; use the approved department timetable for real class times."},
-  {keywords:["faculty","teacher","professor"], answer:"The Faculty Directory is available above. Its current entries are placeholders and must be replaced with verified faculty information."},
-  {keywords:["syllabus","course","subject"], answer:"Please consult the officially approved programme scheme or course outline. Add verified syllabus information to the department database to enable specific answers."},
-  {keywords:["contact","email","phone"], answer:"Please use the official QUEST website or the verified department contact details once they have been added to this portal."}
-];
+const syllabusList = document.getElementById("syllabusList");
+syllabus.forEach((semester, index) => {
+  const col = document.createElement("div");
+  col.className = "col-lg-6";
 
-const $ = (id) => document.getElementById(id);
-const DAYS = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-let facultyData = DEMO_FACULTY;
-let timetableData = DEMO_TIMETABLE;
-let dataIsOfficial = false;
+  const details = document.createElement("details");
+  details.className = "syllabus-item";
+  if (index === 0) details.open = true;
 
-$("year").textContent = new Date().getFullYear();
+  const summary = document.createElement("summary");
+  summary.textContent = semester[0] + " — " + semester[1].length + " listed courses";
 
-/* Safe DOM construction: never insert user or API text using innerHTML. */
-function makeText(tag, className, value) {
-  const el = document.createElement(tag);
-  if (className) el.className = className;
-  el.textContent = value == null ? "" : String(value);
-  return el;
-}
-
-function renderFaculty() {
-  const root = $("faculty-list");
-  root.replaceChildren();
-  facultyData.forEach((person) => {
-    const col = document.createElement("div");
-    col.className = "col-md-6 col-xl-4";
-    const card = makeText("div", "surface faculty-card", "");
-    const top = makeText("div", "d-flex gap-3 align-items-start mb-3", "");
-    const avatar = makeText("div", "faculty-avatar", "");
-    const icon = document.createElement("i");
-    icon.className = "bi bi-person-badge";
-    avatar.replaceChildren(icon);
-    const info = document.createElement("div");
-    info.append(makeText("h5", "mb-1", person.name),
-                makeText("div", "muted small", person.title || "Designation not supplied"));
-    top.append(avatar, info);
-    card.append(top,
-      makeText("p", "small mb-2", person.qualification || "Qualification not supplied"),
-      makeText("p", "mb-0", "Specialization: " + (person.specialization || "Not supplied")));
-    if (person.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(person.email)) {
-      const link = document.createElement("a");
-      link.className = "small-link d-inline-block mt-3";
-      link.href = "mailto:" + person.email;
-      link.textContent = "Contact faculty";
-      card.append(link);
-    }
-    col.append(card);
-    root.append(col);
+  const list = document.createElement("ul");
+  list.className = "course-list";
+  semester[1].forEach(course => {
+    const li = document.createElement("li");
+    li.textContent = course;
+    list.appendChild(li);
   });
-}
 
-function batchRows() {
-  return timetableData.filter(x => x.batch === $("batch-select").value);
-}
+  details.append(summary, list);
+  col.appendChild(details);
+  syllabusList.appendChild(col);
+});
+
+/* -------------------------------------------------------
+   4. TIMETABLE DATA
+   DEMO ONLY: replace these entries with the official
+   day/time/teacher/room schedule before using live status.
+   ------------------------------------------------------- */
+const timetable = {
+  "23CYS": [
+    { day: "Monday", start: "08:30", end: "09:30", subject: "PDC", teacher: "Confirm teacher", room: "CYS Room 02" },
+    { day: "Tuesday", start: "09:30", end: "10:30", subject: "DS&A", teacher: "Confirm teacher", room: "CYS Room 02" },
+    { day: "Wednesday", start: "10:30", end: "11:30", subject: "DM", teacher: "Confirm teacher", room: "CYS Room 02" },
+    { day: "Thursday", start: "11:30", end: "12:30", subject: "IA", teacher: "Confirm teacher", room: "HPC Lab" },
+    { day: "Friday", start: "12:30", end: "13:30", subject: "IM", teacher: "Confirm teacher", room: "CYS Room 02" }
+  ],
+  "24CYS": [
+    { day: "Monday", start: "08:30", end: "09:30", subject: "CL&E", teacher: "Confirm teacher", room: "Network Security Lab" },
+    { day: "Tuesday", start: "09:30", end: "10:30", subject: "ML", teacher: "Confirm teacher", room: "25TC Room" },
+    { day: "Wednesday", start: "10:30", end: "11:30", subject: "OS", teacher: "Confirm teacher", room: "Network Security Lab" },
+    { day: "Thursday", start: "11:30", end: "12:30", subject: "DM", teacher: "Confirm teacher", room: "25TC Room" },
+    { day: "Friday", start: "12:30", end: "13:30", subject: "NS / SSD", teacher: "Confirm teacher", room: "Network Security Lab" }
+  ],
+  "25CYS": [
+    { day: "Monday", start: "08:30", end: "09:30", subject: "DSA", teacher: "Confirm teacher", room: "CYS Room 02" },
+    { day: "Tuesday", start: "09:30", end: "10:30", subject: "DBS", teacher: "Confirm teacher", room: "CYS Room 02" },
+    { day: "Wednesday", start: "10:30", end: "11:30", subject: "AI", teacher: "Confirm teacher", room: "AI Room 01" },
+    { day: "Thursday", start: "11:30", end: "12:30", subject: "AC", teacher: "Confirm teacher", room: "CYS Room 02" },
+    { day: "Friday", start: "12:30", end: "13:30", subject: "CS", teacher: "Confirm teacher", room: "AI Room 01" }
+  ],
+  "26CYS": [
+    { day: "Monday", start: "08:30", end: "09:30", subject: "PF", teacher: "Confirm teacher", room: "CYS Room 01" },
+    { day: "Tuesday", start: "09:30", end: "10:30", subject: "CF", teacher: "Confirm teacher", room: "CYS Room 01" },
+    { day: "Wednesday", start: "10:30", end: "11:30", subject: "FE", teacher: "Confirm teacher", room: "CYS Room 01" },
+    { day: "Thursday", start: "11:30", end: "12:30", subject: "PS", teacher: "Confirm teacher", room: "CYS Room 01" },
+    { day: "Friday", start: "12:30", end: "13:30", subject: "IS / PC-I / CBP", teacher: "Confirm teacher", room: "CYS Room 01" }
+  ]
+};
+
+const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const batchSelect = document.getElementById("batchSelect");
+const dayFilter = document.getElementById("dayFilter");
+const scheduleSearch = document.getElementById("scheduleSearch");
+
 function toMinutes(time) {
-  if (!/^\d{2}:\d{2}$/.test(String(time))) return NaN;
-  const [h,m] = time.split(":").map(Number);
-  if (h > 23 || m > 59) return NaN;
-  return h * 60 + m;
-}
-function validRow(x) {
-  return DAYS.includes(x.day) && toMinutes(x.start) < toMinutes(x.end) &&
-    Number.isFinite(toMinutes(x.start)) && Number.isFinite(toMinutes(x.end));
-}
-function sortedRows(rows) {
-  return rows.filter(validRow).slice().sort((a,b) =>
-    DAYS.indexOf(a.day)-DAYS.indexOf(b.day) || toMinutes(a.start)-toMinutes(b.start));
-}
-function renderTimetable() {
-  const batch = $("batch-select").value;
-  $("schedule-batch").textContent = batch;
-  const root = $("timetable-body");
-  root.replaceChildren();
-  const rows = sortedRows(batchRows());
-  if (!rows.length) {
-    const tr = document.createElement("tr");
-    tr.append(makeText("td","muted","No timetable entries found for this batch."));
-    tr.firstChild.colSpan = 5;
-    root.append(tr);
-    return;
-  }
-  rows.forEach(x => {
-    const tr = document.createElement("tr");
-    [x.day, x.start + "–" + x.end, x.subject, x.room, x.instructor].forEach(value =>
-      tr.append(makeText("td","",value)));
-    root.append(tr);
-  });
+  const parts = time.split(":").map(Number);
+  return parts[0] * 60 + parts[1];
 }
 
-function updateLiveClasses() {
+function formatTime(time) {
+  const [hours, minutes] = time.split(":").map(Number);
+  const suffix = hours >= 12 ? "PM" : "AM";
+  const hour12 = hours % 12 || 12;
+  return `${hour12}:${String(minutes).padStart(2, "0")} ${suffix}`;
+}
+
+function safeCell(row, value) {
+  const cell = document.createElement("td");
+  cell.textContent = value;
+  row.appendChild(cell);
+  return cell;
+}
+
+function getTodaySchedule(batch, now = new Date()) {
+  const today = dayNames[now.getDay()];
+  const minutes = now.getHours() * 60 + now.getMinutes();
+  const todaysClasses = (timetable[batch] || [])
+    .filter(item => item.day === today)
+    .sort((a, b) => toMinutes(a.start) - toMinutes(b.start));
+
+  return {
+    current: todaysClasses.find(item =>
+      minutes >= toMinutes(item.start) && minutes < toMinutes(item.end)
+    ),
+    next: todaysClasses.find(item => toMinutes(item.start) > minutes)
+  };
+}
+
+function updateLiveStatus() {
   const now = new Date();
-  const day = DAYS[now.getDay()];
-  const minute = now.getHours() * 60 + now.getMinutes();
-  const rows = sortedRows(batchRows()).filter(x => x.day === day);
-  const current = rows.find(x => minute >= toMinutes(x.start) && minute < toMinutes(x.end));
-  const next = rows.find(x => toMinutes(x.start) > minute);
+  document.getElementById("clock").textContent =
+    now.toLocaleString(undefined, {
+      weekday: "long", year: "numeric", month: "short",
+      day: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit"
+    });
 
-  $("clock-status").textContent =
-    "Your browser time: " + now.toLocaleString() + " · Day: " + day +
-    (dataIsOfficial ? " · Department data loaded" : " · Demo data");
+  const batch = batchSelect.value;
+  const { current, next } = getTodaySchedule(batch, now);
 
-  $("current-class").textContent = current ? current.subject : "No class currently scheduled";
-  $("current-details").textContent = current
-    ? current.start + "–" + current.end + " · " + current.room + " · " + current.instructor
-    : "No matching class is scheduled at this time. Check the timetable below.";
+  document.getElementById("currentClass").textContent =
+    current ? current.subject : "No ongoing class in demo schedule";
+  document.getElementById("currentDetails").textContent = current
+    ? `${formatTime(current.start)}–${formatTime(current.end)} • ${current.room}`
+    : "Check the timetable or confirm any schedule changes with the department.";
 
-  $("next-class").textContent = next ? next.subject : "No later class listed today";
-  $("next-details").textContent = next
-    ? next.start + "–" + next.end + " · " + next.room + " · " + next.instructor
-    : "Check another day or confirm that the timetable is complete.";
+  document.getElementById("nextClass").textContent =
+    next ? next.subject : "No further class listed today";
+  document.getElementById("nextDetails").textContent = next
+    ? `${formatTime(next.start)} • ${next.room}`
+    : "The next listed class may be on the next teaching day.";
 }
-function refreshSchedule() { renderTimetable(); updateLiveClasses(); }
 
-$("batch-select").addEventListener("change", () => {
-  refreshSchedule();
-  $("qr-area").classList.add("d-none");
-});
-$("today-btn").addEventListener("click", updateLiveClasses);
+function renderTimetable() {
+  const batch = batchSelect.value;
+  const day = dayFilter.value;
+  const query = scheduleSearch.value.trim().toLowerCase();
+  const body = document.getElementById("timetableBody");
+  body.replaceChildren();
 
-$("qr-btn").addEventListener("click", () => {
-  const area = $("qr-area");
-  area.classList.remove("d-none");
-  const url = new URL(window.location.href);
-  url.hash = "timetable";
-  url.searchParams.set("batch", $("batch-select").value);
-  $("qr-link").href = url.toString();
-  $("qr-link").textContent = url.toString();
+  document.getElementById("selectedBatchTitle").textContent = `${batch} timetable`;
 
-  const image = $("qr-image");
-  image.replaceWith(image.cloneNode(false));
-  const newImage = $("qr-area").querySelector("#qr-image");
-  newImage.alt = "QR code for " + $("batch-select").value;
-  if (typeof QRCode === "undefined") {
-    newImage.alt = "QR code library unavailable. Use the link beside this message.";
-    newImage.removeAttribute("src");
-    return;
-  }
-  const holder = document.createElement("div");
-  holder.id = "qr-generator";
-  holder.className = "d-none";
-  $("qr-area").append(holder);
-  holder.replaceChildren();
-  new QRCode(holder, {text:url.toString(),width:140,height:140});
-  const canvas = holder.querySelector("canvas");
-  const qrImg = holder.querySelector("img");
-  if (canvas) newImage.src = canvas.toDataURL("image/png");
-  else if (qrImg) newImage.src = qrImg.src;
-  holder.remove();
-});
-
-/* Optional deep link: ?batch=23CYS */
-const requestedBatch = new URLSearchParams(window.location.search).get("batch");
-if (["23CYS","24CYS","25CYS","26CYS"].includes(requestedBatch)) {
-  $("batch-select").value = requestedBatch;
-}
-renderFaculty();
-refreshSchedule();
-setInterval(updateLiveClasses, 30000);
-
-/*
- * Apps Script JSONP helper.
- * JSONP is used because Apps Script ContentService can cause browser CORS
- * problems when called directly from a separate GitHub Pages origin.
- * Do not use JSONP with secrets in URLs. This implementation only sends
- * public timetable questions and the API key stays in Apps Script properties.
- */
-function jsonp(action, params = {}, timeoutMs = 12000) {
-  return new Promise((resolve, reject) => {
-    if (!API_URL.startsWith("https://script.google.com/")) {
-      reject(new Error("Backend not configured"));
-      return;
-    }
-    const callback = "__questCallback" + Date.now() + Math.floor(Math.random()*100000);
-    const script = document.createElement("script");
-    const url = new URL(API_URL);
-    url.searchParams.set("action", action);
-    url.searchParams.set("callback", callback);
-    Object.entries(params).forEach(([key,value]) => url.searchParams.set(key, value));
-    let finished = false;
-    const timer = setTimeout(() => finish(new Error("Request timed out")), timeoutMs);
-    function finish(error, data) {
-      if (finished) return;
-      finished = true;
-      clearTimeout(timer);
-      delete window[callback];
-      script.remove();
-      if (error) reject(error); else resolve(data);
-    }
-    window[callback] = (data) => finish(null, data);
-    script.onerror = () => finish(new Error("Backend unavailable"));
-    script.src = url.toString();
-    document.head.append(script);
+  const entries = (timetable[batch] || []).filter(item => {
+    const matchesDay = day === "all" || item.day === day;
+    const searchable = `${item.day} ${item.subject} ${item.teacher} ${item.room}`.toLowerCase();
+    return matchesDay && searchable.includes(query);
   });
-}
 
-async function loadDepartmentData() {
-  try {
-    const data = await jsonp("data");
-    if (!data || data.ok !== true) throw new Error("Invalid data response");
-    if (Array.isArray(data.faculty)) facultyData = data.faculty;
-    if (Array.isArray(data.timetable)) timetableData = data.timetable;
-    dataIsOfficial = true;
-    renderFaculty();
-    refreshSchedule();
-    $("schedule-label").textContent = "CONNECTED DATA";
-    $("schedule-label").className = "pill pill-live";
-  } catch (err) {
-    dataIsOfficial = false;
-    $("schedule-label").textContent = "DEMO DATA";
-    $("schedule-label").className = "pill pill-demo";
-    console.warn("Using demo data:", err.message);
+  if (!entries.length) {
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
+    cell.colSpan = 6;
+    cell.className = "text-center text-secondary py-4";
+    cell.textContent = "No matching entries. Try another search or filter.";
+    row.appendChild(cell);
+    body.appendChild(row);
+  } else {
+    entries.forEach(item => {
+      const row = document.createElement("tr");
+      safeCell(row, item.day);
+      safeCell(row, `${formatTime(item.start)} – ${formatTime(item.end)}`);
+      safeCell(row, item.subject);
+      safeCell(row, item.teacher);
+      safeCell(row, item.room);
+
+      const statusCell = document.createElement("td");
+      const status = document.createElement("span");
+      const now = new Date();
+      const isToday = item.day === dayNames[now.getDay()];
+      const minutes = now.getHours() * 60 + now.getMinutes();
+      const isCurrent = isToday &&
+        minutes >= toMinutes(item.start) && minutes < toMinutes(item.end);
+      status.className = isCurrent ? "status-pill" : "badge text-bg-light";
+      status.textContent = isCurrent ? "Ongoing" : "Scheduled";
+      statusCell.appendChild(status);
+      row.appendChild(statusCell);
+      body.appendChild(row);
+    });
   }
+
+  updateQR();
+  updateLiveStatus();
 }
-loadDepartmentData();
 
-$("contact-form").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const name = $("contact-name").value.trim();
-  const email = $("contact-email").value.trim();
-  const message = $("contact-message").value.trim();
-  if (!name || !email || !message) return;
-  const subject = encodeURIComponent("Department website enquiry");
-  const body = encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\n" + message);
-  /*
-   * Replace with a verified official email address.
-   * No mailto address is invented here.
-   */
-  alert("Add the verified official department email address in the contact form code before using this feature.");
-});
+function updateQR() {
+  // QR codes point to the current public page with a batch query.
+  // Replace this base URL if your GitHub Pages repository URL differs.
+  const baseUrl = window.location.origin + window.location.pathname;
+  const batchUrl = `${baseUrl}?batch=${encodeURIComponent(batchSelect.value)}#timetable`;
+  const qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=" +
+    encodeURIComponent(batchUrl);
 
-const chatPanel = $("chat-panel");
-$("chat-toggle").addEventListener("click", () => {
-  const open = chatPanel.classList.toggle("open");
-  $("chat-toggle").setAttribute("aria-expanded", String(open));
-  if (open) $("chat-input").focus();
-});
-$("chat-close").addEventListener("click", () => {
-  chatPanel.classList.remove("open");
-  $("chat-toggle").setAttribute("aria-expanded", "false");
-});
-
-function addChatMessage(text, who) {
-  const node = makeText("div", "chat-message " + (who === "user" ? "chat-user" : "chat-bot"), text);
-  $("chat-messages").append(node);
-  $("chat-messages").scrollTop = $("chat-messages").scrollHeight;
-  return node;
+  document.getElementById("qrCode").src = qrUrl;
+  document.getElementById("qrOpenLink").href = batchUrl;
 }
-function localAnswer(question) {
+
+batchSelect.addEventListener("change", renderTimetable);
+dayFilter.addEventListener("change", renderTimetable);
+scheduleSearch.addEventListener("input", renderTimetable);
+
+// Read a batch from the URL so QR scans can open the correct batch.
+const requestedBatch = new URLSearchParams(window.location.search).get("batch");
+if (requestedBatch && Object.prototype.hasOwnProperty.call(timetable, requestedBatch)) {
+  batchSelect.value = requestedBatch;
+}
+renderTimetable();
+setInterval(updateLiveStatus, 1000);
+
+/* -------------------------------------------------------
+   5. CHATBOT
+   Sends only the question to the configured Apps Script
+   backend. No API key belongs in this public page.
+   ------------------------------------------------------- */
+const chatLauncher = document.getElementById("chatLauncher");
+const chatWindow = document.getElementById("chatWindow");
+const chatClose = document.getElementById("chatClose");
+const chatMessages = document.getElementById("chatMessages");
+const chatForm = document.getElementById("chatForm");
+const chatInput = document.getElementById("chatInput");
+const chatSend = document.getElementById("chatSend");
+
+function toggleChat(open) {
+  chatWindow.classList.toggle("open", open);
+  chatWindow.setAttribute("aria-hidden", String(!open));
+  chatLauncher.setAttribute("aria-expanded", String(open));
+  if (open) chatInput.focus();
+}
+chatLauncher.addEventListener("click", () => toggleChat(!chatWindow.classList.contains("open")));
+chatClose.addEventListener("click", () => toggleChat(false));
+document.getElementById("navChat").addEventListener("click", () => toggleChat(true));
+
+function addMessage(text, kind) {
+  // textContent is deliberate: user and server text must not become HTML.
+  const message = document.createElement("div");
+  message.className = "chat-message " + (kind === "user" ? "user-message" : "bot-message");
+  message.textContent = text;
+  chatMessages.appendChild(message);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  return message;
+}
+
+function localFallback(question) {
   const q = question.toLowerCase();
-  const match = LOCAL_FAQS.find(item => item.keywords.some(word => q.includes(word)));
-  return match ? match.answer :
-    "I couldn't verify an answer from the local demo information. Please ask about admissions, timetable, faculty or syllabus, or connect the official department database.";
-}
-async function askAssistant(question) {
-  try {
-    const response = await jsonp("ask", {q:question});
-    if (response && response.ok && typeof response.answer === "string") return response.answer;
-    throw new Error("No valid answer returned");
-  } catch (err) {
-    console.warn("Assistant fallback:", err.message);
-    return localAnswer(question) + "\n\nThe online assistant is temporarily unavailable; this is the local fallback response.";
+
+  if (q.includes("credit hour")) {
+    return "The project data lists 135 credit hours. Please verify this figure with the approved QUEST scheme of studies.";
   }
+  if (q.includes("admission")) {
+    return "For admission requirements, eligibility, deadlines and fees, check the latest official QUEST admission notice or contact the university. This student portal cannot confirm current admission policy.";
+  }
+  if (q.includes("job") || q.includes("career")) {
+    return "Cybersecurity career paths can include security analyst, SOC analyst, penetration tester, digital forensics analyst, incident responder and network security engineer. Required skills and qualifications vary by role.";
+  }
+  if (q.includes("machine learning") || q.includes("ml teacher")) {
+    return "The project knowledge base lists Dr. Saifullah Memon with an AI and Machine Learning specialization. Confirm current course assignments with the department.";
+  }
+  if (q.includes("hod") || q.includes("chairman")) {
+    return "The supplied project data lists Dr. Adnan Ahmed as Chairman. Please verify the current designation with QUEST before relying on it.";
+  }
+  if (q.includes("timetable") || q.includes("class")) {
+    return "Choose your batch in the Timetable section to see the current demo schedule. The displayed times are examples until you replace them with the official timetable.";
+  }
+  if (q.includes("syllabus") || q.includes("course")) {
+    return "Open the Semester-wise Syllabus section and expand a semester. The course codes and titles need to be checked against the approved scheme of studies.";
+  }
+  return "I couldn't find a reliable answer in the local helper. Try asking about the timetable, syllabus, faculty specializations or admissions. For official information, contact the department.";
 }
-$("chat-form").addEventListener("submit", async (event) => {
+
+async function askAssistant(question) {
+  if (!CONFIG.CHAT_API_URL) {
+    return localFallback(question);
+  }
+
+  const response = await fetch(CONFIG.CHAT_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify({ question })
+  });
+
+  if (!response.ok) throw new Error("Assistant service returned an error.");
+
+  const data = await response.json();
+  if (typeof data.answer !== "string" || !data.answer.trim()) {
+    throw new Error("Assistant returned an empty answer.");
+  }
+  return data.answer;
+}
+
+chatForm.addEventListener("submit", async event => {
   event.preventDefault();
-  const input = $("chat-input");
-  const question = input.value.trim().slice(0,500);
+  const question = chatInput.value.trim();
   if (!question) return;
-  input.value = "";
-  addChatMessage(question,"user");
-  const pending = addChatMessage("Checking department information…","bot");
-  const submit = $("chat-form").querySelector('button[type="submit"]');
-  submit.disabled = true;
+
+  addMessage(question, "user");
+  chatInput.value = "";
+  chatInput.disabled = true;
+  chatSend.disabled = true;
+
+  const pending = addMessage("Thinking…", "bot");
+
   try {
     const answer = await askAssistant(question);
     pending.textContent = answer;
-  } catch {
-    pending.textContent = "Sorry, I could not process that request right now. Please try again later.";
+  } catch (error) {
+    pending.textContent =
+      "The live assistant is temporarily unavailable. " + localFallback(question);
   } finally {
-    submit.disabled = false;
-    $("chat-messages").scrollTop = $("chat-messages").scrollHeight;
+    chatInput.disabled = false;
+    chatSend.disabled = false;
+    chatInput.focus();
+    chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 });
+
+document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
