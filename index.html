@@ -104,7 +104,7 @@ footer p { margin: 0; }
   </div>
 </section>
 
-<!-- QUICK LINKS (Undergraduate, Research, Admissions) -->
+<!-- QUICK LINKS -->
 <div class="container mt-5">
   <div class="row g-4">
     <div class="col-md-4">
@@ -131,57 +131,12 @@ footer p { margin: 0; }
 <!-- NEWS & EVENTS -->
 <div class="container">
   <h2 class="section-title">News & Announcements</h2>
-  <div class="row g-4">
-    
-    <!-- News 1 (Hackathon) -->
-    <div class="col-md-4">
-      <!-- Link fixed with id=1 -->
-      <a href="news.html?id=1" style="text-decoration: none; color: inherit;">
-        <div class="news-card">
-         <img src="https://i.ibb.co/ZRgvLSq2/event.png" class="news-img" alt="Hackathon">
-          <div class="news-body">
-            <span class="news-date">October 15, 2026</span>
-            <div class="news-title">BSCYS QUIZ & CTF Hackathon</div>
-            <p class="news-text">Cyber Security Department organized a successful Capture The Flag competition...</p>
-            <span class="text-primary fw-bold mt-2 d-inline-block">Read More &rarr;</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <!-- News 2 (Workshop) -->
-    <div class="col-md-4">
-      <!-- Link fixed with id=2 -->
-      <a href="news.html?id=2" style="text-decoration: none; color: inherit;">
-        <div class="news-card">
-          <img src="https://i.ibb.co/Qv3Fqh4H/workshop.png" class="news-img" alt="Seminar">
-          <div class="news-body">
-            <span class="news-date">October 10, 2026</span>
-            <div class="news-title">Cybersecurity Awareness Seminar</div>
-            <p class="news-text">A seminar was conducted to spread awareness about phishing attacks...</p>
-            <span class="text-primary fw-bold mt-2 d-inline-block">Read More &rarr;</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <!-- News 3 (PTA Visit) -->
-    <div class="col-md-4">
-      <!-- Link fixed with id=3 -->
-      <a href="news.html?id=3" style="text-decoration: none; color: inherit;">
-        <div class="news-card">
-          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="news-img" alt="Workshop">
-          <div class="news-body">
-            <span class="news-date">October 05, 2026</span>
-            <div class="news-title">Industry Visit to PTA</div>
-            <p class="news-text">Students visited Pakistan Telecommunication Authority to learn about real-world cybersecurity...</p>
-            <span class="text-primary fw-bold mt-2 d-inline-block">Read More &rarr;</span>
-          </div>
-        </div>
-      </a>
-    </div>
-
+  
+  <!-- Yahan Google Sheet se news load hogi -->
+  <div class="row g-4" id="news-container">
+    <p class="text-center text-muted py-5"><i class="fas fa-spinner fa-spin me-2"></i>Loading Latest News...</p>
   </div>
+
 </div>
 
 <!-- CONTACT -->
@@ -238,7 +193,7 @@ footer p { margin: 0; }
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-// Chatbot Logic
+// ─── 1. CHATBOT LOGIC ───
 function toggleChat() {
   const w = document.getElementById('chatWindow');
   w.style.display = (w.style.display === 'flex') ? 'none' : 'flex';
@@ -279,6 +234,54 @@ function sendMessage() {
     body.scrollTop = body.scrollHeight;
   });
 }
+
+// ─── 2. AUTO-UPDATE NEWS LOGIC (Google Sheets se) ───
+function loadNewsFromSheet() {
+    // Wohi API URL use kar rahe hain jo Chatbot ka hai
+    const API_URL = "https://script.google.com/macros/s/AKfycbzROCQko4ITvjpz94TOkDvYikjtEM8POETZU-jakQFCg7lqaL9jCwdTEdB52IZrG2Oh3g/exec"; 
+    
+    fetch(API_URL + "?action=getNews")
+    .then(response => response.json())
+    .then(data => {
+        const newsContainer = document.getElementById("news-container");
+        newsContainer.innerHTML = ""; // Loading message clear karo
+
+        if (data.length === 0) {
+            newsContainer.innerHTML = "<p class='text-center text-muted'>No news available at the moment.</p>";
+            return;
+        }
+
+        // Sheet ki har row ke liye Card banao
+        data.forEach((item, index) => {
+            // Link id ke sath banayenge taake news.html us specific news ko khol sake
+            let cardHTML = `
+            <div class="col-md-4">
+              <a href="news.html?id=${index + 1}" style="text-decoration: none; color: inherit;">
+                <div class="news-card">
+                  <img src="${item.image}" class="news-img" alt="${item.title}" onerror="this.src='https://via.placeholder.com/400x200?text=No+Image'">
+                  <div class="news-body">
+                    <span class="news-date">${item.date}</span>
+                    <div class="news-title">${item.title}</div>
+                    <p class="news-text">${item.description.substring(0, 80)}...</p>
+                    <span class="text-primary fw-bold mt-2 d-inline-block">Read More &rarr;</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+            `;
+            newsContainer.innerHTML += cardHTML;
+        });
+    })
+    .catch(error => {
+        console.error("Error loading news:", error);
+        document.getElementById("news-container").innerHTML = "<p class='text-center text-danger'>Failed to load news. Please try again later.</p>";
+    });
+}
+
+// Jab page load ho toh dono functions chalao
+document.addEventListener("DOMContentLoaded", function() {
+    loadNewsFromSheet();
+});
 </script>
 </body>
 </html>
