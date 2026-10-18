@@ -22,7 +22,8 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
 .page-header h1 { font-weight: 700; margin-bottom: 10px; }
 
 /* STATS CARDS */
-.stat-card { background: white; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-bottom: 3px solid var(--primary); }
+.stat-card { background: white; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-bottom: 3px solid var(--primary); transition: 0.3s; }
+.stat-card:hover { transform: translateY(-5px); }
 .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--primary); }
 .stat-label { color: #666; font-weight: 500; }
 
@@ -30,14 +31,14 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
 .sem-card { background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 30px; overflow: hidden; border: 1px solid #e0e0e0; }
 .sem-header { background: var(--dark); color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
 .sem-header h5 { margin: 0; font-weight: 700; }
-.sem-header .badge { background: var(--primary); font-size: 0.9rem; }
+.sem-header .badge { background: var(--primary); font-size: 0.9rem; padding: 6px 12px; }
 .course-list { list-style: none; padding: 0; margin: 0; }
-.course-list li { padding: 12px 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+.course-list li { padding: 12px 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; transition: 0.2s; }
 .course-list li:last-child { border-bottom: none; }
-.course-list li:hover { background-color: #f8f9fa; }
+.course-list li:hover { background-color: #f8f9fa; padding-left: 25px; }
 .course-code { font-weight: 600; color: var(--primary); width: 80px; display: inline-block; }
 .course-name { flex-grow: 1; font-size: 0.95rem; }
-.course-ch { font-weight: 700; color: #333; background: #e3f2fd; padding: 2px 10px; border-radius: 15px; font-size: 0.85rem; }
+.course-ch { font-weight: 700; color: #333; background: #e3f2fd; padding: 3px 12px; border-radius: 15px; font-size: 0.85rem; }
 
 footer { background: var(--dark); color: white; padding: 30px 20px; text-align: center; margin-top: 50px; }
 </style>
@@ -69,7 +70,7 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
         
         <!-- PROGRAMS DROPDOWN -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Programs</a>
+          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">Programs</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="programs.html">Undergraduate (BS)</a></li>
             <li><a class="dropdown-item" href="curriculum.html">Curriculum</a></li>
@@ -93,10 +94,10 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
 
 <div class="container">
   
-  <!-- NEW INTRO PARAGRAPH ADDED HERE -->
-  <div class="row mb-5">
+  <!-- INTRO PARAGRAPH -->
+  <div class="row mb-5 pb-3">
     <div class="col-lg-10 mx-auto text-center">
-      <p style="font-size: 1.1rem; line-height: 1.8; color: #555;">
+      <p style="font-size: 1.15rem; line-height: 1.8; color: #444;">
         The Bachelor of Science in Cyber Security program is designed to align with its mission, Program Educational Objectives (PEOs), and Program Learning Outcomes (PLOs). Each course includes 1 hour of theory and 3 hours of lab work per week, providing students with both foundational knowledge and practical skills for success in the cybersecurity field.
       </p>
     </div>
@@ -124,7 +125,7 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
     </div>
   </div>
 
-  <h3 class="mb-4" style="color: var(--primary); font-weight: 700;">Semester-wise Study Plan</h3>
+  <h3 class="mb-4 pb-2 border-bottom" style="color: var(--primary); font-weight: 700;">Semester-wise Study Plan</h3>
 
   <!-- SEMESTER 1 -->
   <div class="sem-card">
