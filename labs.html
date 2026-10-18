@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laboratories - QUEST Cyber Security</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root { --primary: #0B72B9; --dark: #0A1929; --light: #F8F9FA; }
+body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
+.navbar { background: var(--dark) !important; padding: 15px 0; }
+.navbar-brand { color: white !important; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.nav-link { color: white !important; font-size: 1.1rem; }
+.nav-link:hover { color: #00D4FF !important; }
+.dropdown-menu { background-color: var(--dark); border: 1px solid #333; }
+.dropdown-item { color: white !important; }
+.dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
+
+/* PAGE STYLES */
+.page-header { background: var(--primary); color: white; padding: 50px 20px; text-align: center; margin-bottom: 40px; }
+.page-header h1 { font-weight: 700; margin-bottom: 10px; }
+
+.lab-card { background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); overflow: hidden; display: flex; flex-wrap: wrap; margin-bottom: 40px; }
+.lab-img-container { position: relative; flex: 1 1 500px; min-height: 350px; background: #000; }
+.lab-img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.9; transition: 0.3s; cursor: pointer; }
+.lab-img:hover { opacity: 1; }
+.btn-360 { position: absolute; bottom: 20px; right: 20px; background: rgba(10, 25, 41, 0.8); color: white; border: 1px solid #00D4FF; padding: 8px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.3s; }
+.btn-360:hover { background: var(--primary); color: white; }
+
+.lab-info { flex: 1 1 500px; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+.lab-title { color: var(--primary); font-weight: 700; font-size: 2rem; margin-bottom: 10px; }
+.lab-supervisor { color: #fff; background: var(--primary); display: inline-block; padding: 5px 15px; border-radius: 5px; font-weight: 600; margin-bottom: 20px; align-self: flex-start; }
+.lab-desc { font-size: 1.05rem; line-height: 1.8; color: #444; text-align: justify; }
+
+/* MODAL */
+.modal-content { background: transparent; border: none; }
+.modal-header { border: none; padding: 0; position: absolute; right: 0; top: -40px; z-index: 10; }
+.modal-header .btn-close { background-color: white; opacity: 1; border-radius: 50%; padding: 10px; }
+.modal-body { padding: 0; }
+.modal-body img { width: 100%; border-radius: 10px; }
+
+footer { background: var(--dark); color: white; padding: 30px 20px; text-align: center; margin-top: 50px; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo" style="height: 40px; background: white; border-radius: 50%; padding: 2px;">
+      QUEST Cyber Security
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="chairman.html">Chairman & Dean</a></li>
+            <li><a class="dropdown-item" href="department.html">Department</a></li>
+            <li><a class="dropdown-item" href="labs.html">Laboratories</a></li>
+          </ul>
+        </li>
+        
+        <li class="nav-item"><a class="nav-link" href="programs.html">Programs</a></li>
+        <li class="nav-item"><a class="nav-link" href="timetable.html">Timetable & AI</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <h1>Department Laboratories</h1>
+    <p class="mb-0">Modern facilities supporting practical learning and advanced computing.</p>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+  
+  <div class="row">
+    <div class="col-lg-11 mx-auto">
+      
+      <!-- LAB CARD -->
+      <div class="lab-card">
+        
+        <!-- Image Section -->
+        <div class="lab-img-container">
+          <!-- Yahan tumhari lab ki image ka link hai -->
+          <img src="https://i.ibb.co/Nd9fzwtM/file-0000000062288208a1fd05c8553e5ddb.png" alt="Network Security Lab" class="lab-img" data-bs-toggle="modal" data-bs-target="#labModal">
+          <button class="btn-360" data-bs-toggle="modal" data-bs-target="#labModal">
+            <i class="fas fa-street-view"></i> View 360°
+          </button>
+        </div>
+
+        <!-- Content Section -->
+        <div class="lab-info">
+          <h2 class="lab-title">Network Security Lab</h2>
+          <div class="lab-supervisor">Supervisor: Dr. Adnan Ahmed</div>
+          
+          <p class="lab-desc">
+            The Network Security Lab is the primary practical learning center of the Department of Cyber Security at QUEST Nawabshah. The lab is a state-of-the-art facility equipped with high-performance workstations, Cisco routers and switches, firewalls, and the latest network security tools.
+          </p>
+          <p class="lab-desc mt-3">
+            The lab is designed to bridge the gap between theory and practice. It provides students with hands-on training in network design and configuration, firewall implementation, intrusion detection, vulnerability assessment, and penetration testing. This practical exposure prepares students to meet the challenges of the modern cybersecurity industry.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- 360 MODAL (POPUP) -->
+<div class="modal fade" id="labModal" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Popup mein badi image -->
+        <img src="https://i.ibb.co/Nd9fzwtM/file-0000000062288208a1fd05c8553e5ddb.png" alt="Network Security Lab Full View">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
