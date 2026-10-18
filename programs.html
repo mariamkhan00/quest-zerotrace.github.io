@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undergraduate Programs - QUEST Cyber Security</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root { --primary: #0B72B9; --dark: #0A1929; }
+body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
+.navbar { background: var(--dark) !important; padding: 15px 0; }
+.navbar-brand { color: white !important; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.nav-link { color: white !important; font-size: 1.1rem; }
+.dropdown-menu { background-color: var(--dark); border: 1px solid #333; }
+.dropdown-item { color: white !important; }
+.dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
+
+.page-header { background: var(--primary); color: white; padding: 50px 20px; text-align: center; margin-bottom: 40px; }
+.program-card { background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); padding: 40px; margin-bottom: 30px; border-left: 5px solid var(--primary); }
+.program-title { color: var(--primary); font-weight: 700; margin-bottom: 20px; }
+.program-info p { font-size: 1.05rem; line-height: 1.8; color: #444; }
+.badge-custom { background: #e3f2fd; color: var(--primary); padding: 8px 15px; border-radius: 20px; font-weight: 600; display: inline-block; margin: 5px; }
+footer { background: var(--dark); color: white; padding: 30px 20px; text-align: center; margin-top: 50px; }
+</style>
+</head>
+<body>
+<!-- NAVBAR (Same as above) -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo" style="height: 40px; background: white; border-radius: 50%; padding: 2px;">
+      QUEST Cyber Security
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="chairman.html">Chairman & Dean</a></li>
+            <li><a class="dropdown-item" href="department.html">Department</a></li>
+            <li><a class="dropdown-item" href="labs.html">Laboratories</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Programs</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="programs.html">Undergraduate (BS)</a></li>
+            <li><a class="dropdown-item" href="curriculum.html">Curriculum</a></li>
+            <li><a class="dropdown-item" href="timetable.html">Timetable</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <h1>Undergraduate Program</h1>
+    <p class="mb-0">Bachelor of Science in Cyber Security</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 mx-auto">
+      <div class="program-card">
+        <h2 class="program-title">BS Cyber Security</h2>
+        <div class="program-info">
+          <p>The Bachelor of Science in Cyber Security is a 4-year degree program designed to prepare students for the growing cybersecurity industry. The program equips students with the knowledge and skills to protect computer systems, networks, and data from cyber threats.</p>
+          
+          <h5 class="mt-4 text-dark fw-bold">Program Details:</h5>
+          <div class="d-flex flex-wrap mb-3">
+            <span class="badge-custom">Duration: 4 Years (8 Semesters)</span>
+            <span class="badge-custom">Credit Hours: 135</span>
+            <span class="badge-custom">Degree: BS Cyber Security</span>
+          </div>
+
+          <h5 class="mt-4 text-dark fw-bold">Eligibility Criteria:</h5>
+          <ul class="text-muted">
+            <li>FSc Pre-Engineering with minimum 60% marks.</li>
+            <li>Must pass the university entry test / interview.</li>
+          </ul>
+
+          <h5 class="mt-4 text-dark fw-bold">Career Opportunities:</h5>
+          <p>Graduates can work as Security Analysts, Penetration Testers, Digital Forensics Experts, SOC Analysts, and Network Security Engineers in public and private sectors.</p>
+
+          <div class="mt-4">
+            <a href="curriculum.html" class="btn btn-primary" style="background: var(--primary);">View Full Curriculum</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
