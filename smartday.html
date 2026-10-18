@@ -184,10 +184,19 @@ function loadBatch(batchName) {
   document.getElementById('box-next').style.display = 'none';
   document.getElementById('box-none').style.display = 'none';
 
-  // If weekend, show no class
+    // If weekend, show no class but show Monday's first class
   if (currentDay === 'Saturday' || currentDay === 'Sunday') {
     document.getElementById('box-none').style.display = 'block';
-    document.getElementById('card-live-text').innerText = "Weekend";
+    document.getElementById('card-live-text').innerText = "Weekend - No Classes";
+    
+    // Monday ki pehli class dikhane ka logic
+    const mondaySchedule = timetableData[batchName]['Monday'];
+    if (mondaySchedule && mondaySchedule.length > 0) {
+      const firstClass = mondaySchedule[0];
+      document.getElementById('box-next').style.display = 'block';
+      document.getElementById('next-subject').innerText = "Monday: " + firstClass.subject;
+      document.getElementById('next-details').innerText = firstClass.start + " - " + firstClass.end + " | Room: " + firstClass.room + " | " + firstClass.teacher;
+    }
     return;
   }
 
