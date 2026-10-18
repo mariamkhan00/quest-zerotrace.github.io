@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academic Timetables - QUEST Cyber Security</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root { --primary: #0B72B9; --dark: #0A1929; }
+body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
+.navbar { background: var(--dark) !important; padding: 15px 0; }
+.navbar-brand { color: white !important; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.nav-link { color: white !important; font-size: 1.1rem; }
+.dropdown-menu { background-color: var(--dark); border: 1px solid #333; }
+.dropdown-item { color: white !important; }
+.dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
+
+/* HERO */
+.hero-timetable { background: linear-gradient(135deg, #0B72B9, #0A1929); color: white; padding: 60px 20px; text-align: center; }
+.hero-timetable h1 { font-weight: 700; font-size: 3rem; margin-bottom: 15px; }
+
+/* SMARTDAY CARD */
+.smartday-card { background: var(--dark); color: white; border-radius: 15px; padding: 30px; margin-top: -30px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); position: relative; z-index: 10; border: 1px solid #333; }
+.smartday-card h4 { color: #00D4FF; font-weight: 700; margin-bottom: 10px; }
+.badge-updated { background: #ffc107; color: #000; padding: 5px 10px; border-radius: 5px; font-weight: 700; font-size: 0.8rem; display: inline-block; margin-top: 10px; }
+.features-list { list-style: none; padding: 0; margin: 20px 0; }
+.features-list li { margin-bottom: 10px; color: #ccc; font-size: 0.95rem; }
+.features-list li i { color: #00D4FF; margin-right: 10px; width: 20px; }
+
+.btn-custom { background: var(--primary); color: white; border-radius: 8px; font-weight: 700; padding: 12px 25px; text-decoration: none; display: inline-block; transition: 0.3s; border: none; }
+.btn-custom:hover { background: #0056b3; color: white; transform: translateY(-2px); }
+.btn-outline-custom { background: transparent; color: white; border: 1px solid #555; border-radius: 8px; font-weight: 600; padding: 12px 20px; text-decoration: none; display: inline-block; transition: 0.3s; }
+.btn-outline-custom:hover { background: #333; color: white; }
+
+.qr-container { background: white; padding: 15px; border-radius: 10px; display: inline-block; margin-top: 20px; }
+.qr-container img { width: 150px; height: 150px; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo" style="height: 40px; background: white; border-radius: 50%; padding: 2px;">
+      QUEST Cyber Security
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="chairman.html">Chairman & Dean</a></li>
+            <li><a class="dropdown-item" href="department.html">Department</a></li>
+            <li><a class="dropdown-item" href="labs.html">Laboratories</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">Programs</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="programs.html">Undergraduate (BS)</a></li>
+            <li><a class="dropdown-item" href="curriculum.html">Curriculum</a></li>
+            <li><a class="dropdown-item" href="timetable.html">Timetable</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-timetable">
+  <div class="container">
+    <h1>Academic Timetables</h1>
+    <p class="lead">View the latest live timetables for each undergraduate batch.</p>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container pb-5">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      
+      <!-- SMARTDAY CARD -->
+      <div class="smartday-card text-center">
+        <h4><i class="fas fa-mobile-alt me-2"></i> ZeroTrace SmartDay — Live Daily Timetable</h4>
+        <p class="text-muted mb-0">Always the updated timetable · scan the QR code or tap Open</p>
+        <div class="badge-updated"><i class="fas fa-star"></i> UPDATED TIMETABLE</div>
+        
+        <p class="mt-4 text-start" style="color: #ddd;">Choose your batch to see today's class card on your phone. It is designed for quick checks between classes.</p>
+        
+        <ul class="features-list text-start">
+          <li><i class="fas fa-circle text-success"></i> What is on <b>now</b> and what is <b>next</b></li>
+          <li><i class="fas fa-calendar-alt"></i> Full schedule of the day with rooms</li>
+          <li><i class="fas fa-bell"></i> Department events of the day</li>
+        </ul>
+
+        <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+          <!-- Open Button -->
+          <a href="smartday.html" class="btn-custom"><i class="fas fa-rocket"></i> Open SmartDay</a>
+          <!-- Copy Link Button -->
+          <button onclick="copyLink()" class="btn-outline-custom"><i class="fas fa-link"></i> Copy link</button>
+        </div>
+
+        <div class="qr-container">
+          <!-- QR Code pointing to smartday.html -->
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://mariamkhan00.github.io/zerotrace-quest.github.io/smartday.html" alt="QR Code">
+          <p class="text-dark mb-0 mt-2" style="font-size: 0.8rem; font-weight: 600;">Scan with your phone camera</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText("https://mariamkhan00.github.io/zerotrace-quest.github.io/smartday.html");
+  alert("Link copied to clipboard!");
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
