@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartDay - QUEST Cyber Security</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+body { background-color: #eef2f5; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; min-height: 100vh; }
+.app-container { width: 100%; max-width: 500px; padding: 20px; }
+.header-logo { text-align: center; margin-bottom: 20px; }
+.header-logo img { height: 50px; border-radius: 50%; }
+
+/* CARDS */
+.app-card { background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); padding: 30px; margin-bottom: 20px; text-align: center; }
+.app-card h3 { font-weight: 700; color: #333; margin-bottom: 10px; }
+.app-card p { color: #777; font-size: 0.95rem; margin-bottom: 25px; }
+
+/* BUTTONS */
+.option-btn { background: #f8f9fa; border: 1px solid #ddd; border-radius: 15px; padding: 20px; width: 100%; text-align: left; font-size: 1.1rem; font-weight: 600; color: #0B72B9; transition: 0.3s; display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.option-btn:hover { background: #e3f2fd; border-color: #0B72B9; }
+.grid-btn { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.grid-btn .option-btn { flex-direction: column; justify-content: center; text-align: center; gap: 5px; }
+.grid-btn .option-btn small { color: #888; font-weight: 400; font-size: 0.8rem; }
+.back-link { display: inline-block; margin-bottom: 20px; color: #0B72B9; text-decoration: none; font-weight: 600; cursor: pointer; }
+.back-link:hover { text-decoration: underline; }
+
+/* DAY CARD (STUDENT CARD) */
+.day-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+.day-card-header { background: #0B72B9; color: white; padding: 30px 20px; text-align: center; }
+.day-card-header h4 { font-weight: 700; margin-bottom: 5px; letter-spacing: 1px; }
+.day-card-header h5 { font-weight: 400; font-size: 1rem; opacity: 0.9; }
+.day-card-header .batch-badge { background: white; color: #0B72B9; display: inline-block; padding: 5px 20px; border-radius: 20px; font-weight: 700; margin-top: 15px; }
+.day-card-info { background: #f4f7fb; padding: 15px; text-align: center; border-bottom: 1px solid #ddd; font-size: 0.9rem; color: #444; }
+.day-card-body { padding: 30px; text-align: center; }
+
+/* LIVE STATUS */
+.status-box { padding: 20px; border-radius: 15px; margin-bottom: 15px; }
+.status-title { font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
+.status-ongoing { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+.status-next { background: #e2e3f5; border: 1px solid #d1d3eb; color: #383d41; }
+.status-none { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+.class-subject { font-size: 1.4rem; font-weight: 700; margin: 5px 0; }
+.class-details { font-size: 0.9rem; opacity: 0.8; }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  
+  <!-- HEADER -->
+  <div class="header-logo">
+    <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="Logo">
+    <h5 class="mt-2 fw-bold text-dark">ZeroTrace SmartDay</h5>
+    <p class="text-muted small">QUEST Cyber Security Department</p>
+  </div>
+
+  <!-- VIEW 1: SELECT PROGRAM -->
+  <div id="view-program" class="app-card">
+    <h3>Select your program</h3>
+    <p>Choose your degree program to continue</p>
+    <button class="option-btn" onclick="selectProgram()">
+      Cyber Security <i class="fas fa-arrow-right"></i>
+    </button>
+  </div>
+
+  <!-- VIEW 2: SELECT BATCH -->
+  <div id="view-batch" class="app-card" style="display: none;">
+    <a class="back-link" onclick="showView('view-program')"><i class="fas fa-arrow-left"></i> Change program</a>
+    <h3>Select your batch</h3>
+    <p>Cyber Security — choose your batch to see today's class card</p>
+    
+    <div class="grid-btn">
+      <button class="option-btn" onclick="loadBatch('CYS26')">CYS26 <small>1st Year</small></button>
+      <button class="option-btn" onclick="loadBatch('CYS25')">CYS25 <small>2nd Year</small></button>
+      <button class="option-btn" onclick="loadBatch('CYS24')">CYS24 <small>3rd Year</small></button>
+      <button class="option-btn" onclick="loadBatch('CYS23')">CYS23 <small>Final Year</small></button>
+    </div>
+  </div>
+
+  <!-- VIEW 3: DAY CARD -->
+  <div id="view-card" style="display: none;">
+    <a class="back-link" style="margin-left: 10px;" onclick="showView('view-batch')"><i class="fas fa-arrow-left"></i> Change batch</a>
+    
+    <div class="day-card">
+      <div class="day-card-header">
+        <h4>STUDENT DAY CARD</h4>
+        <h5>CYBER SECURITY DEPARTMENT</h5>
+        <p class="mb-0 mt-3" id="card-date">Monday, 18 October 2026</p>
+        <div class="batch-badge" id="card-batch-name">CYS26</div>
+      </div>
+      
+      <div class="day-card-info">
+        <strong>Status:</strong> <span id="card-live-text">Loading...</span>
+      </div>
+
+      <div class="day-card-body">
+        <!-- Ongoing Class -->
+        <div id="box-now" class="status-box status-ongoing" style="display:none;">
+          <div class="status-title"><i class="fas fa-circle text-success" style="font-size:0.6rem;"></i> CURRENT ONGOING CLASS</div>
+          <div class="class-subject" id="now-subject">Subject</div>
+          <div class="class-details" id="now-details">Room - Teacher</div>
+        </div>
+
+        <!-- Next Class -->
+        <div id="box-next" class="status-box status-next" style="display:none;">
+          <div class="status-title"><i class="fas fa-clock"></i> UPCOMING NEXT CLASS</div>
+          <div class="class-subject" id="next-subject">Subject</div>
+          <div class="class-details" id="next-details">Room - Teacher</div>
+        </div>
+
+        <!-- No Class (Weekend or Over) -->
+        <div id="box-none" class="status-box status-none" style="display:none;">
+          <div style="font-size: 2rem; margin-bottom: 10px;">🎉</div>
+          <div class="class-subject">No classes today</div>
+          <div class="class-details">Enjoy your day off. Scan again tomorrow.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ─── TIMETABLE DATA ───
+const timetableData = {
+  'CYS26': {
+    'Monday': [{subject: 'PF', start: '08:30', end: '09:30', room: 'CYS Room 01', teacher: 'Mr. M. Umar'}, {subject: 'PS', start: '09:30', end: '10:30', room: 'CYS Room 01', teacher: 'Ms. Warkha'}],
+    'Tuesday': [{subject: 'CF', start: '08:30', end: '09:30', room: 'CYS Room 01', teacher: 'Mr. Aamir'}, {subject: 'PS', start: '11:00', end: '12:00', room: 'CYS Room 01', teacher: 'Ms. Warkha'}],
+    'Wednesday': [{subject: 'IS', start: '08:30', end: '09:30', room: 'CYS Room 01', teacher: 'Mr. Fareed'}],
+    'Thursday': [{subject: 'PF', start: '08:30', end: '09:30', room: 'CYS Room 01', teacher: 'Mr. M. Umar'}],
+    'Friday': [{subject: 'PF (Pr)', start: '08:30', end: '09:30', room: 'Lab', teacher: 'Mr. M. Umar'}]
+  },
+  'CYS25': {
+    'Monday': [{subject: 'DSA', start: '08:30', end: '10:30', room: 'CYS Room 02', teacher: 'Dr. Adnan'}, {subject: 'CS', start: '11:00', end: '13:00', room: 'CYS Room 02', teacher: 'Mr. Shan'}],
+    'Tuesday': [{subject: 'DBS', start: '08:30', end: '10:30', room: 'AI Room 01', teacher: 'Mr. Aurangzeb'}, {subject: 'AC', start: '12:00', end: '14:00', room: 'AI Room 01', teacher: 'Mr. Mumtaz'}],
+    'Wednesday': [{subject: 'AI', start: '08:30', end: '10:30', room: 'AI Room 01', teacher: 'Dr. Saifullah'}],
+    'Thursday': [{subject: 'AI', start: '08:30', end: '09:30', room: 'CYS Room 02', teacher: 'Dr. Saifullah'}, {subject: 'CS', start: '09:30', end: '10:30', room: 'CYS Room 02', teacher: 'Mr. Shan'}],
+    'Friday': [{subject: 'AI (Pr)', start: '08:30', end: '09:30', room: 'Networking Lab', teacher: 'Ms. Tooba'}]
+  },
+  'CYS24': {
+    'Monday': [{subject: 'CL&E', start: '08:30', end: '09:30', room: 'Net Sec Lab', teacher: 'Mr. Aurangzeb'}, {subject: 'ML', start: '09:30', end: '12:00', room: 'Net Sec Lab', teacher: 'Dr. Ibrahim'}],
+    'Tuesday': [{subject: 'OS', start: '08:30', end: '09:30', room: 'Net Sec Lab', teacher: 'Dr. Saifullah'}, {subject: 'DM', start: '11:00', end: '13:00', room: '25TC Room', teacher: 'Mr. Saeed'}],
+    'Wednesday': [{subject: 'SSD', start: '08:30', end: '10:30', room: 'Net Sec Lab', teacher: 'Mr. Umar'}, {subject: 'OS', start: '11:00', end: '13:00', room: '25TC Room', teacher: 'Dr. Saifullah'}],
+    'Thursday': [{subject: 'NS', start: '08:30', end: '10:30', room: 'Net Sec Lab', teacher: 'Dr. Adnan'}, {subject: 'DM', start: '11:00', end: '13:00', room: '25TC Room', teacher: 'Mr. Saeed'}],
+    'Friday': [{subject: 'ML (Pr)', start: '08:30', end: '09:30', room: 'FYDP Lab', teacher: 'Ms. Tabassum'}]
+  },
+  'CYS23': {
+    'Monday': [{subject: 'FYP-I', start: '08:30', end: '12:00', room: 'CYS Room 02', teacher: 'All Faculty'}],
+    'Tuesday': [{subject: 'IM', start: '08:30', end: '10:30', room: 'CYS Room 02', teacher: 'Ms. Faryal'}, {subject: 'DM', start: '11:00', end: '13:00', room: 'CYS Room 02', teacher: 'Mr. Aamir'}],
+    'Wednesday': [{subject: 'DM', start: '08:30', end: '09:30', room: 'CYS Room 02', teacher: 'Mr. Aamir'}, {subject: 'IA', start: '09:30', end: '13:00', room: 'CYS Room 02', teacher: 'Mr. Aurangzeb'}],
+    'Thursday': [{subject: 'DS&A (Pr)', start: '08:30', end: '13:00', room: 'HPC Lab', teacher: 'Mr. Aamir'}],
+    'Friday': [{subject: 'DS&A', start: '08:30', end: '10:30', room: 'CYS Room 02', teacher: 'Mr. Aamir'}, {subject: 'IA', start: '11:00', end: '12:00', room: 'CYS Room 02', teacher: 'Mr. Aurangzeb'}]
+  }
+};
+
+// ─── APP LOGIC ───
+function showView(viewId) {
+  document.getElementById('view-program').style.display = 'none';
+  document.getElementById('view-batch').style.display = 'none';
+  document.getElementById('view-card').style.display = 'none';
+  document.getElementById(viewId).style.display = 'block';
+}
+
+function selectProgram() {
+  showView('view-batch');
+}
+
+function loadBatch(batchName) {
+  showView('view-card');
+  document.getElementById('card-batch-name').innerText = batchName;
+  
+  // Get current date info
+  const now = new Date();
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const currentDay = days[now.getDay()];
+  
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  document.getElementById('card-date').innerText = now.toLocaleDateString('en-US', options);
+
+  // Hide all boxes initially
+  document.getElementById('box-now').style.display = 'none';
+  document.getElementById('box-next').style.display = 'none';
+  document.getElementById('box-none').style.display = 'none';
+
+  // If weekend, show no class
+  if (currentDay === 'Saturday' || currentDay === 'Sunday') {
+    document.getElementById('box-none').style.display = 'block';
+    document.getElementById('card-live-text').innerText = "Weekend";
+    return;
+  }
+
+  const todaySchedule = timetableData[batchName][currentDay];
+  
+  if (!todaySchedule || todaySchedule.length === 0) {
+    document.getElementById('box-none').style.display = 'block';
+    document.getElementById('card-live-text').innerText = "No classes scheduled";
+    return;
+  }
+
+  // Calculate current time in minutes (e.g., 08:30 = 510 minutes)
+  const currentHour = now.getHours();
+  const currentMinute = now.getMinutes();
+  const currentTime = currentHour * 60 + currentMinute;
+
+  let ongoingClass = null;
+  let nextClass = null;
+
+  for (let i = 0; i < todaySchedule.length; i++) {
+    let cls = todaySchedule[i];
+    let startMins = timeToMins(cls.start);
+    let endMins = timeToMins(cls.end);
+
+    if (currentTime >= startMins && currentTime < endMins) {
+      ongoingClass = cls;
+      // The very next class is at index i+1
+      if (i + 1 < todaySchedule.length) nextClass = todaySchedule[i + 1];
+      break;
+    } else if (currentTime < startMins) {
+      // If no ongoing class is found yet, the first upcoming class is our Next Class
+      if (!ongoingClass) {
+        nextClass = cls;
+      }
+      break; 
+    }
+  }
+
+  // Display Result
+  if (ongoingClass) {
+    document.getElementById('box-now').style.display = 'block';
+    document.getElementById('now-subject').innerText = ongoingClass.subject;
+    document.getElementById('now-details').innerText = ongoingClass.start + " - " + ongoingClass.end + " | Room: " + ongoingClass.room + " | " + ongoingClass.teacher;
+    document.getElementById('card-live-text').innerText = "Class is currently ongoing";
+  }
+
+  if (nextClass) {
+    document.getElementById('box-next').style.display = 'block';
+    document.getElementById('next-subject').innerText = nextClass.subject;
+    document.getElementById('next-details').innerText = nextClass.start + " - " + nextClass.end + " | Room: " + nextClass.room + " | " + nextClass.teacher;
+    if(!ongoingClass) document.getElementById('card-live-text').innerText = "Next class is scheduled";
+  }
+
+  if (!ongoingClass && !nextClass) {
+    document.getElementById('box-none').style.display = 'block';
+    document.getElementById('box-none').querySelector('.class-subject').innerText = "All classes finished";
+    document.getElementById('card-live-text').innerText = "Day is over";
+  }
+}
+
+// Helper: Convert "08:30" to minutes (510)
+function timeToMins(timeStr) {
+  const parts = timeStr.split(':');
+  return (parseInt(parts[0]) * 60) + parseInt(parts[1]);
+}
+</script>
+</body>
+</html>
