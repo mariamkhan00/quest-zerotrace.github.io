@@ -213,7 +213,8 @@ function sendMessage() {
   body.innerHTML += `<div class="chat-msg msg-bot" id="${loadId}">Thinking...</div>`;
   body.scrollTop = body.scrollHeight;
 
-  const API_URL = "https://script.google.com/macros/s/AKfycbzROCQko4ITvjpz94TOkDvYikjtEM8POETZU-jakQFCg7lqaL9jCwdTEdB52IZrG2Oh3g/exec";  
+  // Yahan Naya URL Daala Gaya Hai
+  const API_URL = "https://script.google.com/macros/s/AKfycbwlhRgyd7mt-6vf3-y_pQJzJOpvIPljmZUZaXd9B7xSc1QrdkoVHZ9ofnDm-NgE2v6fpQ/exec";  
 
   fetch(API_URL, {
     method: 'POST',
@@ -237,8 +238,8 @@ function sendMessage() {
 
 // ─── 2. AUTO-UPDATE NEWS LOGIC (Google Sheets se) ───
 function loadNewsFromSheet() {
-    // Wohi API URL use kar rahe hain jo Chatbot ka hai
-    const API_URL = "https://script.google.com/macros/s/AKfycbzROCQko4ITvjpz94TOkDvYikjtEM8POETZU-jakQFCg7lqaL9jCwdTEdB52IZrG2Oh3g/exec"; 
+    // Yahan Naya URL Daala Gaya Hai
+    const API_URL = "https://script.google.com/macros/s/AKfycbwlhRgyd7mt-6vf3-y_pQJzJOpvIPljmZUZaXd9B7xSc1QrdkoVHZ9ofnDm-NgE2v6fpQ/exec"; 
     
     fetch(API_URL + "?action=getNews")
     .then(response => response.json())
