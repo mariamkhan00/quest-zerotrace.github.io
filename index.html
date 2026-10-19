@@ -219,7 +219,7 @@ function loadNewsFromSheet() {
         data.forEach((item, index) => {
             let cardHTML = `
             <div class="col-md-4">
-              <a href="news.html?id=${index + 1}" style="text-decoration: none; color: inherit;">
+              <a href="news.html?id=${index + 1}" ...> style="text-decoration: none; color: inherit;">
                 <div class="news-card">
                   <img src="${item.image}" class="news-img" alt="${item.title}" onerror="this.src='https://via.placeholder.com/400x200?text=No+Image'">
                   <div class="news-body">
