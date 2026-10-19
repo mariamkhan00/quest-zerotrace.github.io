@@ -22,11 +22,14 @@
 
 /* GENERAL */
 body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background-color: #ffffff; }
-.navbar { background: var(--dark) !important; padding: 15px 0; }
+.navbar { background: var(--dark) !important; padding: 10px 0; }
 .navbar-brand { color: white !important; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-.university-logo { height: 50px; background: white; border-radius: 50%; padding: 3px; }
-.nav-link { color: rgba(255,255,255,0.9) !important; font-weight: 500; margin: 0 10px; font-size: 1.1rem; }
+.university-logo { height: 45px; background: white; border-radius: 50%; padding: 2px; }
+.nav-link { color: rgba(255,255,255,0.9) !important; font-weight: 500; padding: 5px 10px !important; font-size: 1rem; }
 .nav-link:hover { color: #00D4FF !important; }
+.dropdown-menu { background-color: var(--dark); border: 1px solid #333; }
+.dropdown-item { color: white !important; }
+.dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
 
 /* HERO SECTION */
 .hero {
@@ -35,8 +38,8 @@ body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background-color: #ff
 }
 .hero::before { content: ''; position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(10, 25, 41, 0.7); }
 .hero-content { position: relative; z-index: 1; color: white; }
-.hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 15px; }
-.hero p { font-size: 1.3rem; }
+.hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 15px; }
+.hero p { font-size: 1.2rem; }
 
 /* NEWS & QUICK LINKS CARDS */
 .section-title { text-align: center; color: var(--dark); font-weight: 700; margin-bottom: 40px; margin-top: 60px; }
@@ -60,9 +63,9 @@ footer p { margin: 0; }
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
+<!-- NAVBAR (No Hamburger, Wrap on Mobile) -->
+<nav class="navbar navbar-expand">
+  <div class="container-fluid d-flex flex-wrap align-items-center justify-content-between">
     <a class="navbar-brand" href="index.html">
       <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo" class="university-logo">
       <div>
@@ -70,37 +73,33 @@ footer p { margin: 0; }
         <span style="font-size: 0.7rem; color: #aaa;">Department Portal</span>
       </div>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        
-        <!-- ABOUT DROPDOWN -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="chairman.html">Chairman & Dean</a></li>
-            <li><a class="dropdown-item" href="department.html">Department</a></li>
-            <li><a class="dropdown-item" href="labs.html">Laboratories</a></li>
-          </ul>
-        </li>
-        
-               <!-- PROGRAMS DROPDOWN -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Programs</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="programs.html">Undergraduate (BS)</a></li>
-            <li><a class="dropdown-item" href="curriculum.html">Curriculum</a></li>
-            <li><a class="dropdown-item" href="timetable.html">Timetable</a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="timetable.html">Timetable & AI</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-      </ul>
-    </div>
+
+    <ul class="navbar-nav d-flex flex-row flex-wrap align-items-center gap-2 mt-2 mt-md-0">
+      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="chairman.html">Chairman & Dean</a></li>
+          <li><a class="dropdown-item" href="department.html">Department</a></li>
+          <li><a class="dropdown-item" href="labs.html">Laboratories</a></li>
+        </ul>
+      </li>
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Programs</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="programs.html">Undergraduate (BS)</a></li>
+          <li><a class="dropdown-item" href="curriculum.html">Curriculum</a></li>
+          <li><a class="dropdown-item" href="timetable.html">Timetable</a></li>
+        </ul>
+      </li>
+      
+      <!-- NEW PEOPLE SECTION -->
+      <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
+      
+      <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+    </ul>
   </div>
 </nav>
 
@@ -139,12 +138,9 @@ footer p { margin: 0; }
 <!-- NEWS & EVENTS -->
 <div class="container">
   <h2 class="section-title">News & Announcements</h2>
-  
-  <!-- Yahan Google Sheet se news load hogi -->
   <div class="row g-4" id="news-container">
     <p class="text-center text-muted py-5"><i class="fas fa-spinner fa-spin me-2"></i>Loading Latest News...</p>
   </div>
-
 </div>
 
 <!-- CONTACT -->
@@ -221,7 +217,6 @@ function sendMessage() {
   body.innerHTML += `<div class="chat-msg msg-bot" id="${loadId}">Thinking...</div>`;
   body.scrollTop = body.scrollHeight;
 
-  // Yahan Naya URL Daala Gaya Hai
  const API_URL = "https://script.google.com/macros/s/AKfycbwlhRgyd7mt-6vf3-y_pQJzJOpvIPljmZUZaXd9B7xSc1QrdkoVHZ9ofnDm-NgE2v6fpQ/exec";  
 
   fetch(API_URL, {
@@ -246,23 +241,20 @@ function sendMessage() {
 
 // ─── 2. AUTO-UPDATE NEWS LOGIC (Google Sheets se) ───
 function loadNewsFromSheet() {
-    // Yahan Naya URL Daala Gaya Hai
     const API_URL = "https://script.google.com/macros/s/AKfycbwlhRgyd7mt-6vf3-y_pQJzJOpvIPljmZUZaXd9B7xSc1QrdkoVHZ9ofnDm-NgE2v6fpQ/exec"; 
     
     fetch(API_URL + "?action=getNews")
     .then(response => response.json())
     .then(data => {
         const newsContainer = document.getElementById("news-container");
-        newsContainer.innerHTML = ""; // Loading message clear karo
+        newsContainer.innerHTML = ""; 
 
         if (data.length === 0) {
             newsContainer.innerHTML = "<p class='text-center text-muted'>No news available at the moment.</p>";
             return;
         }
 
-        // Sheet ki har row ke liye Card banao
         data.forEach((item, index) => {
-            // Link id ke sath banayenge taake news.html us specific news ko khol sake
             let cardHTML = `
             <div class="col-md-4">
               <a href="news.html?id=${index + 1}" style="text-decoration: none; color: inherit;">
@@ -287,7 +279,6 @@ function loadNewsFromSheet() {
     });
 }
 
-// Jab page load ho toh dono functions chalao
 document.addEventListener("DOMContentLoaded", function() {
     loadNewsFromSheet();
 });
