@@ -16,23 +16,27 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
 .dropdown-menu { background-color: var(--dark); border: 1px solid #333; }
 .dropdown-item { color: white !important; }
 .dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
+
 .page-header { background: var(--primary); color: white; padding: 50px 20px; text-align: center; margin-bottom: 40px; }
 .page-header h1 { font-weight: 700; margin-bottom: 10px; }
-.lab-card { background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); overflow: hidden; display: flex; flex-wrap: wrap; margin-bottom: 40px; }
-.lab-img-container { position: relative; flex: 1 1 500px; min-height: 350px; background: #000; }
-.lab-img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.9; transition: 0.3s; cursor: pointer; }
-.lab-img:hover { opacity: 1; }
-.btn-360 { position: absolute; bottom: 20px; right: 20px; background: rgba(10, 25, 41, 0.8); color: white; border: 1px solid #00D4FF; padding: 8px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: 0.3s; }
-.btn-360:hover { background: var(--primary); color: white; }
-.lab-info { flex: 1 1 500px; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
-.lab-title { color: var(--primary); font-weight: 700; font-size: 2rem; margin-bottom: 10px; }
-.lab-supervisor { color: #fff; background: var(--primary); display: inline-block; padding: 5px 15px; border-radius: 5px; font-weight: 600; margin-bottom: 20px; align-self: flex-start; }
-.lab-desc { font-size: 1.05rem; line-height: 1.8; color: #444; text-align: justify; }
-.modal-content { background: transparent; border: none; }
-.modal-header { border: none; padding: 0; position: absolute; right: 0; top: -40px; z-index: 10; }
-.modal-header .btn-close { background-color: white; opacity: 1; border-radius: 50%; padding: 10px; }
-.modal-body { padding: 0; }
-.modal-body img { width: 100%; border-radius: 10px; }
+
+/* HERO IMAGE SECTION */
+.lab-hero { position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 40px; }
+.lab-hero img { width: 100%; max-height: 500px; object-fit: cover; }
+.lab-hero-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(10, 25, 41, 0.9)); padding: 40px; color: white; }
+.lab-hero-overlay h2 { font-weight: 700; font-size: 2.5rem; }
+.lab-supervisor-badge { background: var(--primary); color: white; padding: 5px 15px; border-radius: 5px; font-weight: 600; display: inline-block; margin-bottom: 10px; }
+
+/* EQUIPMENT CARDS */
+.section-title { color: var(--dark); font-weight: 700; margin-bottom: 30px; margin-top: 40px; border-left: 5px solid var(--primary); padding-left: 15px; }
+.equip-card { background: white; border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 4px solid var(--primary); transition: 0.3s; height: 100%; }
+.equip-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(11, 114, 185, 0.15); }
+.equip-icon { font-size: 2rem; color: var(--primary); margin-bottom: 15px; }
+.equip-title { font-weight: 700; color: var(--dark); font-size: 1.1rem; margin-bottom: 10px; }
+.equip-list { list-style: none; padding-left: 0; margin-bottom: 0; }
+.equip-list li { font-size: 0.95rem; color: #555; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 10px; }
+.equip-list li i { color: #22c55e; margin-top: 4px; font-size: 0.8rem; }
+
 footer { background: var(--dark); color: white; padding: 30px 20px; text-align: center; margin-top: 50px; }
 </style>
 </head>
@@ -79,44 +83,175 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
 <div class="page-header">
   <div class="container">
     <h1>Department Laboratories</h1>
-    <p class="mb-0">Modern facilities supporting practical learning and advanced computing.</p>
+    <p class="mb-0">State-of-the-art facilities for practical learning and cybersecurity research.</p>
   </div>
 </div>
 
-<div class="container">
+<div class="container pb-5">
+  
+  <!-- LAB HERO IMAGE -->
   <div class="row">
     <div class="col-lg-11 mx-auto">
-      <div class="lab-card">
-        <div class="lab-img-container">
-          <img src="https://i.ibb.co/Nd9fzwtM/file-0000000062288208a1fd05c8553e5ddb.png" alt="Network Security Lab" class="lab-img" data-bs-toggle="modal" data-bs-target="#labModal">
-          <button class="btn-360" data-bs-toggle="modal" data-bs-target="#labModal">
-            <i class="fas fa-street-view"></i> View 360°
-          </button>
-        </div>
-        <div class="lab-info">
-          <h2 class="lab-title">Network Security Lab</h2>
-          <div class="lab-supervisor">Supervisor: Dr. Adnan Ahmed</div>
-          <p class="lab-desc">
-            The Network Security Lab is the primary practical learning center of the Department of Cyber Security at QUEST Nawabshah. The lab is a state-of-the-art facility equipped with high-performance workstations, Cisco routers and switches, firewalls, and the latest network security tools.
-          </p>
-          <p class="lab-desc mt-3">
-            The lab is designed to bridge the gap between theory and practice. It provides students with hands-on training in network design and configuration, firewall implementation, intrusion detection, vulnerability assessment, and penetration testing. This practical exposure prepares students to meet the challenges of the modern cybersecurity industry.
-          </p>
+      <div class="lab-hero">
+        <img src="https://i.ibb.co/Nd9fzwtM/file-0000000062288208a1fd05c8553e5ddb.png" alt="Network Security Lab">
+        <div class="lab-hero-overlay">
+          <div class="lab-supervisor-badge">Supervisor: Dr. Adnan Ahmed</div>
+          <h2>Network Security Lab</h2>
+          <p class="mb-0">The primary practical learning center of the Department of Cyber Security at QUEST Nawabshah.</p>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="modal fade" id="labModal" tabindex="-1">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+  <!-- EQUIPMENT LIST -->
+  <div class="row">
+    <div class="col-lg-11 mx-auto">
+      
+      <!-- SECTION 1 -->
+      <h3 class="section-title"><i class="fas fa-server me-2"></i> Computing & Hardware Infrastructure</h3>
+      <div class="row g-4 mb-4">
+        <div class="col-md-6">
+          <div class="equip-card">
+            <div class="equip-icon"><i class="fas fa-desktop"></i></div>
+            <div class="equip-title">High-End Workstations</div>
+            <ul class="equip-list">
+              <li><i class="fas fa-check-circle"></i> 30x Desktop Computers (Core i7, 11th Gen+)</li>
+              <li><i class="fas fa-check-circle"></i> 16GB RAM & 512GB SSD for heavy simulations</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="equip-card">
+            <div class="equip-icon"><i class="fas fa-tv"></i></div>
+            <div class="equip-title">Instructor Station</div>
+            <ul class="equip-list">
+              <li><i class="fas fa-check-circle"></i> 1x High-Performance PC (Core i9, 32GB RAM)</li>
+              <li><i class="fas fa-check-circle"></i> Dual monitors for live hacking demonstrations</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="equip-card">
+            <div class="equip-icon"><i class="fas fa-database"></i></div>
+            <div class="equip-title">Rack Servers</div>
+            <ul class="equip-list">
+              <li><i class="fas fa-check-circle"></i> 2x Enterprise Servers (Dell PowerEdge)</li>
+              <li><i class="fas fa-check-circle"></i> For hosting virtual machines and lab management</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="equip-card">
+            <div class="equip-icon"><i class="fas fa-bolt"></i></div>
+            <div class="equip-title">Power & Cabling</div>
+            <ul class="equip-list">
+              <li><i class="fas fa-check-circle"></i> Heavy-duty UPS for servers and PCs</li>
+              <li><i class="fas fa-check-circle"></i> 42U Networking Racks with structured cabling</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <img src="https://i.ibb.co/Nd9fzwtM/file-0000000062288208a1fd05c8553e5ddb.png" alt="Network Security Lab Full View">
+
+      <!-- SECTION 2 -->
+      <h3 class="section-title"><i class="fas fa-network-wired me-2"></i> Networking & Hardware Security</h3>
+      <div class="row g-4 mb-4">
+        <div class="col-md-6">
+          <div class="equip-card">
+            <div class="equip-icon"><i class="fas fa-router"></i></div>
+            <div class="equip-title">Cisco Networking Gear</div>
+            <ul class="equip-list">
+              <li><i class="fas fa-check-circle"></i> 10x Cisco ISR series routers</li>
+              <li><i class="fas fa-check-circle"></i> 10x Cisco Catalyst (24-port) managed switches</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="equip-card">
+            <div class="equip-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="equip-title">Security Appliances</div>
+            <ul class="equip-list">
+              <li><i class="fas fa-check-circle"></i> 2x Next-Generation Firewalls (Fortinet/pfSense)</li>
+              <li><i class="fas fa-check-circle"></i> 5x Enterprise Wi-Fi Access Points</li>
+            </ul>
+          </div>
+        </div>
       </div>
+
+      <!-- SECTION 3 -->
+      <h3 class="section-title"><i class="fas fa-laptop-code me-2"></i> Virtualization & Software Stack</h3>
+      <div class="row g-4 mb-4">
+        <div class="col-md-6">
+          <div class="equip-card">
+            <div class="equip-icon"><i class="fas fa-cubes"></i></div>
+            <div class="equip-title">Virtualization & OS</div>
+            <ul class="equip-list">
+              <li><i class="fas fa-check-circle"></i> VMware ESXi / Proxmox VE for Virtual Machines</li>
+              <li><i class="fas fa-check-circle"></i> Windows Server, Kali Linux, Parrot OS, Ubuntu</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="equip-card">
+            <div class="equip-icon"><i class="fas fa-terminal"></i></div>
+            <div class="equip-title">Core Security Tools</div>
+            <ul class="equip-list">
+              <li><i class="fas fa-check-circle"></i> Wireshark, Nmap, Burp Suite, Metasploit</li>
+              <li><i class="fas fa-check-circle"></i> Splunk / ELK Stack for SOC Log Analysis</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 4 -->
+      <h3 class="section-title"><i class="fas fa-microchip me-2"></i> Digital Forensics & IoT Kits</h3>
+      <div class="row g-4 mb-4">
+        <div class="col-md-6">
+          <div class="equip-card">
+            <div class="equip-icon"><i class="fas fa-hdd"></i></div>
+            <div class="equip-title">Forensics Equipment</div>
+            <ul class="equip-list">
+              <li><i class="fas fa-check-circle"></i> 2x Hardware Forensic Write Blockers</li>
+              <li><i class="fas fa-check-circle"></i> 1x High-speed Disk Duplicator</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="equip-card">
+            <div class="equip-icon"><i class="fas fa-wifi"></i></div>
+            <div class="equip-title">IoT & Wireless Kits</div>
+            <ul class="equip-list">
+              <li><i class="fas fa-check-circle"></i> Raspberry Pi 4 & Arduino Uno kits</li>
+              <li><i class="fas fa-check-circle"></i> Alfa Network Wi-Fi Adapters & HackRF SDR</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 5 -->
+      <h3 class="section-title"><i class="fas fa-door-closed me-2"></i> Lab Environment & Physical Security</h3>
+      <div class="row g-4 mb-4">
+        <div class="col-md-6">
+          <div class="equip-card">
+            <div class="equip-icon"><i class="fas fa-chair"></i></div>
+            <div class="equip-title">Environment & Comfort</div>
+            <ul class="equip-list">
+              <li><i class="fas fa-check-circle"></i> 30x Ergonomic Chairs & spacious desks</li>
+              <li><i class="fas fa-check-circle"></i> 2x Split ACs (2 Ton) & Smart Board / Projector</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="equip-card">
+            <div class="equip-icon"><i class="fas fa-video"></i></div>
+            <div class="equip-title">Security & Access</div>
+            <ul class="equip-list">
+              <li><i class="fas fa-check-circle"></i> RFID-based biometric door lock</li>
+              <li><i class="fas fa-check-circle"></i> 2x CCTV Security Cameras (Inside & Outside)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
