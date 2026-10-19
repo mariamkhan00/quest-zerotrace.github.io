@@ -16,7 +16,6 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
 .dropdown-menu { background-color: var(--dark); border: 1px solid #333; }
 .dropdown-item { color: white !important; }
 .dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
-
 .page-header { background: var(--primary); color: white; padding: 50px 20px; text-align: center; margin-bottom: 40px; }
 .program-card { background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); padding: 40px; margin-bottom: 30px; border-left: 5px solid var(--primary); }
 .program-title { color: var(--primary); font-weight: 700; margin-bottom: 20px; }
@@ -27,9 +26,8 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand">
-  <div class="container-fluid d-flex flex-wrap align-items-center justify-content-between">
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
     <a class="navbar-brand" href="index.html">
       <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo" style="height: 45px; background: white; border-radius: 50%; padding: 2px;">
       <div>
@@ -37,27 +35,32 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
         <span style="font-size: 0.7rem; color: #aaa;">Department Portal</span>
       </div>
     </a>
-    <ul class="navbar-nav d-flex flex-row flex-wrap align-items-center gap-2 mt-2 mt-md-0" style="margin-bottom: 0;">
-      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="chairman.html">Chairman & Dean</a></li>
-          <li><a class="dropdown-item" href="department.html">Department</a></li>
-          <li><a class="dropdown-item" href="labs.html">Laboratories</a></li>
-        </ul>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">Programs</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="programs.html">Undergraduate (BS)</a></li>
-          <li><a class="dropdown-item" href="curriculum.html">Curriculum</a></li>
-          <li><a class="dropdown-item" href="timetable.html">Timetable</a></li>
-        </ul>
-      </li>
-      <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
-      <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
-    </ul>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="chairman.html">Chairman & Dean</a></li>
+            <li><a class="dropdown-item" href="department.html">Department</a></li>
+            <li><a class="dropdown-item" href="labs.html">Laboratories</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">Programs</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="programs.html">Undergraduate (BS)</a></li>
+            <li><a class="dropdown-item" href="curriculum.html">Curriculum</a></li>
+            <li><a class="dropdown-item" href="timetable.html">Timetable</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
   </div>
 </nav>
 
