@@ -27,12 +27,20 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
 .btn-custom:hover { background: #0056b3; color: white; }
 .qr-container { background: white; padding: 15px; border-radius: 10px; display: inline-block; margin-top: 15px; }
 
+/* SHIFT DIVIDER */
+.shift-divider { display: flex; align-items: center; text-align: center; margin: 50px 0 40px; color: var(--primary); font-weight: 700; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 2px;}
+.shift-divider::before, .shift-divider::after { content: ''; flex: 1; border-bottom: 3px solid var(--primary); opacity: 0.3;}
+.shift-divider:not(:empty)::before { margin-right: 20px; }
+.shift-divider:not(:empty)::after { margin-left: 20px; }
+
 /* BATCH CARDS */
 .batch-card { border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 30px; background: #1e293b; color: white; }
 .batch-header { background: linear-gradient(90deg, #3b82f6, #6366f1); padding: 20px; display: flex; justify-content: space-between; align-items: center; color: white; }
+.batch-header.evening-header { background: linear-gradient(90deg, #1e3a8a, #3b82f6); }
 .batch-header h4 { margin: 0; font-weight: 700; font-size: 1.5rem; }
 .batch-header span.sub { font-size: 0.9rem; opacity: 0.8; display: block; margin-top: 5px; }
 .batch-header .badge-current { background: #22c55e; color: white; padding: 6px 15px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; }
+.batch-header.evening-header .badge-current { background: #3b82f6; }
 .batch-body { padding: 25px; }
 .batch-stats { display: flex; justify-content: space-between; text-align: left; border-bottom: 1px solid #334155; padding-bottom: 20px; margin-bottom: 20px; }
 .batch-stats div small { color: #94a3b8; font-size: 0.85rem; display: block; margin-bottom: 5px; }
@@ -61,12 +69,6 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
 .note-text { color: #64748b; font-size: 0.9rem; text-align: center; margin-top: 20px; }
 .progress { height: 6px; background: #334155; border-radius: 3px; }
 footer { background: var(--dark); color: white; padding: 30px 20px; text-align: center; margin-top: 50px; }
-
-/* EVENING SEPARATOR */
-.shift-divider { display: flex; align-items: center; text-align: center; margin: 50px 0 40px; color: var(--dark); font-weight: 700; font-size: 1.5rem; }
-.shift-divider::before, .shift-divider::after { content: ''; flex: 1; border-bottom: 2px solid #cbd5e1; }
-.shift-divider:not(:empty)::before { margin-right: 20px; }
-.shift-divider:not(:empty)::after { margin-left: 20px; }
 </style>
 </head>
 <body>
@@ -143,14 +145,14 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
       <div id="batch-container">
 
         <!-- ================= MORNING SHIFT START ================= -->
-        <div class="shift-divider">☀️ MORNING SHIFT</div>
+        <div class="shift-divider">☀️ Morning Shift</div>
 
-        <!-- BATCH CYS26 -->
+        <!-- BATCH CYS26 MORNING -->
         <div class="batch-card" data-batch="CYS26">
           <div class="batch-header">
             <div>
               <h4>🎓 Batch 2026 (CYS26)</h4>
-              <span class="sub">1st Year</span>
+              <span class="sub">1st Year - Morning</span>
             </div>
             <span class="badge-current">Current</span>
           </div>
@@ -164,6 +166,7 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
               <div class="badge-latest">⭐ LATEST TIMETABLE</div>
               <h5>Semester 1</h5>
               <p>Current Published Timetable</p>
+              <!-- YAHAN CYS26 MORNING KA SAHI LINK HAI -->
               <a href="https://i.postimg.cc/yxXfwwPH/Whats-App-Image-2026-10-15-at-8-48-25-PM-(1).jpg" target="_blank" class="btn-view">👁 View</a>
               <a href="https://i.postimg.cc/yxXfwwPH/Whats-App-Image-2026-10-15-at-8-48-25-PM-(1).jpg" download class="btn-download">↓ Download</a>
             </div>
@@ -196,12 +199,12 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
           </div>
         </div>
 
-        <!-- BATCH CYS25 -->
+        <!-- BATCH CYS25 MORNING -->
         <div class="batch-card" data-batch="CYS25">
           <div class="batch-header">
             <div>
               <h4>🎓 Batch 2025 (CYS25)</h4>
-              <span class="sub">2nd Year</span>
+              <span class="sub">2nd Year - Morning</span>
             </div>
             <span class="badge-current">Current</span>
           </div>
@@ -215,6 +218,7 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
               <div class="badge-latest">⭐ LATEST TIMETABLE</div>
               <h5>Semester 3</h5>
               <p>Current Published Timetable</p>
+              <!-- YAHAN CYS25 MORNING KA SAHI LINK HAI -->
               <a href="https://i.postimg.cc/2SHtjNNJ/Whats-App-Image-2026-10-15-at-8-48-24-PM.jpg" target="_blank" class="btn-view">👁 View</a>
               <a href="https://i.postimg.cc/2SHtjNNJ/Whats-App-Image-2026-10-15-at-8-48-24-PM.jpg" download class="btn-download">↓ Download</a>
             </div>
@@ -248,12 +252,12 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
           </div>
         </div>
 
-        <!-- BATCH CYS24 -->
+        <!-- BATCH CYS24 MORNING -->
         <div class="batch-card" data-batch="CYS24">
           <div class="batch-header">
             <div>
               <h4>🎓 Batch 2024 (CYS24)</h4>
-              <span class="sub">3rd Year</span>
+              <span class="sub">3rd Year - Morning</span>
             </div>
             <span class="badge-current">Current</span>
           </div>
@@ -267,6 +271,7 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
               <div class="badge-latest">⭐ LATEST TIMETABLE</div>
               <h5>Semester 5</h5>
               <p>Current Published Timetable</p>
+              <!-- YAHAN CYS24 MORNING KA SAHI LINK HAI -->
               <a href="https://i.postimg.cc/25mwhHFR/Whats-App-Image-2026-10-15-at-8-48-23-PM-(1).jpg" target="_blank" class="btn-view">👁 View</a>
               <a href="https://i.postimg.cc/25mwhHFR/Whats-App-Image-2026-10-15-at-8-48-23-PM-(1).jpg" download class="btn-download">↓ Download</a>
             </div>
@@ -300,12 +305,12 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
           </div>
         </div>
 
-        <!-- BATCH CYS23 -->
+        <!-- BATCH CYS23 MORNING -->
         <div class="batch-card" data-batch="CYS23">
           <div class="batch-header">
             <div>
               <h4>🎓 Batch 2023 (CYS23)</h4>
-              <span class="sub">4th Year</span>
+              <span class="sub">4th Year - Morning</span>
             </div>
             <span class="badge-current">Current</span>
           </div>
@@ -319,6 +324,7 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
               <div class="badge-latest">⭐ LATEST TIMETABLE</div>
               <h5>Semester 7</h5>
               <p>Current Published Timetable</p>
+              <!-- YAHAN CYS23 MORNING KA SAHI LINK HAI -->
               <a href="https://i.postimg.cc/bwF6c017/Whats-App-Image-2026-10-15-at-8-48-25-PM.jpg" target="_blank" class="btn-view">👁 View</a>
               <a href="https://i.postimg.cc/bwF6c017/Whats-App-Image-2026-10-15-at-8-48-25-PM.jpg" download class="btn-download">↓ Download</a>
             </div>
@@ -353,16 +359,16 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
         </div>
 
         <!-- ================= EVENING SHIFT START ================= -->
-        <div class="shift-divider">🌙 EVENING SHIFT</div>
+        <div class="shift-divider">🌙 Evening Shift</div>
 
         <!-- BATCH CYS26 EVENING -->
         <div class="batch-card" data-batch="CYS26-Eve">
-          <div class="batch-header" style="background: linear-gradient(90deg, #1e3a8a, #3b82f6);">
+          <div class="batch-header evening-header">
             <div>
               <h4>🎓 Batch 2026 (CYS26)</h4>
               <span class="sub">1st Year - Evening</span>
             </div>
-            <span class="badge-current" style="background: #3b82f6;">Current</span>
+            <span class="badge-current">Current</span>
           </div>
           <div class="batch-body">
             <div class="batch-stats">
@@ -374,6 +380,7 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
               <div class="badge-latest">⭐ LATEST TIMETABLE</div>
               <h5>Semester 1 (Evening)</h5>
               <p>Current Published Timetable</p>
+              <!-- YAHAN CYS26 EVENING KA SAHI LINK HAI -->
               <a href="https://i.postimg.cc/KY6J4ZqJ/Whats-App-Image-2026-10-19-at-5-01-49-PM-(3).jpg" target="_blank" class="btn-view">👁 View</a>
               <a href="https://i.postimg.cc/KY6J4ZqJ/Whats-App-Image-2026-10-19-at-5-01-49-PM-(3).jpg" download class="btn-download">↓ Download</a>
             </div>
@@ -404,12 +411,12 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
 
         <!-- BATCH CYS25 EVENING -->
         <div class="batch-card" data-batch="CYS25-Eve">
-          <div class="batch-header" style="background: linear-gradient(90deg, #1e3a8a, #3b82f6);">
+          <div class="batch-header evening-header">
             <div>
               <h4>🎓 Batch 2025 (CYS25)</h4>
               <span class="sub">2nd Year - Evening</span>
             </div>
-            <span class="badge-current" style="background: #3b82f6;">Current</span>
+            <span class="badge-current">Current</span>
           </div>
           <div class="batch-body">
             <div class="batch-stats">
@@ -421,6 +428,7 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
               <div class="badge-latest">⭐ LATEST TIMETABLE</div>
               <h5>Semester 3 (Evening)</h5>
               <p>Current Published Timetable</p>
+              <!-- YAHAN CYS25 EVENING KA SAHI LINK HAI -->
               <a href="https://i.postimg.cc/FzZZP0rR/Whats-App-Image-2026-10-19-at-5-01-49-PM-(2).jpg" target="_blank" class="btn-view">👁 View</a>
               <a href="https://i.postimg.cc/FzZZP0rR/Whats-App-Image-2026-10-19-at-5-01-49-PM-(2).jpg" download class="btn-download">↓ Download</a>
             </div>
