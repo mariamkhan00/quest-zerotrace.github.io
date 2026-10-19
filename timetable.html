@@ -16,21 +16,10 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
 .dropdown-item { color: white !important; }
 .dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
 
-/* HERO */
 .hero-timetable { background: linear-gradient(135deg, #0B72B9, #0A1929); color: white; padding: 60px 20px; text-align: center; }
 .hero-timetable h1 { font-weight: 700; font-size: 3rem; margin-bottom: 15px; }
 
-/* SMARTDAY CARD */
-.smartday-card { background: var(--dark); color: white; border-radius: 15px; padding: 30px; margin-top: -30px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); position: relative; z-index: 10; border: 1px solid #333; margin-bottom: 40px;}
-.smartday-card h4 { color: #00D4FF; font-weight: 700; margin-bottom: 10px; }
-.features-list { list-style: none; padding: 0; margin: 20px 0; }
-.features-list li { margin-bottom: 10px; color: #ccc; font-size: 0.95rem; }
-.features-list li i { color: #00D4FF; margin-right: 10px; width: 20px; }
-.btn-custom { background: var(--primary); color: white; border-radius: 8px; font-weight: 700; padding: 12px 25px; text-decoration: none; display: inline-block; transition: 0.3s; border: none; }
-.btn-custom:hover { background: #0056b3; color: white; }
-.qr-container { background: white; padding: 15px; border-radius: 10px; display: inline-block; margin-top: 15px; }
-
-/* BATCH CARDS (MUET STYLE) */
+/* BATCH CARDS */
 .batch-card { border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 30px; background: #1e293b; color: white; }
 .batch-header { background: linear-gradient(90deg, #3b82f6, #6366f1); padding: 20px; display: flex; justify-content: space-between; align-items: center; color: white; }
 .batch-header h4 { margin: 0; font-weight: 700; font-size: 1.5rem; }
@@ -47,18 +36,16 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
 .latest-box h5 { font-weight: 700; margin-bottom: 5px; color: white; }
 .latest-box p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px; }
 
-.btn-view { background: #3b82f6; color: white; border: none; padding: 8px 20px; border-radius: 5px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+.btn-view { background: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; width: 100%; display: block; margin-bottom: 10px; text-align: center; text-decoration: none; }
 .btn-view:hover { background: #2563eb; color: white; }
-.btn-download { background: transparent; color: white; border: 1px solid #64748b; padding: 8px 20px; border-radius: 5px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; margin-left: 10px; }
+.btn-download { background: transparent; color: white; border: 1px solid #64748b; padding: 10px 20px; border-radius: 5px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; width: 100%; display: block; text-align: center; text-decoration: none; }
 .btn-download:hover { background: #334155; color: white; }
 
-/* COLLAPSIBLE */
 .accordion-button { background: #1e293b; color: #60a5fa; border: 1px solid #334155; font-weight: 600; box-shadow: none !important; }
 .accordion-button:not(.collapsed) { background: #0f172a; color: #60a5fa; }
 .accordion-item { background: #1e293b; border: none; margin-bottom: 10px; border-radius: 8px !important; overflow: hidden; }
 .accordion-body { background: #0f172a; color: #cbd5e1; padding: 0; }
 
-/* UPCOMING SEMESTERS */
 .upcoming-title { color: white; font-weight: 600; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
 .upcoming-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 .upcoming-box { border: 1px dashed #eab308; border-radius: 10px; padding: 15px; text-align: center; background: #1e293b; }
@@ -75,7 +62,7 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
 </head>
 <body>
 
-<!-- NAVBAR -->
+<!-- NAVBAR (Wahi rahega) -->
 <nav class="navbar navbar-expand-lg">
   <div class="container">
     <a class="navbar-brand" href="index.html">
@@ -119,291 +106,254 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
 </div>
 
 <!-- MAIN CONTENT -->
-<div class="container pb-5 mt-4">
-  
-  <!-- SMARTDAY CARD (QR Section) -->
-  <div class="smartday-card text-center">
-    <h4><i class="fas fa-mobile-alt me-2"></i> ZeroTrace SmartDay — Live Daily Timetable</h4>
-    <p class="text-muted mb-0">Always the updated timetable · scan the QR code or tap Open</p>
-    <div class="badge-latest mt-3"><i class="fas fa-star"></i> UPDATED TIMETABLE</div>
-    
-    <p class="mt-4 text-start" style="color: #ddd;">Choose your batch to see today's class card on your phone. It is designed for quick checks between classes.</p>
-    
-    <ul class="features-list text-start">
-      <li><i class="fas fa-circle text-success"></i> What is on <b>now</b> and what is <b>next</b></li>
-      <li><i class="fas fa-calendar-alt"></i> Full schedule of the day with rooms</li>
-      <li><i class="fas fa-bell"></i> Department events of the day</li>
-    </ul>
+<div class="container pb-5">
+  <div class="row">
+    <div class="col-lg-9 mx-auto">
+      
+      <!-- SMARTDAY CARD (QR Section) -->
+      <div class="smartday-card text-center mb-5" style="background: var(--dark); color: white; border-radius: 15px; padding: 30px; position: relative; z-index: 10; border: 1px solid #333;">
+        <h4 style="color: #00D4FF; font-weight: 700;"><i class="fas fa-mobile-alt me-2"></i> ZeroTrace SmartDay — Live Daily Timetable</h4>
+        <p class="text-muted mb-0">Always the updated timetable · scan the QR code or tap Open</p>
+        <div style="background: #facc15; color: #000; padding: 5px 12px; border-radius: 5px; font-weight: 700; font-size: 0.8rem; display: inline-block; margin-top: 15px;"><i class="fas fa-star"></i> UPDATED TIMETABLE</div>
+        
+        <p class="mt-4 text-start" style="color: #ddd;">Choose your batch to see today's class card on your phone. It is designed for quick checks between classes.</p>
+        
+        <ul style="list-style: none; padding: 0; margin: 20px 0; text-align: left;">
+          <li style="margin-bottom: 10px; color: #ccc;"><i class="fas fa-circle" style="color: #22c55e; margin-right: 10px;"></i> What is on <b>now</b> and what is <b>next</b></li>
+          <li style="margin-bottom: 10px; color: #ccc;"><i class="fas fa-calendar-alt" style="color: #00D4FF; margin-right: 10px;"></i> Full schedule of the day with rooms</li>
+          <li style="margin-bottom: 10px; color: #ccc;"><i class="fas fa-bell" style="color: #00D4FF; margin-right: 10px;"></i> Department events of the day</li>
+        </ul>
 
-    <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
-      <a href="smartday.html" class="btn-custom"><i class="fas fa-rocket"></i> Open SmartDay</a>
-      <button onclick="copyLink()" class="btn btn-outline-light" style="border-radius: 8px; font-weight: 600;"><i class="fas fa-link"></i> Copy link</button>
-    </div>
-
-    <div class="qr-container mt-4">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://mariamkhan00.github.io/zerotrace-quest.github.io/smartday.html" alt="QR Code" style="width: 150px; height: 150px;">
-      <p class="text-dark mb-0 mt-2" style="font-size: 0.8rem; font-weight: 600;">Scan with your phone camera</p>
-    </div>
-  </div>
-
-    <!-- ═══════════ BATCH CARDS START HERE ═══════════ -->
-  <div class="row" id="batch-container">
-
-    <!-- BATCH CYS26 (2026) -->
-    <div class="col-lg-4 col-md-6 mb-4 batch-card-wrapper" data-batch="CYS26">
-      <div class="batch-card h-100 mb-0">
-        <div class="batch-header">
-          <div>
-            <h4 style="font-size: 1.2rem;">🎓 Batch 2026</h4>
-            <span class="sub">1st Year</span>
-          </div>
-          <span class="badge-current" style="font-size: 0.7rem; padding: 4px 10px;">Current</span>
+        <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+          <a href="smartday.html" style="background: var(--primary); color: white; border-radius: 8px; font-weight: 700; padding: 12px 25px; text-decoration: none;"><i class="fas fa-rocket"></i> Open SmartDay</a>
         </div>
-        <div class="batch-body" style="padding: 15px;">
-          <div class="batch-stats" style="flex-wrap: wrap; gap: 10px;">
-            <div><small>Current Semester</small><h6>Semester 1</h6></div>
-            <div><small>Published</small><h6>1</h6></div>
-          </div>
-          
-          <div class="latest-box" style="padding: 15px;">
-            <div class="badge-latest" style="font-size: 0.7rem;">⭐ LATEST</div>
-            <h5>Semester 1</h5>
-            <button class="btn-view w-100" onclick="showTimetable('CYS26')" style="margin-bottom: 5px;">👁 View</button>
-            <button class="btn-download w-100 m-0" onclick="alert('Download will be available soon.')">↓ Download</button>
-          </div>
 
-          <div class="accordion mb-3" id="accordionCYS26">
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" style="font-size: 0.85rem; padding: 10px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS26">
-                  📁 Previous
-                </button>
-              </h2>
-              <div id="collapseCYS26" class="accordion-collapse collapse" data-bs-parent="#accordionCYS26">
-                <div class="accordion-body p-2">
-                  <p class="text-muted mb-0" style="font-size: 0.8rem;">No previous timetables.</p>
+        <div style="background: white; padding: 15px; border-radius: 10px; display: inline-block; margin-top: 20px;">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://mariamkhan00.github.io/zerotrace-quest.github.io/smartday.html" alt="QR Code" style="width: 150px; height: 150px;">
+          <p class="text-dark mb-0 mt-2" style="font-size: 0.8rem; font-weight: 600;">Scan with your phone camera</p>
+        </div>
+      </div>
+
+      <!-- BATCH CARDS -->
+      <div id="batch-container">
+
+        <!-- BATCH CYS26 -->
+        <div class="batch-card" data-batch="CYS26">
+          <div class="batch-header">
+            <div>
+              <h4>🎓 Batch 2026 (CYS26)</h4>
+              <span class="sub">1st Year</span>
+            </div>
+            <span class="badge-current">Current</span>
+          </div>
+          <div class="batch-body">
+            <div class="batch-stats">
+              <div><small>Current Semester</small><h6>Semester 1</h6></div>
+              <div><small>Academic Session</small><h6>20 Jul 2026 - 18-Nov-26</h6></div>
+              <div><small>Published Timetables</small><h6>1</h6></div>
+            </div>
+            
+            <div class="latest-box">
+              <div class="badge-latest">⭐ LATEST TIMETABLE</div>
+              <h5>Semester 1</h5>
+              <p>Current Published Timetable</p>
+              <!-- View opens the PDF, Download downloads the PDF -->
+              <a href="https://i.ibb.co/6P3K5bZ/image.png" target="_blank" class="btn-view">👁 View</a>
+              <a href="https://i.ibb.co/6P3K5bZ/image.png" download class="btn-download">↓ Download</a>
+            </div>
+
+            <div class="accordion mb-3" id="accordionCYS26">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS26">📁 Previous Timetables</button>
+                </h2>
+                <div id="collapseCYS26" class="accordion-collapse collapse" data-bs-parent="#accordionCYS26">
+                  <div class="accordion-body p-3"><p class="text-muted mb-0" style="font-size: 0.9rem;">No previous timetables available.</p></div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="upcoming-title" style="font-size: 0.9rem;">⏳ Upcoming Semesters</div>
-          <div class="upcoming-grid" style="grid-template-columns: 1fr 1fr; gap: 8px;">
-            <div class="upcoming-box" style="padding: 8px;"><h6 style="font-size: 0.8rem;">Semester 2</h6><small style="font-size: 0.7rem;">Coming Soon</small></div>
-            <div class="upcoming-box" style="padding: 8px;"><h6 style="font-size: 0.8rem;">Semester 3</h6><small style="font-size: 0.7rem;">Coming Soon</small></div>
-            <div class="upcoming-box" style="padding: 8px;"><h6 style="font-size: 0.8rem;">Semester 4</h6><small style="font-size: 0.7rem;">Coming Soon</small></div>
-            <div class="upcoming-box" style="padding: 8px;"><h6 style="font-size: 0.8rem;">Semester 5</h6><small style="font-size: 0.7rem;">Coming Soon</small></div>
-            <div class="upcoming-box" style="padding: 8px;"><h6 style="font-size: 0.8rem;">Semester 6</h6><small style="font-size: 0.7rem;">Coming Soon</small></div>
-            <div class="upcoming-box" style="padding: 8px;"><h6 style="font-size: 0.8rem;">Semester 7</h6><small style="font-size: 0.7rem;">Coming Soon</small></div>
-            <div class="upcoming-box" style="padding: 8px; grid-column: span 2;"><h6 style="font-size: 0.8rem;">Semester 8</h6><small style="font-size: 0.7rem;">Coming Soon</small></div>
+            <div class="upcoming-title">⏳ Upcoming Semesters</div>
+            <div class="upcoming-grid">
+              <div class="upcoming-box"><h6>Semester 2</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 3</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 4</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 5</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 6</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 7</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 8</h6><small>Coming Soon</small></div>
+            </div>
           </div>
-
-          <!-- Progress Bar -->
-          <div class="progress mt-3" style="height: 8px; background: #334155;">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 12.5%;" aria-valuenow="12.5" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <p class="text-muted mb-0 mt-1" style="font-size: 0.75rem;">Semester 1 of 8</p>
         </div>
-      </div>
-    </div>
 
-    <!-- BATCH CYS25 (2025) -->
-    <div class="col-lg-4 col-md-6 mb-4 batch-card-wrapper" data-batch="CYS25">
-      <div class="batch-card h-100 mb-0">
-        <div class="batch-header">
-          <div>
-            <h4 style="font-size: 1.2rem;">🎓 Batch 2025</h4>
-            <span class="sub">2nd Year</span>
+        <!-- BATCH CYS25 -->
+        <div class="batch-card" data-batch="CYS25">
+          <div class="batch-header">
+            <div>
+              <h4>🎓 Batch 2025 (CYS25)</h4>
+              <span class="sub">2nd Year</span>
+            </div>
+            <span class="badge-current">Current</span>
           </div>
-          <span class="badge-current" style="font-size: 0.7rem; padding: 4px 10px;">Current</span>
-        </div>
-        <div class="batch-body" style="padding: 15px;">
-          <div class="batch-stats" style="flex-wrap: wrap; gap: 10px;">
-            <div><small>Current Semester</small><h6>Semester 3</h6></div>
-            <div><small>Published</small><h6>3</h6></div>
-          </div>
-          
-          <div class="latest-box" style="padding: 15px;">
-            <div class="badge-latest" style="font-size: 0.7rem;">⭐ LATEST</div>
-            <h5>Semester 3</h5>
-            <button class="btn-view w-100" onclick="showTimetable('CYS25')" style="margin-bottom: 5px;">👁 View</button>
-            <button class="btn-download w-100 m-0" onclick="alert('Download will be available soon.')">↓ Download</button>
-          </div>
+          <div class="batch-body">
+            <div class="batch-stats">
+              <div><small>Current Semester</small><h6>Semester 3</h6></div>
+              <div><small>Academic Session</small><h6>20 Jul 2026 - 18-Nov-26</h6></div>
+              <div><small>Published Timetables</small><h6>3</h6></div>
+            </div>
+            
+            <div class="latest-box">
+              <div class="badge-latest">⭐ LATEST TIMETABLE</div>
+              <h5>Semester 3</h5>
+              <p>Current Published Timetable</p>
+              <a href="https://i.ibb.co/Qv3Fqh4H/workshop.png" target="_blank" class="btn-view">👁 View</a>
+              <a href="https://i.ibb.co/Qv3Fqh4H/workshop.png" download class="btn-download">↓ Download</a>
+            </div>
 
-          <div class="accordion mb-3" id="accordionCYS25">
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" style="font-size: 0.85rem; padding: 10px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS25">
-                  📁 Previous
-                </button>
-              </h2>
-              <div id="collapseCYS25" class="accordion-collapse collapse" data-bs-parent="#accordionCYS25">
-                <div class="accordion-body p-2">
-                  <div class="d-flex justify-content-between border-bottom py-1" style="font-size: 0.8rem;"><span>Sem 1</span><small class="text-muted">N/A</small></div>
-                  <div class="d-flex justify-content-between py-1" style="font-size: 0.8rem;"><span>Sem 2</span><small class="text-muted">N/A</small></div>
+            <div class="accordion mb-3" id="accordionCYS25">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS25">📁 Previous Timetables</button>
+                </h2>
+                <div id="collapseCYS25" class="accordion-collapse collapse" data-bs-parent="#accordionCYS25">
+                  <div class="accordion-body p-3">
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 1</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between py-2"><span>Semester 2</span><small class="text-muted">PDF not uploaded</small></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="upcoming-title" style="font-size: 0.9rem;">⏳ Upcoming Semesters</div>
-          <div class="upcoming-grid" style="grid-template-columns: 1fr 1fr; gap: 8px;">
-            <div class="upcoming-box" style="padding: 8px;"><h6 style="font-size: 0.8rem;">Semester 4</h6><small style="font-size: 0.7rem;">Coming Soon</small></div>
-            <div class="upcoming-box" style="padding: 8px;"><h6 style="font-size: 0.8rem;">Semester 5</h6><small style="font-size: 0.7rem;">Coming Soon</small></div>
-            <div class="upcoming-box" style="padding: 8px;"><h6 style="font-size: 0.8rem;">Semester 6</h6><small style="font-size: 0.7rem;">Coming Soon</small></div>
-            <div class="upcoming-box" style="padding: 8px;"><h6 style="font-size: 0.8rem;">Semester 7</h6><small style="font-size: 0.7rem;">Coming Soon</small></div>
-            <div class="upcoming-box" style="padding: 8px; grid-column: span 2;"><h6 style="font-size: 0.8rem;">Semester 8</h6><small style="font-size: 0.7rem;">Coming Soon</small></div>
+            <div class="upcoming-title">⏳ Upcoming Semesters</div>
+            <div class="upcoming-grid">
+              <div class="upcoming-box"><h6>Semester 4</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 5</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 6</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 7</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 8</h6><small>Coming Soon</small></div>
+            </div>
           </div>
-
-          <!-- Progress Bar -->
-          <div class="progress mt-3" style="height: 8px; background: #334155;">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 37.5%;" aria-valuenow="37.5" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <p class="text-muted mb-0 mt-1" style="font-size: 0.75rem;">Semester 3 of 8</p>
         </div>
-      </div>
-    </div>
 
-    <!-- BATCH CYS24 (2024) -->
-    <div class="col-lg-4 col-md-6 mb-4 batch-card-wrapper" data-batch="CYS24">
-      <div class="batch-card h-100 mb-0">
-        <div class="batch-header">
-          <div>
-            <h4 style="font-size: 1.2rem;">🎓 Batch 2024</h4>
-            <span class="sub">3rd Year</span>
+        <!-- BATCH CYS24 -->
+        <div class="batch-card" data-batch="CYS24">
+          <div class="batch-header">
+            <div>
+              <h4>🎓 Batch 2024 (CYS24)</h4>
+              <span class="sub">3rd Year</span>
+            </div>
+            <span class="badge-current">Current</span>
           </div>
-          <span class="badge-current" style="font-size: 0.7rem; padding: 4px 10px;">Current</span>
-        </div>
-        <div class="batch-body" style="padding: 15px;">
-          <div class="batch-stats" style="flex-wrap: wrap; gap: 10px;">
-            <div><small>Current Semester</small><h6>Semester 5</h6></div>
-            <div><small>Published</small><h6>5</h6></div>
-          </div>
-          
-          <div class="latest-box" style="padding: 15px;">
-            <div class="badge-latest" style="font-size: 0.7rem;">⭐ LATEST</div>
-            <h5>Semester 5</h5>
-            <button class="btn-view w-100" onclick="showTimetable('CYS24')" style="margin-bottom: 5px;">👁 View</button>
-            <button class="btn-download w-100 m-0" onclick="alert('Download will be available soon.')">↓ Download</button>
-          </div>
+          <div class="batch-body">
+            <div class="batch-stats">
+              <div><small>Current Semester</small><h6>Semester 5</h6></div>
+              <div><small>Academic Session</small><h6>27 Jul 2026 - 18-Nov-26</h6></div>
+              <div><small>Published Timetables</small><h6>5</h6></div>
+            </div>
+            
+            <div class="latest-box">
+              <div class="badge-latest">⭐ LATEST TIMETABLE</div>
+              <h5>Semester 5</h5>
+              <p>Current Published Timetable</p>
+              <a href="https://i.ibb.co/ZRgvLSq2/event.png" target="_blank" class="btn-view">👁 View</a>
+              <a href="https://i.ibb.co/ZRgvLSq2/event.png" download class="btn-download">↓ Download</a>
+            </div>
 
-          <div class="accordion mb-3" id="accordionCYS24">
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" style="font-size: 0.85rem; padding: 10px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS24">
-                  📁 Previous
-                </button>
-              </h2>
-              <div id="collapseCYS24" class="accordion-collapse collapse" data-bs-parent="#accordionCYS24">
-                <div class="accordion-body p-2">
-                  <div class="d-flex justify-content-between border-bottom py-1" style="font-size: 0.8rem;"><span>Sem 1 - 4</span><small class="text-muted">N/A</small></div>
+            <div class="accordion mb-3" id="accordionCYS24">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS24">📁 Previous Timetables</button>
+                </h2>
+                <div id="collapseCYS24" class="accordion-collapse collapse" data-bs-parent="#accordionCYS24">
+                  <div class="accordion-body p-3">
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 1</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 2</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 3</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between py-2"><span>Semester 4</span><small class="text-muted">PDF not uploaded</small></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="upcoming-title" style="font-size: 0.9rem;">⏳ Upcoming Semesters</div>
-          <div class="upcoming-grid" style="grid-template-columns: 1fr 1fr; gap: 8px;">
-            <div class="upcoming-box" style="padding: 8px;"><h6 style="font-size: 0.8rem;">Semester 6</h6><small style="font-size: 0.7rem;">Coming Soon</small></div>
-            <div class="upcoming-box" style="padding: 8px;"><h6 style="font-size: 0.8rem;">Semester 7</h6><small style="font-size: 0.7rem;">Coming Soon</small></div>
-            <div class="upcoming-box" style="padding: 8px; grid-column: span 2;"><h6 style="font-size: 0.8rem;">Semester 8</h6><small style="font-size: 0.7rem;">Coming Soon</small></div>
+            <div class="upcoming-title">⏳ Upcoming Semesters</div>
+            <div class="upcoming-grid">
+              <div class="upcoming-box"><h6>Semester 6</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 7</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 8</h6><small>Coming Soon</small></div>
+            </div>
           </div>
-
-          <!-- Progress Bar -->
-          <div class="progress mt-3" style="height: 8px; background: #334155;">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 62.5%;" aria-valuenow="62.5" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <p class="text-muted mb-0 mt-1" style="font-size: 0.75rem;">Semester 5 of 8</p>
         </div>
-      </div>
-    </div>
 
-    <!-- BATCH CYS23 (2023) -->
-    <div class="col-lg-4 col-md-6 mb-4 batch-card-wrapper" data-batch="CYS23">
-      <div class="batch-card h-100 mb-0">
-        <div class="batch-header">
-          <div>
-            <h4 style="font-size: 1.2rem;">🎓 Batch 2023</h4>
-            <span class="sub">4th Year</span>
+        <!-- BATCH CYS23 -->
+        <div class="batch-card" data-batch="CYS23">
+          <div class="batch-header">
+            <div>
+              <h4>🎓 Batch 2023 (CYS23)</h4>
+              <span class="sub">4th Year</span>
+            </div>
+            <span class="badge-current">Current</span>
           </div>
-          <span class="badge-current" style="font-size: 0.7rem; padding: 4px 10px;">Current</span>
-        </div>
-        <div class="batch-body" style="padding: 15px;">
-          <div class="batch-stats" style="flex-wrap: wrap; gap: 10px;">
-            <div><small>Current Semester</small><h6>Semester 7</h6></div>
-            <div><small>Published</small><h6>7</h6></div>
-          </div>
-          
-          <div class="latest-box" style="padding: 15px;">
-            <div class="badge-latest" style="font-size: 0.7rem;">⭐ LATEST</div>
-            <h5>Semester 7</h5>
-            <button class="btn-view w-100" onclick="showTimetable('CYS23')" style="margin-bottom: 5px;">👁 View</button>
-            <button class="btn-download w-100 m-0" onclick="alert('Download will be available soon.')">↓ Download</button>
-          </div>
+          <div class="batch-body">
+            <div class="batch-stats">
+              <div><small>Current Semester</small><h6>Semester 7</h6></div>
+              <div><small>Academic Session</small><h6>27 Jul 2026 - 18-Nov-26</h6></div>
+              <div><small>Published Timetables</small><h6>7</h6></div>
+            </div>
+            
+            <div class="latest-box">
+              <div class="badge-latest">⭐ LATEST TIMETABLE</div>
+              <h5>Semester 7</h5>
+              <p>Current Published Timetable</p>
+              <a href="https://i.ibb.co/Nd9fzwtM/file-0000000062288208a1fd05c8553e5ddb.png" target="_blank" class="btn-view">👁 View</a>
+              <a href="https://i.ibb.co/Nd9fzwtM/file-0000000062288208a1fd05c8553e5ddb.png" download class="btn-download">↓ Download</a>
+            </div>
 
-          <div class="accordion mb-3" id="accordionCYS23">
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" style="font-size: 0.85rem; padding: 10px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS23">
-                  📁 Previous
-                </button>
-              </h2>
-              <div id="collapseCYS23" class="accordion-collapse collapse" data-bs-parent="#accordionCYS23">
-                <div class="accordion-body p-2">
-                  <div class="d-flex justify-content-between border-bottom py-1" style="font-size: 0.8rem;"><span>Sem 1 - 6</span><small class="text-muted">N/A</small></div>
+            <div class="accordion mb-3" id="accordionCYS23">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS23">📁 Previous Timetables</button>
+                </h2>
+                <div id="collapseCYS23" class="accordion-collapse collapse" data-bs-parent="#accordionCYS23">
+                  <div class="accordion-body p-3">
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 1</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 2</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 3</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 4</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 5</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between py-2"><span>Semester 6</span><small class="text-muted">PDF not uploaded</small></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="upcoming-title" style="font-size: 0.9rem;">⏳ Upcoming Semesters</div>
-          <div class="upcoming-grid" style="grid-template-columns: 1fr 1fr; gap: 8px;">
-            <div class="upcoming-box" style="padding: 8px; grid-column: span 2;"><h6 style="font-size: 0.8rem;">Semester 8</h6><small style="font-size: 0.7rem;">Coming Soon</small></div>
+            <div class="upcoming-title">⏳ Upcoming Semesters</div>
+            <div class="upcoming-grid">
+              <div class="upcoming-box"><h6>Semester 8</h6><small>Coming Soon</small></div>
+            </div>
           </div>
-
-          <!-- Progress Bar -->
-          <div class="progress mt-3" style="height: 8px; background: #334155;">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 87.5%;" aria-valuenow="87.5" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <p class="text-muted mb-0 mt-1" style="font-size: 0.75rem;">Semester 7 of 8</p>
         </div>
-      </div>
-    </div>
 
-  </div> <!-- End Batch Container -->
+      </div> <!-- End Batch Container -->
 
-  <!-- SEARCH & FILTER SECTION -->
-  <div class="search-section mt-5">
-    <div class="row g-3">
-      <div class="col-md-8">
-        <input type="text" id="searchInput" class="form-control search-input" placeholder="🔍 Search Batch, Study Year..." onkeyup="filterBatches()">
+      <!-- SEARCH & FILTER SECTION -->
+      <div class="search-section mt-5">
+        <div class="row g-3">
+          <div class="col-md-8">
+            <input type="text" id="searchInput" class="form-control search-input" placeholder="🔍 Search Batch, Study Year..." onkeyup="filterBatches()">
+          </div>
+          <div class="col-md-4">
+            <select class="form-select filter-select" id="batchFilter" onchange="filterBatches()">
+              <option value="all">All Batches</option>
+              <option value="CYS26">Batch 2026 (CYS26)</option>
+              <option value="CYS25">Batch 2025 (CYS25)</option>
+              <option value="CYS24">Batch 2024 (CYS24)</option>
+              <option value="CYS23">Batch 2023 (CYS23)</option>
+            </select>
+          </div>
+        </div>
+        <p class="note-text mt-4 mb-0">Timetables are updated by the Department Office. Students are advised to regularly check this page for the latest revisions.</p>
       </div>
-      <div class="col-md-4">
-        <select class="form-select filter-select" id="batchFilter" onchange="filterBatches()">
-          <option value="all">All Batches</option>
-          <option value="CYS26">Batch 2026 (CYS26)</option>
-          <option value="CYS25">Batch 2025 (CYS25)</option>
-          <option value="CYS24">Batch 2024 (CYS24)</option>
-          <option value="CYS23">Batch 2023 (CYS23)</option>
-        </select>
-      </div>
-    </div>
-    <p class="note-text mt-4 mb-0">Timetables are updated by the Department Office. Students are advised to regularly check this page for the latest revisions.</p>
-  </div>
 
-</div>
-
-<!-- ═══════════ TIMETABLE VIEW MODAL ═══════════ -->
-<div class="modal fade" id="timetableModal" tabindex="-1">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content" style="background: #1e293b; color: white; border-radius: 15px;">
-      <div class="modal-header" style="border-bottom: 1px solid #334155;">
-        <h5 class="modal-title" id="modalBatchTitle" style="color: #60a5fa; font-weight: 700;">Timetable</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" style="filter: invert(1);"></button>
-      </div>
-      <div class="modal-body" id="modalBody">
-        <!-- Data will be injected here -->
-      </div>
     </div>
   </div>
 </div>
@@ -415,108 +365,17 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-// ─── DATA FOR VIEW MODAL ───
-const timetableData = {
-  'CYS26': {
-    title: 'Batch 2026 (CYS26) - Semester 1',
-    schedule: [
-      { day: 'Monday', subject: 'PF', time: '08:30 - 09:30', room: 'CYS Room 01', teacher: 'Mr. M. Umar' },
-      { day: 'Tuesday', subject: 'CF', time: '08:30 - 09:30', room: 'CYS Room 01', teacher: 'Mr. Aamir' },
-      { day: 'Wednesday', subject: 'IS', time: '08:30 - 09:30', room: 'CYS Room 01', teacher: 'Mr. Fareed' },
-      { day: 'Thursday', subject: 'PF', time: '08:30 - 09:30', room: 'CYS Room 01', teacher: 'Mr. M. Umar' },
-      { day: 'Friday', subject: 'PF (Pr)', time: '08:30 - 09:30', room: 'CYS Lab', teacher: 'Mr. M. Umar' }
-    ]
-  },
-  'CYS25': {
-    title: 'Batch 2025 (CYS25) - Semester 3',
-    schedule: [
-      { day: 'Monday', subject: 'DSA', time: '08:30 - 10:30', room: 'CYS Room 02', teacher: 'Dr. Adnan' },
-      { day: 'Monday', subject: 'CS', time: '11:00 - 13:00', room: 'CYS Room 02', teacher: 'Mr. Shan' },
-      { day: 'Tuesday', subject: 'DBS', time: '08:30 - 10:30', room: 'AI Room 01', teacher: 'Mr. Aurangzeb' },
-      { day: 'Wednesday', subject: 'AI', time: '08:30 - 10:30', room: 'AI Room 01', teacher: 'Dr. Saifullah' },
-      { day: 'Thursday', subject: 'AI', time: '08:30 - 09:30', room: 'CYS Room 02', teacher: 'Dr. Saifullah' },
-      { day: 'Friday', subject: 'AI (Pr)', time: '08:30 - 09:30', room: 'Networking Lab', teacher: 'Ms. Tooba' }
-    ]
-  },
-  'CYS24': {
-    title: 'Batch 2024 (CYS24) - Semester 5',
-    schedule: [
-      { day: 'Monday', subject: 'CL&E', time: '08:30 - 09:30', room: 'Net Sec Lab', teacher: 'Mr. Aurangzeb' },
-      { day: 'Monday', subject: 'ML', time: '09:30 - 12:00', room: 'Net Sec Lab', teacher: 'Dr. Ibrahim' },
-      { day: 'Tuesday', subject: 'OS', time: '08:30 - 09:30', room: 'Net Sec Lab', teacher: 'Dr. Saifullah' },
-      { day: 'Wednesday', subject: 'SSD', time: '08:30 - 10:30', room: 'Net Sec Lab', teacher: 'Mr. Umar' },
-      { day: 'Thursday', subject: 'NS', time: '08:30 - 10:30', room: 'Net Sec Lab', teacher: 'Dr. Adnan' },
-      { day: 'Friday', subject: 'ML (Pr)', time: '08:30 - 09:30', room: 'FYDP Lab', teacher: 'Ms. Tabassum' }
-    ]
-  },
-  'CYS23': {
-    title: 'Batch 2023 (CYS23) - Semester 7',
-    schedule: [
-      { day: 'Monday', subject: 'FYP-I', time: '08:30 - 12:00', room: 'CYS Room 02', teacher: 'All Faculty' },
-      { day: 'Tuesday', subject: 'IM', time: '08:30 - 10:30', room: 'CYS Room 02', teacher: 'Ms. Faryal' },
-      { day: 'Tuesday', subject: 'DM', time: '11:00 - 13:00', room: 'CYS Room 02', teacher: 'Mr. Aamir' },
-      { day: 'Wednesday', subject: 'IA', time: '09:30 - 13:00', room: 'CYS Room 02', teacher: 'Mr. Aurangzeb' },
-      { day: 'Thursday', subject: 'DS&A (Pr)', time: '08:30 - 13:00', room: 'HPC Lab', teacher: 'Mr. Aamir' },
-      { day: 'Friday', subject: 'DS&A', time: '08:30 - 10:30', room: 'CYS Room 02', teacher: 'Mr. Aamir' }
-    ]
-  }
-};
-
-// ─── SHOW TIMETABLE MODAL ───
-function showTimetable(batchKey) {
-  const data = timetableData[batchKey];
-  if (!data) return;
-
-  document.getElementById('modalBatchTitle').innerText = data.title;
-  
-  let tableHTML = `
-    <table class="table table-dark table-hover table-bordered mb-0">
-      <thead>
-        <tr>
-          <th>Day</th>
-          <th>Time</th>
-          <th>Subject</th>
-          <th>Room</th>
-          <th>Teacher</th>
-        </tr>
-      </thead>
-      <tbody>
-  `;
-  
-  data.schedule.forEach(cls => {
-    tableHTML += `
-      <tr>
-        <td>${cls.day}</td>
-        <td>${cls.time}</td>
-        <td class="fw-bold text-info">${cls.subject}</td>
-        <td>${cls.room}</td>
-        <td>${cls.teacher}</td>
-      </tr>
-    `;
-  });
-  
-  tableHTML += `</tbody></table>`;
-  document.getElementById('modalBody').innerHTML = tableHTML;
-
-  // Open Modal
-  const modal = new bootstrap.Modal(document.getElementById('timetableModal'));
-  modal.show();
-}
-
 // ─── SEARCH & FILTER LOGIC ───
 function filterBatches() {
   const searchQuery = document.getElementById('searchInput').value.toLowerCase();
   const selectedBatch = document.getElementById('batchFilter').value;
-  const cards = document.querySelectorAll('.batch-card-wrapper');
+  const cards = document.querySelectorAll('.batch-card');
 
   cards.forEach(card => {
-    const batchName = card.getAttribute('data-batch'); // e.g., CYS26
+    const batchName = card.getAttribute('data-batch');
     const cardText = card.innerText.toLowerCase();
     
-    // Check Search
     const matchesSearch = cardText.includes(searchQuery);
-    
-    // Check Filter dropdown
     const matchesFilter = (selectedBatch === 'all' || selectedBatch === batchName);
 
     if (matchesSearch && matchesFilter) {
@@ -525,12 +384,6 @@ function filterBatches() {
       card.style.display = 'none';
     }
   });
-}
-
-// ─── COPY LINK FUNCTION ───
-function copyLink() {
-  navigator.clipboard.writeText(window.location.href);
-  alert("Page link copied to clipboard!");
 }
 </script>
 </body>
