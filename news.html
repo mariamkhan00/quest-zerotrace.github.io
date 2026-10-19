@@ -8,7 +8,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <style>
 :root { --primary: #0B72B9; --dark: #0A1929; }
-body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; }
+body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
 .navbar { background: var(--dark) !important; padding: 10px 0; }
 .navbar-brand { color: white !important; font-weight: 700; display: flex; align-items: center; gap: 10px; }
 .nav-link { color: white !important; font-size: 1rem; padding: 5px 10px !important; }
@@ -16,12 +16,23 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; }
 .dropdown-menu { background-color: var(--dark); border: 1px solid #333; }
 .dropdown-item { color: white !important; }
 .dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
+
+/* ARTICLE STYLES */
 .article-header { background: white; padding: 40px 20px; border-bottom: 1px solid #ddd; margin-bottom: 30px; }
 .article-title { color: var(--primary); font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; }
 .article-date { color: #666; font-size: 1rem; }
 .article-content { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
 .article-content p { font-size: 1.1rem; line-height: 1.8; color: #333; margin-bottom: 20px; }
-.article-img { width: 100%; border-radius: 10px; margin-bottom: 25px; }
+
+/* IMAGE GALLERY GRID */
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-bottom: 30px; }
+.gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); transition: 0.3s; cursor: pointer; }
+.gallery-img:hover { transform: scale(1.03); }
+
+/* HIDE UNSELECTED EVENTS */
+.event-section { display: none; }
+.event-section.active { display: block; }
+
 footer { background: var(--dark); color: white; padding: 30px 20px; text-align: center; margin-top: 50px; }
 </style>
 </head>
@@ -65,47 +76,114 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
   </div>
 </nav>
 
-<div class="article-header text-center">
-  <div class="container">
-    <h1 class="article-title" id="newsTitle">BSCYS QUIZ & CTF Hackathon</h1>
-    <p class="article-date"><i class="far fa-calendar-alt"></i> October 15, 2026 | <i class="fas fa-tag"></i> Events</p>
-  </div>
-</div>
+<!-- MAIN CONTAINER -->
+<div class="container mb-5" style="margin-top: 40px;">
 
-<div class="container mb-5">
-  <div class="row">
-    <div class="col-lg-8 mx-auto">
-      <div class="article-content">
-        <img id="newsImage" src="https://i.ibb.co/ZRgvLSq2/event.png" alt="Hackathon" class="article-img">
-        <p id="newsText">The Cyber Security Department at Quaid-e-Awam University of Engineering, Science & Technology (QUEST), Nawabshah, successfully organized a highly competitive <strong>Capture The Flag (CTF) Hackathon and Quiz</strong>. The event brought together talented students from various batches to test their practical cybersecurity skills.</p>
-        <p>Students participated with great enthusiasm, solving complex challenges related to cryptography, web exploitation, reverse engineering, and digital forensics. The primary objective of this event was to bridge the gap between theoretical knowledge and real-world industry requirements.</p>
-        <p>The worthy Chairman of the Department, along with faculty members, appreciated the participants' efforts. Winners were awarded certificates and cash prizes to encourage their journey in the field of cybersecurity.</p>
-        <br>
-        <a href="index.html" class="btn btn-primary" style="background: var(--primary);">&larr; Back to Home</a>
+  <!-- EVENT 1: AWARENESS SESSION -->
+  <div id="event1" class="event-section">
+    <div class="article-header text-center">
+      <h1 class="article-title">CYSE 26 BATCH AWARENESS SESSION</h1>
+      <p class="article-date"><i class="far fa-calendar-alt"></i> October 19, 2026 | <i class="fas fa-tag"></i> Events</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="article-content">
+          <div class="gallery-grid">
+            <img src="https://i.ibb.co/BK2Yhw81/IMG-20261019-WA0043.jpg" class="gallery-img" alt="Awareness 1">
+            <img src="https://i.ibb.co/nsCr1zBg/IMG-20261019-WA0050.jpg" class="gallery-img" alt="Awareness 2">
+            <img src="https://i.ibb.co/xSLPq0Ks/IMG-20261019-WA0048.jpg" class="gallery-img" alt="Awareness 3">
+            <img src="https://i.ibb.co/zw9q1gL/IMG-20261019-WA0049.jpg" class="gallery-img" alt="Awareness 4">
+            <img src="https://i.ibb.co/bMzgBMvy/IMG-20261019-WA0047.jpg" class="gallery-img" alt="Awareness 5">
+          </div>
+          <p>The Cyber Security Department successfully organized an <strong>Awareness Session</strong> for the newly inducted CYSE 26 Batch. The session aimed to introduce students to the importance of cybersecurity in the modern digital era.</p>
+          <p>Faculty members discussed the curriculum, career opportunities, and the ethical responsibilities of a cybersecurity professional. Students were highly interactive and showed great enthusiasm for their upcoming academic journey.</p>
+          <div class="mt-4">
+            <a href="index.html" class="btn btn-primary" style="background: var(--primary);">&larr; Back to Home</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- EVENT 2: ORIENTATION -->
+  <div id="event2" class="event-section">
+    <div class="article-header text-center">
+      <h1 class="article-title">CYSE 26 BATCH ORIENTATION</h1>
+      <p class="article-date"><i class="far fa-calendar-alt"></i> October 19, 2026 | <i class="fas fa-tag"></i> Events</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="article-content">
+          <div class="gallery-grid">
+            <img src="https://i.ibb.co/0V2HRXKc/IMG-20261019-WA0044.jpg" class="gallery-img" alt="Orientation 1">
+            <img src="https://i.ibb.co/XZ6HdNhg/IMG-20261019-WA0045.jpg" class="gallery-img" alt="Orientation 2">
+            <img src="https://i.ibb.co/35njvnX2/IMG-20261019-WA0042.jpg" class="gallery-img" alt="Orientation 3">
+          </div>
+          <p>The Department of Cyber Security hosted a warm <strong>Orientation Ceremony</strong> to welcome the CYSE 26 Batch. The event was graced by the Chairman, Dean, and esteemed faculty members.</p>
+          <p>Students were briefed about the university's code of conduct, the BS Cyber Security program structure, and the state-of-the-art laboratory facilities available to them. The orientation helped students build a connection with their teachers and peers.</p>
+          <div class="mt-4">
+            <a href="index.html" class="btn btn-primary" style="background: var(--primary);">&larr; Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVENT 3: AGENTIC AI SESSION -->
+  <div id="event3" class="event-section">
+    <div class="article-header text-center">
+      <h1 class="article-title">AGENTIC AI SESSION FOR CYBERSECURITY</h1>
+      <p class="article-date"><i class="far fa-calendar-alt"></i> October 19, 2026 | <i class="fas fa-tag"></i> Seminar</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="article-content">
+          <div class="gallery-grid">
+            <img src="https://i.ibb.co/B2tzdjFD/IMG-20261019-WA0041.jpg" class="gallery-img" alt="Agentic AI Session">
+          </div>
+          <p>An insightful technical session on <strong>Agentic AI in Cybersecurity</strong> was conducted for the students. The session explored how autonomous AI agents are revolutionizing threat detection, automated response, and vulnerability management.</p>
+          <p>Students learned about the intersection of AI and security, and how modern enterprises are using AI-driven tools to defend against sophisticated cyber attacks. The session concluded with a Q&A round.</p>
+          <div class="mt-4">
+            <a href="index.html" class="btn btn-primary" style="background: var(--primary);">&larr; Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <footer>
   <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+  // URL se ID nikalne ka script (jaise news.html?id=1)
   const urlParams = new URLSearchParams(window.location.search);
   const newsId = urlParams.get('id');
 
-  if (newsId === '2') {
-    document.getElementById('newsTitle').innerText = "Cybersecurity Awareness Seminar";
-    document.getElementById('newsImage').src = "https://i.ibb.co/Qv3Fqh4H/workshop.png";
-    document.getElementById('newsText').innerHTML = "A highly informative seminar was conducted by the Cyber Security Department to spread awareness about phishing attacks, digital safety, and how to protect personal data from modern cyber threats.";
+  // Sab sections ko pehle hide karo
+  document.getElementById('event1').classList.remove('active');
+  document.getElementById('event2').classList.remove('active');
+  document.getElementById('event3').classList.remove('active');
+
+  // Agar URL mein id=1 ho toh Event 1 dikhao
+  if (newsId === '1') {
+    document.getElementById('event1').classList.add('active');
   } 
+  // Agar id=2 ho toh Event 2 dikhao
+  else if (newsId === '2') {
+    document.getElementById('event2').classList.add('active');
+  } 
+  // Agar id=3 ho toh Event 3 dikhao
   else if (newsId === '3') {
-    document.getElementById('newsTitle').innerText = "Industry Visit to PTA";
-    document.getElementById('newsImage').src = "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
-    document.getElementById('newsText').innerHTML = "Students of the Cyber Security Department visited Pakistan Telecommunication Authority (PTA). The visit provided practical exposure to industry standards, network defense, and how national institutions protect digital infrastructure.";
+    document.getElementById('event3').classList.add('active');
+  } 
+  // Agar koi ID na ho, toh default Event 1 dikhao
+  else {
+    document.getElementById('event1').classList.add('active');
   }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
