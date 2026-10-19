@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academic Timetables - QUEST Cyber Security</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root { --primary: #0B72B9; --dark: #0A1929; }
+body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
+.navbar { background: var(--dark) !important; padding: 10px 0; }
+.navbar-brand { color: white !important; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.nav-link { color: white !important; font-size: 1rem; padding: 5px 10px !important; }
+.nav-link:hover { color: #00D4FF !important; }
+.dropdown-menu { background-color: var(--dark); border: 1px solid #333; }
+.dropdown-item { color: white !important; }
+.dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
+.hero-timetable { background: linear-gradient(135deg, #0B72B9, #0A1929); color: white; padding: 60px 20px; text-align: center; }
+.hero-timetable h1 { font-weight: 700; font-size: 3rem; margin-bottom: 15px; }
+.smartday-card { background: var(--dark); color: white; border-radius: 15px; padding: 30px; margin-top: -30px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); position: relative; z-index: 10; border: 1px solid #333; margin-bottom: 40px;}
+.smartday-card h4 { color: #00D4FF; font-weight: 700; margin-bottom: 10px; }
+.features-list { list-style: none; padding: 0; margin: 20px 0; }
+.features-list li { margin-bottom: 10px; color: #ccc; font-size: 0.95rem; }
+.features-list li i { color: #00D4FF; margin-right: 10px; width: 20px; }
+.btn-custom { background: var(--primary); color: white; border-radius: 8px; font-weight: 700; padding: 12px 25px; text-decoration: none; display: inline-block; transition: 0.3s; border: none; }
+.btn-custom:hover { background: #0056b3; color: white; }
+.qr-container { background: white; padding: 15px; border-radius: 10px; display: inline-block; margin-top: 15px; }
+.batch-card { border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 30px; background: #1e293b; color: white; }
+.batch-header { background: linear-gradient(90deg, #3b82f6, #6366f1); padding: 20px; display: flex; justify-content: space-between; align-items: center; color: white; }
+.batch-header h4 { margin: 0; font-weight: 700; font-size: 1.5rem; }
+.batch-header span.sub { font-size: 0.9rem; opacity: 0.8; display: block; margin-top: 5px; }
+.batch-header .badge-current { background: #22c55e; color: white; padding: 6px 15px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; }
+.batch-body { padding: 25px; }
+.batch-stats { display: flex; justify-content: space-between; text-align: left; border-bottom: 1px solid #334155; padding-bottom: 20px; margin-bottom: 20px; }
+.batch-stats div small { color: #94a3b8; font-size: 0.85rem; display: block; margin-bottom: 5px; }
+.batch-stats div h6 { color: white; font-weight: 600; margin: 0; font-size: 1.05rem; }
+.latest-box { border: 2px solid #3b82f6; border-radius: 10px; padding: 20px; background: #0f172a; margin-bottom: 20px; }
+.badge-latest { background: #facc15; color: #000; padding: 5px 12px; border-radius: 5px; font-weight: 700; font-size: 0.8rem; display: inline-block; margin-bottom: 15px; }
+.latest-box h5 { font-weight: 700; margin-bottom: 5px; color: white; }
+.latest-box p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px; }
+.btn-view { background: #3b82f6; color: white; border: none; padding: 8px 20px; border-radius: 5px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; text-decoration: none; display: inline-block;}
+.btn-view:hover { background: #2563eb; color: white; }
+.btn-download { background: transparent; color: white; border: 1px solid #64748b; padding: 8px 20px; border-radius: 5px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; margin-left: 10px; text-decoration: none; display: inline-block;}
+.btn-download:hover { background: #334155; color: white; }
+.accordion-button { background: #1e293b; color: #60a5fa; border: 1px solid #334155; font-weight: 600; box-shadow: none !important; }
+.accordion-button:not(.collapsed) { background: #0f172a; color: #60a5fa; }
+.accordion-item { background: #1e293b; border: none; margin-bottom: 10px; border-radius: 8px !important; overflow: hidden; }
+.accordion-body { background: #0f172a; color: #cbd5e1; padding: 0; }
+.upcoming-title { color: white; font-weight: 600; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+.upcoming-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.upcoming-box { border: 1px dashed #eab308; border-radius: 10px; padding: 15px; text-align: center; background: #1e293b; }
+.upcoming-box h6 { color: white; font-weight: 600; margin: 0; }
+.upcoming-box small { color: #eab308; font-size: 0.8rem; }
+.search-section { background: var(--dark); padding: 30px; border-radius: 15px; margin-top: 40px; }
+.search-input { background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px; padding: 12px 20px; }
+.search-input::placeholder { color: #64748b; }
+.filter-select { background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px; padding: 12px 20px; }
+.note-text { color: #64748b; font-size: 0.9rem; text-align: center; margin-top: 20px; }
+.progress { height: 6px; background: #334155; border-radius: 3px; }
+footer { background: var(--dark); color: white; padding: 30px 20px; text-align: center; margin-top: 50px; }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo" style="height: 45px; background: white; border-radius: 50%; padding: 2px;">
+      <div>
+        <span style="display: block; line-height: 1.2;">QUEST Cyber Security</span>
+        <span style="font-size: 0.7rem; color: #aaa;">Department Portal</span>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="chairman.html">Chairman & Dean</a></li>
+            <li><a class="dropdown-item" href="department.html">Department</a></li>
+            <li><a class="dropdown-item" href="labs.html">Laboratories</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">Programs</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="programs.html">Undergraduate (BS)</a></li>
+            <li><a class="dropdown-item" href="curriculum.html">Curriculum</a></li>
+            <li><a class="dropdown-item" href="timetable.html">Timetable</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="hero-timetable">
+  <div class="container">
+    <h1>Academic Timetables</h1>
+    <p class="lead">View the latest and previous semester timetables for each undergraduate batch.</p>
+  </div>
+</div>
+
+<div class="container pb-5">
+  <div class="row">
+    <div class="col-lg-9 mx-auto">
+      
+      <div class="smartday-card text-center">
+        <h4><i class="fas fa-mobile-alt me-2"></i> ZeroTrace SmartDay — Live Daily Timetable</h4>
+        <p class="text-muted mb-0">Always the updated timetable · scan the QR code or tap Open</p>
+        <div class="badge-latest mt-3"><i class="fas fa-star"></i> UPDATED TIMETABLE</div>
+        <p class="mt-4 text-start" style="color: #ddd;">Choose your batch to see today's class card on your phone. It is designed for quick checks between classes.</p>
+        <ul class="features-list text-start">
+          <li><i class="fas fa-circle text-success"></i> What is on <b>now</b> and what is <b>next</b></li>
+          <li><i class="fas fa-calendar-alt"></i> Full schedule of the day with rooms</li>
+          <li><i class="fas fa-bell"></i> Department events of the day</li>
+        </ul>
+        <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+          <a href="smartday.html" class="btn-custom"><i class="fas fa-rocket"></i> Open SmartDay</a>
+          <button onclick="copyLink()" class="btn btn-outline-light" style="border-radius: 8px; font-weight: 600;"><i class="fas fa-link"></i> Copy link</button>
+        </div>
+        <div class="qr-container mt-4">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://mariamkhan00.github.io/zerotrace-quest.github.io/smartday.html" alt="QR Code" style="width: 150px; height: 150px;">
+          <p class="text-dark mb-0 mt-2" style="font-size: 0.8rem; font-weight: 600;">Scan with your phone camera</p>
+        </div>
+      </div>
+
+      <div id="batch-container">
+
+        <!-- BATCH CYS26 -->
+        <div class="batch-card" data-batch="CYS26">
+          <div class="batch-header">
+            <div>
+              <h4>🎓 Batch 2026 (CYS26)</h4>
+              <span class="sub">1st Year</span>
+            </div>
+            <span class="badge-current">Current</span>
+          </div>
+          <div class="batch-body">
+            <div class="batch-stats">
+              <div><small>Current Semester</small><h6>Semester 1</h6></div>
+              <div><small>Academic Session</small><h6>20 Jul 2026 - 18-Nov-26</h6></div>
+              <div><small>Published</small><h6>1</h6></div>
+            </div>
+            <div class="latest-box">
+              <div class="badge-latest">⭐ LATEST TIMETABLE</div>
+              <h5>Semester 1</h5>
+              <p>Current Published Timetable</p>
+              <a href="https://i.ibb.co/6P3K5bZ/image.png" target="_blank" class="btn-view">👁 View</a>
+              <a href="https://i.ibb.co/6P3K5bZ/image.png" download class="btn-download">↓ Download</a>
+            </div>
+            <div class="accordion mb-3" id="accordionCYS26">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS26">📁 Previous Timetables</button>
+                </h2>
+                <div id="collapseCYS26" class="accordion-collapse collapse" data-bs-parent="#accordionCYS26">
+                  <div class="accordion-body p-3"><p class="text-muted mb-0" style="font-size: 0.9rem;">No previous timetables available.</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="upcoming-title">⏳ Upcoming Semesters</div>
+            <div class="upcoming-grid">
+              <div class="upcoming-box"><h6>Semester 2</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 3</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 4</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 5</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 6</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 7</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 8</h6><small>Coming Soon</small></div>
+            </div>
+            <div class="mt-4">
+              <div class="progress">
+                <div class="progress-bar bg-primary" role="progressbar" style="width: 12.5%;"></div>
+              </div>
+              <p class="text-muted small mt-2 mb-0">Semester 1 of 8 (12.5% Completed)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BATCH CYS25 -->
+        <div class="batch-card" data-batch="CYS25">
+          <div class="batch-header">
+            <div>
+              <h4>🎓 Batch 2025 (CYS25)</h4>
+              <span class="sub">2nd Year</span>
+            </div>
+            <span class="badge-current">Current</span>
+          </div>
+          <div class="batch-body">
+            <div class="batch-stats">
+              <div><small>Current Semester</small><h6>Semester 3</h6></div>
+              <div><small>Academic Session</small><h6>20 Jul 2026 - 18-Nov-26</h6></div>
+              <div><small>Published</small><h6>3</h6></div>
+            </div>
+            <div class="latest-box">
+              <div class="badge-latest">⭐ LATEST TIMETABLE</div>
+              <h5>Semester 3</h5>
+              <p>Current Published Timetable</p>
+              <a href="https://i.ibb.co/Qv3Fqh4H/workshop.png" target="_blank" class="btn-view">👁 View</a>
+              <a href="https://i.ibb.co/Qv3Fqh4H/workshop.png" download class="btn-download">↓ Download</a>
+            </div>
+            <div class="accordion mb-3" id="accordionCYS25">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS25">📁 Previous Timetables</button>
+                </h2>
+                <div id="collapseCYS25" class="accordion-collapse collapse" data-bs-parent="#accordionCYS25">
+                  <div class="accordion-body p-3">
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 1</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between py-2"><span>Semester 2</span><small class="text-muted">PDF not uploaded</small></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="upcoming-title">⏳ Upcoming Semesters</div>
+            <div class="upcoming-grid">
+              <div class="upcoming-box"><h6>Semester 4</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 5</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 6</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 7</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 8</h6><small>Coming Soon</small></div>
+            </div>
+            <div class="mt-4">
+              <div class="progress">
+                <div class="progress-bar bg-primary" role="progressbar" style="width: 37.5%;"></div>
+              </div>
+              <p class="text-muted small mt-2 mb-0">Semester 3 of 8 (37.5% Completed)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BATCH CYS24 -->
+        <div class="batch-card" data-batch="CYS24">
+          <div class="batch-header">
+            <div>
+              <h4>🎓 Batch 2024 (CYS24)</h4>
+              <span class="sub">3rd Year</span>
+            </div>
+            <span class="badge-current">Current</span>
+          </div>
+          <div class="batch-body">
+            <div class="batch-stats">
+              <div><small>Current Semester</small><h6>Semester 5</h6></div>
+              <div><small>Academic Session</small><h6>27 Jul 2026 - 18-Nov-26</h6></div>
+              <div><small>Published</small><h6>5</h6></div>
+            </div>
+            <div class="latest-box">
+              <div class="badge-latest">⭐ LATEST TIMETABLE</div>
+              <h5>Semester 5</h5>
+              <p>Current Published Timetable</p>
+              <a href="https://i.ibb.co/ZRgvLSq2/event.png" target="_blank" class="btn-view">👁 View</a>
+              <a href="https://i.ibb.co/ZRgvLSq2/event.png" download class="btn-download">↓ Download</a>
+            </div>
+            <div class="accordion mb-3" id="accordionCYS24">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS24">📁 Previous Timetables</button>
+                </h2>
+                <div id="collapseCYS24" class="accordion-collapse collapse" data-bs-parent="#accordionCYS24">
+                  <div class="accordion-body p-3">
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 1</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 2</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 3</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between py-2"><span>Semester 4</span><small class="text-muted">PDF not uploaded</small></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="upcoming-title">⏳ Upcoming Semesters</div>
+            <div class="upcoming-grid">
+              <div class="upcoming-box"><h6>Semester 6</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 7</h6><small>Coming Soon</small></div>
+              <div class="upcoming-box"><h6>Semester 8</h6><small>Coming Soon</small></div>
+            </div>
+            <div class="mt-4">
+              <div class="progress">
+                <div class="progress-bar bg-primary" role="progressbar" style="width: 62.5%;"></div>
+              </div>
+              <p class="text-muted small mt-2 mb-0">Semester 5 of 8 (62.5% Completed)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BATCH CYS23 -->
+        <div class="batch-card" data-batch="CYS23">
+          <div class="batch-header">
+            <div>
+              <h4>🎓 Batch 2023 (CYS23)</h4>
+              <span class="sub">4th Year</span>
+            </div>
+            <span class="badge-current">Current</span>
+          </div>
+          <div class="batch-body">
+            <div class="batch-stats">
+              <div><small>Current Semester</small><h6>Semester 7</h6></div>
+              <div><small>Academic Session</small><h6>27 Jul 2026 - 18-Nov-26</h6></div>
+              <div><small>Published</small><h6>7</h6></div>
+            </div>
+            <div class="latest-box">
+              <div class="badge-latest">⭐ LATEST TIMETABLE</div>
+              <h5>Semester 7</h5>
+              <p>Current Published Timetable</p>
+              <a href="https://i.ibb.co/Nd9fzwtM/file-0000000062288208a1fd05c8553e5ddb.png" target="_blank" class="btn-view">👁 View</a>
+              <a href="https://i.ibb.co/Nd9fzwtM/file-0000000062288208a1fd05c8553e5ddb.png" download class="btn-download">↓ Download</a>
+            </div>
+            <div class="accordion mb-3" id="accordionCYS23">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS23">📁 Previous Timetables</button>
+                </h2>
+                <div id="collapseCYS23" class="accordion-collapse collapse" data-bs-parent="#accordionCYS23">
+                  <div class="accordion-body p-3">
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 1</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 2</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 3</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 4</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 5</span><small class="text-muted">PDF not uploaded</small></div>
+                    <div class="d-flex justify-content-between py-2"><span>Semester 6</span><small class="text-muted">PDF not uploaded</small></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="upcoming-title">⏳ Upcoming Semesters</div>
+            <div class="upcoming-grid">
+              <div class="upcoming-box"><h6>Semester 8</h6><small>Coming Soon</small></div>
+            </div>
+            <div class="mt-4">
+              <div class="progress">
+                <div class="progress-bar bg-primary" role="progressbar" style="width: 87.5%;"></div>
+              </div>
+              <p class="text-muted small mt-2 mb-0">Semester 7 of 8 (87.5% Completed)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="search-section mt-5">
+        <div class="row g-3">
+          <div class="col-md-8">
+            <input type="text" id="searchInput" class="form-control search-input" placeholder="🔍 Search Batch, Study Year..." onkeyup="filterBatches()">
+          </div>
+          <div class="col-md-4">
+            <select class="form-select filter-select" id="batchFilter" onchange="filterBatches()">
+              <option value="all">All Batches</option>
+              <option value="CYS26">Batch 2026 (CYS26)</option>
+              <option value="CYS25">Batch 2025 (CYS25)</option>
+              <option value="CYS24">Batch 2024 (CYS24)</option>
+              <option value="CYS23">Batch 2023 (CYS23)</option>
+            </select>
+          </div>
+        </div>
+        <p class="note-text mt-4 mb-0">Timetables are updated by the Department Office. Students are advised to regularly check this page for the latest revisions.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href);
+  alert("Page link copied to clipboard!");
+}
+
+function filterBatches() {
+  const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+  const selectedBatch = document.getElementById('batchFilter').value;
+  const cards = document.querySelectorAll('.batch-card');
+
+  cards.forEach(card => {
+    const batchName = card.getAttribute('data-batch');
+    const cardText = card.innerText.toLowerCase();
+    const matchesSearch = cardText.includes(searchQuery);
+    const matchesFilter = (selectedBatch === 'all' || selectedBatch === batchName);
+
+    if (matchesSearch && matchesFilter) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
