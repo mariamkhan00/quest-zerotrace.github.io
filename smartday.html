@@ -35,6 +35,24 @@ body { background-color: #eef2f5; font-family: 'Segoe UI', sans-serif; display: 
 .status-none { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
 .class-subject { font-size: 1.4rem; font-weight: 700; margin: 5px 0; }
 .class-details { font-size: 0.9rem; opacity: 0.8; }
+  /* BACK TO HOME BUTTON */
+.btn-home {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 30px;
+  background-color: #0B72B9;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: 0.3s;
+  border: none;
+}
+.btn-home:hover {
+  background-color: #0A1929;
+  color: white;
+  transform: translateY(-2px);
+}
 </style>
 </head>
 <body>
@@ -253,7 +271,30 @@ function loadBatch(batchKey) {
 function timeToMins(timeStr) {
   const parts = timeStr.split(':');
   return (parseInt(parts[0]) * 60) + parseInt(parts[1]);
-}
+}  // Line 274 (Function ka end)
+
+</script>  <!-- Line 275 -->
+
+  </div> <!-- Yeh Line 282 wala div hai (End app-container) -->
+
+  <!-- YAHAN SE BUTTON START HAI -->
+  <div class="text-center pb-4 mt-3">
+    <a href="index.html" class="btn-home">
+      <i class="fas fa-home me-2"></i> Back to Home
+    </a>
+  </div>
+  <!-- BUTTON END -->
+
+</body>
+</html>
 </script>
+        <!-- BACK TO HOME BUTTON -->
+      <div class="text-center pb-4 mt-3">
+        <a href="index.html" class="btn-home">
+          <i class="fas fa-home me-2"></i> Back to Home
+        </a>
+      </div>
+
+    </div> <!-- End app-container -->
 </body>
 </html>
