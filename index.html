@@ -49,7 +49,6 @@ footer p { margin: 0; }
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg">
   <div class="container">
     <a class="navbar-brand" href="index.html">
@@ -193,7 +192,9 @@ function sendMessage() {
   body.innerHTML += `<div class="chat-msg msg-bot" id="${loadId}">Thinking...</div>`;
   body.scrollTop = body.scrollHeight;
 
-  const API_URL = "https://script.google.com/macros/s/AKfycbwlhRgyd7mt-6vf3-y_pQJzJOpvIPljmZUZaXd9B7xSc1QrdkoVHZ9ofnDm-NgE2v6fpQ/exec";  
+  // YAHAN APNA NAYA CHATBOT URL DAALO
+  const API_URL = "https://script.google.com/macros/s/AKfycbwtu3BY-_DEC_iSXcWE4b4WzAWhqq5LVN7SIyrPVAaU-3W6LQ20R_btI8TCnftYyOAdoQ/exec";  
+  
   fetch(API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -206,7 +207,9 @@ function sendMessage() {
 }
 
 function loadNewsFromSheet() {
-    const API_URL = "https://script.google.com/macros/s/AKfycbzROCQko4ITvjpz94TOkDvYikjtEM8POETZU-jakQFCg7lqaL9jCwdTEdB52IZrG2Oh3g/exec"; 
+    // YAHAN APNA NAYA CHATBOT URL DAALO
+    const API_URL = "https://script.google.com/macros/s/AKfycbwtu3BY-_DEC_iSXcWE4b4WzAWhqq5LVN7SIyrPVAaU-3W6LQ20R_btI8TCnftYyOAdoQ/exec"; 
+    
     fetch(API_URL + "?action=getNews")
     .then(response => response.json())
     .then(data => {
@@ -217,9 +220,10 @@ function loadNewsFromSheet() {
             return;
         }
         data.forEach((item, index) => {
+            // YAHAN SYNTAX FIX KIYA GAYA HAI (href wali line)
             let cardHTML = `
             <div class="col-md-4">
-              <a href="news.html?id=${index + 1}" ...> style="text-decoration: none; color: inherit;">
+              <a href="news.html?id=${index + 1}" style="text-decoration: none; color: inherit;">
                 <div class="news-card">
                   <img src="${item.image}" class="news-img" alt="${item.title}" onerror="this.src='https://via.placeholder.com/400x200?text=No+Image'">
                   <div class="news-body">
