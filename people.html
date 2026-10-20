@@ -243,7 +243,7 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
 </div>
 
 <!-- ═══════════════════════════════════════════════════ -->
-<!-- PROFILE DETAILS VIEWS (Hidden initially, shown via JS) -->
+<!-- PROFILE DETAILS VIEWS -->
 <!-- ═══════════════════════════════════════════════════ -->
 
 <!-- DEAN PROFILE -->
@@ -560,7 +560,12 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
     profiles.forEach(p => p.classList.remove('active'));
     
     // Show the selected profile
-    document.getElementById('profile-' + profileId).classList.add('active');
+    const selectedProfile = document.getElementById('profile-' + profileId);
+    if (selectedProfile) {
+      selectedProfile.classList.add('active');
+    } else {
+      console.log("Profile not found: " + profileId);
+    }
     
     // Scroll to top
     window.scrollTo(0, 0);
