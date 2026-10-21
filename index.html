@@ -120,7 +120,50 @@ footer p { margin: 0; }
 <div class="container">
   <h2 class="section-title">News & Announcements</h2>
   <div class="row g-4" id="news-container">
-    <p class="text-center text-muted py-5"><i class="fas fa-spinner fa-spin me-2"></i>Loading Latest News...</p>
+    <!-- News 1 -->
+    <div class="col-md-4">
+      <a href="news.html?id=1" style="text-decoration: none; color: inherit;">
+        <div class="news-card">
+          <img src="https://i.ibb.co/BK2Yhw81/IMG-20261019-WA0043.jpg" class="news-img" alt="Awareness Session">
+          <div class="news-body">
+            <span class="news-date">October 19, 2026</span>
+            <div class="news-title">CYSE 26 BATCH AWARENESS SESSION</div>
+            <p class="news-text">The Cyber Security Department successfully organized an Awareness Session...</p>
+            <span class="text-primary fw-bold mt-2 d-inline-block">Read More &rarr;</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- News 2 -->
+    <div class="col-md-4">
+      <a href="news.html?id=2" style="text-decoration: none; color: inherit;">
+        <div class="news-card">
+          <img src="https://i.ibb.co/0V2HRXKc/IMG-20261019-WA0044.jpg" class="news-img" alt="Orientation">
+          <div class="news-body">
+            <span class="news-date">October 18, 2026</span>
+            <div class="news-title">CYSE 26 BATCH ORIENTATION</div>
+            <p class="news-text">The Department of Cyber Security hosted a warm Orientation Ceremony to welcome...</p>
+            <span class="text-primary fw-bold mt-2 d-inline-block">Read More &rarr;</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- News 3 -->
+    <div class="col-md-4">
+      <a href="news.html?id=3" style="text-decoration: none; color: inherit;">
+        <div class="news-card">
+          <img src="https://i.ibb.co/B2tzdjFD/IMG-20261019-WA0041.jpg" class="news-img" alt="Agentic AI Session">
+          <div class="news-body">
+            <span class="news-date">October 17, 2026</span>
+            <div class="news-title">AGENTIC AI SESSION</div>
+            <p class="news-text">An insightful technical session on Agentic AI in Cybersecurity was conducted...</p>
+            <span class="text-primary fw-bold mt-2 d-inline-block">Read More &rarr;</span>
+          </div>
+        </div>
+      </a>
+    </div>
   </div>
 </div>
 
@@ -205,46 +248,6 @@ function sendMessage() {
   .then(data => { document.getElementById(loadId).innerText = data.reply; body.scrollTop = body.scrollHeight; })
   .catch(err => { document.getElementById(loadId).innerText = "The AI server is currently busy. Please try again in a minute."; body.scrollTop = body.scrollHeight; });
 }
-
-function loadNewsFromSheet() {
-    // YAHAN APNA NAYA CHATBOT URL DAALO
-    const API_URL = "https://script.google.com/macros/s/AKfycbwtu3BY-_DEC_iSXcWE4b4WzAWhqq5LVN7SIyrPVAaU-3W6LQ20R_btI8TCnftYyOAdoQ/exec"; 
-    
-    fetch(API_URL + "?action=getNews")
-    .then(response => response.json())
-    .then(data => {
-        const newsContainer = document.getElementById("news-container");
-        newsContainer.innerHTML = ""; 
-        if (data.length === 0) {
-            newsContainer.innerHTML = "<p class='text-center text-muted'>No news available at the moment.</p>";
-            return;
-        }
-        data.forEach((item, index) => {
-            // YAHAN SYNTAX FIX KIYA GAYA HAI (href wali line)
-            let cardHTML = `
-            <div class="col-md-4">
-              <a href="news.html?id=${index + 1}" style="text-decoration: none; color: inherit;">
-                <div class="news-card">
-                  <img src="${item.image}" class="news-img" alt="${item.title}" onerror="this.src='https://via.placeholder.com/400x200?text=No+Image'">
-                  <div class="news-body">
-                    <span class="news-date">${item.date}</span>
-                    <div class="news-title">${item.title}</div>
-                    <p class="news-text">${item.description.substring(0, 80)}...</p>
-                    <span class="text-primary fw-bold mt-2 d-inline-block">Read More &rarr;</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-            `;
-            newsContainer.innerHTML += cardHTML;
-        });
-    })
-    .catch(error => {
-        console.error("Error loading news:", error);
-        document.getElementById("news-container").innerHTML = "<p class='text-center text-danger'>Failed to load news. Please try again later.</p>";
-    });
-}
-document.addEventListener("DOMContentLoaded", loadNewsFromSheet);
 </script>
 </body>
 </html>
