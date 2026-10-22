@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard - QUEST Cyber Security</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+body { background-color: #f4f7fb; font-family: 'Segoe UI', sans-serif; }
+.navbar { background: #0A1929; padding: 15px 0; }
+.navbar-brand { color: white !important; font-weight: 700; }
+.dashboard-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-bottom: 30px; border-top: 5px solid #0B72B9; }
+.dashboard-card h3 { color: #0A1929; font-weight: 700; margin-bottom: 20px; }
+.btn-action { background: #0B72B9; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; }
+.btn-action:hover { background: #0A1929; color: white; }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><i class="fas fa-shield-alt me-2"></i>ZeroTrace Admin</a>
+    <div class="ms-auto">
+      <button class="btn btn-outline-light btn-sm" onclick="logout()">Logout <i class="fas fa-sign-out-alt ms-1"></i></button>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <h2 class="mb-4 text-dark fw-bold">Chairman Dashboard</h2>
+  <p class="text-muted mb-4">Welcome, Chairman. Yahan se aap teachers aur timetable update kar sakte hain.</p>
+
+  <div class="row">
+    <!-- Form: Update Timetable -->
+    <div class="col-md-8 mx-auto">
+      <div class="dashboard-card">
+        <h3><i class="fas fa-calendar-alt me-2"></i>Update Live Timetable</h3>
+        
+        <form id="updateForm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-bold">Batch</label>
+              <select id="batch" class="form-select" required>
+                <option value="26CYS">26CYS (Morning)</option>
+                <option value="25CYS">25CYS (Morning)</option>
+                <option value="24CYS">24CYS (Morning)</option>
+                <option value="23CYS">23CYS (Morning)</option>
+                <option value="26CYSE">26CYSE (Evening)</option>
+                <option value="25CYSE">25CYSE (Evening)</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-bold">Day</label>
+              <select id="day" class="form-select" required>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-bold">Start Time (e.g., 13:00)</label>
+              <input type="text" id="start" class="form-control" placeholder="13:00" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-bold">End Time (e.g., 14:40)</label>
+              <input type="text" id="end" class="form-control" placeholder="14:40" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-bold">Subject</label>
+              <input type="text" id="subject" class="form-control" placeholder="e.g., CF" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-bold">Teacher</label>
+              <input type="text" id="teacher" class="form-control" placeholder="e.g., Mr. Ali" required>
+            </div>
+            <div class="col-md-12">
+              <label class="form-label fw-bold">Room</label>
+              <input type="text" id="room" class="form-control" placeholder="e.g., CYS Room 02" required>
+            </div>
+            <div class="col-md-12 mt-4">
+              <button type="submit" class="btn-action w-100">Save Timetable Update</button>
+            </div>
+            <div id="message" class="text-center mt-3 fw-bold"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Check karo ke Chairman login hai ya nahi
+if (localStorage.getItem('isAdminLoggedIn') !== 'true') {
+  window.location.href = 'login.html';
+}
+
+function logout() {
+  localStorage.removeItem('isAdminLoggedIn');
+  window.location.href = 'login.html';
+}
+
+// Form Submit (Data Save)
+document.getElementById('updateForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const messageEl = document.getElementById('message');
+  messageEl.innerText = "Saving...";
+  messageEl.style.color = "blue";
+  
+  const rowData = [
+    document.getElementById('batch').value,
+    document.getElementById('day').value,
+    document.getElementById('start').value,
+    document.getElementById('end').value,
+    document.getElementById('subject').value,
+    document.getElementById('teacher').value,
+    document.getElementById('room').value
+  ];
+  
+  const API_URL = "https://script.google.com/macros/s/AKfycbwtu3BY-_DEC_iSXcWE4b4WzAWhqq5LVN7SIyrPVAaU-3W6LQ20R_btI8TCnftYyOAdoQ/exec";
+  
+  try {
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ 
+        action: "update", 
+        sheetName: "LIVE_TIMETABLE", 
+        rowData: rowData 
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (data.success) {
+      messageEl.innerText = "✅ Data Successfully Updated! Website par change dekhne ke liye refresh karein.";
+      messageEl.style.color = "green";
+      document.getElementById('updateForm').reset();
+    } else {
+      messageEl.innerText = "❌ Error: " + data.message;
+      messageEl.style.color = "red";
+    }
+  } catch (error) {
+    messageEl.innerText = "❌ Server Error!";
+    messageEl.style.color = "red";
+  }
+});
+</script>
+
+</body>
+</html>
