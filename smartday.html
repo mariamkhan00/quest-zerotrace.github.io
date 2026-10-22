@@ -35,24 +35,8 @@ body { background-color: #eef2f5; font-family: 'Segoe UI', sans-serif; display: 
 .status-none { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
 .class-subject { font-size: 1.4rem; font-weight: 700; margin: 5px 0; }
 .class-details { font-size: 0.9rem; opacity: 0.8; }
-  /* BACK TO HOME BUTTON */
-.btn-home {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 30px;
-  background-color: #0B72B9;
-  color: white;
-  text-decoration: none;
-  border-radius: 25px;
-  font-weight: 600;
-  transition: 0.3s;
-  border: none;
-}
-.btn-home:hover {
-  background-color: #0A1929;
-  color: white;
-  transform: translateY(-2px);
-}
+.btn-home { display: inline-block; margin-top: 20px; padding: 12px 30px; background-color: #0B72B9; color: white; text-decoration: none; border-radius: 25px; font-weight: 600; transition: 0.3s; border: none; }
+.btn-home:hover { background-color: #0A1929; color: white; transform: translateY(-2px); }
 </style>
 </head>
 <body>
@@ -121,34 +105,33 @@ body { background-color: #eef2f5; font-family: 'Segoe UI', sans-serif; display: 
         </div>
       </div>
     </div>
+    
+    <!-- BACK TO HOME BUTTON (SAHI JAGAH) -->
+    <div class="text-center pb-4 mt-3">
+      <a href="index.html" class="btn-home">
+        <i class="fas fa-home me-2"></i> Back to Home
+      </a>
+    </div>
   </div>
 </div>
 
 <script>
 let currentShift = '';
-let liveTimetableData = []; // Sheet se data yahan aayega
+let liveTimetableData = [];
 
-// ─── NAYA: Sheet se Live Data Fetch Karo ───
 async function fetchLiveData() {
-    // Yahan apna NAYA Apps Script URL daalna hai
     const API_URL = "https://script.google.com/macros/s/AKfycbwtu3BY-_DEC_iSXcWE4b4WzAWhqq5LVN7SIyrPVAaU-3W6LQ20R_btI8TCnftYyOAdoQ/exec"; 
-    
     try {
         const response = await fetch(API_URL + "?action=getLiveTimetable");
         const data = await response.json();
-        
         if (data && data.length > 0 && !data[0].error) {
             liveTimetableData = data;
-            console.log("Data Loaded:", liveTimetableData);
-        } else {
-            console.error("Error or No Data:", data);
         }
     } catch (error) {
         console.error("Fetch Error:", error);
     }
 }
 
-// Function to show a specific view
 function showView(viewId) {
   document.getElementById('view-shift').style.display = 'none';
   document.getElementById('view-batch').style.display = 'none';
@@ -156,12 +139,10 @@ function showView(viewId) {
   document.getElementById(viewId).style.display = 'block';
 }
 
-// Function to select Shift
 function selectShift(shift) {
   currentShift = shift;
   showView('view-batch');
   document.getElementById('shift-subtitle').innerText = shift + " — choose your batch";
-  
   if (shift === 'Morning') {
     document.getElementById('morning-batches').style.display = 'contents';
     document.getElementById('evening-batches').style.display = 'none';
@@ -171,11 +152,8 @@ function selectShift(shift) {
   }
 }
 
-// Function to load specific batch data
 function loadBatch(batchName) {
   showView('view-card');
-  
-  // Update UI
   document.getElementById('card-batch-name').innerText = batchName.split('_')[0];
   document.getElementById('card-shift-title').innerText = batchName.split('_')[1].toUpperCase() + " SHIFT - CYBER SECURITY";
   
@@ -185,20 +163,18 @@ function loadBatch(batchName) {
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   document.getElementById('card-date').innerText = now.toLocaleDateString('en-US', options);
 
-  // Hide all boxes initially
   document.getElementById('box-now').style.display = 'none';
   document.getElementById('box-next').style.display = 'none';
   document.getElementById('box-none').style.display = 'none';
 
-  // Weekend Check
   if (currentDay === 'Saturday' || currentDay === 'Sunday') {
     document.getElementById('box-none').style.display = 'block';
     document.getElementById('card-live-text').innerText = "Weekend - No Classes";
     return;
   }
 
-  // Sheet se aaj ka data filter karo
-  let searchBatch = batchName.replace("_Evening", "CYSE").replace("_Morning", "CYS");
+  // Batch name fix: CYS24_Morning -> 24CYS
+  let searchBatch = batchName.replace("CYS", "").replace("_Morning", "CYS").replace("_Evening", "CYSE");
   
   const todaySchedule = liveTimetableData.filter(item => 
       item.batch === searchBatch && item.day === currentDay
@@ -210,16 +186,12 @@ function loadBatch(batchName) {
     return;
   }
 
-  // Current time in minutes
   const currentTime = (now.getHours() * 60) + now.getMinutes();
-
   let ongoingClass = null;
   let nextClass = null;
 
-  // Find Ongoing and Next Class
   for (let i = 0; i < todaySchedule.length; i++) {
     let cls = todaySchedule[i];
-    
     let startMins = timeToMins(cls.start);
     let endMins = timeToMins(cls.end);
 
@@ -233,7 +205,6 @@ function loadBatch(batchName) {
     }
   }
 
-  // Display Result
   if (ongoingClass) {
     document.getElementById('box-now').style.display = 'block';
     document.getElementById('now-subject').innerText = ongoingClass.subject;
@@ -257,42 +228,41 @@ function loadBatch(batchName) {
   }
 }
 
-// Helper Function: Time ko minutes mein badalna
+// 🔥 YEH HAI ASLI FIX (Time Format) 🔥
 function timeToMins(timeStr) {
-  if (timeStr.includes("T")) {
-     let dateObj = new Date(timeStr);
-     return (dateObj.getUTCHours() * 60) + dateObj.getUTCMinutes();
+  if (typeof timeStr === 'number') {
+      // Agar Google Sheet se time number (0.354) aaye
+      let totalMins = Math.round(timeStr * 24 * 60);
+      return totalMins;
+  } else if (String(timeStr).includes("T")) {
+      // Agar JSON date format (1899-12-30T04:01) aaye
+      let dateObj = new Date(timeStr);
+      // Yahan local time use karenge taake timezone ka masla khatam ho
+      return (dateObj.getHours() * 60) + dateObj.getMinutes();
   }
-  const parts = timeStr.split(':');
+  // Agar normal string "8:30" aaye
+  const parts = String(timeStr).split(':');
   return (parseInt(parts[0]) * 60) + parseInt(parts[1]);
 }
 
-// Helper Function: Time ko wapas "13:00" format mein dikhana
 function formatTime(timeStr) {
-    if (timeStr.includes("T")) {
+    if (typeof timeStr === 'number') {
+        let totalMins = Math.round(timeStr * 24 * 60);
+        let h = Math.floor(totalMins / 60).toString().padStart(2, '0');
+        let m = (totalMins % 60).toString().padStart(2, '0');
+        return h + ":" + m;
+    } else if (String(timeStr).includes("T")) {
         let dateObj = new Date(timeStr);
-        let hours = dateObj.getUTCHours().toString().padStart(2, '0');
-        let mins = dateObj.getUTCMinutes().toString().padStart(2, '0');
+        let hours = dateObj.getHours().toString().padStart(2, '0');
+        let mins = dateObj.getMinutes().toString().padStart(2, '0');
         return hours + ":" + mins;
     }
     return timeStr;
 }
 
-// Initial Load
 document.addEventListener("DOMContentLoaded", () => {
     fetchLiveData();
 });
-</script>  <!-- Line 275 -->
-
-  </div> <!-- Yeh Line 282 wala div hai (End app-container) -->
-
-  <!-- YAHAN SE BUTTON START HAI -->
-  <div class="text-center pb-4 mt-3">
-    <a href="index.html" class="btn-home">
-      <i class="fas fa-home me-2"></i> Back to Home
-    </a>
-  </div>
-  <!-- BUTTON END -->
-
+</script>
 </body>
 </html>
