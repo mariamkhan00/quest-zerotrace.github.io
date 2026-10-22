@@ -126,51 +126,29 @@ body { background-color: #eef2f5; font-family: 'Segoe UI', sans-serif; display: 
 
 <script>
 let currentShift = '';
-const timetableData = {
-  'CYS26_Morning': {
-    'Monday': [{subject: 'PF', start: '08:30', end: '09:30', room: 'CYS Room 01', teacher: 'Mr. M. Umar'}, {subject: 'PS', start: '09:30', end: '10:30', room: 'CYS Room 01', teacher: 'Ms. Warkha'}],
-    'Tuesday': [{subject: 'CF', start: '08:30', end: '09:30', room: 'CYS Room 01', teacher: 'Mr. Aamir'}, {subject: 'PS', start: '11:00', end: '12:00', room: 'CYS Room 01', teacher: 'Ms. Warkha'}],
-    'Wednesday': [{subject: 'IS', start: '08:30', end: '09:30', room: 'CYS Room 01', teacher: 'Mr. Fareed'}],
-    'Thursday': [{subject: 'PF', start: '08:30', end: '09:30', room: 'CYS Room 01', teacher: 'Mr. M. Umar'}],
-    'Friday': [{subject: 'PF (Pr)', start: '08:30', end: '09:30', room: 'Lab', teacher: 'Mr. M. Umar'}]
-  },
-  'CYS25_Morning': {
-    'Monday': [{subject: 'DSA', start: '08:30', end: '10:30', room: 'CYS Room 02', teacher: 'Dr. Adnan'}, {subject: 'CS', start: '11:00', end: '13:00', room: 'CYS Room 02', teacher: 'Mr. Shan'}],
-    'Tuesday': [{subject: 'DBS', start: '08:30', end: '10:30', room: 'AI Room 01', teacher: 'Mr. Aurangzeb'}, {subject: 'AC', start: '12:00', end: '14:00', room: 'AI Room 01', teacher: 'Mr. Mumtaz'}],
-    'Wednesday': [{subject: 'AI', start: '08:30', end: '10:30', room: 'AI Room 01', teacher: 'Dr. Saifullah'}],
-    'Thursday': [{subject: 'AI', start: '08:30', end: '09:30', room: 'CYS Room 02', teacher: 'Dr. Saifullah'}, {subject: 'CS', start: '09:30', end: '10:30', room: 'CYS Room 02', teacher: 'Mr. Shan'}],
-    'Friday': [{subject: 'AI (Pr)', start: '08:30', end: '09:30', room: 'Networking Lab', teacher: 'Ms. Tooba'}]
-  },
-  'CYS24_Morning': {
-    'Monday': [{subject: 'CL&E', start: '08:30', end: '09:30', room: 'Net Sec Lab', teacher: 'Mr. Aurangzeb'}, {subject: 'ML', start: '09:30', end: '12:00', room: 'Net Sec Lab', teacher: 'Dr. Ibrahim'}],
-    'Tuesday': [{subject: 'OS', start: '08:30', end: '09:30', room: 'Net Sec Lab', teacher: 'Dr. Saifullah'}, {subject: 'DM', start: '11:00', end: '13:00', room: '25TC Room', teacher: 'Mr. Saeed'}],
-    'Wednesday': [{subject: 'SSD', start: '08:30', end: '10:30', room: 'Net Sec Lab', teacher: 'Mr. Umar'}, {subject: 'OS', start: '11:00', end: '13:00', room: '25TC Room', teacher: 'Dr. Saifullah'}],
-    'Thursday': [{subject: 'NS', start: '08:30', end: '10:30', room: 'Net Sec Lab', teacher: 'Dr. Adnan'}, {subject: 'DM', start: '11:00', end: '13:00', room: '25TC Room', teacher: 'Mr. Saeed'}],
-    'Friday': [{subject: 'ML (Pr)', start: '08:30', end: '09:30', room: 'FYDP Lab', teacher: 'Ms. Tabassum'}]
-  },
-  'CYS23_Morning': {
-    'Monday': [{subject: 'FYP-I', start: '08:30', end: '12:00', room: 'CYS Room 02', teacher: 'All Faculty'}],
-    'Tuesday': [{subject: 'IM', start: '08:30', end: '10:30', room: 'CYS Room 02', teacher: 'Ms. Faryal'}, {subject: 'DM', start: '11:00', end: '13:00', room: 'CYS Room 02', teacher: 'Mr. Aamir'}],
-    'Wednesday': [{subject: 'DM', start: '08:30', end: '09:30', room: 'CYS Room 02', teacher: 'Mr. Aamir'}, {subject: 'IA', start: '09:30', end: '13:00', room: 'CYS Room 02', teacher: 'Mr. Aurangzeb'}],
-    'Thursday': [{subject: 'DS&A (Pr)', start: '08:30', end: '13:00', room: 'HPC Lab', teacher: 'Mr. Aamir'}],
-    'Friday': [{subject: 'DS&A', start: '08:30', end: '10:30', room: 'CYS Room 02', teacher: 'Mr. Aamir'}, {subject: 'IA', start: '11:00', end: '12:00', room: 'CYS Room 02', teacher: 'Mr. Aurangzeb'}]
-  },
-  'CYS26_Evening': {
-    'Monday': [{subject: 'CF', start: '13:00', end: '14:40', room: 'CYS Room 02', teacher: 'Mr. Aurangzeb'}, {subject: 'PS', start: '14:40', end: '16:20', room: 'CYS Room 02', teacher: 'TBD'}, {subject: 'CBP', start: '16:20', end: '18:00', room: 'CYS Room 02', teacher: '-'}],
-    'Tuesday': [{subject: 'PF', start: '13:00', end: '14:40', room: 'CYS Room 02', teacher: 'Dr. Saifullah'}, {subject: 'IS', start: '14:40', end: '16:20', room: 'CYS Room 02', teacher: 'TBD'}, {subject: 'CBP', start: '16:20', end: '18:00', room: 'CYS Room 02', teacher: '-'}],
-    'Wednesday': [{subject: 'PF', start: '13:00', end: '13:50', room: 'CYS Room 02', teacher: 'Dr. Saifullah'}, {subject: 'FE', start: '13:50', end: '15:30', room: 'CYS Room 02', teacher: 'Mr. Asghar'}, {subject: 'PC-I', start: '15:30', end: '16:20', room: 'CYS Room 02', teacher: 'Mr. Ravi'}, {subject: 'CBP', start: '16:20', end: '18:00', room: 'CYS Room 02', teacher: '-'}],
-    'Thursday': [{subject: 'CF (Pr)', start: '13:00', end: '14:40', room: 'CYS Room 02', teacher: 'Mr. Aurangzeb'}, {subject: 'PC-I', start: '14:40', end: '16:20', room: 'CYS Room 02', teacher: 'Mr. Ravi'}, {subject: 'CF (Pr)', start: '16:20', end: '17:10', room: 'CYS Room 02', teacher: 'Mr. Aurangzeb'}],
-    'Friday': [{subject: 'PF (Pr)', start: '14:00', end: '15:40', room: 'CYS Room 02', teacher: 'Mr. M. Umar'}, {subject: 'FE', start: '15:40', end: '17:20', room: 'CYS Room 02', teacher: 'Mr. Asghar'}]
-  },
-  'CYS25_Evening': {
-    'Monday': [{subject: 'DSA', start: '13:00', end: '14:40', room: 'CYS Room 01', teacher: 'Dr. Ubaidullah'}, {subject: 'DBS', start: '14:40', end: '15:30', room: 'CYS Room 01', teacher: 'Engr. Ikhtihar'}, {subject: 'AC', start: '15:30', end: '17:10', room: 'CYS Room 01', teacher: 'Dr. Sanaullah'}],
-    'Tuesday': [{subject: 'AI', start: '13:00', end: '14:40', room: 'CYS Room 01', teacher: 'Ms. Beenish'}, {subject: 'DSA', start: '14:40', end: '15:30', room: 'CYS Room 01', teacher: 'Dr. Ubaidullah'}, {subject: 'AI (Pr)', start: '15:30', end: '17:10', room: 'CSE Deptt', teacher: 'Ms. Beenish'}],
-    'Wednesday': [{subject: 'DBS', start: '13:00', end: '14:40', room: 'CYS Room 01', teacher: 'Engr. Ikhtihar'}, {subject: 'DBS (Pr)', start: '14:40', end: '17:10', room: 'CSE Deptt', teacher: 'Ms. Faryal'}],
-    'Thursday': [{subject: 'CS', start: '13:00', end: '13:50', room: 'CYS Room 01', teacher: 'Mr. Asghar'}, {subject: 'AI', start: '13:50', end: '14:40', room: 'CYS Room 01', teacher: 'Ms. Beenish'}, {subject: 'DSA (Pr)', start: '14:40', end: '17:10', room: 'CSE Deptt', teacher: 'Ms. Faryal'}],
-    'Friday': [{subject: 'CS', start: '14:00', end: '15:40', room: 'CYS Room 01', teacher: 'Mr. Asghar'}, {subject: 'AC', start: '15:40', end: '16:30', room: 'CYS Room 01', teacher: 'Dr. Sanaullah'}]
-  }
-};
+let liveTimetableData = []; // Sheet se data yahan aayega
 
+// ─── NAYA: Sheet se Live Data Fetch Karo ───
+async function fetchLiveData() {
+    // Yahan apna NAYA Apps Script URL daalna hai
+    const API_URL = "https://script.google.com/macros/s/AKfycbwtu3BY-_DEC_iSXcWE4b4WzAWhqq5LVN7SIyrPVAaU-3W6LQ20R_btI8TCnftYyOAdoQ/exec"; 
+    
+    try {
+        const response = await fetch(API_URL + "?action=getLiveTimetable");
+        const data = await response.json();
+        
+        if (data && data.length > 0 && !data[0].error) {
+            liveTimetableData = data;
+            console.log("Data Loaded:", liveTimetableData);
+        } else {
+            console.error("Error or No Data:", data);
+        }
+    } catch (error) {
+        console.error("Fetch Error:", error);
+    }
+}
+
+// Function to show a specific view
 function showView(viewId) {
   document.getElementById('view-shift').style.display = 'none';
   document.getElementById('view-batch').style.display = 'none';
@@ -178,6 +156,7 @@ function showView(viewId) {
   document.getElementById(viewId).style.display = 'block';
 }
 
+// Function to select Shift
 function selectShift(shift) {
   currentShift = shift;
   showView('view-batch');
@@ -192,15 +171,13 @@ function selectShift(shift) {
   }
 }
 
-function loadBatch(batchKey) {
+// Function to load specific batch data
+function loadBatch(batchName) {
   showView('view-card');
   
-  const parts = batchKey.split('_');
-  const batchName = parts[0];
-  const shiftName = parts[1];
-  
-  document.getElementById('card-batch-name').innerText = batchName;
-  document.getElementById('card-shift-title').innerText = shiftName.toUpperCase() + " SHIFT - CYBER SECURITY";
+  // Update UI
+  document.getElementById('card-batch-name').innerText = batchName.split('_')[0];
+  document.getElementById('card-shift-title').innerText = batchName.split('_')[1].toUpperCase() + " SHIFT - CYBER SECURITY";
   
   const now = new Date();
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -208,30 +185,41 @@ function loadBatch(batchKey) {
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   document.getElementById('card-date').innerText = now.toLocaleDateString('en-US', options);
 
+  // Hide all boxes initially
   document.getElementById('box-now').style.display = 'none';
   document.getElementById('box-next').style.display = 'none';
   document.getElementById('box-none').style.display = 'none';
 
+  // Weekend Check
   if (currentDay === 'Saturday' || currentDay === 'Sunday') {
     document.getElementById('box-none').style.display = 'block';
-    document.getElementById('card-live-text').innerText = "Weekend";
+    document.getElementById('card-live-text').innerText = "Weekend - No Classes";
     return;
   }
 
-  const todaySchedule = timetableData[batchKey][currentDay];
+  // Sheet se aaj ka data filter karo
+  let searchBatch = batchName.replace("_Evening", "CYSE").replace("_Morning", "CYS");
   
+  const todaySchedule = liveTimetableData.filter(item => 
+      item.batch === searchBatch && item.day === currentDay
+  );
+
   if (!todaySchedule || todaySchedule.length === 0) {
     document.getElementById('box-none').style.display = 'block';
     document.getElementById('card-live-text').innerText = "No classes scheduled";
     return;
   }
 
+  // Current time in minutes
   const currentTime = (now.getHours() * 60) + now.getMinutes();
+
   let ongoingClass = null;
   let nextClass = null;
 
+  // Find Ongoing and Next Class
   for (let i = 0; i < todaySchedule.length; i++) {
     let cls = todaySchedule[i];
+    
     let startMins = timeToMins(cls.start);
     let endMins = timeToMins(cls.end);
 
@@ -245,17 +233,18 @@ function loadBatch(batchKey) {
     }
   }
 
+  // Display Result
   if (ongoingClass) {
     document.getElementById('box-now').style.display = 'block';
     document.getElementById('now-subject').innerText = ongoingClass.subject;
-    document.getElementById('now-details').innerText = ongoingClass.start + " - " + ongoingClass.end + " | Room: " + ongoingClass.room + " | " + ongoingClass.teacher;
+    document.getElementById('now-details').innerText = formatTime(ongoingClass.start) + " - " + formatTime(ongoingClass.end) + " | Room: " + ongoingClass.room + " | " + ongoingClass.teacher;
     document.getElementById('card-live-text').innerText = "Class is currently ongoing";
   }
 
   if (nextClass) {
     document.getElementById('box-next').style.display = 'block';
     document.getElementById('next-subject').innerText = nextClass.subject;
-    document.getElementById('next-details').innerText = nextClass.start + " - " + nextClass.end + " | Room: " + nextClass.room + " | " + nextClass.teacher;
+    document.getElementById('next-details').innerText = formatTime(nextClass.start) + " - " + formatTime(nextClass.end) + " | Room: " + nextClass.room + " | " + nextClass.teacher;
     if(!ongoingClass) document.getElementById('card-live-text').innerText = "Next class is scheduled";
   } else if (ongoingClass && !nextClass) {
     document.getElementById('box-next').style.display = 'block';
@@ -268,11 +257,31 @@ function loadBatch(batchKey) {
   }
 }
 
+// Helper Function: Time ko minutes mein badalna
 function timeToMins(timeStr) {
+  if (timeStr.includes("T")) {
+     let dateObj = new Date(timeStr);
+     return (dateObj.getUTCHours() * 60) + dateObj.getUTCMinutes();
+  }
   const parts = timeStr.split(':');
   return (parseInt(parts[0]) * 60) + parseInt(parts[1]);
-}  // Line 274 (Function ka end)
+}
 
+// Helper Function: Time ko wapas "13:00" format mein dikhana
+function formatTime(timeStr) {
+    if (timeStr.includes("T")) {
+        let dateObj = new Date(timeStr);
+        let hours = dateObj.getUTCHours().toString().padStart(2, '0');
+        let mins = dateObj.getUTCMinutes().toString().padStart(2, '0');
+        return hours + ":" + mins;
+    }
+    return timeStr;
+}
+
+// Initial Load
+document.addEventListener("DOMContentLoaded", () => {
+    fetchLiveData();
+});
 </script>  <!-- Line 275 -->
 
   </div> <!-- Yeh Line 282 wala div hai (End app-container) -->
