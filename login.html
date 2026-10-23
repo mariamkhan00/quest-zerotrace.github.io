@@ -64,7 +64,8 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
       localStorage.setItem('isAdminLoggedIn', 'true'); // Session save
       // Login hone ke baad direct Google Sheet kholo
     const sheetId = "1GnD0lgc0P6EnD_7G5SOIWNvqcMIqIup0T1ZBQIAaDJI";
-window.location.href = "https://docs.google.com/spreadsheets/d/" + sheetId + "/edit?usp=sharing"; 
+// Login successful - Hidden Admin Page par bhejo (Iframe wali)
+window.location.href = 'admin.html';  
     } else {
       errorMsg.innerText = data.message;
       errorMsg.style.display = 'block';
