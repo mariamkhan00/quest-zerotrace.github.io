@@ -40,9 +40,13 @@ body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background-color: #ff
 .news-date { color: #888; font-size: 0.9rem; margin-bottom: 10px; display: block; }
 .news-title { font-size: 1.2rem; font-weight: 700; color: var(--primary); text-decoration: none; }
 .news-text { color: #555; font-size: 0.95rem; margin-top: 10px; }
-.contact-section { background: var(--light); padding: 60px 20px; margin-top: 60px; }
-.contact-box { text-align: center; padding: 30px; }
-.contact-box i { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
+.contact-section { background: #222222; color: white; padding: 60px 20px; margin-top: 60px; }
+.contact-col { margin-bottom: 30px; }
+.contact-col h5 { color: white; font-weight: 700; margin-bottom: 20px; font-size: 1.2rem; }
+.contact-item { display: flex; align-items: flex-start; margin-bottom: 15px; color: #cccccc; font-size: 0.95rem; }
+.contact-item i { color: #0B72B9; font-size: 1.2rem; margin-right: 15px; margin-top: 3px; }
+.contact-item a { color: #cccccc; text-decoration: none; transition: 0.3s; }
+.contact-item a:hover { color: #00D4FF; }
 footer { background: var(--dark); color: white; padding: 30px 20px; text-align: center; }
 footer p { margin: 0; }
 </style>
@@ -181,31 +185,51 @@ footer p { margin: 0; }
     </div>
 </div>
 
+<!-- CONTACT US -->
 <section class="contact-section" id="contact">
   <div class="container">
-    <h2 class="section-title" style="margin-top: 0;">Contact Us</h2>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="contact-box">
+    <div class="text-center mb-5">
+      <h2 style="color: white; font-weight: 700;">Contact Us</h2>
+    </div>
+    
+    <div class="row mt-4">
+      
+      <!-- Location -->
+      <div class="col-md-3 contact-col">
+        <h5>Location</h5>
+        <div class="contact-item">
           <i class="fas fa-map-marker-alt"></i>
-          <h5>Location</h5>
-          <p>QUEST, Nawabshah, Sindh, Pakistan</p>
+          <span>Quaid-e-Awam University of Engineering, Science & Technology, Nawabshah, Sindh, Pakistan</span>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="contact-box">
+
+      <!-- Phone -->
+      <div class="col-md-3 contact-col">
+        <h5>Phone</h5>
+        <div class="contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>+92 244 9370367</span>
+        </div>
+      </div>
+
+      <!-- General Email -->
+      <div class="col-md-3 contact-col">
+        <h5>General Email</h5>
+        <div class="contact-item">
           <i class="fas fa-envelope"></i>
-          <h5>Email</h5>
-          <p>info@quest.edu.pk</p>
+          <a href="mailto:info@quest.edu.pk">info@quest.edu.pk</a>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="contact-box">
-          <i class="fas fa-phone"></i>
-          <h5>Phone</h5>
-          <p>+92 244 9370367</p>
+
+      <!-- Chairman Email -->
+      <div class="col-md-3 contact-col">
+        <h5>Chairman Email</h5>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:adnan.ahmed03@quest.edu.pk">adnan.ahmed03@quest.edu.pk</a>
         </div>
       </div>
+
     </div>
   </div>
 </section>
