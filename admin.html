@@ -9,6 +9,7 @@
   body { background: #f4f7fb; font-family: 'Segoe UI', sans-serif; }
   .navbar { background: #0A1929; }
   .table-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-top: 30px; }
+  .edit-form { background: #e3f2fd; padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 5px solid #0B72B9; }
 </style>
 </head>
 <body>
@@ -19,23 +20,63 @@
 </nav>
 
 <div class="container table-container">
-  <h4 class="mb-3 text-primary">Update Live Timetable Data</h4>
+  <h4 class="mb-3 text-primary">Live Timetable Data</h4>
+  <p class="text-muted small">Kisi bhi row ke aage 'Edit' button dabayein.</p>
+  
   <div class="table-responsive">
     <table class="table table-bordered table-hover" id="dataTable">
       <thead class="table-dark">
         <tr>
-          <th>Batch</th><th>Day</th><th>Start</th><th>End</th><th>Subject</th><th>Teacher</th><th>Room</th>
+          <th>Batch</th><th>Day</th><th>Start</th><th>End</th><th>Subject</th><th>Teacher</th><th>Room</th><th>Action</th>
         </tr>
       </thead>
       <tbody id="tableBody">
-        <tr><td colspan="7" class="text-center">Loading Data...</td></tr>
+        <tr><td colspan="8" class="text-center">Loading Data...</td></tr>
       </tbody>
     </table>
   </div>
+
+  <!-- EDIT FORM (Sirf tab dikhega jab Edit dabayein) -->
+  <div class="edit-form" id="editForm" style="display: none;">
+    <h5 class="text-dark mb-3">Edit Class Details</h5>
+    <form id="updateForm">
+      <input type="hidden" id="editBatch">
+      <input type="hidden" id="editDay">
+      <input type="hidden" id="editStart">
+      
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="fw-bold">Start Time</label>
+          <input type="text" id="editStartShow" class="form-control" readonly>
+        </div>
+        <div class="col-md-6">
+          <label class="fw-bold">End Time</label>
+          <input type="text" id="editEnd" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+          <label class="fw-bold">Subject</label>
+          <input type="text" id="editSubject" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+          <label class="fw-bold">Teacher</label>
+          <input type="text" id="editTeacher" class="form-control" required>
+        </div>
+        <div class="col-md-12">
+          <label class="fw-bold">Room</label>
+          <input type="text" id="editRoom" class="form-control" required>
+        </div>
+        <div class="col-md-12 mt-3">
+          <button type="submit" class="btn btn-success w-100 fw-bold">💾 Save Update</button>
+          <button type="button" class="btn btn-secondary w-100 mt-2" onclick="document.getElementById('editForm').style.display = 'none';">Cancel</button>
+        </div>
+      </div>
+    </form>
+    <div id="updateMsg" class="mt-3 text-center fw-bold"></div>
+  </div>
+
 </div>
 
 <script>
-  // Login Check
   if (localStorage.getItem('isAdminLoggedIn') !== 'true') {
     window.location.href = 'login.html';
   }
@@ -45,42 +86,116 @@
     window.location.href = 'login.html';
   }
 
-  // Yahan apna NAYA URL daalein (Jo aapne deploy kiya hai)
+  // Yahan apna Naya URL daalein
   const API_URL = "https://script.google.com/macros/s/AKfycbxnC6yvLX7bii8KGFAL6SHgsRUds4AjZo1Vu-V9wpnqh2lwIGE0DeadBPB_gVx9sfJ7rw/exec";
 
-  // Sheet se Data Load Karo
+  // Time format theek karna (jo 1899 wala aa raha tha)
+  function formatTime(timeStr) {
+    if (timeStr.toString().includes("T")) {
+        let dateObj = new Date(timeStr);
+        let hours = dateObj.getUTCHours().toString().padStart(2, '0');
+        let mins = dateObj.getUTCMinutes().toString().padStart(2, '0');
+        return hours + ":" + mins;
+    }
+    return timeStr;
+  }
+
   async function loadData() {
     try {
       const response = await fetch(API_URL + "?action=getLiveTimetable");
       const data = await response.json();
       
       const tbody = document.getElementById('tableBody');
-      tbody.innerHTML = ""; // Purana clear karo
+      tbody.innerHTML = ""; 
 
       if (data.length === 0) {
-        tbody.innerHTML = "<tr><td colspan='7' class='text-center'>No data found</td></tr>";
+        tbody.innerHTML = "<tr><td colspan='8' class='text-center'>No data found</td></tr>";
         return;
       }
 
-      data.forEach(row => {
+      data.forEach((row, index) => {
+        const startTime = formatTime(row.start);
+        const endTime = formatTime(row.end);
+        
         tbody.innerHTML += `
           <tr>
             <td>${row.batch}</td>
             <td>${row.day}</td>
-            <td>${row.start}</td>
-            <td>${row.end}</td>
+            <td>${startTime}</td>
+            <td>${endTime}</td>
             <td>${row.subject}</td>
             <td>${row.teacher}</td>
             <td>${row.room}</td>
+            <td>
+              <button class="btn btn-sm btn-primary" onclick="editRow(${index}, '${row.batch}', '${row.day}', '${row.start}', '${row.end}', '${row.subject}', '${row.teacher}', '${row.room}')">Edit</button>
+            </td>
           </tr>
         `;
       });
     } catch (error) {
-      document.getElementById('tableBody').innerHTML = "<tr><td colspan='7' class='text-center text-danger'>Error Loading Data!</td></tr>";
+      document.getElementById('tableBody').innerHTML = "<tr><td colspan='8' class='text-center text-danger'>Error Loading Data!</td></tr>";
     }
   }
 
-  // Page load hote hi data lao
+  // Edit button dabane par form bharna
+  function editRow(index, batch, day, start, end, subject, teacher, room) {
+    document.getElementById('editForm').style.display = 'block';
+    document.getElementById('editBatch').value = batch;
+    document.getElementById('editDay').value = day;
+    document.getElementById('editStart').value = start;
+    
+    document.getElementById('editStartShow').value = formatTime(start);
+    document.getElementById('editEnd').value = formatTime(end);
+    document.getElementById('editSubject').value = subject;
+    document.getElementById('editTeacher').value = teacher;
+    document.getElementById('editRoom').value = room;
+    
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+
+  // Form Submit (Data Update)
+  document.getElementById('updateForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const msg = document.getElementById('updateMsg');
+    msg.innerText = "Updating...";
+    msg.style.color = "blue";
+    
+    const payload = {
+      action: "updateTimetable",
+      data: {
+        batch: document.getElementById('editBatch').value,
+        day: document.getElementById('editDay').value,
+        start: document.getElementById('editStart').value,
+        end: document.getElementById('editEnd').value,
+        subject: document.getElementById('editSubject').value,
+        teacher: document.getElementById('editTeacher').value,
+        room: document.getElementById('editRoom').value
+      }
+    };
+    
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      });
+      const result = await response.json();
+      
+      if (result.success) {
+        msg.innerText = "✅ Data updated successfully!";
+        msg.style.color = "green";
+        setTimeout(() => { document.getElementById('editForm').style.display = 'none'; loadData(); }, 1500);
+      } else {
+        msg.innerText = "❌ " + result.message;
+        msg.style.color = "red";
+      }
+    } catch (error) {
+      msg.innerText = "❌ Server error!";
+      msg.style.color = "red";
+    }
+  });
+
   loadData();
 </script>
 
