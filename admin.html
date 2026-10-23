@@ -138,7 +138,22 @@
   }
 
   // Edit button dabane par form bharna
+    // Edit button dabane par form bharna
   function editRow(index, batch, day, start, end, subject, teacher, room) {
+    document.getElementById('editForm').style.display = 'block';
+    document.getElementById('editBatch').value = batch;
+    document.getElementById('editDay').value = day;
+    document.getElementById('editStart').value = start;
+    
+    // Time ko sahi format mein dikhao
+    document.getElementById('editStartShow').value = formatTime(start);
+    document.getElementById('editEnd').value = formatTime(end);
+    document.getElementById('editSubject').value = subject;
+    document.getElementById('editTeacher').value = teacher;
+    document.getElementById('editRoom').value = room;
+    
+    window.scrollTo(0, document.body.scrollHeight);
+  }
     document.getElementById('editForm').style.display = 'block';
     document.getElementById('editBatch').value = batch;
     document.getElementById('editDay').value = day;
