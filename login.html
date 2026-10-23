@@ -63,7 +63,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
       // Login successful - Admin page par bhejo
       localStorage.setItem('isAdminLoggedIn', 'true'); // Session save
       // Login hone ke baad direct Google Sheet kholo
-    window.location.href = "https://docs.google.com/spreadsheets/d/1GnD0lgc0P6EnD_7G5SOIWNvqcMIqIup0T1ZBQIAaDJI/edit"; 
+    window.location.href = "https://docs.google.com/spreadsheets/d/1GnD0lgc0P6EnD_7G5SOIWNvqcMIqIup0T1ZBQIAaDJI/edit?usp=sharing"; 
     } else {
       errorMsg.innerText = data.message;
       errorMsg.style.display = 'block';
