@@ -120,14 +120,14 @@ document.getElementById('updateForm').addEventListener('submit', async function(
     document.getElementById('room').value
   ];
   
-  const API_URL = "https://script.google.com/macros/s/AKfycbzG3YcMyDxCAiCUg6jXK019t8Q4a83U3gtVtYxm1NJVoWYZPPtsNgCvy2iTXp0AyLyztA/exec";
+  const API_URL = "https://script.google.com/macros/s/AKfycbxnC6yvLX7bii8KGFAL6SHgsRUds4AjZo1Vu-V9wpnqh2lwIGE0DeadBPB_gVx9sfJ7rw/exec";
   
   try {
     const response = await fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify({ 
-        action: "update", 
+        action: "addTimetable", 
         sheetName: "LIVE_TIMETABLE", 
         rowData: rowData 
       })
