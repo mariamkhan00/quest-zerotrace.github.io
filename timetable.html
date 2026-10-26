@@ -16,24 +16,37 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
 .dropdown-menu { background-color: var(--dark); border: 1px solid #333; }
 .dropdown-item { color: white !important; }
 .dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
-.hero-timetable { background: linear-gradient(135deg, #0B72B9, #0A1929); color: white; padding: 60px 20px; text-align: center; }
-.hero-timetable h1 { font-weight: 700; font-size: 3rem; margin-bottom: 15px; }
-.smartday-card { background: var(--dark); color: white; border-radius: 15px; padding: 30px; margin-top: -30px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); position: relative; z-index: 10; border: 1px solid #333; margin-bottom: 40px;}
-.smartday-card h4 { color: #00D4FF; font-weight: 700; margin-bottom: 10px; }
-.features-list { list-style: none; padding: 0; margin: 20px 0; }
-.features-list li { margin-bottom: 10px; color: #ccc; font-size: 0.95rem; }
-.features-list li i { color: #00D4FF; margin-right: 10px; width: 20px; }
-.btn-custom { background: var(--primary); color: white; border-radius: 8px; font-weight: 700; padding: 12px 25px; text-decoration: none; display: inline-block; transition: 0.3s; border: none; }
-.btn-custom:hover { background: #0056b3; color: white; }
-.qr-container { background: white; padding: 15px; border-radius: 10px; display: inline-block; margin-top: 15px; }
 
-/* SHIFT DIVIDER */
+/* HERO SECTION */
+.hero-timetable { background: #2b32c2; color: white; padding: 60px 20px; }
+.hero-timetable h1 { font-weight: 700; font-size: 3rem; margin-bottom: 10px; }
+.hero-timetable p { font-size: 1.1rem; opacity: 0.9; }
+
+/* SMARTDAY CARD (MUET Style - Light Theme) */
+.smartday-card { background: white; border-radius: 15px; margin-top: -30px; position: relative; z-index: 10; border: 1px solid #ddd; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: 40px; }
+.smartday-header { background: #2b32c2; color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.smartday-header h4 { margin: 0; font-weight: 700; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
+.smartday-header p { margin: 5px 0 0 0; font-size: 0.9rem; opacity: 0.9; }
+.badge-updated { background: #ffc107; color: #000; padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; }
+.smartday-body { padding: 30px; }
+.smartday-body p { color: #555; margin-bottom: 20px; }
+.features-list { list-style: none; padding: 0; margin-bottom: 25px; }
+.features-list li { margin-bottom: 12px; font-size: 0.95rem; color: #333; display: flex; align-items: center; gap: 10px; }
+.features-list li i { font-size: 1.1rem; width: 20px; text-align: center; }
+.btn-open { background: #0d6efd; color: white; border-radius: 5px; font-weight: 600; padding: 10px 20px; border: none; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+.btn-open:hover { background: #0b5ed7; color: white; }
+.btn-outline { background: white; color: #333; border-radius: 5px; font-weight: 600; padding: 10px 20px; border: 1px solid #ddd; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; margin-left: 5px;}
+.btn-outline:hover { background: #f1f1f1; }
+.qr-code { width: 180px; height: 180px; }
+
+/* ========================================= */
+/* BATCH CARDS (DARK THEME - SAME AS BEFORE) */
+/* ========================================= */
 .shift-divider { display: flex; align-items: center; text-align: center; margin: 50px 0 40px; color: var(--primary); font-weight: 700; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 2px;}
 .shift-divider::before, .shift-divider::after { content: ''; flex: 1; border-bottom: 3px solid var(--primary); opacity: 0.3;}
 .shift-divider:not(:empty)::before { margin-right: 20px; }
 .shift-divider:not(:empty)::after { margin-left: 20px; }
 
-/* BATCH CARDS */
 .batch-card { border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 30px; background: #1e293b; color: white; }
 .batch-header { background: linear-gradient(90deg, #3b82f6, #6366f1); padding: 20px; display: flex; justify-content: space-between; align-items: center; color: white; }
 .batch-header.evening-header { background: linear-gradient(90deg, #1e3a8a, #3b82f6); }
@@ -62,12 +75,13 @@ body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
 .upcoming-box { border: 1px dashed #eab308; border-radius: 10px; padding: 15px; text-align: center; background: #1e293b; }
 .upcoming-box h6 { color: white; font-weight: 600; margin: 0; }
 .upcoming-box small { color: #eab308; font-size: 0.8rem; }
+
+/* SEARCH BAR */
 .search-section { background: var(--dark); padding: 30px; border-radius: 15px; margin-top: 40px; }
 .search-input { background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px; padding: 12px 20px; }
 .search-input::placeholder { color: #64748b; }
 .filter-select { background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px; padding: 12px 20px; }
 .note-text { color: #64748b; font-size: 0.9rem; text-align: center; margin-top: 20px; }
-.progress { height: 6px; background: #334155; border-radius: 3px; }
 footer { background: var(--dark); color: white; padding: 30px 20px; text-align: center; margin-top: 50px; }
 </style>
 </head>
@@ -111,37 +125,56 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
   </div>
 </nav>
 
+<!-- HERO SECTION -->
 <div class="hero-timetable">
   <div class="container">
     <h1>Academic Timetables</h1>
-    <p class="lead">View the latest timetables for Morning and Evening shifts.</p>
+    <p>View the latest and previous semester timetables for each undergraduate batch.</p>
   </div>
 </div>
 
 <div class="container pb-5">
+  
+  <!-- SMARTDAY CARD (LIGHT THEME) -->
+  <div class="smartday-card">
+    <div class="smartday-header">
+      <div>
+        <h4><i class="fas fa-mobile-alt"></i> ZeroTrace SmartDay — Live Daily Timetable</h4>
+        <p>Always the updated timetable · scan the QR code or tap Open</p>
+      </div>
+      <div class="badge-updated">⭐ UPDATED TIMETABLE</div>
+    </div>
+    <div class="smartday-body">
+      <p>Choose your program and batch to see today's class card on your phone. It is designed for quick checks between classes.</p>
+      
+      <div class="row">
+        <div class="col-md-8">
+          <ul class="features-list">
+            <li><i class="fas fa-circle text-success" style="font-size: 0.7rem;"></i> What is on <b>now</b> and what is <b>next</b></li>
+            <li><i class="fas fa-calendar-alt text-primary"></i> Full schedule of the day with rooms</li>
+            <li><i class="fas fa-bell text-warning"></i> Department events of the day</li>
+            <li><i class="fas fa-save text-secondary"></i> Save your day card as an image</li>
+          </ul>
+          
+          <div class="mt-4">
+            <a href="smartday.html" class="btn-open"><i class="fas fa-rocket"></i> Open ZeroTrace Smartday</a>
+            <button onclick="copyLink()" class="btn-outline"><i class="fas fa-link"></i> Copy link</button>
+            <button onclick="downloadQR()" class="btn-outline"><i class="fas fa-download"></i> Download QR</button>
+          </div>
+          <p class="mt-3" style="font-size: 0.8rem; color: #888;">The PDF timetables below remain the official published copies.</p>
+        </div>
+        
+        <div class="col-md-4 text-center">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://mariamkhan00.github.io/quest-zerotrace.github.io/smartday.html" alt="QR Code" class="qr-code" id="qrImage">
+          <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Scan with your phone camera</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-lg-9 mx-auto">
       
-      <div class="smartday-card text-center">
-        <h4><i class="fas fa-mobile-alt me-2"></i> ZeroTrace SmartDay — Live Daily Timetable</h4>
-        <p class="text-muted mb-0">Always the updated timetable · scan the QR code or tap Open</p>
-        <div class="badge-latest mt-3"><i class="fas fa-star"></i> UPDATED TIMETABLE</div>
-        <p class="mt-4 text-start" style="color: #ddd;">Choose your batch to see today's class card on your phone. It is designed for quick checks between classes.</p>
-        <ul class="features-list text-start">
-          <li><i class="fas fa-circle text-success"></i> What is on <b>now</b> and what is <b>next</b></li>
-          <li><i class="fas fa-calendar-alt"></i> Full schedule of the day with rooms</li>
-          <li><i class="fas fa-bell"></i> Department events of the day</li>
-        </ul>
-        <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
-          <a href="smartday.html" class="btn-custom"><i class="fas fa-rocket"></i> Open SmartDay</a>
-          <button onclick="copyLink()" class="btn btn-outline-light" style="border-radius: 8px; font-weight: 600;"><i class="fas fa-link"></i> Copy link</button>
-        </div>
-        <div class="qr-container mt-4">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://mariamkhan00.github.io/quest-zerotrace.github.io/smartday.html" alt="QR Code" style="width: 150px; height: 150px;">
-          <p class="text-dark mb-0 mt-2" style="font-size: 0.8rem; font-weight: 600;">Scan with your phone camera</p>
-        </div>
-      </div>
-
       <div id="batch-container">
 
         <!-- ================= MORNING SHIFT START ================= -->
@@ -166,17 +199,13 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
               <div class="badge-latest">⭐ LATEST TIMETABLE</div>
               <h5>Semester 1</h5>
               <p>Current Published Timetable</p>
-              <!-- CYS26 MORNING LINKS -->
               <a href="https://mariamkhan00.github.io/quest-zerotrace.github.io/26cys-timetable.pdf.jpeg" target="_blank" class="btn-view">👁 View</a>
               <a href="https://mariamkhan00.github.io/quest-zerotrace.github.io/26cys-timetable.pdf.jpeg" download class="btn-download">↓ Download</a>
             </div>
-            <!-- ... (Accordion and Upcoming sections remain same) ... -->
             <div class="accordion mb-3" id="accordionCYS26">
               <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS26">📁 Previous Timetables</button>
-                </h2>
-                <div id="collapseCYS26" class="accordion-collapse collapse" data-bs-parent="#accordionCYS26">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS26">📁 Previous Timetables</button>
+                <div id="collapseCYS26" class="accordion-collapse collapse">
                   <div class="accordion-body p-3"><p class="text-muted mb-0" style="font-size: 0.9rem;">No previous timetables available.</p></div>
                 </div>
               </div>
@@ -187,15 +216,6 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
               <div class="upcoming-box"><h6>Semester 3</h6><small>Coming Soon</small></div>
               <div class="upcoming-box"><h6>Semester 4</h6><small>Coming Soon</small></div>
               <div class="upcoming-box"><h6>Semester 5</h6><small>Coming Soon</small></div>
-              <div class="upcoming-box"><h6>Semester 6</h6><small>Coming Soon</small></div>
-              <div class="upcoming-box"><h6>Semester 7</h6><small>Coming Soon</small></div>
-              <div class="upcoming-box"><h6>Semester 8</h6><small>Coming Soon</small></div>
-            </div>
-            <div class="mt-4">
-              <div class="progress">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 12.5%;"></div>
-              </div>
-              <p class="text-muted small mt-2 mb-0">Semester 1 of 8 (12.5% Completed)</p>
             </div>
           </div>
         </div>
@@ -219,19 +239,15 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
               <div class="badge-latest">⭐ LATEST TIMETABLE</div>
               <h5>Semester 3</h5>
               <p>Current Published Timetable</p>
-              <!-- CYS25 MORNING LINKS -->
               <a href="https://mariamkhan00.github.io/quest-zerotrace.github.io/25cys-timetable.pdf.jpeg" target="_blank" class="btn-view">👁 View</a>
               <a href="https://mariamkhan00.github.io/quest-zerotrace.github.io/25cys-timetable.pdf.jpeg" download class="btn-download">↓ Download</a>
             </div>
             <div class="accordion mb-3" id="accordionCYS25">
               <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS25">📁 Previous Timetables</button>
-                </h2>
-                <div id="collapseCYS25" class="accordion-collapse collapse" data-bs-parent="#accordionCYS25">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS25">📁 Previous Timetables</button>
+                <div id="collapseCYS25" class="accordion-collapse collapse">
                   <div class="accordion-body p-3">
                     <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 1</span><small class="text-muted">PDF not uploaded</small></div>
-                    <div class="d-flex justify-content-between py-2"><span>Semester 2</span><small class="text-muted">PDF not uploaded</small></div>
                   </div>
                 </div>
               </div>
@@ -240,15 +256,6 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
             <div class="upcoming-grid">
               <div class="upcoming-box"><h6>Semester 4</h6><small>Coming Soon</small></div>
               <div class="upcoming-box"><h6>Semester 5</h6><small>Coming Soon</small></div>
-              <div class="upcoming-box"><h6>Semester 6</h6><small>Coming Soon</small></div>
-              <div class="upcoming-box"><h6>Semester 7</h6><small>Coming Soon</small></div>
-              <div class="upcoming-box"><h6>Semester 8</h6><small>Coming Soon</small></div>
-            </div>
-            <div class="mt-4">
-              <div class="progress">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 37.5%;"></div>
-              </div>
-              <p class="text-muted small mt-2 mb-0">Semester 3 of 8 (37.5% Completed)</p>
             </div>
           </div>
         </div>
@@ -272,21 +279,15 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
               <div class="badge-latest">⭐ LATEST TIMETABLE</div>
               <h5>Semester 5</h5>
               <p>Current Published Timetable</p>
-              <!-- CYS24 MORNING LINKS -->
               <a href="https://mariamkhan00.github.io/quest-zerotrace.github.io/24cys-timetable.pdf.jpeg" target="_blank" class="btn-view">👁 View</a>
               <a href="https://mariamkhan00.github.io/quest-zerotrace.github.io/24cys-timetable.pdf.jpeg" download class="btn-download">↓ Download</a>
             </div>
             <div class="accordion mb-3" id="accordionCYS24">
               <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS24">📁 Previous Timetables</button>
-                </h2>
-                <div id="collapseCYS24" class="accordion-collapse collapse" data-bs-parent="#accordionCYS24">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS24">📁 Previous Timetables</button>
+                <div id="collapseCYS24" class="accordion-collapse collapse">
                   <div class="accordion-body p-3">
                     <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 1</span><small class="text-muted">PDF not uploaded</small></div>
-                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 2</span><small class="text-muted">PDF not uploaded</small></div>
-                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 3</span><small class="text-muted">PDF not uploaded</small></div>
-                    <div class="d-flex justify-content-between py-2"><span>Semester 4</span><small class="text-muted">PDF not uploaded</small></div>
                   </div>
                 </div>
               </div>
@@ -295,13 +296,6 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
             <div class="upcoming-grid">
               <div class="upcoming-box"><h6>Semester 6</h6><small>Coming Soon</small></div>
               <div class="upcoming-box"><h6>Semester 7</h6><small>Coming Soon</small></div>
-              <div class="upcoming-box"><h6>Semester 8</h6><small>Coming Soon</small></div>
-            </div>
-            <div class="mt-4">
-              <div class="progress">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 62.5%;"></div>
-              </div>
-              <p class="text-muted small mt-2 mb-0">Semester 5 of 8 (62.5% Completed)</p>
             </div>
           </div>
         </div>
@@ -325,23 +319,15 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
               <div class="badge-latest">⭐ LATEST TIMETABLE</div>
               <h5>Semester 7</h5>
               <p>Current Published Timetable</p>
-              <!-- CYS23 MORNING LINKS -->
               <a href="https://mariamkhan00.github.io/quest-zerotrace.github.io/23cys-timetable.pdf.jpeg" target="_blank" class="btn-view">👁 View</a>
               <a href="https://mariamkhan00.github.io/quest-zerotrace.github.io/23cys-timetable.pdf.jpeg" download class="btn-download">↓ Download</a>
             </div>
             <div class="accordion mb-3" id="accordionCYS23">
               <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS23">📁 Previous Timetables</button>
-                </h2>
-                <div id="collapseCYS23" class="accordion-collapse collapse" data-bs-parent="#accordionCYS23">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS23">📁 Previous Timetables</button>
+                <div id="collapseCYS23" class="accordion-collapse collapse">
                   <div class="accordion-body p-3">
                     <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 1</span><small class="text-muted">PDF not uploaded</small></div>
-                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 2</span><small class="text-muted">PDF not uploaded</small></div>
-                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 3</span><small class="text-muted">PDF not uploaded</small></div>
-                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 4</span><small class="text-muted">PDF not uploaded</small></div>
-                    <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 5</span><small class="text-muted">PDF not uploaded</small></div>
-                    <div class="d-flex justify-content-between py-2"><span>Semester 6</span><small class="text-muted">PDF not uploaded</small></div>
                   </div>
                 </div>
               </div>
@@ -349,12 +335,6 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
             <div class="upcoming-title">⏳ Upcoming Semesters</div>
             <div class="upcoming-grid">
               <div class="upcoming-box"><h6>Semester 8</h6><small>Coming Soon</small></div>
-            </div>
-            <div class="mt-4">
-              <div class="progress">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 87.5%;"></div>
-              </div>
-              <p class="text-muted small mt-2 mb-0">Semester 7 of 8 (87.5% Completed)</p>
             </div>
           </div>
         </div>
@@ -381,16 +361,13 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
               <div class="badge-latest">⭐ LATEST TIMETABLE</div>
               <h5>Semester 1 (Evening)</h5>
               <p>Current Published Timetable</p>
-              <!-- CYS26 EVENING LINKS (AAPKI NAYI IMAGE) -->
-              <a href="https://mariamkhan00.github.io/quest-zerotrace.github.io/WhatsApp%20Image%202026-10-21%20at%203.32.57%20PM.jpeg" target="_blank" class="btn-view">👁 View</a>
-              <a href="https://mariamkhan00.github.io/quest-zerotrace.github.io/WhatsApp%20Image%202026-10-21%20at%203.32.57%20PM.jpeg" download class="btn-download">↓ Download</a>
+              <a href="https://mariamkhan00.github.io/quest-zerotrace.github.io/26cyse-timetable.pdf.jpeg" target="_blank" class="btn-view">👁 View</a>
+              <a href="https://mariamkhan00.github.io/quest-zerotrace.github.io/26cyse-timetable.pdf.jpeg" download class="btn-download">↓ Download</a>
             </div>
             <div class="accordion mb-3" id="accordionCYS26Eve">
               <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS26Eve">📁 Previous Timetables</button>
-                </h2>
-                <div id="collapseCYS26Eve" class="accordion-collapse collapse" data-bs-parent="#accordionCYS26Eve">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS26Eve">📁 Previous Timetables</button>
+                <div id="collapseCYS26Eve" class="accordion-collapse collapse">
                   <div class="accordion-body p-3"><p class="text-muted mb-0" style="font-size: 0.9rem;">No previous timetables available.</p></div>
                 </div>
               </div>
@@ -398,14 +375,6 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
             <div class="upcoming-title">⏳ Upcoming Semesters</div>
             <div class="upcoming-grid">
               <div class="upcoming-box"><h6>Semester 2</h6><small>Coming Soon</small></div>
-              <div class="upcoming-box"><h6>Semester 3</h6><small>Coming Soon</small></div>
-              <div class="upcoming-box"><h6>Semester 4</h6><small>Coming Soon</small></div>
-            </div>
-            <div class="mt-4">
-              <div class="progress">
-                <div class="progress-bar bg-info" role="progressbar" style="width: 12.5%;"></div>
-              </div>
-              <p class="text-muted small mt-2 mb-0">Semester 1 of 8 (12.5% Completed)</p>
             </div>
           </div>
         </div>
@@ -429,19 +398,15 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
               <div class="badge-latest">⭐ LATEST TIMETABLE</div>
               <h5>Semester 3 (Evening)</h5>
               <p>Current Published Timetable</p>
-              <!-- CYS25 EVENING LINKS -->
               <a href="https://mariamkhan00.github.io/quest-zerotrace.github.io/25cyse-timetable.pdf.jpeg" target="_blank" class="btn-view">👁 View</a>
               <a href="https://mariamkhan00.github.io/quest-zerotrace.github.io/25cyse-timetable.pdf.jpeg" download class="btn-download">↓ Download</a>
             </div>
             <div class="accordion mb-3" id="accordionCYS25Eve">
               <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS25Eve">📁 Previous Timetables</button>
-                </h2>
-                <div id="collapseCYS25Eve" class="accordion-collapse collapse" data-bs-parent="#accordionCYS25Eve">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCYS25Eve">📁 Previous Timetables</button>
+                <div id="collapseCYS25Eve" class="accordion-collapse collapse">
                   <div class="accordion-body p-3">
                     <div class="d-flex justify-content-between border-bottom py-2"><span>Semester 1</span><small class="text-muted">PDF not uploaded</small></div>
-                    <div class="d-flex justify-content-between py-2"><span>Semester 2</span><small class="text-muted">PDF not uploaded</small></div>
                   </div>
                 </div>
               </div>
@@ -449,21 +414,14 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
             <div class="upcoming-title">⏳ Upcoming Semesters</div>
             <div class="upcoming-grid">
               <div class="upcoming-box"><h6>Semester 4</h6><small>Coming Soon</small></div>
-              <div class="upcoming-box"><h6>Semester 5</h6><small>Coming Soon</small></div>
-              <div class="upcoming-box"><h6>Semester 6</h6><small>Coming Soon</small></div>
-            </div>
-            <div class="mt-4">
-              <div class="progress">
-                <div class="progress-bar bg-info" role="progressbar" style="width: 37.5%;"></div>
-              </div>
-              <p class="text-muted small mt-2 mb-0">Semester 3 of 8 (37.5% Completed)</p>
             </div>
           </div>
         </div>
 
-      </div> <!-- End Batch Container -->
+      </div>
 
-      <div class="search-section mt-5">
+      <!-- SEARCH & FILTER -->
+      <div class="search-section">
         <div class="row g-3">
           <div class="col-md-8">
             <input type="text" id="searchInput" class="form-control search-input" placeholder="🔍 Search Batch, Study Year..." onkeyup="filterBatches()">
@@ -480,21 +438,32 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
             </select>
           </div>
         </div>
-        <p class="note-text mt-4 mb-0">Timetables are updated by the Department Office. Students are advised to regularly check this page for the latest revisions.</p>
+        <p class="note-text">Timetables are updated by the Department Office. Students are advised to regularly check this page for the latest revisions.</p>
       </div>
+
     </div>
   </div>
 </div>
 
 <footer>
   <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
+  <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">Developed by Team ZeroTrace</p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 function copyLink() {
   navigator.clipboard.writeText(window.location.href);
   alert("Page link copied to clipboard!");
+}
+
+function downloadQR() {
+  const qrUrl = document.getElementById('qrImage').src;
+  const link = document.createElement('a');
+  link.href = qrUrl;
+  link.download = 'ZeroTrace-Smartday-QR.png';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
 function filterBatches() {
