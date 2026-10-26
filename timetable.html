@@ -139,7 +139,8 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
   <div class="smartday-card">
     <div class="smartday-header">
       <div>
-        <h4><i class="fas fa-mobile-alt"></i> ZeroTrace SmartDay — Live Daily Timetable</h4>
+        <!-- YAHAN SE ZEROTRACE HATA DIYA HAI -->
+        <h4><i class="fas fa-mobile-alt"></i> SmartDay — Live Daily Timetable</h4>
         <p>Always the updated timetable · scan the QR code or tap Open</p>
       </div>
       <div class="badge-updated">⭐ UPDATED TIMETABLE</div>
@@ -447,6 +448,7 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
 
 <footer>
   <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
+  <!-- Yahan footer mein ZeroTrace ka naam rahega -->
   <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">Developed by Team ZeroTrace</p>
 </footer>
 
@@ -458,9 +460,10 @@ function copyLink() {
 
 function downloadQR() {
   const qrUrl = document.getElementById('qrImage').src;
+  // Yahan bhi download file ka naam SmartDay kar diya hai
   const link = document.createElement('a');
   link.href = qrUrl;
-  link.download = 'ZeroTrace-Smartday-QR.png';
+  link.download = 'SmartDay-QR.png'; 
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
