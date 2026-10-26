@@ -139,7 +139,6 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
   <div class="smartday-card">
     <div class="smartday-header">
       <div>
-        <!-- YAHAN SE ZEROTRACE HATA DIYA HAI -->
         <h4><i class="fas fa-mobile-alt"></i> SmartDay — Live Daily Timetable</h4>
         <p>Always the updated timetable · scan the QR code or tap Open</p>
       </div>
@@ -448,8 +447,7 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
 
 <footer>
   <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
-  <!-- Yahan footer mein ZeroTrace ka naam rahega -->
-  <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">Developed by Team ZeroTrace</p>
+  <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">Developed by Mariam Khan</p>
 </footer>
 
 <script>
@@ -460,7 +458,6 @@ function copyLink() {
 
 function downloadQR() {
   const qrUrl = document.getElementById('qrImage').src;
-  // Yahan bhi download file ka naam SmartDay kar diya hai
   const link = document.createElement('a');
   link.href = qrUrl;
   link.download = 'SmartDay-QR.png'; 
@@ -478,7 +475,7 @@ function filterBatches() {
     const batchName = card.getAttribute('data-batch');
     const cardText = card.innerText.toLowerCase();
     const matchesSearch = cardText.includes(searchQuery);
-    const matchesFilter = (selectedBatch === 'all' || selectedBatch === batchName);
+    const matchesFilter = (selectedBatch === 'all' || selectedBatch === selectedBatch);
 
     if (matchesSearch && matchesFilter) {
       card.style.display = 'block';
