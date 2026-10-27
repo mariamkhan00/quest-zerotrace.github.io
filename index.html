@@ -18,6 +18,7 @@
     --card-border: rgba(0,0,0,0.08);
     --hero-overlay: rgba(255, 255, 255, 0.85);
     --hero-text: #0B72B9;
+    --contact-bg: #f8f9fa; /* Light mode mein contact ka background */
     --footer-bg: #0A1929;
     --footer-text: #ffffff;
 }
@@ -32,6 +33,7 @@ body.dark-mode {
     --card-border: rgba(255,255,255,0.1);
     --hero-overlay: rgba(10, 25, 41, 0.85);
     --hero-text: #ffffff;
+    --contact-bg: #1e293b; /* Dark mode mein contact ka background */
     --footer-bg: #020617;
     --footer-text: #e2e8f0;
 }
@@ -107,7 +109,7 @@ body.dark-mode .navbar-brand span.text-muted { color: #aaa !important; }
     content: ''; 
     position: absolute; 
     top:0; left:0; right:0; bottom:0; 
-    background: var(--hero-overlay); /* Light mein safaid overlay, dark mein gehra */
+    background: var(--hero-overlay); 
     transition: 0.3s;
 }
 .hero-content { position: relative; z-index: 1; }
@@ -136,7 +138,7 @@ body.dark-mode .navbar-brand span.text-muted { color: #aaa !important; }
 .news-text { color: var(--text-color); font-size: 0.95rem; margin-top: 10px; opacity: 0.9; }
 
 /* === CONTACT & FOOTER === */
-.contact-section { background: var(--card-bg); color: var(--text-color); padding: 60px 20px; margin-top: 60px; border-top: 1px solid var(--card-border); transition: 0.3s; }
+.contact-section { background: var(--contact-bg); color: var(--text-color); padding: 60px 20px; margin-top: 60px; border-top: 1px solid var(--card-border); transition: 0.3s; }
 .contact-col h5 { color: var(--text-color); font-weight: 700; margin-bottom: 20px; font-size: 1.2rem; }
 .contact-item { display: flex; align-items: flex-start; margin-bottom: 15px; color: var(--text-color); font-size: 0.95rem; }
 .contact-item i { color: var(--primary); font-size: 1.2rem; margin-right: 15px; margin-top: 3px; }
@@ -300,7 +302,7 @@ footer p { margin: 0; }
 <section class="contact-section" id="contact">
   <div class="container">
     <div class="text-center mb-5">
-      <h2 style="font-weight: 700;">Contact Us</h2>
+      <h2 style="font-weight: 700; color: var(--text-color);">Contact Us</h2>
     </div>
     <div class="row mt-4">
       <div class="col-md-3 contact-col">
