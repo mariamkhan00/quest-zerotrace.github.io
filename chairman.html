@@ -7,25 +7,23 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <style>
-/* === THEME COLORS === */
 :root { 
     --primary: #0B72B9; 
     --nav-bg: #ffffff;
     --nav-text: #333333;
-    --body-bg: #f4f7fb;
+    --body-bg: #f4f7fb; 
     --text-color: #333333;
     --card-bg: #ffffff;
     --card-border: rgba(0,0,0,0.08);
-    --dark: #0A1929; /* Footer aur Navbar ke liye */
 }
+
 body.dark-mode {
     --nav-bg: #0f172a;
     --nav-text: #e2e8f0;
-    --body-bg: #0f172a;
+    --body-bg: #0f172a; 
     --text-color: #e2e8f0;
     --card-bg: #1e293b;
     --card-border: rgba(255,255,255,0.1);
-    --dark: #020617;
 }
 
 body { 
@@ -36,7 +34,8 @@ body {
 }
 
 /* === NAVBAR === */
-.navbar { background: var(--nav-bg) !important; padding: 10px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: 0.3s;}
+.navbar { background: var(--nav-bg) !important; padding: 10px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: 0.3s; }
+body.dark-mode .navbar { box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
 .navbar-brand { color: var(--nav-text) !important; font-weight: 700; display: flex; align-items: center; gap: 10px; }
 .navbar-brand span.text-muted { color: #888 !important; }
 body.dark-mode .navbar-brand span.text-muted { color: #aaa !important; }
@@ -46,7 +45,7 @@ body.dark-mode .navbar-brand span.text-muted { color: #aaa !important; }
 .dropdown-item { color: var(--nav-text) !important; }
 .dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
 
-/* Theme Toggle Button Style */
+/* Theme Toggle Button */
 .theme-toggle-btn { 
     background: transparent; border: 1px solid var(--card-border); color: var(--nav-text); 
     border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; 
@@ -54,28 +53,21 @@ body.dark-mode .navbar-brand span.text-muted { color: #aaa !important; }
 }
 .theme-toggle-btn:hover { background: var(--primary); color: white; }
 
-/* === PAGE HEADER & PROFILE CARDS === */
+/* === PAGE HEADER === */
 .page-header { background: var(--primary); color: white; padding: 50px 20px; text-align: center; margin-bottom: 40px; }
 .page-header h1 { font-weight: 700; }
 
-.profile-card { 
-    background: var(--card-bg); 
-    border: 1px solid var(--card-border);
-    border-radius: 15px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
-    padding: 40px; 
-    margin-bottom: 40px; 
-    transition: 0.3s;
-}
+/* === PROFILE CARDS === */
+.profile-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); padding: 40px; margin-bottom: 40px; transition: 0.3s; }
 .profile-img { width: 100%; max-width: 300px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); display: block; margin: 0 auto; }
 .profile-name { color: var(--primary); font-weight: 700; margin-top: 20px; }
 .profile-title { color: #666; font-size: 1.1rem; margin-bottom: 20px; }
-body.dark-mode .profile-title { color: #aaa !important; }
-.profile-text { font-size: 1.1rem; line-height: 1.9; color: var(--text-color); text-align: justify; }
+body.dark-mode .profile-title { color: #aaa; }
+.profile-text { font-size: 1.1rem; line-height: 1.9; color: var(--text-color); text-align: justify; transition: 0.3s; }
 .quote-icon { color: #e3f2fd; font-size: 3rem; margin-bottom: 15px; }
 body.dark-mode .quote-icon { color: #334155; }
 
-footer { background: var(--dark); color: white; padding: 30px 20px; text-align: center; margin-top: 50px; transition: 0.3s; }
+footer { background: #0A1929; color: white; padding: 30px 20px; text-align: center; margin-top: 50px; }
 </style>
 </head>
 <body>
@@ -85,8 +77,9 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
     <a class="navbar-brand" href="index.html">
       <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo" style="height: 45px; background: white; border-radius: 50%; padding: 2px;">
       <div>
-        <span style="display: block; line-height: 1.2;">QUEST Cyber Security</span>
-        <span style="font-size: 0.7rem;" class="text-muted">Department Portal</span>
+        <!-- Yahan Naam Change Kiya Gaya Hai -->
+        <span style="display: block; line-height: 1.2;">Cyber Security Department</span>
+        <span style="font-size: 0.7rem;" class="text-muted">QUEST Nawabshah</span>
       </div>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -114,7 +107,7 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
         <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
         <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
         
-        <!-- SAHI JAGAH: Theme Toggle Button (Yahan hona chahiye) -->
+        <!-- Theme Toggle Button (Sahi Jagah) -->
         <li class="nav-item">
           <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
             <i class="fas fa-moon" id="theme-icon"></i>
@@ -180,7 +173,7 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-// Theme Toggle Logic
+// === THEME TOGGLE SCRIPT ===
 function toggleTheme() {
     const body = document.body;
     const icon = document.getElementById('theme-icon');
@@ -198,7 +191,6 @@ function toggleTheme() {
     }
 }
 
-// Page Load par theme check karein
 document.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem('theme');
     const icon = document.getElementById('theme-icon');
