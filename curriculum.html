@@ -10,8 +10,8 @@
 /* === THEME VARIABLES === */
 :root { 
     --primary: #0B72B9; 
-    --nav-bg: #ffffff; /* Navbar White ho gaya */
-    --nav-text: #333333; /* Text Black ho gaya */
+    --nav-bg: #ffffff; 
+    --nav-text: #333333; 
     --body-bg: #f4f7fb;
     --text-color: #333333;
     --card-bg: #ffffff;
@@ -84,8 +84,8 @@ body.dark-mode .course-list li:hover { background-color: rgba(255, 255, 255, 0.0
 .course-ch { font-weight: 700; color: #0A1929; background: #e3f2fd; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; white-space: nowrap; flex-shrink: 0; }
 body.dark-mode .course-ch { background: #334155; color: #e2e8f0; }
 
-footer { background: var(--nav-bg); color: var(--nav-text); padding: 30px 20px; text-align: center; margin-top: 50px; transition: 0.3s; }
-body.dark-mode footer { background: #020617; }
+/* === FOOTER (Hamesha Dark Rahega) === */
+footer { background: #0A1929 !important; color: #ffffff !important; padding: 30px 20px; text-align: center; margin-top: 50px; transition: 0.3s; }
 </style>
 </head>
 <body>
@@ -299,10 +299,12 @@ body.dark-mode footer { background: #020617; }
   </div>
 </div>
 
+<!-- Footer Hamesha Dark -->
 <footer>
   <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
   <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0;">Developed by Mariam Khan</p>
 </footer>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   function toggleTheme() {
