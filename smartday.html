@@ -119,10 +119,11 @@ body { background-color: #eef2f5; font-family: 'Segoe UI', sans-serif; display: 
 let currentShift = '';
 let liveTimetableData = [];
 let isDataLoaded = false;
+let fetchFailed = false; // Error handling ke liye
 
-// 1. API Se Data Fetch Karna
+// 1. API Se Data Fetch Karna (NAYA URL LAGA DIYA HAI)
 async function fetchLiveData() {
-    const API_URL = "https://script.google.com/macros/s/AKfycbwtu3BY-_DEC_iSXcWE4b4WzAWhqq5LVN7SIyrPVAaU-3W6LQ20R_btI8TCnftYyOAdoQ/exec"; 
+    const API_URL = "https://script.google.com/macros/s/AKfycbxnC6yvLX7bii8KGFAL6SHgsRUds4AjZo1Vu-V9wpnqh2lwIGE0DeadBPB_gVx9sfJ7rw/exec"; 
     try {
         const response = await fetch(API_URL + "?action=getLiveTimetable");
         const data = await response.json();
@@ -131,12 +132,17 @@ async function fetchLiveData() {
             liveTimetableData = data;
             isDataLoaded = true;
             console.log("Data Loaded Successfully:", data); 
+        } else if (data && data[0] && data[0].error) {
+            console.error("API Error:", data[0].error);
+            isDataLoaded = true;
+            fetchFailed = true;
         } else {
-            console.error("API Data Error:", data);
+            isDataLoaded = true;
         }
     } catch (error) {
         console.error("Fetch Error:", error);
-        document.getElementById('card-live-text').innerText = "Network Error. Please check internet.";
+        isDataLoaded = true;
+        fetchFailed = true;
     }
 }
 
@@ -191,6 +197,14 @@ function loadBatch(batchName) {
   if (!isDataLoaded) {
       document.getElementById('card-live-text').innerText = "Loading timetable data...";
       setTimeout(() => loadBatch(batchName), 1500); 
+      return;
+  }
+
+  if (fetchFailed) {
+      document.getElementById('box-none').style.display = 'block';
+      document.getElementById('box-none').querySelector('.class-subject').innerText = "Connection Error";
+      document.getElementById('box-none').querySelector('.class-details').innerText = "Could not load timetable. Please check back later.";
+      document.getElementById('card-live-text').innerText = "Error";
       return;
   }
 
