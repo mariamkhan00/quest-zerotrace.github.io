@@ -7,33 +7,81 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <style>
-:root { --primary: #0B72B9; --dark: #0A1929; --light: #F8F9FA; }
-body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7fb; }
-.navbar { background: var(--dark) !important; padding: 10px 0; }
-.navbar-brand { color: white !important; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-.nav-link { color: white !important; font-size: 1rem; padding: 5px 10px !important; }
+/* === THEME VARIABLES === */
+:root { 
+    --primary: #0B72B9; 
+    --nav-bg: #0A1929;
+    --nav-text: #ffffff;
+    --body-bg: #f4f7fb;
+    --text-color: #333333;
+    --card-bg: #ffffff;
+    --card-border: rgba(0,0,0,0.08);
+    --header-bg: #0B72B9;
+    --header-text: #ffffff;
+}
+
+body.dark-mode {
+    --nav-bg: #0f172a;
+    --nav-text: #e2e8f0;
+    --body-bg: #0f172a;
+    --text-color: #e2e8f0;
+    --card-bg: #1e293b;
+    --card-border: rgba(255,255,255,0.1);
+}
+
+body { 
+    font-family: 'Segoe UI', sans-serif; 
+    background-color: var(--body-bg); 
+    color: var(--text-color);
+    transition: 0.3s;
+}
+
+/* === NAVBAR === */
+.navbar { background: var(--nav-bg) !important; padding: 10px 0; transition: 0.3s; }
+.navbar-brand { color: var(--nav-text) !important; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.navbar-brand span.text-muted { color: #aaa !important; }
+.nav-link { color: var(--nav-text) !important; font-size: 1rem; padding: 5px 10px !important; }
 .nav-link:hover { color: #00D4FF !important; }
-.dropdown-menu { background-color: var(--dark); border: 1px solid #333; }
-.dropdown-item { color: white !important; }
+.dropdown-menu { background-color: var(--nav-bg); border: 1px solid var(--card-border); }
+.dropdown-item { color: var(--nav-text) !important; }
 .dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
-.page-header { background: var(--primary); color: white; padding: 50px 20px; text-align: center; margin-bottom: 40px; }
+
+/* Theme Toggle Button */
+.theme-toggle-btn { 
+    background: transparent; border: 1px solid var(--card-border); color: var(--nav-text); 
+    border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; 
+    justify-content: center; cursor: pointer; transition: 0.3s; margin-left: 15px; 
+}
+.theme-toggle-btn:hover { background: var(--primary); color: white; }
+
+/* === PAGE HEADER === */
+.page-header { background: var(--header-bg); color: var(--header-text); padding: 50px 20px; text-align: center; margin-bottom: 40px; }
 .page-header h1 { font-weight: 700; margin-bottom: 10px; }
-.stat-card { background: white; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-bottom: 3px solid var(--primary); transition: 0.3s; }
+
+/* === STAT CARDS === */
+.stat-card { background: var(--card-bg); border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-bottom: 3px solid var(--primary); border-top: 1px solid var(--card-border); transition: 0.3s; }
 .stat-card:hover { transform: translateY(-5px); }
 .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--primary); }
-.stat-label { color: #666; font-weight: 500; }
-.sem-card { background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 30px; overflow: hidden; border: 1px solid #e0e0e0; }
-.sem-header { background: var(--dark); color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+.stat-label { color: var(--text-color); opacity: 0.8; font-weight: 500; }
+
+/* === SEMESTER CARDS === */
+.sem-card { background: var(--card-bg); border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 30px; overflow: hidden; border: 1px solid var(--card-border); transition: 0.3s; }
+.sem-header { background: var(--nav-bg); color: var(--nav-text); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
 .sem-header h5 { margin: 0; font-weight: 700; }
 .sem-header .badge { background: var(--primary); font-size: 0.9rem; padding: 6px 12px; }
+
+/* === COURSE LIST === */
 .course-list { list-style: none; padding: 0; margin: 0; }
-.course-list li { padding: 12px 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+.course-list li { padding: 12px 20px; border-bottom: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center; color: var(--text-color); transition: 0.3s; }
 .course-list li:last-child { border-bottom: none; }
-.course-list li:hover { background-color: #f8f9fa; }
+.course-list li:hover { background-color: rgba(11, 114, 185, 0.05); }
+body.dark-mode .course-list li:hover { background-color: rgba(255, 255, 255, 0.05); }
 .course-code { font-weight: 700; color: var(--primary); width: 90px; flex-shrink: 0; }
 .course-name { flex-grow: 1; font-size: 0.95rem; padding-right: 15px; line-height: 1.3; }
-.course-ch { font-weight: 700; color: #333; background: #e3f2fd; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; white-space: nowrap; flex-shrink: 0; }
-footer { background: var(--dark); color: white; padding: 30px 20px; text-align: center; margin-top: 50px; }
+.course-ch { font-weight: 700; color: #0A1929; background: #e3f2fd; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; white-space: nowrap; flex-shrink: 0; }
+body.dark-mode .course-ch { background: #334155; color: #e2e8f0; }
+
+footer { background: var(--nav-bg); color: var(--nav-text); padding: 30px 20px; text-align: center; margin-top: 50px; transition: 0.3s; }
 </style>
 </head>
 <body>
@@ -43,15 +91,16 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
     <a class="navbar-brand" href="index.html">
       <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo" style="height: 45px; background: white; border-radius: 50%; padding: 2px;">
       <div>
-        <span style="display: block; line-height: 1.2;">QUEST Cyber Security</span>
-        <span style="font-size: 0.7rem; color: #aaa;">Department Portal</span>
+        <!-- Naam Change Kar Diya Hai -->
+        <span style="display: block; line-height: 1.2;">Cyber Security Department</span>
+        <span style="font-size: 0.7rem;" class="text-muted">QUEST Nawabshah</span>
       </div>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
     </button>
     <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto align-items-center">
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
@@ -71,6 +120,13 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
         </li>
         <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
         <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+        
+        <!-- THEME TOGGLE BUTTON -->
+        <li class="nav-item">
+          <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+            <i class="fas fa-moon" id="theme-icon"></i>
+          </button>
+        </li>
       </ul>
     </div>
   </div>
@@ -86,7 +142,7 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
 <div class="container">
   <div class="row mb-5 pb-3">
     <div class="col-lg-10 mx-auto text-center">
-      <p style="font-size: 1.15rem; line-height: 1.8; color: #444;">
+      <p style="font-size: 1.15rem; line-height: 1.8;">
         The Bachelor of Science in Cyber Security program is designed to align with its mission, Program Educational Objectives (PEOs), and Program Learning Outcomes (PLOs). Each course includes 1 hour of theory and 3 hours of lab work per week, providing students with both foundational knowledge and practical skills for success in the cybersecurity field.
       </p>
     </div>
@@ -113,7 +169,7 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
     </div>
   </div>
 
-  <h3 class="mb-4 pb-2 border-bottom" style="color: var(--primary); font-weight: 700;">Semester-wise Study Plan</h3>
+  <h3 class="mb-4 pb-2 border-bottom" style="color: var(--primary); font-weight: 700; border-color: var(--card-border) !important;">Semester-wise Study Plan</h3>
 
   <!-- SEMESTER 1 -->
   <div class="sem-card">
@@ -246,5 +302,37 @@ footer { background: var(--dark); color: white; padding: 30px 20px; text-align: 
   <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0;">Developed by Mariam Khan</p>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // === THEME TOGGLE LOGIC ===
+  function toggleTheme() {
+      const body = document.body;
+      const icon = document.getElementById('theme-icon');
+      
+      body.classList.toggle('dark-mode');
+      
+      if (body.classList.contains('dark-mode')) {
+          localStorage.setItem('theme', 'dark');
+          icon.classList.remove('fa-moon');
+          icon.classList.add('fa-sun');
+      } else {
+          localStorage.setItem('theme', 'light');
+          icon.classList.remove('fa-sun');
+          icon.classList.add('fa-moon');
+      }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+      const savedTheme = localStorage.getItem('theme');
+      const icon = document.getElementById('theme-icon');
+      
+      if (savedTheme === 'dark') {
+          document.body.classList.add('dark-mode');
+          if(icon) {
+              icon.classList.remove('fa-moon');
+              icon.classList.add('fa-sun');
+          }
+      }
+  });
+</script>
 </body>
 </html>
