@@ -10,8 +10,8 @@
 /* === THEME VARIABLES === */
 :root { 
     --primary: #0B72B9; 
-    --nav-bg: #0A1929;
-    --nav-text: #ffffff;
+    --nav-bg: #ffffff; /* Navbar White ho gaya */
+    --nav-text: #333333; /* Text Black ho gaya */
     --body-bg: #f4f7fb;
     --text-color: #333333;
     --card-bg: #ffffff;
@@ -27,6 +27,7 @@ body.dark-mode {
     --text-color: #e2e8f0;
     --card-bg: #1e293b;
     --card-border: rgba(255,255,255,0.1);
+    --dark: #e2e8f0;
 }
 
 body { 
@@ -37,11 +38,13 @@ body {
 }
 
 /* === NAVBAR === */
-.navbar { background: var(--nav-bg) !important; padding: 10px 0; transition: 0.3s; }
+.navbar { background: var(--nav-bg) !important; padding: 10px 0; transition: 0.3s; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+body.dark-mode .navbar { box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
 .navbar-brand { color: var(--nav-text) !important; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-.navbar-brand span.text-muted { color: #aaa !important; }
-.nav-link { color: var(--nav-text) !important; font-size: 1rem; padding: 5px 10px !important; }
-.nav-link:hover { color: #00D4FF !important; }
+.navbar-brand span.text-muted { color: #888 !important; }
+body.dark-mode .navbar-brand span.text-muted { color: #aaa !important; }
+.nav-link { color: var(--nav-text) !important; font-size: 1rem; padding: 8px 15px !important; }
+.nav-link:hover { color: var(--primary) !important; }
 .dropdown-menu { background-color: var(--nav-bg); border: 1px solid var(--card-border); }
 .dropdown-item { color: var(--nav-text) !important; }
 .dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
@@ -82,6 +85,7 @@ body.dark-mode .course-list li:hover { background-color: rgba(255, 255, 255, 0.0
 body.dark-mode .course-ch { background: #334155; color: #e2e8f0; }
 
 footer { background: var(--nav-bg); color: var(--nav-text); padding: 30px 20px; text-align: center; margin-top: 50px; transition: 0.3s; }
+body.dark-mode footer { background: #020617; }
 </style>
 </head>
 <body>
@@ -91,7 +95,6 @@ footer { background: var(--nav-bg); color: var(--nav-text); padding: 30px 20px; 
     <a class="navbar-brand" href="index.html">
       <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo" style="height: 45px; background: white; border-radius: 50%; padding: 2px;">
       <div>
-        <!-- Naam Change Kar Diya Hai -->
         <span style="display: block; line-height: 1.2;">Cyber Security Department</span>
         <span style="font-size: 0.7rem;" class="text-muted">QUEST Nawabshah</span>
       </div>
@@ -121,7 +124,6 @@ footer { background: var(--nav-bg); color: var(--nav-text); padding: 30px 20px; 
         <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
         <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
         
-        <!-- THEME TOGGLE BUTTON -->
         <li class="nav-item">
           <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
             <i class="fas fa-moon" id="theme-icon"></i>
@@ -303,7 +305,6 @@ footer { background: var(--nav-bg); color: var(--nav-text); padding: 30px 20px; 
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  // === THEME TOGGLE LOGIC ===
   function toggleTheme() {
       const body = document.body;
       const icon = document.getElementById('theme-icon');
