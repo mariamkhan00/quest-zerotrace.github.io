@@ -7,94 +7,87 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <style> 
-/* =========================================
-   THEME VARIABLES (Light aur Dark Mode ke liye)
-   ========================================= */
+/* === DEFAULT LIGHT THEME COLORS === */
 :root { 
     --primary: #0B72B9; 
     --dark: #0A1929; 
-    --light: #F8F9FA; 
+    --light: #F8F9FA;
     --body-bg: #ffffff;
     --text-color: #333333;
     --card-bg: #ffffff;
-    --border-color: #dddddd;
+    --card-border: rgba(0,0,0,0.1);
 }
 
+/* === DARK THEME COLORS (Jab .dark-mode lage) === */
 body.dark-mode {
-    --body-bg: #121212;
-    --text-color: #e0e0e0;
-    --card-bg: #1e1e1e;
-    --border-color: #333333;
-    --dark: #000000; /* Navbar aur footer ke liye */
+    --body-bg: #0f172a; /* MUET jaisa dark blue-black */
+    --text-color: #e2e8f0;
+    --card-bg: #1e293b;
+    --card-border: rgba(255,255,255,0.1);
+    --dark: #020617; /* Navbar aur Footer ke liye aur gehra rang */
 }
 
-/* =========================================
-   BASE STYLES
-   ========================================= */
 body { 
     font-family: 'Segoe UI', Tahoma, Arial, sans-serif; 
     background-color: var(--body-bg); 
     color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Chatbot Styles */
+/* === CHATBOT STYLES === */
 .chat-btn { position: fixed; bottom: 30px; right: 30px; background: var(--primary); color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 24px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); cursor: pointer; z-index: 9999; transition: 0.3s; }
 .chat-btn:hover { background: var(--dark); transform: scale(1.1); }
-.chat-window { position: fixed; bottom: 100px; right: 30px; width: 350px; height: 450px; background: var(--card-bg); border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 9999; overflow: hidden; border: 1px solid var(--border-color); }
+.chat-window { position: fixed; bottom: 100px; right: 30px; width: 350px; height: 450px; background: var(--card-bg); border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 9999; overflow: hidden; border: 1px solid #ddd; }
 .chat-header { background: var(--dark); color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-.chat-body { flex: 1; padding: 15px; overflow-y: auto; background: #f9f9f9; }
-body.dark-mode .chat-body { background: #1a1a1a; }
-.chat-input-area { padding: 10px; border-top: 1px solid var(--border-color); display: flex; gap: 10px; background: var(--card-bg); }
+.chat-body { flex: 1; padding: 15px; overflow-y: auto; background: var(--body-bg); }
+.chat-input-area { padding: 10px; border-top: 1px solid #eee; display: flex; gap: 10px; background: var(--card-bg); }
 .chat-msg { margin-bottom: 10px; padding: 10px 15px; border-radius: 15px; max-width: 85%; font-size: 0.9rem; line-height: 1.4; }
 .msg-bot { background: #e3f2fd; color: var(--dark); border-bottom-left-radius: 0; }
-body.dark-mode .msg-bot { background: #2c2c2c; color: white; }
 .msg-user { background: var(--primary); color: white; margin-left: auto; border-bottom-right-radius: 0; }
 
-/* Navbar Styles */
-.navbar { background: var(--dark) !important; padding: 10px 0; transition: background-color 0.3s; }
+/* === NAVBAR STYLES === */
+.navbar { background: var(--dark) !important; padding: 10px 0; transition: 0.3s; }
 .navbar-brand { color: white !important; font-weight: 700; display: flex; align-items: center; gap: 10px; }
 .university-logo { height: 45px; background: white; border-radius: 50%; padding: 2px; }
 .nav-link { color: rgba(255,255,255,0.9) !important; font-weight: 500; padding: 5px 10px !important; font-size: 1rem; }
 .nav-link:hover { color: #00D4FF !important; }
-.dropdown-menu { background-color: var(--dark); border: 1px solid var(--border-color); }
+.dropdown-menu { background-color: var(--dark); border: 1px solid #333; }
 .dropdown-item { color: white !important; }
 .dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
 
-/* Hero Section */
+/* Theme Toggle Button Style */
+.theme-toggle-btn { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; margin-left: 15px; }
+.theme-toggle-btn:hover { background: rgba(255,255,255,0.1); }
+
+/* === HERO SECTION === */
 .hero { background: url('https://i.ibb.co/b5BmC0BQ/telecom-building.jpg') center/cover no-repeat; height: 60vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
 .hero::before { content: ''; position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(10, 25, 41, 0.7); }
 .hero-content { position: relative; z-index: 1; color: white; }
 .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 15px; }
 .hero p { font-size: 1.2rem; }
 
-/* Titles & Cards */
-.section-title { text-align: center; color: var(--text-color); font-weight: 700; margin-bottom: 40px; margin-top: 60px; }
-.news-card { border: none; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); overflow: hidden; transition: 0.3s; height: 100%; background: var(--card-bg); cursor: pointer; border: 1px solid var(--border-color); }
-.news-card:hover { transform: translateY(-5px); }
+/* === CARDS & SECTIONS === */
+.section-title { text-align: center; color: var(--text-color); font-weight: 700; margin-bottom: 40px; margin-top: 60px; transition: 0.3s; }
+.news-card { border: 1px solid var(--card-border); border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); overflow: hidden; transition: 0.3s; height: 100%; background: var(--card-bg); cursor: pointer; }
+.news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(11, 114, 185, 0.2); }
 .news-card:hover .news-title { text-decoration: underline; }
 .news-img { width: 100%; height: 200px; object-fit: cover; }
 .news-body { padding: 20px; }
 .news-date { color: #888; font-size: 0.9rem; margin-bottom: 10px; display: block; }
 .news-title { font-size: 1.2rem; font-weight: 700; color: var(--primary); text-decoration: none; }
-.news-text { color: var(--text-color); font-size: 0.95rem; margin-top: 10px; opacity: 0.8; }
+.news-text { color: var(--text-color); font-size: 0.95rem; margin-top: 10px; opacity: 0.9; }
 
-/* Contact Section */
-.contact-section { background: #222222; color: white; padding: 60px 20px; margin-top: 60px; }
+/* === CONTACT & FOOTER === */
+.contact-section { background: #222222; color: white; padding: 60px 20px; margin-top: 60px; transition: 0.3s; }
+body.dark-mode .contact-section { background: #020617; border-top: 1px solid #1e293b; }
 .contact-col { margin-bottom: 30px; }
 .contact-col h5 { color: white; font-weight: 700; margin-bottom: 20px; font-size: 1.2rem; }
 .contact-item { display: flex; align-items: flex-start; margin-bottom: 15px; color: #cccccc; font-size: 0.95rem; }
-.contact-item i { color: #0B72B9; font-size: 1.2rem; margin-right: 15px; margin-top: 3px; }
+.contact-item i { color: var(--primary); font-size: 1.2rem; margin-right: 15px; margin-top: 3px; }
 .contact-item a { color: #cccccc; text-decoration: none; transition: 0.3s; }
 .contact-item a:hover { color: #00D4FF; }
-
-/* Footer */
-footer { background: var(--dark); color: white; padding: 30px 20px; text-align: center; transition: background-color 0.3s; }
+footer { background: var(--dark); color: white; padding: 30px 20px; text-align: center; transition: 0.3s; }
 footer p { margin: 0; }
-
-/* Dark Mode Specific Fixes */
-body.dark-mode .text-muted { color: #a0a0a0 !important; }
-body.dark-mode .section-title { color: #ffffff; }
 </style>
 </head>
 <body>
@@ -112,7 +105,7 @@ body.dark-mode .section-title { color: #ffffff; }
       <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
     </button>
     <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto align-items-center">
         <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
@@ -134,10 +127,10 @@ body.dark-mode .section-title { color: #ffffff; }
         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         
         <!-- THEME TOGGLE BUTTON -->
-        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-            <button class="btn btn-outline-light" id="theme-toggle" onclick="toggleTheme()" style="border-radius: 50%; width: 40px; height: 40px; padding: 0;">
-              <i class="fas fa-moon" id="theme-icon"></i>
-            </button>
+        <li class="nav-item">
+          <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+            <i class="fas fa-moon" id="theme-icon"></i>
+          </button>
         </li>
       </ul>
     </div>
@@ -156,19 +149,19 @@ body.dark-mode .section-title { color: #ffffff; }
     <div class="col-md-4">
       <div class="news-card p-4 h-100">
         <h5 class="fw-bold" style="color: var(--primary);">Undergraduate Program</h5>
-        <p class="text-muted mt-2">Industry focused BS Cyber Security program covering ethical hacking, AI security and digital forensics.</p>
+        <p class="mt-2">Industry focused BS Cyber Security program covering ethical hacking, AI security and digital forensics.</p>
       </div>
     </div>
     <div class="col-md-4">
       <div class="news-card p-4 h-100">
         <h5 class="fw-bold" style="color: var(--primary);">Research Labs</h5>
-        <p class="text-muted mt-2">Advanced labs for malware analysis, cryptography, AI threat detection and cyber intelligence.</p>
+        <p class="mt-2">Advanced labs for malware analysis, cryptography, AI threat detection and cyber intelligence.</p>
       </div>
     </div>
     <div class="col-md-4">
       <div class="news-card p-4 h-100">
         <h5 class="fw-bold" style="color: var(--primary);">Admissions</h5>
-        <p class="text-muted mt-2">Applications open for BS Cyber Security program. Join Pakistan’s digital defense future.</p>
+        <p class="mt-2">Applications open for BS Cyber Security program. Join Pakistan’s digital defense future.</p>
       </div>
     </div>
   </div>
@@ -177,7 +170,7 @@ body.dark-mode .section-title { color: #ffffff; }
 <div class="container">
   <h2 class="section-title">News & Announcements</h2>
   <div class="row g-4" id="news-container">
-    <!-- News 1: NEW EVENT (HECK READY) -->
+    <!-- News 1 -->
     <div class="col-md-6 col-lg-3">
       <a href="news.html?id=4" style="text-decoration: none; color: inherit;">
         <div class="news-card">
@@ -191,8 +184,7 @@ body.dark-mode .section-title { color: #ffffff; }
         </div>
       </a>
     </div>
-
-    <!-- News 2: Awareness Session -->
+    <!-- News 2 -->
     <div class="col-md-6 col-lg-3">
       <a href="news.html?id=1" style="text-decoration: none; color: inherit;">
         <div class="news-card">
@@ -206,8 +198,7 @@ body.dark-mode .section-title { color: #ffffff; }
         </div>
       </a>
     </div>
-
-    <!-- News 3: Orientation -->
+    <!-- News 3 -->
     <div class="col-md-6 col-lg-3">
       <a href="news.html?id=2" style="text-decoration: none; color: inherit;">
         <div class="news-card">
@@ -221,8 +212,7 @@ body.dark-mode .section-title { color: #ffffff; }
         </div>
       </a>
     </div>
-
-    <!-- News 4: Agentic AI -->
+    <!-- News 4 -->
     <div class="col-md-6 col-lg-3">
       <a href="news.html?id=3" style="text-decoration: none; color: inherit;">
         <div class="news-card">
@@ -236,17 +226,15 @@ body.dark-mode .section-title { color: #ffffff; }
         </div>
       </a>
     </div>
+  </div>
 </div>
 
-<!-- CONTACT US -->
 <section class="contact-section" id="contact">
   <div class="container">
     <div class="text-center mb-5">
       <h2 style="color: white; font-weight: 700;">Contact Us</h2>
     </div>
-    
     <div class="row mt-4">
-      <!-- Location -->
       <div class="col-md-3 contact-col">
         <h5>Location</h5>
         <div class="contact-item">
@@ -254,8 +242,6 @@ body.dark-mode .section-title { color: #ffffff; }
           <span>Quaid-e-Awam University of Engineering, Science & Technology, Nawabshah, Sindh, Pakistan</span>
         </div>
       </div>
-
-      <!-- Phone -->
       <div class="col-md-3 contact-col">
         <h5>Phone</h5>
         <div class="contact-item">
@@ -263,8 +249,6 @@ body.dark-mode .section-title { color: #ffffff; }
           <span>+92 244 9370367</span>
         </div>
       </div>
-
-      <!-- General Email -->
       <div class="col-md-3 contact-col">
         <h5>General Email</h5>
         <div class="contact-item">
@@ -272,8 +256,6 @@ body.dark-mode .section-title { color: #ffffff; }
           <a href="mailto:info@quest.edu.pk">info@quest.edu.pk</a>
         </div>
       </div>
-
-      <!-- Chairman Email -->
       <div class="col-md-3 contact-col">
         <h5>Chairman Email</h5>
         <div class="contact-item">
@@ -288,13 +270,14 @@ body.dark-mode .section-title { color: #ffffff; }
 <footer>
   <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
   <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Developed by Mariam Khan</p>
-  <div class="text-center pb-3" style="background: var(--dark);">
+  <div class="text-center pb-3" style="background: #0A1929;">
   <a href="login.html" style="color: #888; font-size: 0.8rem; text-decoration: none;">
     <i class="fas fa-lock"></i> Admin Login
   </a>
 </div>
 </footer>
 
+<!-- Chatbot Code (Waisa hi hai) -->
 <button class="chat-btn" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
 <div class="chat-window" id="chatWindow">
   <div class="chat-header">
@@ -312,9 +295,7 @@ body.dark-mode .section-title { color: #ffffff; }
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-// =========================================
-// THEME TOGGLE LOGIC (Dark / Light Mode)
-// =========================================
+// === THEME TOGGLE LOGIC ===
 function toggleTheme() {
     const body = document.body;
     const icon = document.getElementById('theme-icon');
@@ -324,15 +305,15 @@ function toggleTheme() {
     if (body.classList.contains('dark-mode')) {
         localStorage.setItem('theme', 'dark');
         icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun'); 
+        icon.classList.add('fa-sun');
     } else {
         localStorage.setItem('theme', 'light');
         icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon'); 
+        icon.classList.add('fa-moon');
     }
 }
 
-// Page Load par saved theme check karna
+// Page Load par theme check karein
 document.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem('theme');
     const icon = document.getElementById('theme-icon');
@@ -346,9 +327,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// =========================================
-// CHATBOT LOGIC (Waisa hi hai jaisa aapne diya)
-// =========================================
+// === CHATBOT LOGIC (Waisa hi rahega) ===
 function toggleChat() {
   const w = document.getElementById('chatWindow');
   w.style.display = (w.style.display === 'flex') ? 'none' : 'flex';
@@ -366,7 +345,6 @@ function sendMessage() {
   body.innerHTML += `<div class="chat-msg msg-bot" id="${loadId}">Thinking...</div>`;
   body.scrollTop = body.scrollHeight;
 
-  // YAHAN APNA NAYA CHATBOT URL DAALO
   const API_URL = "https://script.google.com/macros/s/AKfycbxnC6yvLX7bii8KGFAL6SHgsRUds4AjZo1Vu-V9wpnqh2lwIGE0DeadBPB_gVx9sfJ7rw/exec";  
   
   fetch(API_URL, {
