@@ -118,20 +118,29 @@ body { background-color: #eef2f5; font-family: 'Segoe UI', sans-serif; display: 
 <script>
 let currentShift = '';
 let liveTimetableData = [];
+let isDataLoaded = false;
 
+// 1. API Se Data Fetch Karna
 async function fetchLiveData() {
     const API_URL = "https://script.google.com/macros/s/AKfycbwtu3BY-_DEC_iSXcWE4b4WzAWhqq5LVN7SIyrPVAaU-3W6LQ20R_btI8TCnftYyOAdoQ/exec"; 
     try {
         const response = await fetch(API_URL + "?action=getLiveTimetable");
         const data = await response.json();
+        
         if (data && data.length > 0 && !data[0].error) {
             liveTimetableData = data;
+            isDataLoaded = true;
+            console.log("Data Loaded Successfully:", data); 
+        } else {
+            console.error("API Data Error:", data);
         }
     } catch (error) {
         console.error("Fetch Error:", error);
+        document.getElementById('card-live-text').innerText = "Network Error. Please check internet.";
     }
 }
 
+// 2. View Change Karne Ka Function
 function showView(viewId) {
   document.getElementById('view-shift').style.display = 'none';
   document.getElementById('view-batch').style.display = 'none';
@@ -139,10 +148,12 @@ function showView(viewId) {
   document.getElementById(viewId).style.display = 'block';
 }
 
+// 3. Shift Select Karna
 function selectShift(shift) {
   currentShift = shift;
   showView('view-batch');
   document.getElementById('shift-subtitle').innerText = shift + " — choose your batch";
+  
   if (shift === 'Morning') {
     document.getElementById('morning-batches').style.display = 'contents';
     document.getElementById('evening-batches').style.display = 'none';
@@ -152,9 +163,12 @@ function selectShift(shift) {
   }
 }
 
+// 4. Batch Load Karna aur Time Calculate Karna
 function loadBatch(batchName) {
   showView('view-card');
-  document.getElementById('card-batch-name').innerText = batchName.split('_')[0];
+  
+  let displayBatch = batchName.split('_')[0];
+  document.getElementById('card-batch-name').innerText = displayBatch;
   document.getElementById('card-shift-title').innerText = batchName.split('_')[1].toUpperCase() + " SHIFT - CYBER SECURITY";
   
   const now = new Date();
@@ -169,38 +183,52 @@ function loadBatch(batchName) {
 
   if (currentDay === 'Saturday' || currentDay === 'Sunday') {
     document.getElementById('box-none').style.display = 'block';
-    document.getElementById('card-live-text').innerText = "Weekend - No Classes";
+    document.getElementById('box-none').querySelector('.class-subject').innerText = "Weekend - No Classes";
+    document.getElementById('card-live-text').innerText = "Holiday";
     return;
   }
 
-  // Batch name fix: CYS24_Morning -> 24CYS
-  let searchBatch = batchName.replace("CYS", "").replace("_Morning", "CYS").replace("_Evening", "CYSE");
-  
+  if (!isDataLoaded) {
+      document.getElementById('card-live-text').innerText = "Loading timetable data...";
+      setTimeout(() => loadBatch(batchName), 1500); 
+      return;
+  }
+
+  let searchBatch = "";
+  if (batchName.includes("Morning")) {
+      searchBatch = batchName.replace("CYS", "").replace("_Morning", "") + "CYS"; 
+  } else {
+      searchBatch = batchName.replace("CYS", "").replace("_Evening", "") + "CYSE"; 
+  }
+
   const todaySchedule = liveTimetableData.filter(item => 
-      item.batch === searchBatch && item.day === currentDay
+      String(item.batch).trim() === searchBatch && String(item.day).trim() === currentDay
   );
 
-  if (!todaySchedule || todaySchedule.length === 0) {
+  if (todaySchedule.length === 0) {
     document.getElementById('box-none').style.display = 'block';
-    document.getElementById('card-live-text').innerText = "No classes scheduled";
+    document.getElementById('card-live-text').innerText = "No classes scheduled for " + searchBatch;
     return;
   }
 
-  const currentTime = (now.getHours() * 60) + now.getMinutes();
+  const currentTimeMins = (now.getHours() * 60) + now.getMinutes();
   let ongoingClass = null;
   let nextClass = null;
+
+  todaySchedule.sort((a, b) => timeToMins(a.start) - timeToMins(b.start));
 
   for (let i = 0; i < todaySchedule.length; i++) {
     let cls = todaySchedule[i];
     let startMins = timeToMins(cls.start);
     let endMins = timeToMins(cls.end);
 
-    if (currentTime >= startMins && currentTime < endMins) {
+    if (currentTimeMins >= startMins && currentTimeMins < endMins) {
       ongoingClass = cls;
       if (i + 1 < todaySchedule.length) nextClass = todaySchedule[i + 1];
       break;
-    } else if (currentTime < startMins) {
-      if (!ongoingClass) nextClass = cls;
+    } 
+    else if (currentTimeMins < startMins) {
+      nextClass = cls;
       break; 
     }
   }
@@ -217,32 +245,32 @@ function loadBatch(batchName) {
     document.getElementById('next-subject').innerText = nextClass.subject;
     document.getElementById('next-details').innerText = formatTime(nextClass.start) + " - " + formatTime(nextClass.end) + " | Room: " + nextClass.room + " | " + nextClass.teacher;
     if(!ongoingClass) document.getElementById('card-live-text').innerText = "Next class is scheduled";
-  } else if (ongoingClass && !nextClass) {
-    document.getElementById('box-next').style.display = 'block';
-    document.getElementById('next-subject').innerText = "No Next Class";
-    document.getElementById('next-details').innerText = "This is the last class for today.";
-  } else if (!ongoingClass && !nextClass) {
+  } 
+  else if (!ongoingClass && !nextClass) {
     document.getElementById('box-none').style.display = 'block';
     document.getElementById('box-none').querySelector('.class-subject').innerText = "All classes finished";
     document.getElementById('card-live-text').innerText = "Day is over";
   }
 }
 
-// 🔥 YEH HAI ASLI FIX (Time Format) 🔥
+// 🔥 TIME FORMATTING LOGIC (Fixed) 🔥
 function timeToMins(timeStr) {
+  if (!timeStr) return 0;
+  
   if (typeof timeStr === 'number') {
-      // Agar Google Sheet se time number (0.354) aaye
-      let totalMins = Math.round(timeStr * 24 * 60);
-      return totalMins;
-  } else if (String(timeStr).includes("T")) {
-      // Agar JSON date format (1899-12-30T04:01) aaye
+      return Math.round(timeStr * 24 * 60);
+  } 
+  else if (String(timeStr).includes("T")) {
       let dateObj = new Date(timeStr);
-      // Yahan local time use karenge taake timezone ka masla khatam ho
-      return (dateObj.getHours() * 60) + dateObj.getMinutes();
+      let hours = dateObj.getUTCHours(); 
+      let mins = dateObj.getUTCMinutes();
+      return (hours * 60) + mins;
   }
-  // Agar normal string "8:30" aaye
-  const parts = String(timeStr).split(':');
-  return (parseInt(parts[0]) * 60) + parseInt(parts[1]);
+  const parts = String(timeStr).trim().split(':');
+  if(parts.length >= 2) {
+      return (parseInt(parts[0]) * 60) + parseInt(parts[1]);
+  }
+  return 0;
 }
 
 function formatTime(timeStr) {
@@ -253,8 +281,8 @@ function formatTime(timeStr) {
         return h + ":" + m;
     } else if (String(timeStr).includes("T")) {
         let dateObj = new Date(timeStr);
-        let hours = dateObj.getHours().toString().padStart(2, '0');
-        let mins = dateObj.getMinutes().toString().padStart(2, '0');
+        let hours = dateObj.getUTCHours().toString().padStart(2, '0');
+        let mins = dateObj.getUTCMinutes().toString().padStart(2, '0');
         return hours + ":" + mins;
     }
     return timeStr;
