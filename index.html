@@ -7,24 +7,33 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <style> 
-/* === DEFAULT LIGHT THEME COLORS === */
+/* === DEFAULT LIGHT THEME (MUET STYLE) === */
 :root { 
     --primary: #0B72B9; 
-    --dark: #0A1929; 
-    --light: #F8F9FA;
+    --nav-bg: #ffffff;
+    --nav-text: #333333;
     --body-bg: #ffffff;
     --text-color: #333333;
     --card-bg: #ffffff;
-    --card-border: rgba(0,0,0,0.1);
+    --card-border: rgba(0,0,0,0.08);
+    --hero-overlay: rgba(255, 255, 255, 0.85);
+    --hero-text: #0B72B9;
+    --footer-bg: #0A1929;
+    --footer-text: #ffffff;
 }
 
-/* === DARK THEME COLORS (Jab .dark-mode lage) === */
+/* === DARK THEME (Jab .dark-mode class lage) === */
 body.dark-mode {
-    --body-bg: #0f172a; /* MUET jaisa dark blue-black */
+    --nav-bg: #0f172a;
+    --nav-text: #e2e8f0;
+    --body-bg: #0f172a;
     --text-color: #e2e8f0;
     --card-bg: #1e293b;
     --card-border: rgba(255,255,255,0.1);
-    --dark: #020617; /* Navbar aur Footer ke liye aur gehra rang */
+    --hero-overlay: rgba(10, 25, 41, 0.85);
+    --hero-text: #ffffff;
+    --footer-bg: #020617;
+    --footer-text: #e2e8f0;
 }
 
 body { 
@@ -34,41 +43,90 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* === CHATBOT STYLES === */
-.chat-btn { position: fixed; bottom: 30px; right: 30px; background: var(--primary); color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 24px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); cursor: pointer; z-index: 9999; transition: 0.3s; }
-.chat-btn:hover { background: var(--dark); transform: scale(1.1); }
-.chat-window { position: fixed; bottom: 100px; right: 30px; width: 350px; height: 450px; background: var(--card-bg); border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 9999; overflow: hidden; border: 1px solid #ddd; }
-.chat-header { background: var(--dark); color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-.chat-body { flex: 1; padding: 15px; overflow-y: auto; background: var(--body-bg); }
-.chat-input-area { padding: 10px; border-top: 1px solid #eee; display: flex; gap: 10px; background: var(--card-bg); }
-.chat-msg { margin-bottom: 10px; padding: 10px 15px; border-radius: 15px; max-width: 85%; font-size: 0.9rem; line-height: 1.4; }
-.msg-bot { background: #e3f2fd; color: var(--dark); border-bottom-left-radius: 0; }
-.msg-user { background: var(--primary); color: white; margin-left: auto; border-bottom-right-radius: 0; }
+/* === NAVBAR === */
+.navbar { 
+    background: var(--nav-bg) !important; 
+    padding: 10px 0; 
+    transition: 0.3s; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+body.dark-mode .navbar { box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
 
-/* === NAVBAR STYLES === */
-.navbar { background: var(--dark) !important; padding: 10px 0; transition: 0.3s; }
-.navbar-brand { color: white !important; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.navbar-brand { 
+    color: var(--nav-text) !important; 
+    font-weight: 700; 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+.navbar-brand span.text-muted { color: #888 !important; }
+body.dark-mode .navbar-brand span.text-muted { color: #aaa !important; }
+
 .university-logo { height: 45px; background: white; border-radius: 50%; padding: 2px; }
-.nav-link { color: rgba(255,255,255,0.9) !important; font-weight: 500; padding: 5px 10px !important; font-size: 1rem; }
-.nav-link:hover { color: #00D4FF !important; }
-.dropdown-menu { background-color: var(--dark); border: 1px solid #333; }
-.dropdown-item { color: white !important; }
+
+.nav-link { 
+    color: var(--nav-text) !important; 
+    font-weight: 500; 
+    padding: 8px 15px !important; 
+    font-size: 1rem; 
+}
+.nav-link:hover { color: var(--primary) !important; }
+
+.dropdown-menu { background-color: var(--nav-bg); border: 1px solid var(--card-border); }
+.dropdown-item { color: var(--nav-text) !important; }
 .dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
 
-/* Theme Toggle Button Style */
-.theme-toggle-btn { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; margin-left: 15px; }
-.theme-toggle-btn:hover { background: rgba(255,255,255,0.1); }
+/* Theme Toggle Button */
+.theme-toggle-btn { 
+    background: transparent; 
+    border: 1px solid var(--card-border); 
+    color: var(--nav-text); 
+    border-radius: 50%; 
+    width: 40px; 
+    height: 40px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    margin-left: 15px; 
+}
+.theme-toggle-btn:hover { background: var(--primary); color: white; }
 
 /* === HERO SECTION === */
-.hero { background: url('https://i.ibb.co/b5BmC0BQ/telecom-building.jpg') center/cover no-repeat; height: 60vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
-.hero::before { content: ''; position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(10, 25, 41, 0.7); }
-.hero-content { position: relative; z-index: 1; color: white; }
-.hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 15px; }
-.hero p { font-size: 1.2rem; }
+.hero { 
+    background: url('https://i.ibb.co/b5BmC0BQ/telecom-building.jpg') center/cover no-repeat; 
+    height: 60vh; 
+    position: relative; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+}
+.hero::before { 
+    content: ''; 
+    position: absolute; 
+    top:0; left:0; right:0; bottom:0; 
+    background: var(--hero-overlay); /* Light mein safaid overlay, dark mein gehra */
+    transition: 0.3s;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 15px; color: var(--hero-text); transition: 0.3s; }
+.hero p { font-size: 1.2rem; color: var(--text-color); font-weight: 500; transition: 0.3s; }
 
 /* === CARDS & SECTIONS === */
 .section-title { text-align: center; color: var(--text-color); font-weight: 700; margin-bottom: 40px; margin-top: 60px; transition: 0.3s; }
-.news-card { border: 1px solid var(--card-border); border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); overflow: hidden; transition: 0.3s; height: 100%; background: var(--card-bg); cursor: pointer; }
+
+.news-card { 
+    border: 1px solid var(--card-border); 
+    border-radius: 10px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+    overflow: hidden; 
+    transition: 0.3s; 
+    height: 100%; 
+    background: var(--card-bg); 
+    cursor: pointer; 
+}
 .news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(11, 114, 185, 0.2); }
 .news-card:hover .news-title { text-decoration: underline; }
 .news-img { width: 100%; height: 200px; object-fit: cover; }
@@ -78,16 +136,26 @@ body {
 .news-text { color: var(--text-color); font-size: 0.95rem; margin-top: 10px; opacity: 0.9; }
 
 /* === CONTACT & FOOTER === */
-.contact-section { background: #222222; color: white; padding: 60px 20px; margin-top: 60px; transition: 0.3s; }
-body.dark-mode .contact-section { background: #020617; border-top: 1px solid #1e293b; }
-.contact-col { margin-bottom: 30px; }
-.contact-col h5 { color: white; font-weight: 700; margin-bottom: 20px; font-size: 1.2rem; }
-.contact-item { display: flex; align-items: flex-start; margin-bottom: 15px; color: #cccccc; font-size: 0.95rem; }
+.contact-section { background: var(--card-bg); color: var(--text-color); padding: 60px 20px; margin-top: 60px; border-top: 1px solid var(--card-border); transition: 0.3s; }
+.contact-col h5 { color: var(--text-color); font-weight: 700; margin-bottom: 20px; font-size: 1.2rem; }
+.contact-item { display: flex; align-items: flex-start; margin-bottom: 15px; color: var(--text-color); font-size: 0.95rem; }
 .contact-item i { color: var(--primary); font-size: 1.2rem; margin-right: 15px; margin-top: 3px; }
-.contact-item a { color: #cccccc; text-decoration: none; transition: 0.3s; }
-.contact-item a:hover { color: #00D4FF; }
-footer { background: var(--dark); color: white; padding: 30px 20px; text-align: center; transition: 0.3s; }
+.contact-item a { color: var(--text-color); text-decoration: none; transition: 0.3s; }
+.contact-item a:hover { color: var(--primary); }
+
+footer { background: var(--footer-bg); color: var(--footer-text); padding: 30px 20px; text-align: center; transition: 0.3s; }
 footer p { margin: 0; }
+
+/* Chatbot Styles */
+.chat-btn { position: fixed; bottom: 30px; right: 30px; background: var(--primary); color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 24px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); cursor: pointer; z-index: 9999; transition: 0.3s; }
+.chat-btn:hover { background: #0A1929; transform: scale(1.1); }
+.chat-window { position: fixed; bottom: 100px; right: 30px; width: 350px; height: 450px; background: var(--card-bg); border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 9999; overflow: hidden; border: 1px solid var(--card-border); }
+.chat-header { background: #0A1929; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+.chat-body { flex: 1; padding: 15px; overflow-y: auto; background: var(--body-bg); }
+.chat-input-area { padding: 10px; border-top: 1px solid var(--card-border); display: flex; gap: 10px; background: var(--card-bg); }
+.chat-msg { margin-bottom: 10px; padding: 10px 15px; border-radius: 15px; max-width: 85%; font-size: 0.9rem; line-height: 1.4; }
+.msg-bot { background: #e3f2fd; color: #0A1929; border-bottom-left-radius: 0; }
+.msg-user { background: var(--primary); color: white; margin-left: auto; border-bottom-right-radius: 0; }
 </style>
 </head>
 <body>
@@ -98,7 +166,7 @@ footer p { margin: 0; }
       <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo" class="university-logo">
       <div>
         <span style="display: block; line-height: 1.2;">Cyber Security Department</span>
-        <span style="font-size: 0.7rem; color: #aaa;">QUEST Nawabshah</span>
+        <span style="font-size: 0.7rem;" class="text-muted">QUEST Nawabshah</span>
       </div>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -149,19 +217,19 @@ footer p { margin: 0; }
     <div class="col-md-4">
       <div class="news-card p-4 h-100">
         <h5 class="fw-bold" style="color: var(--primary);">Undergraduate Program</h5>
-        <p class="mt-2">Industry focused BS Cyber Security program covering ethical hacking, AI security and digital forensics.</p>
+        <p class="mt-2 text-muted">Industry focused BS Cyber Security program covering ethical hacking, AI security and digital forensics.</p>
       </div>
     </div>
     <div class="col-md-4">
       <div class="news-card p-4 h-100">
         <h5 class="fw-bold" style="color: var(--primary);">Research Labs</h5>
-        <p class="mt-2">Advanced labs for malware analysis, cryptography, AI threat detection and cyber intelligence.</p>
+        <p class="mt-2 text-muted">Advanced labs for malware analysis, cryptography, AI threat detection and cyber intelligence.</p>
       </div>
     </div>
     <div class="col-md-4">
       <div class="news-card p-4 h-100">
         <h5 class="fw-bold" style="color: var(--primary);">Admissions</h5>
-        <p class="mt-2">Applications open for BS Cyber Security program. Join Pakistan’s digital defense future.</p>
+        <p class="mt-2 text-muted">Applications open for BS Cyber Security program. Join Pakistan’s digital defense future.</p>
       </div>
     </div>
   </div>
@@ -232,7 +300,7 @@ footer p { margin: 0; }
 <section class="contact-section" id="contact">
   <div class="container">
     <div class="text-center mb-5">
-      <h2 style="color: white; font-weight: 700;">Contact Us</h2>
+      <h2 style="font-weight: 700;">Contact Us</h2>
     </div>
     <div class="row mt-4">
       <div class="col-md-3 contact-col">
@@ -270,14 +338,13 @@ footer p { margin: 0; }
 <footer>
   <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
   <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Developed by Mariam Khan</p>
-  <div class="text-center pb-3" style="background: #0A1929;">
+  <div class="text-center pb-3" style="background: rgba(0,0,0,0.2);">
   <a href="login.html" style="color: #888; font-size: 0.8rem; text-decoration: none;">
     <i class="fas fa-lock"></i> Admin Login
   </a>
 </div>
 </footer>
 
-<!-- Chatbot Code (Waisa hi hai) -->
 <button class="chat-btn" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
 <div class="chat-window" id="chatWindow">
   <div class="chat-header">
@@ -295,7 +362,6 @@ footer p { margin: 0; }
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-// === THEME TOGGLE LOGIC ===
 function toggleTheme() {
     const body = document.body;
     const icon = document.getElementById('theme-icon');
@@ -313,7 +379,6 @@ function toggleTheme() {
     }
 }
 
-// Page Load par theme check karein
 document.addEventListener("DOMContentLoaded", () => {
     const savedTheme = localStorage.getItem('theme');
     const icon = document.getElementById('theme-icon');
@@ -327,7 +392,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// === CHATBOT LOGIC (Waisa hi rahega) ===
+// Chatbot Logic
 function toggleChat() {
   const w = document.getElementById('chatWindow');
   w.style.display = (w.style.display === 'flex') ? 'none' : 'flex';
