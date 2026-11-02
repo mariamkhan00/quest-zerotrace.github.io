@@ -173,8 +173,14 @@ h1, h2, h3, h4, .font-heading { font-family: 'Space Grotesk', sans-serif; }
     cursor: pointer; 
     backdrop-filter: blur(10px);
 }
-.news-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.6), 0 0 20px rgba(155,92,255,0.2); border-color: var(--primary);}
-.news-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid var(--border-color);}
+/* Hover Effect with more glow */
+.news-card:hover { 
+    transform: translateY(-10px); 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.6), 0 0 30px rgba(155,92,255,0.4); 
+    border-color: var(--primary);
+}
+.news-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid var(--border-color); transition: 0.4s;}
+.news-card:hover .news-img { transform: scale(1.05); } /* Image zoom on hover */
 .news-body { padding: 25px; }
 .news-date { color: var(--primary); font-size: 0.85rem; margin-bottom: 10px; display: block; font-weight: 600;}
 .news-title { font-size: 1.2rem; font-weight: 700; color: var(--text-main); text-decoration: none; }
@@ -201,7 +207,7 @@ body p { color: var(--text-muted); }
     background: var(--primary); transform: scaleX(0); transform-origin: left; transition: 0.4s;
 }
 .info-card:hover::before { transform: scaleX(1); }
-.info-card:hover { transform: translateY(-5px); border-color: rgba(155, 92, 255, 0.4); }
+.info-card:hover { transform: translateY(-5px); border-color: rgba(155, 92, 255, 0.4); box-shadow: 0 0 20px rgba(155,92,255,0.15);}
 .info-card h5 { font-size: 1.3rem; font-weight: 700; margin-bottom: 15px; color: var(--primary); }
 
 /* === CONTACT & FOOTER === */
@@ -309,19 +315,20 @@ footer .dev-name { color: var(--primary); font-weight: 600; text-shadow: 0 0 10p
 <!-- === INTRODUCTION CARDS === -->
 <div class="container section-padding">
   <div class="row g-4">
-    <div class="col-md-4 gsap-fade-up">
+    <!-- Added gsap-card-anim class for animation -->
+    <div class="col-md-4 gsap-card-anim">
       <div class="info-card">
         <h5>Undergraduate Program</h5>
         <p>Industry focused BS Cyber Security program covering ethical hacking, AI security and digital forensics.</p>
       </div>
     </div>
-    <div class="col-md-4 gsap-fade-up" style="transition-delay: 0.1s;">
+    <div class="col-md-4 gsap-card-anim">
       <div class="info-card">
         <h5>Research Labs</h5>
         <p>Advanced labs for malware analysis, cryptography, AI threat detection and cyber intelligence.</p>
       </div>
     </div>
-    <div class="col-md-4 gsap-fade-up" style="transition-delay: 0.2s;">
+    <div class="col-md-4 gsap-card-anim">
       <div class="info-card">
         <h5>Admissions</h5>
         <p>Applications open for BS Cyber Security program. Join Pakistan’s digital defense future.</p>
@@ -332,10 +339,11 @@ footer .dev-name { color: var(--primary); font-weight: 600; text-shadow: 0 0 10p
 
 <!-- === NEWS SECTION === -->
 <div class="container section-padding">
+  <!-- Added gsap-fade-up for title animation -->
   <h2 class="section-title gsap-fade-up">News & <span>Announcements</span></h2>
   <div class="row g-4" id="news-container">
-    <!-- News Card 1 -->
-    <div class="col-md-6 col-lg-3 gsap-fade-up">
+    <!-- Added gsap-news-anim class for slide up animation -->
+    <div class="col-md-6 col-lg-3 gsap-news-anim">
       <a href="news.html?id=4" style="text-decoration: none; color: inherit;">
         <div class="news-card">
           <img src="https://i.ibb.co/7dbM3CHr/IMG-20261022-WA0032.jpg" class="news-img" alt="HECK READY 2026">
@@ -348,8 +356,7 @@ footer .dev-name { color: var(--primary); font-weight: 600; text-shadow: 0 0 10p
         </div>
       </a>
     </div>
-    <!-- News Card 2 -->
-    <div class="col-md-6 col-lg-3 gsap-fade-up" style="transition-delay: 0.1s;">
+    <div class="col-md-6 col-lg-3 gsap-news-anim">
       <a href="news.html?id=1" style="text-decoration: none; color: inherit;">
         <div class="news-card">
           <img src="https://i.ibb.co/BK2Yhw81/IMG-20261019-WA0043.jpg" class="news-img" alt="Awareness Session">
@@ -362,8 +369,7 @@ footer .dev-name { color: var(--primary); font-weight: 600; text-shadow: 0 0 10p
         </div>
       </a>
     </div>
-    <!-- News Card 3 -->
-    <div class="col-md-6 col-lg-3 gsap-fade-up" style="transition-delay: 0.2s;">
+    <div class="col-md-6 col-lg-3 gsap-news-anim">
       <a href="news.html?id=2" style="text-decoration: none; color: inherit;">
         <div class="news-card">
           <img src="https://i.ibb.co/0V2HRXKc/IMG-20261019-WA0044.jpg" class="news-img" alt="Orientation">
@@ -376,8 +382,7 @@ footer .dev-name { color: var(--primary); font-weight: 600; text-shadow: 0 0 10p
         </div>
       </a>
     </div>
-    <!-- News Card 4 -->
-    <div class="col-md-6 col-lg-3 gsap-fade-up" style="transition-delay: 0.3s;">
+    <div class="col-md-6 col-lg-3 gsap-news-anim">
       <a href="news.html?id=3" style="text-decoration: none; color: inherit;">
         <div class="news-card">
           <img src="https://i.ibb.co/B2tzdjFD/IMG-20261019-WA0041.jpg" class="news-img" alt="Agentic AI Session">
@@ -399,29 +404,30 @@ footer .dev-name { color: var(--primary); font-weight: 600; text-shadow: 0 0 10p
     <div class="text-center mb-5 gsap-fade-up">
       <h2 style="font-weight: 700; color: var(--text-main); font-family: 'Space Grotesk', sans-serif;">Contact <span style="color: var(--primary);">Us</span></h2>
     </div>
+    <!-- Added gsap-contact-anim for contact details animation -->
     <div class="row mt-4">
-      <div class="col-md-3 contact-col gsap-fade-up">
+      <div class="col-md-3 contact-col gsap-contact-anim">
         <h5>Location</h5>
         <div class="contact-item">
           <i class="fas fa-map-marker-alt"></i>
           <span>Quaid-e-Awam University of Engineering, Science & Technology, Nawabshah, Sindh, Pakistan</span>
         </div>
       </div>
-      <div class="col-md-3 contact-col gsap-fade-up" style="transition-delay: 0.1s;">
+      <div class="col-md-3 contact-col gsap-contact-anim">
         <h5>Phone</h5>
         <div class="contact-item">
           <i class="fas fa-phone-alt"></i>
           <span>+92 244 9370367</span>
         </div>
       </div>
-      <div class="col-md-3 contact-col gsap-fade-up" style="transition-delay: 0.2s;">
+      <div class="col-md-3 contact-col gsap-contact-anim">
         <h5>General Email</h5>
         <div class="contact-item">
           <i class="fas fa-envelope"></i>
           <a href="mailto:info@quest.edu.pk">info@quest.edu.pk</a>
         </div>
       </div>
-      <div class="col-md-3 contact-col gsap-fade-up" style="transition-delay: 0.3s;">
+      <div class="col-md-3 contact-col gsap-contact-anim">
         <h5>Chairman Email</h5>
         <div class="contact-item">
           <i class="fas fa-envelope"></i>
@@ -461,13 +467,11 @@ footer .dev-name { color: var(--primary); font-weight: 600; text-shadow: 0 0 10p
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <script>
-// === THEME TOGGLE (Preserved) ===
+// === THEME TOGGLE ===
 function toggleTheme() {
     const body = document.body;
     const icon = document.getElementById('theme-icon');
-    body.classList.toggle('light-mode'); // Though we are mainly dark, keeping logic just in case
-    
-    // In this cyberpunk theme, we just toggle the icon to maintain the dark vibe
+    body.classList.toggle('light-mode'); 
     if (icon.classList.contains('fa-sun')) {
         icon.classList.remove('fa-sun');
         icon.classList.add('fa-moon');
@@ -477,10 +481,10 @@ function toggleTheme() {
     }
 }
 
-// === GSAP ANIMATIONS ===
+// === GSAP SCROLL ANIMATIONS ===
 gsap.registerPlugin(ScrollTrigger);
 
-// 1. Hero Text Animation
+// 1. Hero Text Animation (Loads immediately)
 const tl = gsap.timeline();
 tl.from(".gsap-hero-anim", {
     y: 50,
@@ -491,21 +495,62 @@ tl.from(".gsap-hero-anim", {
     delay: 0.5
 });
 
-// 2. Scroll Fade Up Elements
+// 2. Intro Cards Animation (Rotate + Scale Up on Scroll)
+gsap.from(".gsap-card-anim", {
+    scrollTrigger: {
+        trigger: ".gsap-card-anim",
+        start: "top 85%", 
+    },
+    y: 100,
+    opacity: 0,
+    rotationX: -15, // Gives a 3D flip effect
+    duration: 0.8,
+    stagger: 0.2, // One by one
+    ease: "back.out(1.7)"
+});
+
+// 3. News Cards Animation (Slide Up + Fade on Scroll)
+gsap.from(".gsap-news-anim", {
+    scrollTrigger: {
+        trigger: ".gsap-news-anim",
+        start: "top 85%",
+    },
+    y: 80,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.15, // News cards one after another
+    ease: "power2.out"
+});
+
+// 4. Contact Section Animation
+gsap.from(".gsap-contact-anim", {
+    scrollTrigger: {
+        trigger: ".gsap-contact-anim",
+        start: "top 90%",
+    },
+    y: 50,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.1,
+    ease: "power2.out"
+});
+
+// 5. Generic Fade Up (Section Titles)
 gsap.utils.toArray('.gsap-fade-up').forEach(element => {
     gsap.from(element, {
         scrollTrigger: {
             trigger: element,
-            start: "top 85%",
+            start: "top 90%",
         },
-        y: 40,
+        y: 30,
         opacity: 0,
         duration: 0.8,
         ease: "power2.out"
     });
 });
 
-// === PARTICLES ANIMATION (Simulated via Canvas) ===
+
+// === PARTICLES ANIMATION (Canvas Background) ===
 const canvas = document.getElementById('particle-canvas');
 const ctx = canvas.getContext('2d');
 let width, height;
@@ -559,7 +604,6 @@ function createBurst() {
 function animate() {
     ctx.clearRect(0, 0, width, height);
     
-    // Add particles continuously for subtle background effect
     if(Math.random() < 0.1) createBurst();
 
     for (let i = particles.length - 1; i >= 0; i--) {
@@ -572,8 +616,7 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
-// Initial big explosion
-for(let i=0; i<300; i++) createBurst();
+for(let i=0; i<300; i++) createBurst(); // Initial explosion
 animate();
 
 
@@ -595,7 +638,6 @@ function sendMessage() {
   body.innerHTML += `<div class="chat-msg msg-bot" id="${loadId}">Thinking...</div>`;
   body.scrollTop = body.scrollHeight;
 
-  // Your existing API URL
   const API_URL = "https://script.google.com/macros/s/AKfycbxnC6yvLX7bii8KGFAL6SHgsRUds4AjZo1Vu-V9wpnqh2lwIGE0DeadBPB_gVx9sfJ7rw/exec";  
   
   fetch(API_URL, {
