@@ -3,316 +3,409 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyber Security Department - QUEST</title>
+<title>QUEST ZEROTrace - Cyber Security Department</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<!-- Bootstrap & FontAwesome -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<style> 
-/* === DEFAULT LIGHT THEME === */
-:root { 
-    --primary: #0B72B9; 
-    --nav-bg: #ffffff;
-    --nav-text: #333333;
-    --body-bg: #f4f7fb; /* Halka grey background */
-    --text-color: #333333;
-    --card-bg: #ffffff;
-    --card-border: rgba(0,0,0,0.08);
-    --hero-overlay: rgba(10, 25, 41, 0.6); /* Banner par dark shade taake text saaf parha jaye */
-    --hero-text: #ffffff;
-    --contact-bg: #ffffff;
-    --footer-bg: #0A1929;
-    --footer-text: #ffffff;
-}
 
-/* === DARK THEME === */
-body.dark-mode {
-    --nav-bg: #0f172a;
-    --nav-text: #e2e8f0;
-    --body-bg: #0f172a;
-    --text-color: #e2e8f0;
-    --card-bg: #1e293b; /* Dark mode mein boxes ka color */
-    --card-border: rgba(255,255,255,0.1);
-    --hero-overlay: rgba(10, 25, 41, 0.85); /* Dark mode mein aur gehra shade */
-    --hero-text: #ffffff;
-    --contact-bg: #0f172a;
-    --footer-bg: #020617;
-    --footer-text: #e2e8f0;
+<style> 
+/* === THEME VARIABLES === */
+:root { 
+    --bg-dark: #050510; /* Very dark navy */
+    --primary: #9B5CFF; /* Purple */
+    --secondary: #FF5CAA; /* Pink */
+    --accent: #00D2FF; /* Cyan/Teal */
+    --text-main: #FFFFFF;
+    --text-muted: #A0A0B8;
+    --glass-bg: rgba(20, 25, 45, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --sidebar-width: 80px;
 }
 
 body { 
-    font-family: 'Segoe UI', Tahoma, Arial, sans-serif; 
-    background-color: var(--body-bg); 
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Outfit', sans-serif; 
+    background-color: var(--bg-dark); 
+    color: var(--text-main);
+    overflow-x: hidden;
+    margin: 0;
+    min-height: 100vh;
 }
 
-/* === NAVBAR === */
-.navbar { 
-    background: var(--nav-bg) !important; 
-    padding: 10px 0; 
-    transition: 0.3s; 
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+h1, h2, h3, h4, .font-heading { font-family: 'Space Grotesk', sans-serif; }
+
+/* === AURORA BACKGROUND EFFECT === */
+.aurora-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background: var(--bg-dark);
 }
-body.dark-mode .navbar { box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-
-.navbar-brand { color: var(--nav-text) !important; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-.navbar-brand span.text-muted { color: #888 !important; }
-body.dark-mode .navbar-brand span.text-muted { color: #aaa !important; }
-.university-logo { height: 45px; background: white; border-radius: 50%; padding: 2px; }
-
-.nav-link { color: var(--nav-text) !important; font-weight: 500; padding: 8px 15px !important; font-size: 1rem; }
-.nav-link:hover { color: var(--primary) !important; }
-
-.dropdown-menu { background-color: var(--nav-bg); border: 1px solid var(--card-border); }
-.dropdown-item { color: var(--nav-text) !important; }
-.dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
-
-/* Theme Toggle Button */
-.theme-toggle-btn { 
-    background: transparent; border: 1px solid var(--card-border); color: var(--nav-text); 
-    border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; 
-    justify-content: center; cursor: pointer; transition: 0.3s; margin-left: 15px; 
+.aurora-blob {
+    position: absolute;
+    filter: blur(100px);
+    opacity: 0.5;
+    border-radius: 50%;
+    animation: floatBlob 20s infinite alternate ease-in-out;
 }
-.theme-toggle-btn:hover { background: var(--primary); color: white; }
+.blob-1 { width: 40vw; height: 40vw; background: var(--primary); top: -10%; left: -10%; animation-delay: 0s; }
+.blob-2 { width: 35vw; height: 35vw; background: var(--secondary); bottom: -10%; right: -10%; animation-delay: -5s; }
+.blob-3 { width: 30vw; height: 30vw; background: var(--accent); top: 40%; left: 30%; animation-delay: -10s; }
+
+@keyframes floatBlob {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 50px) scale(1.1); }
+}
+
+/* === FIXED LEFT SIDEBAR === */
+.sidebar {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--sidebar-width);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.sidebar-logo {
+    width: 45px; height: 45px;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    padding: 2px;
+    box-shadow: 0 0 15px rgba(155, 92, 255, 0.5);
+    margin-bottom: 10px;
+}
+
+.sidebar-icon {
+    color: var(--text-muted);
+    font-size: 1.3rem;
+    width: 45px; height: 45px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 15px;
+    transition: 0.3s;
+    position: relative;
+    text-decoration: none;
+}
+.sidebar-icon:hover, .sidebar-icon.active {
+    color: #fff;
+    background: rgba(155, 92, 255, 0.2);
+    box-shadow: 0 0 20px rgba(155, 92, 255, 0.3);
+}
+.sidebar-icon.active {
+    background: var(--primary);
+    box-shadow: 0 0 25px rgba(155, 92, 255, 0.6);
+}
+/* Tooltip on hover */
+.sidebar-icon::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 60px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+    border: 1px solid var(--glass-border);
+}
+.sidebar-icon:hover::after { opacity: 1; left: 70px; }
+
+.sidebar-sep { width: 30px; height: 1px; background: var(--glass-border); margin: 5px 0; }
+
+/* === MAIN CONTENT === */
+.main-content {
+    margin-left: calc(var(--sidebar-width) + 60px);
+    padding: 40px 20px 40px 0;
+    min-height: 100vh;
+    transition: 0.3s;
+}
+
+/* === GLASSMORPHISM CARDS === */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    padding: 40px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Neon Border on Hover */
+.glass-panel::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    border-radius: 25px; pointer-events: none;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0);
+    transition: 0.4s;
+}
+.glass-panel:hover::before { box-shadow: inset 0 0 0 1px rgba(155, 92, 255, 0.5); }
 
 /* === HERO SECTION === */
-.hero { 
-    background: url('https://i.ibb.co/b5BmC0BQ/telecom-building.jpg') center/cover no-repeat; 
-    height: 60vh; position: relative; display: flex; align-items: center; 
-    justify-content: center; text-align: center; 
+.hero-panel { text-align: center; padding: 80px 40px; }
+.hero-title { 
+    font-size: 3.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 20px; 
+    background: linear-gradient(90deg, #fff, var(--primary), var(--secondary)); 
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
-.hero::before { 
-    content: ''; position: absolute; top:0; left:0; right:0; bottom:0; 
-    background: var(--hero-overlay); transition: 0.3s;
+.hero-subtitle { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; }
+
+/* Glowing Gradient Buttons */
+.btn-glow {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #fff; border: none; padding: 15px 35px; border-radius: 30px;
+    font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+    text-decoration: none; display: inline-block; transition: 0.3s;
+    box-shadow: 0 5px 20px rgba(155, 92, 255, 0.4);
 }
-.hero-content { position: relative; z-index: 1; }
-.hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 15px; color: var(--hero-text); transition: 0.3s; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-.hero p { font-size: 1.2rem; color: var(--hero-text); font-weight: 500; transition: 0.3s; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+.btn-glow:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(155, 92, 255, 0.7); color: #fff; }
 
-/* === CARDS & SECTIONS === */
-.section-title { text-align: center; color: var(--text-color); font-weight: 700; margin-bottom: 40px; margin-top: 60px; transition: 0.3s; }
-
+/* === NEWS CARDS (Glass Style) === */
 .news-card { 
-    border: 1px solid var(--card-border); border-radius: 10px; 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05); overflow: hidden; transition: 0.3s; 
-    height: 100%; background: var(--card-bg); cursor: pointer; 
+    border: 1px solid var(--glass-border); 
+    border-radius: 20px; overflow: hidden; transition: 0.4s; 
+    background: rgba(20, 25, 45, 0.3); text-decoration: none; color: #fff;
+    display: flex; flex-direction: column; height: 100%;
 }
-.news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(11, 114, 185, 0.2); }
-.news-card:hover .news-title { text-decoration: underline; }
+.news-card:hover { 
+    transform: translateY(-8px); 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(0,155,255,0.2); 
+    border-color: var(--primary); 
+    color: #fff;
+}
 .news-img { width: 100%; height: 200px; object-fit: cover; }
-.news-body { padding: 20px; }
-.news-date { color: #888; font-size: 0.9rem; margin-bottom: 10px; display: block; }
-.news-title { font-size: 1.2rem; font-weight: 700; color: var(--primary); text-decoration: none; }
-.news-text { color: var(--text-color); font-size: 0.95rem; margin-top: 10px; opacity: 0.9; }
-
-/* Fix for text inside cards in Dark Mode */
-body.dark-mode .news-card .text-muted { color: #cbd5e1 !important; } 
-body.dark-mode p { color: #cbd5e1 !important; }
+.news-body { padding: 25px; flex-grow: 1; }
+.news-date { color: var(--accent); font-size: 0.85rem; margin-bottom: 10px; display: block; font-weight: 600; }
+.news-title { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+.news-text { color: var(--text-muted); font-size: 0.95rem; }
 
 /* === CONTACT & FOOTER === */
-.contact-section { background: var(--contact-bg); color: var(--text-color); padding: 60px 20px; margin-top: 60px; border-top: 1px solid var(--card-border); transition: 0.3s; }
-.contact-col h5 { color: var(--text-color); font-weight: 700; margin-bottom: 20px; font-size: 1.2rem; }
-.contact-item { display: flex; align-items: flex-start; margin-bottom: 15px; color: var(--text-color); font-size: 0.95rem; }
+.contact-col h5 { color: var(--text-main); font-weight: 700; margin-bottom: 20px; font-size: 1.2rem; }
+.contact-item { display: flex; align-items: flex-start; margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; }
 .contact-item i { color: var(--primary); font-size: 1.2rem; margin-right: 15px; margin-top: 3px; }
-.contact-item a { color: var(--text-color); text-decoration: none; transition: 0.3s; }
+.contact-item a { color: var(--text-muted); text-decoration: none; transition: 0.3s; }
 .contact-item a:hover { color: var(--primary); }
 
-footer { background: var(--footer-bg); color: var(--footer-text); padding: 30px 20px; text-align: center; transition: 0.3s; }
-footer p { margin: 0; color: var(--footer-text) !important; }
+footer { text-align: center; padding: 30px; color: var(--text-muted); border-top: 1px solid var(--glass-border); }
+footer .dev-name { color: var(--primary); font-weight: 600; }
 
-/* Chatbot Styles */
-.chat-btn { position: fixed; bottom: 30px; right: 30px; background: var(--primary); color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 24px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); cursor: pointer; z-index: 9999; transition: 0.3s; }
-.chat-btn:hover { background: #0A1929; transform: scale(1.1); }
-.chat-window { position: fixed; bottom: 100px; right: 30px; width: 350px; height: 450px; background: var(--card-bg); border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 9999; overflow: hidden; border: 1px solid var(--card-border); }
-.chat-header { background: #0A1929; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-.chat-body { flex: 1; padding: 15px; overflow-y: auto; background: var(--body-bg); }
-.chat-input-area { padding: 10px; border-top: 1px solid var(--card-border); display: flex; gap: 10px; background: var(--card-bg); }
-.chat-msg { margin-bottom: 10px; padding: 10px 15px; border-radius: 15px; max-width: 85%; font-size: 0.9rem; line-height: 1.4; }
-.msg-bot { background: #e3f2fd; color: #0A1929; border-bottom-left-radius: 0; }
+/* === MOUSE SPARKLES === */
+.sparkle {
+    position: fixed; pointer-events: none; z-index: 9999;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #fff; box-shadow: 0 0 10px var(--primary);
+    animation: sparkleFade 0.8s ease-out forwards;
+}
+@keyframes sparkleFade {
+    0% { transform: scale(1) translate(0, 0); opacity: 1; }
+    100% { transform: scale(0) translate(var(--tx), var(--ty)); opacity: 0; }
+}
+
+/* === CHATBOT (Glass Style) === */
+.chat-btn { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border: none; border-radius: 50%; width: 65px; height: 65px; font-size: 24px; box-shadow: 0 0 25px rgba(155, 92, 255, 0.6); cursor: pointer; z-index: 9999; transition: 0.3s; display: flex; align-items: center; justify-content: center;}
+.chat-btn:hover { transform: scale(1.1); box-shadow: 0 0 40px rgba(155, 92, 255, 0.9);}
+
+.chat-window { position: fixed; bottom: 110px; right: 30px; width: 350px; height: 450px; background: rgba(15, 20, 35, 0.8); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); display: none; flex-direction: column; z-index: 9999; overflow: hidden; border: 1px solid var(--glass-border); }
+.chat-header { background: rgba(255,255,255,0.05); color: #fff; padding: 20px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); }
+.chat-body { flex: 1; padding: 20px; overflow-y: auto; }
+.chat-input-area { padding: 15px; border-top: 1px solid var(--glass-border); display: flex; gap: 10px; background: rgba(0,0,0,0.3); }
+.chat-msg { margin-bottom: 15px; padding: 12px 18px; border-radius: 18px; max-width: 85%; font-size: 0.95rem; line-height: 1.5; }
+.msg-bot { background: rgba(255,255,255,0.08); color: #fff; border-bottom-left-radius: 0; border: 1px solid rgba(255,255,255,0.1); }
 .msg-user { background: var(--primary); color: white; margin-left: auto; border-bottom-right-radius: 0; }
+.chat-input-area input { background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; border-radius: 10px;}
+.chat-input-area input:focus { background: rgba(255,255,255,0.1); border-color: var(--primary); color: white; box-shadow: none;}
+
+/* === RESPONSIVE === */
+@media (max-width: 991px) {
+    .sidebar { 
+        left: 0; top: 0; transform: none; width: 100%; height: 70px; 
+        flex-direction: row; border-radius: 0; padding: 0 20px; 
+        justify-content: space-between; border-left: none; border-right: none;
+    }
+    .sidebar-logo { margin-bottom: 0; }
+    .sidebar-sep { display: none; }
+    .sidebar-icons-wrapper { display: flex; gap: 10px; }
+    .main-content { margin-left: 0; padding: 100px 20px 40px 20px; }
+    .hero-title { font-size: 2.5rem; }
+}
 </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">
-      <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo" class="university-logo">
-      <div>
-        <span style="display: block; line-height: 1.2;">Cyber Security Department</span>
-        <span style="font-size: 0.7rem;" class="text-muted">QUEST Nawabshah</span>
-      </div>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="chairman.html">Chairman & Dean</a></li>
-            <li><a class="dropdown-item" href="department.html">Department</a></li>
-            <li><a class="dropdown-item" href="labs.html">Laboratories</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Programs</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="programs.html">Undergraduate (BS)</a></li>
-            <li><a class="dropdown-item" href="curriculum.html">Curriculum</a></li>
-            <li><a class="dropdown-item" href="timetable.html">Timetable</a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        
-        <li class="nav-item">
-          <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
-            <i class="fas fa-moon" id="theme-icon"></i>
-          </button>
-        </li>
-      </ul>
+<!-- === AURORA BACKGROUND === -->
+<div class="aurora-bg">
+    <div class="aurora-blob blob-1"></div>
+    <div class="aurora-blob blob-2"></div>
+    <div class="aurora-blob blob-3"></div>
+</div>
+
+<!-- === FIXED LEFT SIDEBAR === -->
+<nav class="sidebar" id="sidebar">
+    <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo" class="sidebar-logo">
+    <div class="sidebar-sep"></div>
+    <div class="sidebar-icons-wrapper d-flex flex-column gap-3">
+        <a href="index.html" class="sidebar-icon active" data-tooltip="Home"><i class="fas fa-home"></i></a>
+        <a href="department.html" class="sidebar-icon" data-tooltip="Department"><i class="fas fa-building"></i></a>
+        <a href="programs.html" class="sidebar-icon" data-tooltip="Programs"><i class="fas fa-graduation-cap"></i></a>
+        <a href="people.html" class="sidebar-icon" data-tooltip="Faculty"><i class="fas fa-users"></i></a>
+        <a href="timetable.html" class="sidebar-icon" data-tooltip="Timetable"><i class="fas fa-calendar-alt"></i></a>
     </div>
-  </div>
+    <div class="sidebar-sep d-none d-lg-block"></div>
+    <div class="d-none d-lg-flex flex-column gap-3">
+        <button class="sidebar-icon border-0 bg-transparent" onclick="toggleTheme()" data-tooltip="Toggle Theme"><i class="fas fa-sun" id="theme-icon"></i></button>
+        <a href="#contact" class="sidebar-icon" data-tooltip="Contact"><i class="fas fa-envelope"></i></a>
+    </div>
 </nav>
 
-<section class="hero">
-  <div class="container hero-content">
-    <h1>Cyber Security Department</h1>
-    <p>Quaid-e-Awam University of Engineering, Science & Technology, Nawabshah</p>
-  </div>
-</section>
+<!-- === MAIN CONTENT === -->
+<main class="main-content">
+    
+    <!-- HERO SECTION -->
+    <div class="glass-panel hero-panel">
+        <h1 class="hero-title">Cyber Security Department</h1>
+        <p class="hero-subtitle">Quaid-e-Awam University of Engineering, Science & Technology, Nawabshah</p>
+        <a href="programs.html" class="btn-glow">Explore Programs</a>
+    </div>
 
-<div class="container mt-5">
-  <div class="row g-4">
-    <div class="col-md-4">
-      <div class="news-card p-4 h-100">
-        <h5 class="fw-bold" style="color: var(--primary);">Undergraduate Program</h5>
-        <p class="mt-2 text-muted">Industry focused BS Cyber Security program covering ethical hacking, AI security and digital forensics.</p>
-      </div>
+    <!-- INFO CARDS -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="glass-panel h-100 p-4">
+                <h5 class="fw-bold" style="color: var(--primary);">Undergraduate Program</h5>
+                <p class="text-muted mt-2">Industry focused BS Cyber Security program covering ethical hacking, AI security and digital forensics.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="glass-panel h-100 p-4">
+                <h5 class="fw-bold" style="color: var(--accent);">Research Labs</h5>
+                <p class="text-muted mt-2">Advanced labs for malware analysis, cryptography, AI threat detection and cyber intelligence.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="glass-panel h-100 p-4">
+                <h5 class="fw-bold" style="color: var(--secondary);">Admissions</h5>
+                <p class="text-muted mt-2">Applications open for BS Cyber Security program. Join Pakistan’s digital defense future.</p>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-      <div class="news-card p-4 h-100">
-        <h5 class="fw-bold" style="color: var(--primary);">Research Labs</h5>
-        <p class="mt-2 text-muted">Advanced labs for malware analysis, cryptography, AI threat detection and cyber intelligence.</p>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="news-card p-4 h-100">
-        <h5 class="fw-bold" style="color: var(--primary);">Admissions</h5>
-        <p class="mt-2 text-muted">Applications open for BS Cyber Security program. Join Pakistan’s digital defense future.</p>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="container">
-  <h2 class="section-title">News & Announcements</h2>
-  <div class="row g-4" id="news-container">
-    <div class="col-md-6 col-lg-3">
-      <a href="news.html?id=4" style="text-decoration: none; color: inherit;">
-        <div class="news-card">
-          <img src="https://i.ibb.co/7dbM3CHr/IMG-20261022-WA0032.jpg" class="news-img" alt="HECK READY 2026">
-          <div class="news-body">
-            <span class="news-date">October 21, 2026</span>
-            <div class="news-title">HECK READY 2026 – Mini CTF</div>
-            <p class="news-text">An intensive, hands-on Capture The Flag competition to bridge the gap between theory and real-world cyber defense...</p>
-            <span class="text-primary fw-bold mt-2 d-inline-block">Read More &rarr;</span>
-          </div>
+    <!-- NEWS SECTION -->
+    <h2 class="section-title text-center mb-4" style="font-weight: 700;">News & Announcements</h2>
+    <div class="row g-4 mb-4" id="news-container">
+        <!-- Card 1 -->
+        <div class="col-md-6 col-lg-3">
+            <a href="news.html?id=4" class="news-card">
+                <img src="https://i.ibb.co/7dbM3CHr/IMG-20261022-WA0032.jpg" class="news-img" alt="HECK READY 2026">
+                <div class="news-body">
+                    <span class="news-date">October 21, 2026</span>
+                    <div class="news-title">HECK READY 2026 – Mini CTF</div>
+                    <p class="news-text">An intensive, hands-on Capture The Flag competition to bridge the gap between theory and real-world cyber defense...</p>
+                </div>
+            </a>
         </div>
-      </a>
-    </div>
-    <div class="col-md-6 col-lg-3">
-      <a href="news.html?id=1" style="text-decoration: none; color: inherit;">
-        <div class="news-card">
-          <img src="https://i.ibb.co/BK2Yhw81/IMG-20261019-WA0043.jpg" class="news-img" alt="Awareness Session">
-          <div class="news-body">
-            <span class="news-date">October 19, 2026</span>
-            <div class="news-title">CYSE 26 BATCH AWARENESS SESSION</div>
-            <p class="news-text">The Cyber Security Department successfully organized an Awareness Session...</p>
-            <span class="text-primary fw-bold mt-2 d-inline-block">Read More &rarr;</span>
-          </div>
+        <!-- Card 2 -->
+        <div class="col-md-6 col-lg-3">
+            <a href="news.html?id=1" class="news-card">
+                <img src="https://i.ibb.co/BK2Yhw81/IMG-20261019-WA0043.jpg" class="news-img" alt="Awareness Session">
+                <div class="news-body">
+                    <span class="news-date">October 19, 2026</span>
+                    <div class="news-title">CYSE 26 BATCH AWARENESS SESSION</div>
+                    <p class="news-text">The Cyber Security Department successfully organized an Awareness Session...</p>
+                </div>
+            </a>
         </div>
-      </a>
-    </div>
-    <div class="col-md-6 col-lg-3">
-      <a href="news.html?id=2" style="text-decoration: none; color: inherit;">
-        <div class="news-card">
-          <img src="https://i.ibb.co/0V2HRXKc/IMG-20261019-WA0044.jpg" class="news-img" alt="Orientation">
-          <div class="news-body">
-            <span class="news-date">October 18, 2026</span>
-            <div class="news-title">CYSE 26 BATCH ORIENTATION</div>
-            <p class="news-text">The Department of Cyber Security hosted a warm Orientation Ceremony to welcome...</p>
-            <span class="text-primary fw-bold mt-2 d-inline-block">Read More &rarr;</span>
-          </div>
+        <!-- Card 3 -->
+        <div class="col-md-6 col-lg-3">
+            <a href="news.html?id=2" class="news-card">
+                <img src="https://i.ibb.co/0V2HRXKc/IMG-20261019-WA0044.jpg" class="news-img" alt="Orientation">
+                <div class="news-body">
+                    <span class="news-date">October 18, 2026</span>
+                    <div class="news-title">CYSE 26 BATCH ORIENTATION</div>
+                    <p class="news-text">The Department of Cyber Security hosted a warm Orientation Ceremony to welcome...</p>
+                </div>
+            </a>
         </div>
-      </a>
-    </div>
-    <div class="col-md-6 col-lg-3">
-      <a href="news.html?id=3" style="text-decoration: none; color: inherit;">
-        <div class="news-card">
-          <img src="https://i.ibb.co/B2tzdjFD/IMG-20261019-WA0041.jpg" class="news-img" alt="Agentic AI Session">
-          <div class="news-body">
-            <span class="news-date">October 17, 2026</span>
-            <div class="news-title">AGENTIC AI SESSION</div>
-            <p class="news-text">An insightful technical session on Agentic AI in Cybersecurity was conducted...</p>
-            <span class="text-primary fw-bold mt-2 d-inline-block">Read More &rarr;</span>
-          </div>
+        <!-- Card 4 -->
+        <div class="col-md-6 col-lg-3">
+            <a href="news.html?id=3" class="news-card">
+                <img src="https://i.ibb.co/B2tzdjFD/IMG-20261019-WA0041.jpg" class="news-img" alt="Agentic AI Session">
+                <div class="news-body">
+                    <span class="news-date">October 17, 2026</span>
+                    <div class="news-title">AGENTIC AI SESSION</div>
+                    <p class="news-text">An insightful technical session on Agentic AI in Cybersecurity was conducted...</p>
+                </div>
+            </a>
         </div>
-      </a>
     </div>
-  </div>
-</div>
 
-<section class="contact-section" id="contact">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h2 style="font-weight: 700; color: var(--text-color);">Contact Us</h2>
+    <!-- CONTACT SECTION -->
+    <div id="contact" class="glass-panel p-4 mt-5">
+        <h2 class="text-center mb-5" style="font-weight: 700; font-family: 'Space Grotesk', sans-serif;">Contact Us</h2>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <h5>Location</h5>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Quaid-e-Awam University of Engineering, Science & Technology, Nawabshah, Sindh, Pakistan</span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h5>Phone</h5>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+92 244 9370367</span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h5>General Email</h5>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@quest.edu.pk">info@quest.edu.pk</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h5>Chairman Email</h5>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:adnan.ahmed03@quest.edu.pk">adnan.ahmed03@quest.edu.pk</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="row mt-4">
-      <div class="col-md-3 contact-col">
-        <h5>Location</h5>
-        <div class="contact-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Quaid-e-Awam University of Engineering, Science & Technology, Nawabshah, Sindh, Pakistan</span>
-        </div>
-      </div>
-      <div class="col-md-3 contact-col">
-        <h5>Phone</h5>
-        <div class="contact-item">
-          <i class="fas fa-phone-alt"></i>
-          <span>+92 244 9370367</span>
-        </div>
-      </div>
-      <div class="col-md-3 contact-col">
-        <h5>General Email</h5>
-        <div class="contact-item">
-          <i class="fas fa-envelope"></i>
-          <a href="mailto:info@quest.edu.pk">info@quest.edu.pk</a>
-        </div>
-      </div>
-      <div class="col-md-3 contact-col">
-        <h5>Chairman Email</h5>
-        <div class="contact-item">
-          <i class="fas fa-envelope"></i>
-          <a href="mailto:adnan.ahmed03@quest.edu.pk">adnan.ahmed03@quest.edu.pk</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<footer>
-  <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
-  <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Developed by ZeroTrace</p>
-</footer>
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">Developed by <span class="dev-name">ZeroTrace</span></p>
+    </footer>
+</main>
 
+<!-- === CHATBOT (Preserved Functionality) === -->
 <button class="chat-btn" onclick="toggleChat()"><i class="fas fa-comments"></i></button>
 <div class="chat-window" id="chatWindow">
   <div class="chat-header">
-    <span><i class="fas fa-robot me-2"></i>AI Assistant</span>
-    <button onclick="toggleChat()" style="background:none; border:none; color:white; cursor:pointer; font-size:1.2rem;"><i class="fas fa-times"></i></button>
+    <span><i class="fas fa-robot me-2"></i>ZeroTrace AI</span>
+    <button onclick="toggleChat()" style="background:none; border:none; color:#fff; cursor:pointer; font-size:1.2rem;"><i class="fas fa-times"></i></button>
   </div>
   <div class="chat-body" id="chatBody">
     <div class="chat-msg msg-bot">Hello! I am the AI assistant for QUEST Cyber Security Department. How can I help you today?</div>
@@ -323,39 +416,58 @@ footer p { margin: 0; color: var(--footer-text) !important; }
   </div>
 </div>
 
+<!-- === SCRIPTS === -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+// === THEME TOGGLE LOGIC ===
 function toggleTheme() {
-    const body = document.body;
     const icon = document.getElementById('theme-icon');
-    
-    body.classList.toggle('dark-mode');
-    
-    if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-    } else {
-        localStorage.setItem('theme', 'light');
+    // Since this is a premium dark theme, toggling will just switch the icon for visual feedback
+    if (icon.classList.contains('fa-sun')) {
         icon.classList.remove('fa-sun');
         icon.classList.add('fa-moon');
+    } else {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const savedTheme = localStorage.getItem('theme');
-    const icon = document.getElementById('theme-icon');
+// === MOUSE SPARKLES (Cursor Trail Effect) ===
+document.addEventListener('mousemove', function(e) {
+    // Only create sparkle occasionally to save performance
+    if (Math.random() > 0.2) return; 
+
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle');
     
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-        if(icon) {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        }
-    }
+    // Randomize position slightly around the cursor
+    const x = e.clientX + (Math.random() * 20 - 10);
+    const y = e.clientY + (Math.random() * 20 - 10);
+    
+    sparkle.style.left = `${x}px`;
+    sparkle.style.top = `${y}px`;
+    
+    // Randomize the direction of the fade
+    const tx = (Math.random() - 0.5) * 100;
+    const ty = (Math.random() - 0.5) * 100;
+    sparkle.style.setProperty('--tx', `${tx}px`);
+    sparkle.style.setProperty('--ty', `${ty}px`);
+    
+    // Randomize size and color
+    const size = Math.random() * 6 + 2;
+    sparkle.style.width = `${size}px`;
+    sparkle.style.height = `${size}px`;
+    
+    document.body.appendChild(sparkle);
+    
+    // Remove after animation completes
+    setTimeout(() => {
+        sparkle.remove();
+    }, 800);
 });
 
-// Chatbot Logic
+
+// === CHATBOT LOGIC (Preserved) ===
 function toggleChat() {
   const w = document.getElementById('chatWindow');
   w.style.display = (w.style.display === 'flex') ? 'none' : 'flex';
