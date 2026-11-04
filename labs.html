@@ -1,357 +1,1602 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Laboratories - QUEST Cyber Security</title>
+
+<title>Laboratories | QUEST Cyber Security Department</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
 <style>
-/* === DEFAULT LIGHT THEME === */
-:root { 
-    --primary: #0B72B9; 
-    --nav-bg: #ffffff;
-    --nav-text: #333333;
-    --body-bg: #f4f7fb;
-    --text-color: #333333;
-    --card-bg: #ffffff;
-    --card-border: rgba(0,0,0,0.08);
-    --section-title-color: #0A1929;
+
+/* =========================================
+   1. THEME VARIABLES
+========================================= */
+
+:root {
+    --bg-dark: #080817;
+    --primary: #8958ff;
+    --secondary: #ec49b9;
+    --accent: #00d5ff;
+
+    --text-main: #ffffff;
+    --text-muted: #a5a5c2;
+
+    --glass-bg: rgba(20,25,48,0.62);
+    --glass-border: rgba(255,255,255,0.12);
+
+    --sidebar-width: 78px;
 }
 
-/* === DARK THEME === */
-body.dark-mode {
-    --nav-bg: #0f172a;
-    --nav-text: #e2e8f0;
-    --body-bg: #0f172a;
-    --text-color: #e2e8f0;
-    --card-bg: #1e293b;
-    --card-border: rgba(255,255,255,0.1);
-    --section-title-color: #ffffff;
+body.light-mode {
+    --bg-dark: #eef1fb;
+    --text-main: #15162b;
+    --text-muted: #60657d;
+    --glass-bg: rgba(255,255,255,0.75);
+    --glass-border: rgba(80,80,130,0.17);
 }
 
-body { 
-    font-family: 'Segoe UI', sans-serif; 
-    background-color: var(--body-bg); 
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
-/* === NAVBAR === */
-.navbar { 
-    background: var(--nav-bg) !important; 
-    padding: 10px 0; 
-    transition: 0.3s; 
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+    transition: background 0.4s, color 0.4s;
 }
-body.dark-mode .navbar { box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
 
-.navbar-brand { color: var(--nav-text) !important; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-.navbar-brand span.text-muted { color: #888 !important; }
-body.dark-mode .navbar-brand span.text-muted { color: #aaa !important; }
-.university-logo { height: 45px; background: white; border-radius: 50%; padding: 2px; }
-
-.nav-link { color: var(--nav-text) !important; font-size: 1rem; padding: 8px 15px !important; }
-.nav-link:hover { color: var(--primary) !important; }
-
-.dropdown-menu { background-color: var(--nav-bg); border: 1px solid var(--card-border); }
-.dropdown-item { color: var(--nav-text) !important; }
-.dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
-
-/* Theme Toggle Button */
-.theme-toggle-btn { 
-    background: transparent; border: 1px solid var(--card-border); color: var(--nav-text); 
-    border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; 
-    justify-content: center; cursor: pointer; transition: 0.3s; margin-left: 15px; 
+h1,h2,h3,h4,h5 {
+    font-family: 'Space Grotesk', sans-serif;
 }
-.theme-toggle-btn:hover { background: var(--primary); color: white; }
 
-/* === PAGE HEADER === */
-.page-header { background: var(--primary); color: white; padding: 50px 20px; text-align: center; margin-bottom: 40px; }
-.page-header h1 { font-weight: 700; margin-bottom: 10px; }
+a {
+    text-decoration: none;
+}
 
-/* HERO IMAGE SECTION */
-.lab-hero { position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 40px; }
-.lab-hero img { width: 100%; max-height: 500px; object-fit: cover; }
-.lab-hero-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(10, 25, 41, 0.9)); padding: 40px; color: white; }
-.lab-hero-overlay h2 { font-weight: 700; font-size: 2.5rem; }
-.lab-supervisor-badge { background: var(--primary); color: white; padding: 5px 15px; border-radius: 5px; font-weight: 600; display: inline-block; margin-bottom: 10px; }
+/* =========================================
+   2. ANIMATED AURORA BACKGROUND
+========================================= */
 
-/* EQUIPMENT CARDS */
-.section-title { color: var(--section-title-color); font-weight: 700; margin-bottom: 30px; margin-top: 40px; border-left: 5px solid var(--primary); padding-left: 15px; transition: 0.3s; }
-.equip-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 4px solid var(--primary); transition: 0.3s; height: 100%; }
-.equip-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(11, 114, 185, 0.15); }
-.equip-icon { font-size: 2rem; color: var(--primary); margin-bottom: 15px; }
-.equip-title { font-weight: 700; color: var(--text-color); font-size: 1.1rem; margin-bottom: 10px; }
-.equip-list { list-style: none; padding-left: 0; margin-bottom: 0; }
-.equip-list li { font-size: 0.95rem; color: var(--text-color); opacity: 0.9; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 10px; }
-.equip-list li i { color: #22c55e; margin-top: 4px; font-size: 0.8rem; }
+.aurora-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+    background: var(--bg-dark);
+}
 
-footer { background: #0A1929; color: white; padding: 30px 20px; text-align: center; margin-top: 50px; }
-footer p { color: #aaa; margin: 0; }
+.aurora-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: 0.35;
+    animation: floatBlob 20s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+    width: 45vw;
+    height: 45vw;
+    background: #803dff;
+    top: -15%;
+    left: -15%;
+}
+
+.blob-2 {
+    width: 40vw;
+    height: 40vw;
+    background: #ec399d;
+    bottom: -15%;
+    right: -10%;
+    animation-delay: -5s;
+}
+
+.blob-3 {
+    width: 35vw;
+    height: 35vw;
+    background: #007bff;
+    top: 35%;
+    left: 40%;
+    animation-delay: -10s;
+}
+
+@keyframes floatBlob {
+    0% {
+        transform: translate(0,0) scale(1);
+    }
+    100% {
+        transform: translate(70px,50px) scale(1.15);
+    }
+}
+
+/* =========================================
+   3. MOVING PARTICLES
+========================================= */
+
+.particles {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #b99aff;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #a76cff;
+    animation: particleMove 12s infinite ease-in-out;
+}
+
+.particle:nth-child(1) { left: 10%; top: 20%; }
+.particle:nth-child(2) { left: 30%; top: 65%; animation-delay: 2s; }
+.particle:nth-child(3) { left: 55%; top: 30%; animation-delay: 4s; }
+.particle:nth-child(4) { left: 80%; top: 70%; animation-delay: 1s; }
+.particle:nth-child(5) { left: 90%; top: 15%; animation-delay: 3s; }
+.particle:nth-child(6) { left: 45%; top: 85%; animation-delay: 5s; }
+
+@keyframes particleMove {
+    0%,100% {
+        transform: translateY(0);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-45px);
+        opacity: 1;
+    }
+}
+
+/* =========================================
+   4. TOP ANNOUNCEMENT BAR
+========================================= */
+
+.announcement {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(90deg,#5749e9,#a83be6,#e83a9b,#5749e9);
+    background-size: 300% 100%;
+    animation: gradientMove 8s linear infinite;
+    padding: 11px 0;
+    z-index: 1001;
+    white-space: nowrap;
+}
+
+.announcement-track {
+    display: inline-block;
+    padding-left: 100%;
+    animation: announcementMove 25s linear infinite;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+@keyframes announcementMove {
+    to { transform: translateX(-100%); }
+}
+
+@keyframes gradientMove {
+    to { background-position: 300% 0; }
+}
+
+/* =========================================
+   5. DESKTOP SIDEBAR
+========================================= */
+
+.sidebar {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--sidebar-width);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    z-index: 1000;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.sidebar-logo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: white;
+    padding: 2px;
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 20px rgba(137,88,255,.6);
+    object-fit: cover;
+}
+
+.sidebar-sep {
+    width: 35px;
+    height: 1px;
+    background: var(--glass-border);
+}
+
+.sidebar-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.sidebar-icon {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    border-radius: 15px;
+    font-size: 19px;
+    border: none;
+    background: transparent;
+    position: relative;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.sidebar-icon:hover,
+.sidebar-icon.active {
+    background: rgba(137,88,255,.25);
+    color: var(--primary);
+    box-shadow: 0 0 22px rgba(137,88,255,.35);
+    transform: scale(1.08);
+}
+
+.sidebar-icon::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 65px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
+    padding: 7px 14px;
+    border-radius: 8px;
+    white-space: nowrap;
+    font-size: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s;
+}
+
+.sidebar-icon:hover::after {
+    opacity: 1;
+    left: 58px;
+}
+
+/* =========================================
+   6. MOBILE NAVIGATION
+========================================= */
+
+.mobile-header {
+    display: none;
+    position: sticky;
+    top: 0;
+    z-index: 1002;
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 12px 18px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobile-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.mobile-brand img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.menu-toggle {
+    width: 45px;
+    height: 45px;
+    border-radius: 13px;
+    background: rgba(137,88,255,.2);
+    border: 1px solid var(--primary);
+    color: var(--text-main);
+    font-size: 20px;
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: min(85%,380px);
+    height: 100vh;
+    z-index: 2000;
+    background: rgba(10,12,29,.96);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(160,130,255,.3);
+    border-radius: 25px 0 0 25px;
+    padding: 25px;
+    transition: right .4s ease;
+    overflow-y: auto;
+}
+
+.mobile-menu.open {
+    right: 0;
+}
+
+.mobile-menu a,
+.mobile-menu button {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    padding: 17px;
+    margin-bottom: 12px;
+    color: #e5e5f8;
+    font-size: 17px;
+    font-weight: 600;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 18px;
+    background: rgba(255,255,255,.04);
+    transition: .3s;
+}
+
+.mobile-menu a:hover,
+.mobile-menu button:hover {
+    background: rgba(137,88,255,.25);
+    border-color: var(--primary);
+}
+
+.mobile-menu i {
+    color: #a18aff;
+    width: 25px;
+}
+
+.menu-close {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.menu-close button {
+    width: auto;
+    margin: 0;
+    font-size: 23px;
+}
+
+.menu-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.65);
+    z-index: 1999;
+}
+
+.menu-overlay.show {
+    display: block;
+}
+
+/* =========================================
+   7. MAIN CONTENT
+========================================= */
+
+.main-content {
+    margin-left: calc(var(--sidebar-width) + 65px);
+    padding: 30px 35px 50px 0;
+    min-height: 100vh;
+    max-width: 1600px;
+}
+
+.top-label {
+    color: var(--accent);
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg,#ffffff,#9c78ff,#f35fca);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-title {
+    color: var(--text-main);
+    font-weight: 700;
+    margin: 55px 0 25px;
+    padding-left: 17px;
+    border-left: 4px solid var(--primary);
+}
+
+/* =========================================
+   8. GLASS PANELS
+========================================= */
+
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    border: 1px solid var(--glass-border);
+    border-radius: 25px;
+    padding: 30px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,.22);
+    transition: .4s;
+}
+
+.glass-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 1px transparent;
+    transition: .4s;
+}
+
+.glass-panel:hover::before {
+    box-shadow: inset 0 0 0 1px rgba(137,88,255,.65);
+}
+
+/* =========================================
+   9. PAGE HERO
+========================================= */
+
+.page-hero {
+    padding: 65px 30px;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: clamp(2rem,5vw,3.5rem);
+    font-weight: 700;
+    margin: 15px 0;
+}
+
+.page-hero p {
+    color: var(--text-muted);
+    font-size: 17px;
+}
+
+.hero-tag {
+    display: inline-block;
+    border: 1px solid rgba(137,88,255,.5);
+    color: var(--accent);
+    background: rgba(137,88,255,.12);
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   10. LABORATORY HERO IMAGE
+========================================= */
+
+.lab-hero {
+    position: relative;
+    border-radius: 25px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 20px 50px rgba(0,0,0,.4);
+}
+
+.lab-hero img {
+    width: 100%;
+    height: 470px;
+    object-fit: cover;
+    display: block;
+    transition: transform .7s;
+}
+
+.lab-hero:hover img {
+    transform: scale(1.04);
+}
+
+.lab-hero-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 45px;
+    background: linear-gradient(
+        transparent 15%,
+        rgba(5,8,25,.4) 50%,
+        rgba(5,8,25,.96) 100%
+    );
+    color: white;
+}
+
+.lab-supervisor-badge {
+    display: inline-block;
+    width: fit-content;
+    background: linear-gradient(90deg,#8056ff,#dc45b7);
+    padding: 8px 17px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.lab-hero-overlay h2 {
+    font-size: clamp(1.8rem,4vw,2.8rem);
+    font-weight: 700;
+}
+
+.lab-hero-overlay p {
+    color: #d2d3eb;
+}
+
+/* =========================================
+   11. EQUIPMENT CARDS
+========================================= */
+
+.equip-card {
+    height: 100%;
+    padding: 28px;
+    border-radius: 22px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-top: 3px solid var(--card-color,#8958ff);
+    position: relative;
+    overflow: hidden;
+    transition: .4s;
+}
+
+.equip-card::after {
+    content: "";
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: var(--card-color,#8958ff);
+    filter: blur(80px);
+    opacity: .15;
+    right: -45px;
+    bottom: -45px;
+    pointer-events: none;
+}
+
+.equip-card:hover {
+    transform: translateY(-9px);
+    border-color: var(--card-color,#8958ff);
+    box-shadow: 0 15px 40px rgba(0,0,0,.35),
+                0 0 20px color-mix(in srgb,var(--card-color,#8958ff) 25%,transparent);
+}
+
+.equip-icon {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb,var(--card-color,#8958ff) 17%,transparent);
+    color: var(--card-color,#8958ff);
+    border-radius: 17px;
+    font-size: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px color-mix(in srgb,var(--card-color,#8958ff) 20%,transparent);
+}
+
+.equip-title {
+    color: var(--text-main);
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.equip-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.equip-list li {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.equip-list li i {
+    color: var(--card-color,#8958ff);
+    margin-top: 6px;
+}
+
+/* =========================================
+   12. LAB SECTION LABEL
+========================================= */
+
+.lab-section-label {
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* =========================================
+   13. FOOTER
+========================================= */
+
+footer {
+    margin-top: 70px;
+    text-align: center;
+    padding: 35px 20px;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-muted);
+    background: rgba(10,10,25,.2);
+}
+
+footer .dev-name {
+    background: linear-gradient(90deg,#9672ff,#ed59bd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+/* =========================================
+   14. BACK TO TOP
+========================================= */
+
+.back-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--primary);
+    color: white;
+    background: linear-gradient(135deg,#7054ed,#d63eb4);
+    box-shadow: 0 0 20px rgba(137,88,255,.5);
+    z-index: 900;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.back-top:hover {
+    transform: translateY(-5px);
+}
+
+/* =========================================
+   15. MOUSE SPARKLES
+========================================= */
+
+.sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 0 12px #a76cff, 0 0 22px #e74ac0;
+    animation: sparkleFade .8s ease-out forwards;
+}
+
+@keyframes sparkleFade {
+    to {
+        transform: scale(0) translate(var(--tx),var(--ty));
+        opacity: 0;
+    }
+}
+
+/* =========================================
+   16. SCROLL REVEAL
+========================================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   17. LIGHT MODE FIXES
+========================================= */
+
+body.light-mode .mobile-menu {
+    background: rgba(245,245,255,.97);
+}
+
+body.light-mode .mobile-menu a,
+body.light-mode .mobile-menu button,
+body.light-mode .menu-close {
+    color: #20223a;
+    background: rgba(120,100,200,.07);
+}
+
+body.light-mode .lab-hero-overlay {
+    color: white;
+}
+
+body.light-mode .announcement {
+    color: white;
+}
+
+/* =========================================
+   18. RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 991px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .mobile-header {
+        display: flex;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 25px 18px 40px;
+    }
+
+    .announcement {
+        position: relative;
+    }
+
+    .page-hero {
+        padding: 45px 18px;
+    }
+
+    .lab-hero img {
+        height: 390px;
+    }
+
+    .lab-hero-overlay {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .main-content {
+        padding: 18px 13px 35px;
+    }
+
+    .glass-panel {
+        padding: 22px 17px;
+        border-radius: 20px;
+    }
+
+    .lab-hero img {
+        height: 340px;
+    }
+
+    .lab-hero-overlay {
+        padding: 20px;
+    }
+
+    .lab-hero-overlay h2 {
+        font-size: 1.8rem;
+    }
+
+    .equip-card {
+        padding: 23px;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .back-top {
+        width: 43px;
+        height: 43px;
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
+/* Accessibility: reduce animations if requested */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 </style>
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">
-      <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo" class="university-logo">
-      <div>
-        <!-- Yahan Naam Change Kiya Gaya Hai -->
-        <span style="display: block; line-height: 1.2;">Cyber Security Department</span>
-        <span style="font-size: 0.7rem;" class="text-muted">QUEST Nawabshah</span>
-      </div>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">About</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="chairman.html">Chairman & Dean</a></li>
-            <li><a class="dropdown-item" href="department.html">Department</a></li>
-            <li><a class="dropdown-item" href="labs.html">Laboratories</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Programs</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="programs.html">Undergraduate (BS)</a></li>
-            <li><a class="dropdown-item" href="curriculum.html">Curriculum</a></li>
-            <li><a class="dropdown-item" href="timetable.html">Timetable</a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
-        
-        <!-- THEME TOGGLE BUTTON -->
-        <li class="nav-item">
-          <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
-            <i class="fas fa-moon" id="theme-icon"></i>
-          </button>
-        </li>
-      </ul>
+<!-- =========================================
+     BACKGROUND
+========================================= -->
+
+<div class="aurora-bg">
+    <div class="aurora-blob blob-1"></div>
+    <div class="aurora-blob blob-2"></div>
+    <div class="aurora-blob blob-3"></div>
+</div>
+
+<div class="particles">
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+</div>
+
+<!-- =========================================
+     ANNOUNCEMENT BAR
+========================================= -->
+
+<div class="announcement">
+    <div class="announcement-track">
+        <i class="fas fa-shield-alt"></i>
+        &nbsp; QUEST CYBER SECURITY DEPARTMENT
+        &nbsp; ✦
+        Network Security Laboratories
+        &nbsp; ✦
+        Research & Innovation
+        &nbsp; ✦
+        Advancing Cybersecurity Excellence
+        &nbsp; ✦
     </div>
-  </div>
+</div>
+
+<!-- =========================================
+     DESKTOP SIDEBAR
+========================================= -->
+
+<nav class="sidebar">
+
+    <a href="index.html" title="QUEST Home">
+        <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg"
+             alt="QUEST Logo"
+             class="sidebar-logo">
+    </a>
+
+    <div class="sidebar-sep"></div>
+
+    <div class="sidebar-icons">
+
+        <a href="index.html" class="sidebar-icon" data-tooltip="Home">
+            <i class="fas fa-house"></i>
+        </a>
+
+        <a href="department.html" class="sidebar-icon" data-tooltip="Department">
+            <i class="fas fa-building"></i>
+        </a>
+
+        <a href="chairman.html" class="sidebar-icon" data-tooltip="Chairman & Dean">
+            <i class="fas fa-user-tie"></i>
+        </a>
+
+        <a href="programs.html" class="sidebar-icon" data-tooltip="Programs">
+            <i class="fas fa-graduation-cap"></i>
+        </a>
+
+        <a href="people.html" class="sidebar-icon" data-tooltip="Faculty">
+            <i class="fas fa-users"></i>
+        </a>
+
+        <a href="labs.html" class="sidebar-icon active" data-tooltip="Laboratories">
+            <i class="fas fa-microscope"></i>
+        </a>
+
+        <a href="timetable.html" class="sidebar-icon" data-tooltip="Timetable">
+            <i class="fas fa-calendar-days"></i>
+        </a>
+
+    </div>
+
+    <div class="sidebar-sep"></div>
+
+    <button class="sidebar-icon" onclick="toggleTheme()" data-tooltip="Change Theme">
+        <i class="fas fa-moon" id="desktop-theme-icon"></i>
+    </button>
+
+    <a href="index.html#contact" class="sidebar-icon" data-tooltip="Contact">
+        <i class="fas fa-envelope"></i>
+    </a>
+
 </nav>
 
-<div class="page-header">
-  <div class="container">
-    <h1>Department Laboratories</h1>
-    <p class="mb-0">State-of-the-art facilities for practical learning and cybersecurity research.</p>
-  </div>
-</div>
+<!-- =========================================
+     MOBILE HEADER
+========================================= -->
 
-<div class="container pb-5">
-  
-  <!-- LAB HERO IMAGE -->
-  <div class="row">
-    <div class="col-lg-11 mx-auto">
-      <div class="lab-hero">
-        <img src="https://i.ibb.co/Nd9fzwtM/file-0000000062288208a1fd05c8553e5ddb.png" alt="Network Security Lab">
-        <div class="lab-hero-overlay">
-          <div class="lab-supervisor-badge">Supervisor: Dr. Adnan Ahmed</div>
-          <h2>Network Security Lab</h2>
-          <p class="mb-0">The primary practical learning center of the Department of Cyber Security at QUEST Nawabshah.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+<header class="mobile-header">
 
-  <!-- EQUIPMENT LIST -->
-  <div class="row">
-    <div class="col-lg-11 mx-auto">
-      
-      <!-- SECTION 1 -->
-      <h3 class="section-title"><i class="fas fa-server me-2"></i> Computing & Hardware Infrastructure</h3>
-      <div class="row g-4 mb-4">
-        <div class="col-md-6">
-          <div class="equip-card">
-            <div class="equip-icon"><i class="fas fa-desktop"></i></div>
-            <div class="equip-title">High-End Workstations</div>
-            <ul class="equip-list">
-              <li><i class="fas fa-check-circle"></i> 30x Desktop Computers (Core i7, 11th Gen+)</li>
-              <li><i class="fas fa-check-circle"></i> 16GB RAM & 512GB SSD for heavy simulations</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="equip-card">
-            <div class="equip-icon"><i class="fas fa-tv"></i></div>
-            <div class="equip-title">Instructor Station</div>
-            <ul class="equip-list">
-              <li><i class="fas fa-check-circle"></i> 1x High-Performance PC (Core i9, 32GB RAM)</li>
-              <li><i class="fas fa-check-circle"></i> Dual monitors for live hacking demonstrations</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="equip-card">
-            <div class="equip-icon"><i class="fas fa-database"></i></div>
-            <div class="equip-title">Rack Servers</div>
-            <ul class="equip-list">
-              <li><i class="fas fa-check-circle"></i> 2x Enterprise Servers (Dell PowerEdge)</li>
-              <li><i class="fas fa-check-circle"></i> For hosting virtual machines and lab management</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="equip-card">
-            <div class="equip-icon"><i class="fas fa-bolt"></i></div>
-            <div class="equip-title">Power & Cabling</div>
-            <ul class="equip-list">
-              <li><i class="fas fa-check-circle"></i> Heavy-duty UPS for servers and PCs</li>
-              <li><i class="fas fa-check-circle"></i> 42U Networking Racks with structured cabling</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+    <a href="index.html" class="mobile-brand">
+        <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo">
 
-      <!-- SECTION 2 -->
-      <h3 class="section-title"><i class="fas fa-network-wired me-2"></i> Networking & Hardware Security</h3>
-      <div class="row g-4 mb-4">
-        <div class="col-md-6">
-          <div class="equip-card">
-            <div class="equip-icon"><i class="fas fa-router"></i></div>
-            <div class="equip-title">Cisco Networking Gear</div>
-            <ul class="equip-list">
-              <li><i class="fas fa-check-circle"></i> 10x Cisco ISR series routers</li>
-              <li><i class="fas fa-check-circle"></i> 10x Cisco Catalyst (24-port) managed switches</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="equip-card">
-            <div class="equip-icon"><i class="fas fa-shield-alt"></i></div>
-            <div class="equip-title">Security Appliances</div>
-            <ul class="equip-list">
-              <li><i class="fas fa-check-circle"></i> 2x Next-Generation Firewalls (Fortinet/pfSense)</li>
-              <li><i class="fas fa-check-circle"></i> 5x Enterprise Wi-Fi Access Points</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+        <span>
+            Cyber Security Department
+            <small style="display:block;font-size:10px;color:var(--text-muted);">
+                QUEST Nawabshah
+            </small>
+        </span>
+    </a>
 
-      <!-- SECTION 3 -->
-      <h3 class="section-title"><i class="fas fa-laptop-code me-2"></i> Virtualization & Software Stack</h3>
-      <div class="row g-4 mb-4">
-        <div class="col-md-6">
-          <div class="equip-card">
-            <div class="equip-icon"><i class="fas fa-cubes"></i></div>
-            <div class="equip-title">Virtualization & OS</div>
-            <ul class="equip-list">
-              <li><i class="fas fa-check-circle"></i> VMware ESXi / Proxmox VE for Virtual Machines</li>
-              <li><i class="fas fa-check-circle"></i> Windows Server, Kali Linux, Parrot OS, Ubuntu</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="equip-card">
-            <div class="equip-icon"><i class="fas fa-terminal"></i></div>
-            <div class="equip-title">Core Security Tools</div>
-            <ul class="equip-list">
-              <li><i class="fas fa-check-circle"></i> Wireshark, Nmap, Burp Suite, Metasploit</li>
-              <li><i class="fas fa-check-circle"></i> Splunk / ELK Stack for SOC Log Analysis</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+    <button class="menu-toggle" onclick="openMenu()" aria-label="Open navigation menu">
+        <i class="fas fa-bars"></i>
+    </button>
 
-      <!-- SECTION 4 -->
-      <h3 class="section-title"><i class="fas fa-microchip me-2"></i> Digital Forensics & IoT Kits</h3>
-      <div class="row g-4 mb-4">
-        <div class="col-md-6">
-          <div class="equip-card">
-            <div class="equip-icon"><i class="fas fa-hdd"></i></div>
-            <div class="equip-title">Forensics Equipment</div>
-            <ul class="equip-list">
-              <li><i class="fas fa-check-circle"></i> 2x Hardware Forensic Write Blockers</li>
-              <li><i class="fas fa-check-circle"></i> 1x High-speed Disk Duplicator</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="equip-card">
-            <div class="equip-icon"><i class="fas fa-wifi"></i></div>
-            <div class="equip-title">IoT & Wireless Kits</div>
-            <ul class="equip-list">
-              <li><i class="fas fa-check-circle"></i> Raspberry Pi 4 & Arduino Uno kits</li>
-              <li><i class="fas fa-check-circle"></i> Alfa Network Wi-Fi Adapters & HackRF SDR</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+</header>
 
-      <!-- SECTION 5 -->
-      <h3 class="section-title"><i class="fas fa-door-closed me-2"></i> Lab Environment & Physical Security</h3>
-      <div class="row g-4 mb-4">
-        <div class="col-md-6">
-          <div class="equip-card">
-            <div class="equip-icon"><i class="fas fa-chair"></i></div>
-            <div class="equip-title">Environment & Comfort</div>
-            <ul class="equip-list">
-              <li><i class="fas fa-check-circle"></i> 30x Ergonomic Chairs & spacious desks</li>
-              <li><i class="fas fa-check-circle"></i> 2x Split ACs (2 Ton) & Smart Board / Projector</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="equip-card">
-            <div class="equip-icon"><i class="fas fa-video"></i></div>
-            <div class="equip-title">Security & Access</div>
-            <ul class="equip-list">
-              <li><i class="fas fa-check-circle"></i> RFID-based biometric door lock</li>
-              <li><i class="fas fa-check-circle"></i> 2x CCTV Security Cameras (Inside & Outside)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
+<!-- =========================================
+     MOBILE SLIDING MENU
+========================================= -->
+
+<nav class="mobile-menu" id="mobileMenu">
+
+    <div class="menu-close">
+
+        <h4 style="font-weight:700;margin:0;">
+            <span class="gradient-text">QUEST Navigation</span>
+        </h4>
+
+        <button onclick="closeMenu()" aria-label="Close navigation menu">
+            <i class="fas fa-times"></i>
+        </button>
 
     </div>
-  </div>
-</div>
 
-<footer>
-  <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
-  <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0;">Developed by Mariam Khan</p>
-</footer>
+    <a href="index.html"><i class="fas fa-house"></i> Home</a>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <a href="department.html"><i class="fas fa-building"></i> Department</a>
+
+    <a href="chairman.html"><i class="fas fa-user-tie"></i> Chairman & Dean</a>
+
+    <a href="programs.html"><i class="fas fa-graduation-cap"></i> Programs</a>
+
+    <a href="people.html"><i class="fas fa-users"></i> Faculty</a>
+
+    <a href="labs.html"><i class="fas fa-microscope"></i> Laboratories</a>
+
+    <a href="timetable.html"><i class="fas fa-calendar-days"></i> Timetable</a>
+
+    <a href="index.html#contact" onclick="closeMenu()">
+        <i class="fas fa-envelope"></i> Contact
+    </a>
+
+    <button onclick="toggleTheme()">
+        <i class="fas fa-moon" id="mobile-theme-icon"></i>
+        Change Appearance
+    </button>
+
+</nav>
+
+<!-- =========================================
+     MAIN CONTENT
+========================================= -->
+
+<main class="main-content">
+
+    <!-- PAGE HERO -->
+
+    <section class="glass-panel page-hero reveal">
+
+        <span class="hero-tag">
+            <i class="fas fa-shield-halved"></i>
+            DEPARTMENT FACILITIES
+        </span>
+
+        <h1 class="gradient-text">
+            Department Laboratories
+        </h1>
+
+        <p>
+            State-of-the-art facilities for practical learning
+            and cybersecurity research.
+        </p>
+
+    </section>
+
+    <!-- LAB IMAGE -->
+
+    <section class="reveal">
+
+        <div class="lab-hero">
+
+            <img
+                src="https://i.ibb.co/Nd9fzwtM/file-0000000062288208a1fd05c8553e5ddb.png"
+                alt="Network Security Lab">
+
+            <div class="lab-hero-overlay">
+
+                <div class="lab-supervisor-badge">
+                    <i class="fas fa-user-shield"></i>
+                    Supervisor: Dr. Adnan Ahmed
+                </div>
+
+                <span class="top-label">
+                    QUEST CYBER SECURITY
+                </span>
+
+                <h2>Network Security Lab</h2>
+
+                <p class="mb-0">
+                    The primary practical learning center of the
+                    Department of Cyber Security at QUEST Nawabshah.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =====================================
+         SECTION 1
+    ====================================== -->
+
+    <section class="reveal">
+
+        <span class="lab-section-label">01 / INFRASTRUCTURE</span>
+
+        <h3 class="section-title">
+            <i class="fas fa-server me-2"></i>
+            Computing & Hardware Infrastructure
+        </h3>
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+
+                <div class="equip-card" style="--card-color:#9b65ff;">
+
+                    <div class="equip-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+
+                    <div class="equip-title">High-End Workstations</div>
+
+                    <ul class="equip-list">
+                        <li><i class="fas fa-check-circle"></i> 30x Desktop Computers (Core i7, 11th Gen+)</li>
+                        <li><i class="fas fa-check-circle"></i> 16GB RAM & 512GB SSD for heavy simulations</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="equip-card" style="--card-color:#00d5ff;">
+
+                    <div class="equip-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+
+                    <div class="equip-title">Instructor Station</div>
+
+                    <ul class="equip-list">
+                        <li><i class="fas fa-check-circle"></i> 1x High-Performance PC (Core i9, 32GB RAM)</li>
+                        <li><i class="fas fa-check-circle"></i> Dual monitors for live hacking demonstrations</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="equip-card" style="--card-color:#ff5da8;">
+
+                    <div class="equip-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+
+                    <div class="equip-title">Rack Servers</div>
+
+                    <ul class="equip-list">
+                        <li><i class="fas fa-check-circle"></i> 2x Enterprise Servers (Dell PowerEdge)</li>
+                        <li><i class="fas fa-check-circle"></i> For hosting virtual machines and lab management</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="equip-card" style="--card-color:#ffc45e;">
+
+                    <div class="equip-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+
+                    <div class="equip-title">Power & Cabling</div>
+
+                    <ul class="equip-list">
+                        <li><i class="fas fa-check-circle"></i> Heavy-duty UPS for servers and PCs</li>
+                        <li><i class="fas fa-check-circle"></i> 42U Networking Racks with structured cabling</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =====================================
+         SECTION 2
+    ====================================== -->
+
+    <section class="reveal">
+
+        <span class="lab-section-label">02 / NETWORK SECURITY</span>
+
+        <h3 class="section-title">
+            <i class="fas fa-network-wired me-2"></i>
+            Networking & Hardware Security
+        </h3>
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+
+                <div class="equip-card" style="--card-color:#00d5ff;">
+
+                    <div class="equip-icon">
+                        <i class="fas fa-router"></i>
+                    </div>
+
+                    <div class="equip-title">Cisco Networking Gear</div>
+
+                    <ul class="equip-list">
+                        <li><i class="fas fa-check-circle"></i> 10x Cisco ISR series routers</li>
+                        <li><i class="fas fa-check-circle"></i> 10x Cisco Catalyst (24-port) managed switches</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="equip-card" style="--card-color:#ff5da8;">
+
+                    <div class="equip-icon">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+
+                    <div class="equip-title">Security Appliances</div>
+
+                    <ul class="equip-list">
+                        <li><i class="fas fa-check-circle"></i> 2x Next-Generation Firewalls (Fortinet/pfSense)</li>
+                        <li><i class="fas fa-check-circle"></i> 5x Enterprise Wi-Fi Access Points</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =====================================
+         SECTION 3
+    ====================================== -->
+
+    <section class="reveal">
+
+        <span class="lab-section-label">03 / SOFTWARE ENVIRONMENT</span>
+
+        <h3 class="section-title">
+            <i class="fas fa-laptop-code me-2"></i>
+            Virtualization & Software Stack
+        </h3>
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+
+                <div class="equip-card" style="--card-color:#a16aff;">
+
+                    <div class="equip-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+
+                    <div class="equip-title">Virtualization & OS</div>
+
+                    <ul class="equip-list">
+                        <li><i class="fas fa-check-circle"></i> VMware ESXi / Proxmox VE for Virtual Machines</li>
+                        <li><i class="fas fa-check-circle"></i> Windows Server, Kali Linux, Parrot OS, Ubuntu</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="equip-card" style="--card-color:#00d5ff;">
+
+                    <div class="equip-icon">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+
+                    <div class="equip-title">Core Security Tools</div>
+
+                    <ul class="equip-list">
+                        <li><i class="fas fa-check-circle"></i> Wireshark, Nmap, Burp Suite, Metasploit</li>
+                        <li><i class="fas fa-check-circle"></i> Splunk / ELK Stack for SOC Log Analysis</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =====================================
+         SECTION 4
+    ====================================== -->
+
+    <section class="reveal">
+
+        <span class="lab-section-label">04 / DIGITAL INVESTIGATION</span>
+
+        <h3 class="section-title">
+            <i class="fas fa-microchip me-2"></i>
+            Digital Forensics & IoT Kits
+        </h3>
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+
+                <div class="equip-card" style="--card-color:#ffb65c;">
+
+                    <div class="equip-icon">
+                        <i class="fas fa-hdd"></i>
+                    </div>
+
+                    <div class="equip-title">Forensics Equipment</div>
+
+                    <ul class="equip-list">
+                        <li><i class="fas fa-check-circle"></i> 2x Hardware Forensic Write Blockers</li>
+                        <li><i class="fas fa-check-circle"></i> 1x High-speed Disk Duplicator</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="equip-card" style="--card-color:#39e6b0;">
+
+                    <div class="equip-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+
+                    <div class="equip-title">IoT & Wireless Kits</div>
+
+                    <ul class="equip-list">
+                        <li><i class="fas fa-check-circle"></i> Raspberry Pi 4 & Arduino Uno kits</li>
+                        <li><i class="fas fa-check-circle"></i> Alfa Network Wi-Fi Adapters & HackRF SDR</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =====================================
+         SECTION 5
+    ====================================== -->
+
+    <section class="reveal">
+
+        <span class="lab-section-label">05 / FACILITY MANAGEMENT</span>
+
+        <h3 class="section-title">
+            <i class="fas fa-door-closed me-2"></i>
+            Lab Environment & Physical Security
+        </h3>
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+
+                <div class="equip-card" style="--card-color:#f5b95d;">
+
+                    <div class="equip-icon">
+                        <i class="fas fa-chair"></i>
+                    </div>
+
+                    <div class="equip-title">Environment & Comfort</div>
+
+                    <ul class="equip-list">
+                        <li><i class="fas fa-check-circle"></i> 30x Ergonomic Chairs & spacious desks</li>
+                        <li><i class="fas fa-check-circle"></i> 2x Split ACs (2 Ton) & Smart Board / Projector</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="equip-card" style="--card-color:#39e6b0;">
+
+                    <div class="equip-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+
+                    <div class="equip-title">Security & Access</div>
+
+                    <ul class="equip-list">
+                        <li><i class="fas fa-check-circle"></i> RFID-based biometric door lock</li>
+                        <li><i class="fas fa-check-circle"></i> 2x CCTV Security Cameras (Inside & Outside)</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+    <footer>
+
+        <div class="mb-3">
+            <i class="fas fa-shield-halved fa-2x"
+               style="color:var(--primary);"></i>
+        </div>
+
+        <h5 style="color:var(--text-main);font-weight:700;">
+            QUEST Cyber Security Department
+        </h5>
+
+        <p>
+            Quaid-e-Awam University of Engineering,
+            Science & Technology, Nawabshah.
+        </p>
+
+        <p class="mt-3">
+            © 2026 Cyber Security Department, QUEST.
+            All Rights Reserved.
+        </p>
+
+        <p style="font-size:14px;">
+            Developed by <span class="dev-name">Mariam Khan</span>
+        </p>
+
+    </footer>
+
+</main>
+
+<!-- BACK TO TOP -->
+
+<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
 <script>
-// Theme Toggle Logic
-function toggleTheme() {
-    const body = document.body;
-    const icon = document.getElementById('theme-icon');
-    
-    body.classList.toggle('dark-mode');
-    
-    if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-    } else {
-        localStorage.setItem('theme', 'light');
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-    }
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+function openMenu() {
+    document.getElementById('mobileMenu').classList.add('open');
+    document.getElementById('menuOverlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const savedTheme = localStorage.getItem('theme');
-    const icon = document.getElementById('theme-icon');
-    
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-        if(icon) {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        }
+function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('menuOverlay').classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+/* =========================================
+   DARK / LIGHT THEME
+========================================= */
+
+function updateThemeIcons() {
+
+    const isLight = document.body.classList.contains('light-mode');
+
+    const desktop = document.getElementById('desktop-theme-icon');
+    const mobile = document.getElementById('mobile-theme-icon');
+
+    [desktop,mobile].forEach(icon => {
+
+        if (!icon) return;
+
+        icon.classList.toggle('fa-sun',isLight);
+        icon.classList.toggle('fa-moon',!isLight);
+
+    });
+
+}
+
+function toggleTheme() {
+
+    document.body.classList.toggle('light-mode');
+
+    const theme = document.body.classList.contains('light-mode')
+        ? 'light'
+        : 'dark';
+
+    try {
+        localStorage.setItem('quest-lab-theme',theme);
+    } catch(error) {
+        console.warn('Theme preference could not be saved.');
     }
+
+    updateThemeIcons();
+
+}
+
+/* Load saved theme */
+
+document.addEventListener('DOMContentLoaded',() => {
+
+    try {
+        const savedTheme = localStorage.getItem('quest-lab-theme');
+
+        if(savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    } catch(error) {
+        console.warn('Theme preference unavailable.');
+    }
+
+    updateThemeIcons();
+
 });
+
+/* =========================================
+   MOUSE SPARKLES
+========================================= */
+
+let lastSparkle = 0;
+
+document.addEventListener('mousemove',function(e) {
+
+    if (window.matchMedia('(max-width: 991px)').matches) return;
+
+    const now = Date.now();
+
+    if(now - lastSparkle < 45) return;
+
+    lastSparkle = now;
+
+    if(Math.random() > 0.65) return;
+
+    const sparkle = document.createElement('span');
+
+    sparkle.className = 'sparkle';
+
+    sparkle.style.left = e.clientX + 'px';
+    sparkle.style.top = e.clientY + 'px';
+
+    sparkle.style.setProperty(
+        '--tx',(Math.random()-0.5)*60+'px'
+    );
+
+    sparkle.style.setProperty(
+        '--ty',(Math.random()-0.5)*60+'px'
+    );
+
+    const size = Math.random()*5+3;
+
+    sparkle.style.width = size+'px';
+    sparkle.style.height = size+'px';
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => sparkle.remove(),800);
+
+});
+
+/* =========================================
+   SCROLL REVEAL ANIMATIONS
+========================================= */
+
+const revealObserver = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting) {
+
+            entry.target.classList.add('visible');
+
+            revealObserver.unobserve(entry.target);
+
+        }
+
+    });
+
+},{threshold:0.12});
+
+document.querySelectorAll('.reveal').forEach(element => {
+
+    revealObserver.observe(element);
+
+});
+
+/* =========================================
+   ESCAPE KEY CLOSES MOBILE MENU
+========================================= */
+
+document.addEventListener('keydown',function(e) {
+
+    if(e.key === 'Escape') {
+        closeMenu();
+    }
+
+});
+
 </script>
+
 </body>
 </html>
