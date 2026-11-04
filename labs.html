@@ -7,23 +7,43 @@
 
 <title>Laboratories | Cyber Security Department - QUEST</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+<!-- Font Awesome -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
 <style>
+
+/* =====================================
+   OLD PROFESSIONAL QUEST THEME
+===================================== */
+
 :root {
-    --bg-dark: #050510;
-    --primary: #9B5CFF;
-    --secondary: #FF5CAA;
-    --accent: #00D2FF;
-    --text-main: #FFFFFF;
-    --text-muted: #A0A0B8;
-    --glass-bg: rgba(20,25,45,0.4);
-    --glass-border: rgba(255,255,255,0.1);
-    --sidebar-width: 80px;
+    --primary: #0B72B9;
+    --nav-bg: #ffffff;
+    --nav-text: #333333;
+    --body-bg: #f4f7fb;
+    --text-color: #333333;
+    --card-bg: #ffffff;
+    --card-border: rgba(0,0,0,0.08);
+    --hero-overlay: rgba(10,25,41,0.65);
+    --footer-bg: #0A1929;
+    --footer-text: #ffffff;
+    --contact-bg: #ffffff;
+}
+
+body.dark-mode {
+    --nav-bg: #0f172a;
+    --nav-text: #e2e8f0;
+    --body-bg: #0f172a;
+    --text-color: #e2e8f0;
+    --card-bg: #1e293b;
+    --card-border: rgba(255,255,255,0.1);
+    --hero-overlay: rgba(10,25,41,0.85);
+    --footer-bg: #020617;
+    --footer-text: #e2e8f0;
+    --contact-bg: #0f172a;
 }
 
 * {
@@ -36,229 +56,240 @@ html {
 
 body {
     margin: 0;
-    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    background: var(--body-bg);
+    color: var(--text-color);
     overflow-x: hidden;
-    font-family: 'Outfit', sans-serif;
-    background: var(--bg-dark);
-    color: var(--text-main);
+    transition: background 0.3s, color 0.3s;
 }
 
-h1,h2,h3,h4,h5 {
-    font-family: 'Space Grotesk', sans-serif;
+a {
+    text-decoration: none;
 }
 
-/* BACKGROUND */
+/* =====================================
+   HEADER / UNIVERSITY BRANDING
+===================================== */
 
-.aurora-bg {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    overflow: hidden;
-    background: var(--bg-dark);
+.main-header {
+    background: var(--nav-bg);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    position: sticky;
+    top: 0;
+    z-index: 2000;
+    transition: 0.3s;
 }
 
-.aurora-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(100px);
-    opacity: .45;
-    animation: floatBlob 20s infinite alternate ease-in-out;
-}
-
-.blob-1 {
-    width: 40vw;
-    height: 40vw;
-    background: var(--primary);
-    top: -10%;
-    left: -10%;
-}
-
-.blob-2 {
-    width: 35vw;
-    height: 35vw;
-    background: var(--secondary);
-    bottom: -10%;
-    right: -10%;
-}
-
-.blob-3 {
-    width: 30vw;
-    height: 30vw;
-    background: var(--accent);
-    top: 40%;
-    left: 30%;
-}
-
-@keyframes floatBlob {
-    to {
-        transform: translate(50px,50px) scale(1.1);
-    }
-}
-
-/* SIDEBAR */
-
-.sidebar {
-    position: fixed;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: var(--sidebar-width);
-    max-height: 90vh;
-    overflow-y: auto;
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 30px;
-    padding: 20px 0;
+.header-container {
+    min-height: 75px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 20px;
-    z-index: 1000;
-    box-shadow: 0 10px 30px rgba(0,0,0,.5);
-    transition: .3s;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-.sidebar-logo {
-    width: 45px;
-    height: 45px;
-    object-fit: cover;
+/* University Logo and Name */
+
+.brand-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--nav-text);
+}
+
+.university-logo {
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    border: 2px solid var(--primary);
+    object-fit: cover;
+    background: white;
     padding: 2px;
 }
 
-.sidebar-icons-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+.brand-title {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
 }
 
-.sidebar-icon {
+.brand-subtitle {
+    font-size: 12px;
+    color: #888;
+    margin: 0;
+}
+
+/* =====================================
+   HAMBURGER MENU
+   Visible on BOTH laptop and mobile
+===================================== */
+
+.menu-toggle {
     width: 45px;
-    height: 45px;
-    border-radius: 15px;
+    height: 42px;
+    background: transparent;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    color: var(--nav-text);
+    font-size: 21px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-muted);
-    font-size: 1.2rem;
-    text-decoration: none;
-    position: relative;
-    background: transparent;
-    border: none;
-    transition: .3s;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.sidebar-icon:hover,
-.sidebar-icon.active {
-    color: white;
+.menu-toggle:hover {
     background: var(--primary);
-    box-shadow: 0 0 20px rgba(155,92,255,.5);
-}
-
-.sidebar-icon::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    left: 60px;
-    background: #17172b;
     color: white;
-    padding: 7px 12px;
-    border-radius: 8px;
-    font-size: 12px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: .3s;
 }
 
-.sidebar-icon:hover::after {
-    opacity: 1;
-    left: 65px;
+/* =====================================
+   NAVIGATION MENU
+===================================== */
+
+.navigation-panel {
+    background: var(--nav-bg);
+    border-top: 1px solid var(--card-border);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.04);
+    padding: 12px 0 18px;
 }
 
-.sidebar-sep {
-    width: 30px;
-    height: 1px;
-    background: var(--glass-border);
+.navigation-panel .navbar-nav {
+    align-items: center;
+    gap: 8px;
 }
 
-.main-content {
-    margin-left: 160px;
-    padding: 40px 45px;
-    min-height: 100vh;
+.navigation-panel .nav-link {
+    color: var(--nav-text) !important;
+    font-weight: 600;
+    padding: 10px 17px !important;
+    border-radius: 7px;
+    transition: 0.3s;
 }
 
-/* MOBILE MENU */
+.navigation-panel .nav-link:hover,
+.navigation-panel .nav-link.active {
+    background: rgba(11,114,185,0.1);
+    color: var(--primary) !important;
+}
 
-.mobile-menu-btn {
-    display: none;
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1100;
-    width: 45px;
-    height: 45px;
-    border: 1px solid var(--glass-border);
-    border-radius: 12px;
+.dropdown-menu {
+    background: var(--nav-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+    color: var(--nav-text);
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.dropdown-item:hover {
+    background: var(--primary);
+    color: white !important;
+}
+
+/* Theme Button */
+
+.theme-toggle-btn {
+    background: transparent;
+    border: 1px solid var(--card-border);
+    color: var(--nav-text);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--primary);
     color: white;
-    background: rgba(20,25,45,.9);
-    font-size: 20px;
 }
 
-.sidebar-overlay {
-    display: none;
-}
-
-/* GLASS CARDS */
-
-.glass-panel {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 25px;
-    box-shadow: 0 15px 35px rgba(0,0,0,.3);
-    padding: 30px;
-    margin-bottom: 30px;
-    transition: .3s;
-}
-
-.glass-panel:hover {
-    border-color: rgba(155,92,255,.5);
-}
-
-/* PAGE HERO */
+/* =====================================
+   PAGE HERO
+===================================== */
 
 .page-hero {
     text-align: center;
     padding: 45px 25px;
+    margin-top: 35px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.04);
 }
 
 .page-hero h1 {
-    font-size: clamp(2rem,5vw,3.5rem);
+    color: var(--primary);
+    font-size: clamp(2rem,5vw,3rem);
     font-weight: 700;
-    background: linear-gradient(90deg,#fff,var(--primary),var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
 }
 
 .page-hero p {
-    color: var(--text-muted);
+    color: var(--text-color);
+    font-size: 1.05rem;
+    margin: 0;
+    opacity: 0.85;
 }
 
-/* LAB IMAGE */
+/* =====================================
+   GENERAL CARDS
+===================================== */
+
+.section-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 35px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+    border-left: 4px solid var(--primary);
+    padding-left: 15px;
+    margin: 45px 0 20px;
+}
+
+.section-panel .section-title {
+    margin-top: 0;
+}
+
+.section-description {
+    color: var(--text-color);
+    opacity: 0.8;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+/* =====================================
+   LABORATORY HERO IMAGE
+   OLD IMAGE PATH PRESERVED
+===================================== */
 
 .lab-hero {
     height: 430px;
     position: relative;
     overflow: hidden;
-    border-radius: 25px;
-    margin-bottom: 45px;
-    background:
-      radial-gradient(circle at 20% 20%,rgba(155,92,255,.7),transparent 40%),
-      linear-gradient(135deg,#092b49,#071226 60%,#35144b);
-    box-shadow: 0 15px 40px rgba(0,0,0,.4);
+    border-radius: 12px;
+    margin-top: 35px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    background: #0A1929;
 }
 
 .lab-hero img {
@@ -276,13 +307,17 @@ h1,h2,h3,h4,h5 {
     flex-direction: column;
     justify-content: flex-end;
     padding: 40px;
-    background: linear-gradient(transparent,rgba(3,8,25,.95));
+    background: linear-gradient(
+        transparent,
+        rgba(3,8,25,0.9)
+    );
 }
 
 .lab-badge {
     display: inline-block;
     width: fit-content;
-    background: linear-gradient(135deg,var(--primary),var(--secondary));
+    background: var(--primary);
+    color: white;
     padding: 8px 16px;
     border-radius: 30px;
     font-size: 13px;
@@ -290,81 +325,76 @@ h1,h2,h3,h4,h5 {
 }
 
 .lab-hero h2 {
+    color: white;
     font-size: clamp(2rem,4vw,3rem);
     font-weight: 700;
 }
 
 .lab-hero p {
-    color: #ddd;
+    color: #eeeeee;
     max-width: 750px;
+    line-height: 1.7;
 }
 
-/* SECTION HEADINGS */
-
-.section-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    border-left: 4px solid var(--primary);
-    padding-left: 15px;
-    margin: 45px 0 25px;
-}
-
-.section-description {
-    color: var(--text-muted);
-    margin-bottom: 25px;
-}
-
-/* FEATURE CARDS */
+/* =====================================
+   FEATURE CARDS
+===================================== */
 
 .feature-card {
     height: 100%;
     padding: 28px;
-    background: rgba(20,25,45,.5);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    transition: .3s;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    transition: 0.3s;
 }
 
 .feature-card:hover {
-    transform: translateY(-7px);
+    transform: translateY(-5px);
     border-color: var(--primary);
-    box-shadow: 0 15px 30px rgba(155,92,255,.15);
+    box-shadow: 0 10px 25px rgba(11,114,185,0.12);
 }
 
 .feature-icon {
-    font-size: 2.3rem;
+    font-size: 2.2rem;
+    color: var(--primary);
     margin-bottom: 18px;
-    background: linear-gradient(135deg,var(--primary),var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .feature-card h4 {
+    color: var(--primary);
     font-size: 1.15rem;
     font-weight: 700;
     margin-bottom: 12px;
 }
 
 .feature-card p {
-    color: var(--text-muted);
-    margin-bottom: 0;
+    color: var(--text-color);
+    opacity: 0.85;
     line-height: 1.7;
+    margin-bottom: 0;
 }
 
-/* TECHNOLOGY TAGS */
+/* =====================================
+   TECHNOLOGY TAGS
+===================================== */
 
 .tech-tag {
     display: inline-block;
     padding: 9px 16px;
-    border: 1px solid rgba(155,92,255,.4);
-    background: rgba(155,92,255,.1);
-    color: #e3d4ff;
+    border: 1px solid rgba(11,114,185,0.25);
+    background: rgba(11,114,185,0.08);
+    color: var(--primary);
     border-radius: 30px;
     margin: 5px;
-    font-size: .9rem;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
-/* LAB ACTIVITY */
+/* =====================================
+   LAB ACTIVITIES
+===================================== */
 
 .activity-item {
     display: flex;
@@ -372,86 +402,146 @@ h1,h2,h3,h4,h5 {
     align-items: flex-start;
     padding: 20px;
     margin-bottom: 15px;
-    border-radius: 16px;
-    background: rgba(255,255,255,.04);
-    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    background: var(--body-bg);
+    border: 1px solid var(--card-border);
 }
 
 .activity-item i {
-    color: var(--accent);
+    color: var(--primary);
     font-size: 1.5rem;
     margin-top: 5px;
 }
 
 .activity-item h5 {
+    color: var(--text-color);
     font-weight: 700;
 }
 
 .activity-item p {
-    color: var(--text-muted);
+    color: var(--text-color);
+    opacity: 0.8;
     margin-bottom: 0;
+    line-height: 1.6;
 }
 
-/* LAB GUIDELINES */
+/* =====================================
+   GUIDELINES
+===================================== */
 
 .guideline {
     padding: 15px 18px;
-    border-bottom: 1px solid var(--glass-border);
-    color: var(--text-muted);
+    border-bottom: 1px solid var(--card-border);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.guideline:last-child {
+    border-bottom: none;
 }
 
 .guideline i {
-    color: #22d3a6;
+    color: #159b73;
     margin-right: 12px;
 }
 
-/* FAQ */
+/* =====================================
+   FAQ
+===================================== */
 
 .faq-item {
     margin-bottom: 12px;
-    border: 1px solid var(--glass-border) !important;
-    border-radius: 14px !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: 10px !important;
     overflow: hidden;
-    background: rgba(20,25,45,.5) !important;
+    background: var(--card-bg) !important;
 }
 
 .faq-item button {
-    background: transparent !important;
-    color: white !important;
+    background: var(--card-bg) !important;
+    color: var(--text-color) !important;
     box-shadow: none !important;
     font-weight: 600;
     padding: 20px;
 }
 
 .faq-item button::after {
+    filter: none;
+}
+
+body.dark-mode .faq-item button::after {
     filter: invert(1);
 }
 
-.faq-body {
-    color: var(--text-muted);
-    padding: 5px 20px 20px;
-}
-
 .accordion-button:not(.collapsed) {
-    color: var(--accent) !important;
+    color: var(--primary) !important;
 }
 
-/* FOOTER */
+.faq-body {
+    color: var(--text-color);
+    opacity: 0.85;
+    padding: 5px 20px 20px;
+    line-height: 1.7;
+}
 
-footer {
+/* =====================================
+   SUPERVISOR
+===================================== */
+
+.supervisor-card {
     text-align: center;
-    border-top: 1px solid var(--glass-border);
-    margin-top: 50px;
-    padding: 30px 10px;
-    color: var(--text-muted);
 }
 
-footer .dev-name {
+.supervisor-card h2 {
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.supervisor-card h4 {
     color: var(--primary);
     font-weight: 700;
 }
 
-/* BACK TO TOP */
+.contact-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 30px;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.contact-btn:hover {
+    background: #0A1929;
+    color: white;
+}
+
+/* =====================================
+   FOOTER
+===================================== */
+
+footer {
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    text-align: center;
+    margin-top: 50px;
+    padding: 30px 10px;
+}
+
+footer p {
+    margin: 5px 0;
+    color: var(--footer-text);
+}
+
+footer .dev-name {
+    color: #58b8f0;
+    font-weight: 700;
+}
+
+/* =====================================
+   BACK TO TOP
+===================================== */
 
 .back-top {
     position: fixed;
@@ -460,50 +550,47 @@ footer .dev-name {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background: linear-gradient(135deg,var(--primary),var(--secondary));
+    background: var(--primary);
     color: white;
     border: none;
     z-index: 900;
-    box-shadow: 0 5px 20px rgba(155,92,255,.5);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-/* RESPONSIVE */
+.back-top:hover {
+    background: #0A1929;
+    transform: translateY(-4px);
+}
+
+/* =====================================
+   RESPONSIVE DESIGN
+===================================== */
 
 @media(max-width:991px) {
 
-    .mobile-menu-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .navigation-panel .navbar-nav {
+        align-items: stretch;
+        gap: 3px;
     }
 
-    .sidebar {
-        left: 0;
-        top: 0;
-        transform: translateX(-110%);
-        width: 85px;
-        height: 100vh;
-        max-height: 100vh;
-        border-radius: 0 25px 25px 0;
-        justify-content: flex-start;
-        padding-top: 75px;
+    .navigation-panel .nav-link {
+        padding: 12px 15px !important;
     }
 
-    .sidebar.open {
-        transform: translateX(0);
+    .navigation-panel .theme-toggle-btn {
+        margin: 10px 15px;
     }
 
-    .sidebar-overlay.show {
-        display: block;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,.6);
-        z-index: 950;
+    .dropdown-menu {
+        border: none;
+        box-shadow: none;
+        padding-left: 15px;
     }
 
     .main-content {
-        margin-left: 0;
-        padding: 85px 18px 30px;
+        padding-top: 0;
     }
 
     .lab-hero {
@@ -516,103 +603,279 @@ footer .dev-name {
 }
 
 @media(max-width:576px) {
-    .glass-panel {
-        padding: 22px;
+
+    .brand-title {
+        font-size: 14px;
+    }
+
+    .brand-subtitle {
+        font-size: 11px;
+    }
+
+    .university-logo {
+        width: 42px;
+        height: 42px;
+    }
+
+    .header-container {
+        min-height: 65px;
     }
 
     .page-hero {
         padding: 30px 15px;
+        margin-top: 20px;
     }
 
     .lab-hero {
         height: 320px;
+        margin-top: 20px;
     }
 
     .lab-hero h2 {
         font-size: 1.8rem;
     }
 
+    .lab-hero-overlay {
+        padding: 20px;
+    }
+
+    .section-panel {
+        padding: 20px;
+    }
+
     .section-title {
         font-size: 1.4rem;
     }
+
+    .feature-card {
+        padding: 22px;
+    }
+
+    .activity-item {
+        padding: 15px;
+        gap: 12px;
+    }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND -->
+<!-- =====================================
+     UNIVERSITY HEADER
+===================================== -->
 
-<div class="aurora-bg">
-    <div class="aurora-blob blob-1"></div>
-    <div class="aurora-blob blob-2"></div>
-    <div class="aurora-blob blob-3"></div>
-</div>
+<header class="main-header">
 
-<!-- MOBILE MENU BUTTON -->
+    <div class="container header-container">
 
-<button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Open navigation">
-    <i class="fas fa-bars" id="menuIcon"></i>
-</button>
+        <!-- LOGO AND DEPARTMENT NAME -->
 
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+        <a href="index.html" class="brand-area">
 
-<!-- SIDEBAR -->
+            <img
+                src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg"
+                alt="QUEST University Logo"
+                class="university-logo"
+            >
 
-<nav class="sidebar" id="sidebar">
+            <div>
+                <p class="brand-title">
+                    Cyber Security Department
+                </p>
 
-    <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg"
-         alt="QUEST Logo" class="sidebar-logo">
+                <p class="brand-subtitle">
+                    QUEST Nawabshah
+                </p>
+            </div>
 
-    <div class="sidebar-sep"></div>
-
-    <div class="sidebar-icons-wrapper">
-
-        <a href="index.html" class="sidebar-icon" data-tooltip="Home">
-            <i class="fas fa-home"></i>
         </a>
 
-        <a href="department.html" class="sidebar-icon" data-tooltip="Department">
-            <i class="fas fa-building"></i>
-        </a>
+        <!-- HAMBURGER BUTTON -->
 
-        <a href="programs.html" class="sidebar-icon" data-tooltip="Programs">
-            <i class="fas fa-graduation-cap"></i>
-        </a>
+        <button
+            class="menu-toggle"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavigation"
+            aria-controls="mainNavigation"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            id="menuToggle"
+        >
 
-        <a href="people.html" class="sidebar-icon" data-tooltip="Faculty">
-            <i class="fas fa-users"></i>
-        </a>
+            <i class="fas fa-bars" id="menuIcon"></i>
 
-        <a href="labs.html" class="sidebar-icon active" data-tooltip="Laboratories">
-            <i class="fas fa-microscope"></i>
-        </a>
-
-        <a href="timetable.html" class="sidebar-icon" data-tooltip="Timetable">
-            <i class="fas fa-calendar-alt"></i>
-        </a>
+        </button>
 
     </div>
 
-    <div class="sidebar-sep"></div>
+    <!-- =====================================
+         NAVIGATION MENU
+         Same links as HOME PAGE
+    ===================================== -->
 
-    <button class="sidebar-icon" onclick="toggleTheme()" data-tooltip="Toggle Theme">
-        <i class="fas fa-sun" id="theme-icon"></i>
-    </button>
+    <div class="collapse navigation-panel" id="mainNavigation">
 
-    <a href="index.html#contact" class="sidebar-icon" data-tooltip="Contact">
-        <i class="fas fa-envelope"></i>
-    </a>
+        <div class="container">
 
-</nav>
+            <ul class="navbar-nav">
 
-<!-- MAIN CONTENT -->
+                <!-- HOME -->
 
-<main class="main-content">
+                <li class="nav-item">
+
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-home me-2"></i>
+                        Home
+                    </a>
+
+                </li>
+
+                <!-- ABOUT DROPDOWN -->
+
+                <li class="nav-item dropdown">
+
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+
+                        <i class="fas fa-university me-2"></i>
+                        About
+
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a class="dropdown-item" href="chairman.html">
+                                <i class="fas fa-user-tie me-2"></i>
+                                Chairman & Dean
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="department.html">
+                                <i class="fas fa-building me-2"></i>
+                                Department
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="labs.html">
+                                <i class="fas fa-microscope me-2"></i>
+                                Laboratories
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+                <!-- PROGRAMS DROPDOWN -->
+
+                <li class="nav-item dropdown">
+
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+
+                        <i class="fas fa-graduation-cap me-2"></i>
+                        Programs
+
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a class="dropdown-item" href="programs.html">
+                                🎓 Undergraduate (BS)
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="curriculum.html">
+                                📚 Curriculum
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="timetable.html">
+                                🕒 Timetable
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+                <!-- PEOPLE -->
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="people.html">
+                        <i class="fas fa-users me-2"></i>
+                        People
+                    </a>
+
+                </li>
+
+                <!-- CONTACT -->
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="index.html#contact">
+                        <i class="fas fa-envelope me-2"></i>
+                        Contact
+                    </a>
+
+                </li>
+
+                <!-- THEME BUTTON -->
+
+                <li class="nav-item">
+
+                    <button
+                        class="theme-toggle-btn"
+                        onclick="toggleTheme()"
+                        title="Toggle Dark/Light Mode"
+                    >
+
+                        <i class="fas fa-moon" id="theme-icon"></i>
+
+                    </button>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================
+     MAIN CONTENT
+===================================== -->
+
+<main>
+
+<div class="container">
 
     <!-- PAGE INTRO -->
 
-    <section class="glass-panel page-hero">
+    <section class="page-hero">
 
         <h1>Department Laboratories</h1>
 
@@ -623,21 +886,26 @@ footer .dev-name {
 
     </section>
 
-    <!-- LAB HERO -->
+
+    <!-- =====================================
+         LAB HERO IMAGE
+         OLD IMAGE PRESERVED
+    ===================================== -->
 
     <section class="lab-hero">
 
         <img
             src="images/network-security-lab.jpg"
             alt="Cyber Security Department Laboratory"
-            onerror="this.style.display='none';"
         >
 
         <div class="lab-hero-overlay">
 
             <span class="lab-badge">
-                <i class="fas fa-shield-alt"></i>
+
+                <i class="fas fa-shield-alt me-2"></i>
                 Department of Cyber Security
+
             </span>
 
             <h2>Network Security Lab</h2>
@@ -651,62 +919,92 @@ footer .dev-name {
 
     </section>
 
-    <!-- ABOUT LABORATORIES -->
 
-    <section class="glass-panel">
+    <!-- =====================================
+         ABOUT LABORATORIES
+    ===================================== -->
 
-        <h2 class="section-title">About Our Laboratories</h2>
+    <section class="section-panel">
+
+        <h2 class="section-title">
+            About Our Laboratories
+        </h2>
 
         <p class="section-description">
+
             The laboratories of the Cyber Security Department support
             practical activities, technical demonstrations and
             hands-on exploration of cybersecurity concepts.
             They provide an environment for understanding how computer
             systems, networks and digital information can be protected.
+
         </p>
 
         <div class="row g-4">
 
             <div class="col-md-4">
+
                 <div class="feature-card">
+
                     <i class="fas fa-laptop-code feature-icon"></i>
+
                     <h4>Practical Environment</h4>
+
                     <p>
                         Explore technical concepts through practical
                         exercises, demonstrations and laboratory activities.
                     </p>
+
                 </div>
+
             </div>
 
             <div class="col-md-4">
+
                 <div class="feature-card">
+
                     <i class="fas fa-shield-halved feature-icon"></i>
+
                     <h4>Security Exploration</h4>
+
                     <p>
                         Understand network protection, system security
                         and cybersecurity practices.
                     </p>
+
                 </div>
+
             </div>
 
             <div class="col-md-4">
+
                 <div class="feature-card">
+
                     <i class="fas fa-microscope feature-icon"></i>
+
                     <h4>Technical Research</h4>
+
                     <p>
                         Explore emerging technologies and security
                         challenges through supervised technical work.
                     </p>
+
                 </div>
+
             </div>
 
         </div>
 
     </section>
 
-    <!-- PRACTICAL AREAS -->
 
-    <h2 class="section-title">Cybersecurity Practical Areas</h2>
+    <!-- =====================================
+         PRACTICAL AREAS
+    ===================================== -->
+
+    <h2 class="section-title">
+        Cybersecurity Practical Areas
+    </h2>
 
     <p class="section-description">
         Key technical areas related to cybersecurity laboratory work.
@@ -715,146 +1013,220 @@ footer .dev-name {
     <div class="row g-4">
 
         <div class="col-md-6 col-lg-4">
+
             <div class="feature-card">
+
                 <i class="fas fa-network-wired feature-icon"></i>
+
                 <h4>Network Security</h4>
+
                 <p>
                     Network monitoring, traffic analysis,
                     network configuration and security concepts.
                 </p>
+
             </div>
+
         </div>
 
         <div class="col-md-6 col-lg-4">
+
             <div class="feature-card">
+
                 <i class="fas fa-bug feature-icon"></i>
+
                 <h4>Malware Analysis</h4>
+
                 <p>
                     Explore malware behaviour and defensive
                     analysis techniques in controlled environments.
                 </p>
+
             </div>
+
         </div>
 
         <div class="col-md-6 col-lg-4">
+
             <div class="feature-card">
+
                 <i class="fas fa-magnifying-glass-chart feature-icon"></i>
+
                 <h4>Digital Forensics</h4>
+
                 <p>
                     Understand digital evidence, data examination
                     and forensic investigation concepts.
                 </p>
+
             </div>
+
         </div>
 
         <div class="col-md-6 col-lg-4">
+
             <div class="feature-card">
+
                 <i class="fas fa-terminal feature-icon"></i>
+
                 <h4>Ethical Hacking</h4>
+
                 <p>
                     Learn authorized security testing and
                     vulnerability assessment concepts.
                 </p>
+
             </div>
+
         </div>
 
         <div class="col-md-6 col-lg-4">
+
             <div class="feature-card">
+
                 <i class="fas fa-server feature-icon"></i>
+
                 <h4>System Administration</h4>
+
                 <p>
                     Explore operating systems, server management,
                     virtualization and system protection.
                 </p>
+
             </div>
+
         </div>
 
         <div class="col-md-6 col-lg-4">
+
             <div class="feature-card">
+
                 <i class="fas fa-database feature-icon"></i>
+
                 <h4>Data & Cryptography</h4>
+
                 <p>
                     Understand encryption, data protection
                     and information security principles.
                 </p>
+
             </div>
+
         </div>
 
     </div>
 
-    <!-- INFRASTRUCTURE -->
 
-    <section class="glass-panel mt-5">
+    <!-- =====================================
+         INFRASTRUCTURE
+    ===================================== -->
 
-        <h2 class="section-title">Laboratory Infrastructure</h2>
+    <section class="section-panel">
+
+        <h2 class="section-title">
+            Laboratory Infrastructure
+        </h2>
 
         <p class="section-description">
+
             Examples of the hardware and infrastructure categories
             relevant to cybersecurity laboratory environments.
             Actual inventory and availability should be confirmed
             by the department.
+
         </p>
 
         <div class="row g-4">
 
             <div class="col-md-6">
+
                 <div class="feature-card">
+
                     <i class="fas fa-desktop feature-icon"></i>
+
                     <h4>Computing Infrastructure</h4>
+
                     <p>
                         Desktop workstations, instructor systems,
                         storage devices and computing resources.
                     </p>
+
                 </div>
+
             </div>
 
             <div class="col-md-6">
+
                 <div class="feature-card">
+
                     <i class="fas fa-router feature-icon"></i>
+
                     <h4>Networking Equipment</h4>
+
                     <p>
                         Routers, switches, network cables and
                         network configuration equipment.
                     </p>
+
                 </div>
+
             </div>
 
             <div class="col-md-6">
+
                 <div class="feature-card">
+
                     <i class="fas fa-cloud feature-icon"></i>
+
                     <h4>Virtualization Systems</h4>
+
                     <p>
                         Virtual machines, isolated testing environments
                         and operating system installations.
                     </p>
+
                 </div>
+
             </div>
 
             <div class="col-md-6">
+
                 <div class="feature-card">
+
                     <i class="fas fa-hard-drive feature-icon"></i>
+
                     <h4>Forensics Resources</h4>
+
                     <p>
                         Storage media, forensic software and
                         digital investigation resources.
                     </p>
+
                 </div>
+
             </div>
 
         </div>
 
     </section>
 
-    <!-- SOFTWARE & TOOLS -->
 
-    <h2 class="section-title">Software & Technologies</h2>
+    <!-- =====================================
+         SOFTWARE & TECHNOLOGIES
+    ===================================== -->
+
+    <h2 class="section-title">
+        Software & Technologies
+    </h2>
 
     <p class="section-description">
+
         Examples of tools used across cybersecurity and networking
         practice. Their availability depends on the laboratory setup.
+
     </p>
 
-    <section class="glass-panel text-center">
+    <section class="section-panel text-center">
 
         <span class="tech-tag">Kali Linux</span>
         <span class="tech-tag">Ubuntu</span>
@@ -871,71 +1243,109 @@ footer .dev-name {
 
     </section>
 
-    <!-- LAB ACTIVITIES -->
 
-    <h2 class="section-title">Laboratory Activities</h2>
+    <!-- =====================================
+         LAB ACTIVITIES
+    ===================================== -->
+
+    <h2 class="section-title">
+        Laboratory Activities
+    </h2>
 
     <p class="section-description">
+
         Examples of supervised technical activities and demonstrations.
+
     </p>
 
-    <section class="glass-panel">
+    <section class="section-panel">
 
         <div class="activity-item">
+
             <i class="fas fa-network-wired"></i>
+
             <div>
+
                 <h5>Network Configuration</h5>
+
                 <p>
                     Network setup, IP addressing, connectivity
                     testing and network troubleshooting.
                 </p>
+
             </div>
+
         </div>
 
         <div class="activity-item">
+
             <i class="fas fa-chart-line"></i>
+
             <div>
+
                 <h5>Network Traffic Analysis</h5>
+
                 <p>
                     Examine network packets and understand
                     communication protocols.
                 </p>
+
             </div>
+
         </div>
 
         <div class="activity-item">
+
             <i class="fas fa-shield-alt"></i>
+
             <div>
+
                 <h5>Security Assessment</h5>
+
                 <p>
                     Explore vulnerability assessment and
                     security testing within authorized lab environments.
                 </p>
+
             </div>
+
         </div>
 
         <div class="activity-item">
+
             <i class="fas fa-file-shield"></i>
+
             <div>
+
                 <h5>Digital Investigation</h5>
+
                 <p>
                     Learn basic digital evidence handling
                     and forensic examination concepts.
                 </p>
+
             </div>
+
         </div>
 
     </section>
 
-    <!-- LAB GUIDELINES -->
 
-    <section class="glass-panel">
+    <!-- =====================================
+         LAB GUIDELINES
+    ===================================== -->
 
-        <h2 class="section-title">Laboratory Rules & Guidelines</h2>
+    <section class="section-panel">
+
+        <h2 class="section-title">
+            Laboratory Rules & Guidelines
+        </h2>
 
         <p class="section-description">
+
             General guidelines for maintaining a safe,
             responsible and productive laboratory environment.
+
         </p>
 
         <div class="guideline">
@@ -970,227 +1380,346 @@ footer .dev-name {
 
     </section>
 
-    <!-- FAQ -->
 
-    <h2 class="section-title">Frequently Asked Questions</h2>
+    <!-- =====================================
+         FAQ
+    ===================================== -->
+
+    <h2 class="section-title">
+        Frequently Asked Questions
+    </h2>
 
     <div class="accordion" id="labFAQ">
 
         <div class="accordion-item faq-item">
+
             <h2 class="accordion-header">
-                <button class="accordion-button collapsed"
+
+                <button
+                    class="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#faq1">
+                    data-bs-target="#faq1"
+                >
+
                     What is the purpose of the Network Security Lab?
+
                 </button>
+
             </h2>
-            <div id="faq1" class="accordion-collapse collapse"
-                data-bs-parent="#labFAQ">
+
+            <div
+                id="faq1"
+                class="accordion-collapse collapse"
+                data-bs-parent="#labFAQ"
+            >
+
                 <div class="faq-body">
+
                     The laboratory provides an environment for
                     exploring networking, cybersecurity concepts,
                     technical demonstrations and supervised practical work.
+
                 </div>
+
             </div>
+
         </div>
 
+
         <div class="accordion-item faq-item">
+
             <h2 class="accordion-header">
-                <button class="accordion-button collapsed"
+
+                <button
+                    class="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#faq2">
+                    data-bs-target="#faq2"
+                >
+
                     Which software tools are relevant to cybersecurity?
+
                 </button>
+
             </h2>
-            <div id="faq2" class="accordion-collapse collapse"
-                data-bs-parent="#labFAQ">
+
+            <div
+                id="faq2"
+                class="accordion-collapse collapse"
+                data-bs-parent="#labFAQ"
+            >
+
                 <div class="faq-body">
+
                     Tools such as Wireshark, Nmap, Kali Linux,
                     Python and Cisco Packet Tracer are examples
                     of technologies used for cybersecurity practice.
                     Actual availability depends on the lab setup.
+
                 </div>
+
             </div>
+
         </div>
 
+
         <div class="accordion-item faq-item">
+
             <h2 class="accordion-header">
-                <button class="accordion-button collapsed"
+
+                <button
+                    class="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#faq3">
+                    data-bs-target="#faq3"
+                >
+
                     Can students perform practical security testing?
+
                 </button>
+
             </h2>
-            <div id="faq3" class="accordion-collapse collapse"
-                data-bs-parent="#labFAQ">
+
+            <div
+                id="faq3"
+                class="accordion-collapse collapse"
+                data-bs-parent="#labFAQ"
+            >
+
                 <div class="faq-body">
+
                     Security testing should only be performed
                     in authorized environments and under
                     appropriate supervision.
+
                 </div>
+
             </div>
+
         </div>
 
+
         <div class="accordion-item faq-item">
+
             <h2 class="accordion-header">
-                <button class="accordion-button collapsed"
+
+                <button
+                    class="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#faq4">
+                    data-bs-target="#faq4"
+                >
+
                     Who supervises the laboratory?
+
                 </button>
+
             </h2>
-            <div id="faq4" class="accordion-collapse collapse"
-                data-bs-parent="#labFAQ">
+
+            <div
+                id="faq4"
+                class="accordion-collapse collapse"
+                data-bs-parent="#labFAQ"
+            >
+
                 <div class="faq-body">
+
                     The supervisor listed for the Network Security
                     Lab on this portal is Dr. Adnan Ahmed.
+
                 </div>
+
             </div>
+
         </div>
 
     </div>
 
-    <!-- CONTACT / SUPERVISOR -->
 
-    <section class="glass-panel text-center mt-5">
+    <!-- =====================================
+         LAB SUPERVISION
+    ===================================== -->
+
+    <section class="section-panel supervisor-card">
 
         <i class="fas fa-user-shield feature-icon"></i>
 
-        <h2>Laboratory Supervision</h2>
+        <h2>
+            Laboratory Supervision
+        </h2>
 
         <p class="section-description">
             Network Security Lab
         </p>
 
-        <h4>Dr. Adnan Ahmed</h4>
+        <h4>
+            Dr. Adnan Ahmed
+        </h4>
 
-        <p class="text-secondary">
+        <p style="color:var(--text-color);opacity:0.7;">
             Laboratory Supervisor
         </p>
 
-        <a href="index.html#contact" class="btn btn-lg"
-            style="background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;border-radius:30px;padding:12px 30px;">
+        <a
+            href="index.html#contact"
+            class="contact-btn"
+        >
+
             <i class="fas fa-envelope me-2"></i>
             Department Contact
+
         </a>
 
     </section>
 
-    <!-- FOOTER -->
-
-    <footer>
-        <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
-        <p>Developed by <span class="dev-name">Mariam Khan</span></p>
-    </footer>
+</div>
 
 </main>
 
-<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
-    aria-label="Back to top">
+
+<!-- =====================================
+     FOOTER
+===================================== -->
+
+<footer>
+
+    <p>
+        © 2026 Cyber Security Department, QUEST.
+        All Rights Reserved.
+    </p>
+
+    <p>
+        Developed by
+        <span class="dev-name">ZeroTrace</span>
+    </p>
+
+</footer>
+
+
+<!-- BACK TO TOP -->
+
+<button
+    class="back-top"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    aria-label="Back to top"
+>
+
     <i class="fas fa-arrow-up"></i>
+
 </button>
+
+
+<!-- =====================================
+     BOOTSTRAP JAVASCRIPT
+===================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+
 <script>
 
-// MOBILE SIDEBAR
+/* =====================================
+   HAMBURGER ICON CHANGE
+===================================== */
 
-function toggleSidebar() {
-    document.getElementById('sidebar').classList.toggle('open');
-    document.getElementById('sidebarOverlay').classList.toggle('show');
+const navigation = document.getElementById('mainNavigation');
+const menuIcon = document.getElementById('menuIcon');
 
-    const icon = document.getElementById('menuIcon');
+navigation.addEventListener('show.bs.collapse', function () {
 
-    if (document.getElementById('sidebar').classList.contains('open')) {
-        icon.classList.replace('fa-bars','fa-times');
-    } else {
-        icon.classList.replace('fa-times','fa-bars');
-    }
-}
+    menuIcon.classList.replace('fa-bars','fa-times');
 
-// CLOSE MOBILE MENU WHEN A LINK IS CLICKED
-
-document.querySelectorAll('.sidebar a').forEach(link => {
-    link.addEventListener('click', () => {
-        document.getElementById('sidebar').classList.remove('open');
-        document.getElementById('sidebarOverlay').classList.remove('show');
-        document.getElementById('menuIcon').classList.replace('fa-times','fa-bars');
-    });
 });
 
-// THEME TOGGLE
+navigation.addEventListener('hide.bs.collapse', function () {
 
-function toggleTheme() {
-    const body = document.body;
+    menuIcon.classList.replace('fa-times','fa-bars');
 
-    body.classList.toggle('light-mode');
+});
 
-    const isLight = body.classList.contains('light-mode');
 
-    localStorage.setItem('labTheme', isLight ? 'light' : 'dark');
+/* =====================================
+   CLOSE MENU AFTER CLICKING A LINK
+===================================== */
+
+document.querySelectorAll(
+    '#mainNavigation .nav-link, #mainNavigation .dropdown-item'
+).forEach(link => {
+
+    link.addEventListener('click', function () {
+
+        const menu = bootstrap.Collapse.getOrCreateInstance(
+            navigation,
+            {toggle: false}
+        );
+
+        menu.hide();
+
+    });
+
+});
+
+
+/* =====================================
+   DARK / LIGHT THEME
+===================================== */
+
+function applyTheme(theme) {
 
     const icon = document.getElementById('theme-icon');
 
-    if (isLight) {
-        icon.classList.replace('fa-sun','fa-moon');
+    if (theme === 'dark') {
+
+        document.body.classList.add('dark-mode');
+
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+
     } else {
-        icon.classList.replace('fa-moon','fa-sun');
+
+        document.body.classList.remove('dark-mode');
+
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+
     }
+
+    localStorage.setItem('theme', theme);
+
 }
 
-// RESTORE THEME
 
-document.addEventListener('DOMContentLoaded', () => {
+/* THEME TOGGLE */
 
-    if (localStorage.getItem('labTheme') === 'light') {
-        document.body.classList.add('light-mode');
+function toggleTheme() {
 
-        const icon = document.getElementById('theme-icon');
+    const isDark = document.body.classList.contains('dark-mode');
 
-        icon.classList.replace('fa-sun','fa-moon');
+    applyTheme(isDark ? 'light' : 'dark');
+
+}
+
+
+/* RESTORE SAVED THEME */
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark') {
+
+        applyTheme('dark');
+
+    } else {
+
+        applyTheme('light');
+
     }
 
 });
 
 </script>
 
-<style>
-/* LIGHT THEME */
-
-body.light-mode {
-    --bg-dark: #f2f3fa;
-    --text-main: #17172d;
-    --text-muted: #55556e;
-    --glass-bg: rgba(255,255,255,.75);
-    --glass-border: rgba(20,20,50,.12);
-}
-
-body.light-mode .faq-item {
-    background: rgba(255,255,255,.8) !important;
-}
-
-body.light-mode .faq-item button {
-    color: #17172d !important;
-}
-
-body.light-mode .faq-item button::after {
-    filter: none;
-}
-
-body.light-mode .feature-card {
-    background: rgba(255,255,255,.65);
-}
-
-body.light-mode .activity-item {
-    background: rgba(255,255,255,.65);
-}
-</style>
-
 </body>
 </html>
-v
