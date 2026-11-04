@@ -5,968 +5,751 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>QUEST | Cyber Security Department</title>
+<title>Cyber Security Department | QUEST Nawabshah</title>
 
-<meta name="description" content="Official Cyber Security Department Portal, QUEST Nawabshah.">
-<meta name="theme-color" content="#080817">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- FONTS -->
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-<!-- BOOTSTRAP -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- FONT AWESOME -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
 <style>
 
-/* =====================================
-   1. THEME VARIABLES
-===================================== */
+/* ==============================
+   1. ORIGINAL THEME COLORS
+================================ */
 
 :root {
-    --bg: #080817;
-    --panel: rgba(22, 25, 47, .72);
-    --panel2: rgba(30, 32, 58, .72);
-    --primary: #8265ff;
-    --secondary: #e64bb5;
-    --cyan: #00d9ff;
-    --green: #3de0ad;
-    --text: #ffffff;
-    --muted: #a6aac4;
-    --border: rgba(255,255,255,.12);
-    --sidebar: 82px;
+    --primary: #0B72B9;
+    --nav-bg: #ffffff;
+    --nav-text: #333333;
+    --body-bg: #f4f7fb;
+    --text-color: #333333;
+    --card-bg: #ffffff;
+    --card-border: rgba(0,0,0,0.08);
+    --hero-overlay: rgba(10,25,41,0.60);
+    --hero-text: #ffffff;
+    --contact-bg: #ffffff;
+    --footer-bg: #0A1929;
+    --footer-text: #ffffff;
 }
 
-body.light-theme {
-    --bg: #edf0ff;
-    --panel: rgba(255,255,255,.82);
-    --panel2: rgba(245,246,255,.95);
-    --text: #17172e;
-    --muted: #646782;
-    --border: rgba(50,50,90,.14);
+body.dark-mode {
+    --nav-bg: #0f172a;
+    --nav-text: #e2e8f0;
+    --body-bg: #0f172a;
+    --text-color: #e2e8f0;
+    --card-bg: #1e293b;
+    --card-border: rgba(255,255,255,0.1);
+    --hero-overlay: rgba(10,25,41,0.85);
+    --hero-text: #ffffff;
+    --contact-bg: #0f172a;
+    --footer-bg: #020617;
+    --footer-text: #e2e8f0;
 }
 
 * {
     box-sizing: border-box;
+}
+
+html {
     scroll-behavior: smooth;
+    scroll-padding-top: 85px;
 }
 
 body {
     margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Outfit', sans-serif;
-    overflow-x: hidden;
-    transition: background .4s, color .4s;
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    background: var(--body-bg);
+    color: var(--text-color);
+    transition: 0.3s;
 }
 
-h1,h2,h3,h4,h5 {
-    font-family: 'Space Grotesk', sans-serif;
+
+/* ==============================
+   2. TOP HEADER
+================================ */
+
+.top-header {
+    background: var(--nav-bg);
+    padding: 12px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 2000;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: 0.3s;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
-/* =====================================
-   2. ANIMATED AURORA BACKGROUND
-===================================== */
-
-.aurora-bg {
-    position: fixed;
-    inset: 0;
-    z-index: -5;
-    overflow: hidden;
-    background: var(--bg);
-}
-
-.aurora {
-    position: absolute;
-    width: 450px;
-    height: 450px;
+.university-logo {
+    width: 53px;
+    height: 53px;
+    object-fit: contain;
+    background: white;
     border-radius: 50%;
-    filter: blur(110px);
-    opacity: .24;
-    animation: auroraMove 18s infinite alternate ease-in-out;
+    padding: 3px;
 }
 
-.aurora.one {
-    background: #743bff;
-    top: -150px;
-    left: -100px;
+.brand-name {
+    color: var(--nav-text);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
 }
 
-.aurora.two {
-    background: #ed3da9;
-    right: -100px;
-    top: 25%;
-    animation-delay: -5s;
+.brand-subtitle {
+    color: #888;
+    font-size: 12px;
+    font-weight: 500;
 }
 
-.aurora.three {
-    background: #00bce9;
-    bottom: -180px;
-    left: 35%;
-    animation-delay: -9s;
+.menu-toggle {
+    width: 43px;
+    height: 43px;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--nav-text);
+    font-size: 19px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-@keyframes auroraMove {
-    from { transform: translate(0,0) scale(1); }
-    to { transform: translate(100px,80px) scale(1.3); }
+.menu-toggle:hover {
+    background: var(--primary);
+    color: white;
 }
 
-/* Moving background stars */
-
-#particles {
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    pointer-events: none;
-}
-
-.particle {
-    position: absolute;
-    width: 3px;
-    height: 3px;
+.theme-toggle-btn {
+    background: transparent;
+    border: 1px solid var(--card-border);
+    color: var(--nav-text);
     border-radius: 50%;
-    background: #a58bff;
-    box-shadow: 0 0 12px #a58bff;
-    animation: floatParticle linear infinite;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
 }
 
-@keyframes floatParticle {
-    from { transform: translateY(105vh); opacity: 0; }
-    20% { opacity: .8; }
-    80% { opacity: .7; }
-    to { transform: translateY(-10vh); opacity: 0; }
+.theme-toggle-btn:hover {
+    background: var(--primary);
+    color: white;
 }
 
-/* =====================================
-   3. TOP ANNOUNCEMENT BAR
-===================================== */
 
-.announcement {
-    position: relative;
-    z-index: 1100;
-    overflow: hidden;
-    background: linear-gradient(90deg,#6349ee,#a13de0,#e34ba9);
-    padding: 9px 0;
-    white-space: nowrap;
-}
-
-.announcement-track {
-    display: inline-block;
-    animation: announcementMove 25s linear infinite;
-    font-weight: 600;
-    letter-spacing: .5px;
-}
-
-@keyframes announcementMove {
-    from { transform: translateX(100vw); }
-    to { transform: translateX(-100%); }
-}
-
-/* =====================================
-   4. DESKTOP SIDEBAR
-===================================== */
+/* ==============================
+   3. LEFT SIDEBAR NAVIGATION
+================================ */
 
 .sidebar {
     position: fixed;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: var(--sidebar);
-    padding: 18px 0;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 35px;
-    backdrop-filter: blur(25px);
-    z-index: 2000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 17px;
-    box-shadow: 0 15px 40px rgba(0,0,0,.3);
+    top: 0;
+    left: -290px;
+    width: 280px;
+    height: 100vh;
+    background: var(--nav-bg);
+    z-index: 3000;
+    padding: 22px 18px;
+    overflow-y: auto;
+    box-shadow: 5px 0 25px rgba(0,0,0,0.15);
+    transition: left 0.3s ease;
 }
 
-.sidebar-logo {
-    width: 43px;
-    height: 43px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--primary);
-    box-shadow: 0 0 20px #8265ff77;
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.sidebar-heading {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--primary);
+}
+
+.sidebar-close {
+    border: none;
+    background: transparent;
+    color: var(--nav-text);
+    font-size: 22px;
+    cursor: pointer;
 }
 
 .sidebar-link {
-    width: 47px;
-    height: 47px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    border-radius: 15px;
-    color: var(--muted);
-    font-size: 19px;
-    transition: .3s;
-    position: relative;
-    background: transparent;
-    border: none;
+    gap: 13px;
+    padding: 13px 14px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.sidebar-link i {
+    width: 22px;
+    text-align: center;
+    color: var(--primary);
 }
 
 .sidebar-link:hover,
 .sidebar-link.active {
-    color: white;
-    background: linear-gradient(135deg,#7257f5,#a54ce3);
-    box-shadow: 0 0 25px #8265ff66;
-    transform: scale(1.08);
+    background: rgba(11,114,185,0.12);
+    color: var(--primary);
 }
 
-.sidebar-link::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    left: 60px;
-    background: #19172e;
-    color: white;
-    padding: 8px 13px;
-    border-radius: 9px;
-    font-size: 12px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: .3s;
+.sidebar-link.dropdown-toggle::after {
+    margin-left: auto;
 }
 
-.sidebar-link:hover::after {
-    opacity: 1;
-    left: 65px;
+.submenu {
+    padding-left: 30px;
+    margin-bottom: 8px;
 }
 
-.sidebar-divider {
-    width: 30px;
-    height: 1px;
-    background: var(--border);
+.submenu a {
+    display: block;
+    padding: 10px 12px;
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 7px;
 }
 
-/* =====================================
-   5. MAIN CONTENT
-===================================== */
-
-.main-content {
-    margin-left: 130px;
-    padding: 25px 35px 40px 0;
-    max-width: 1600px;
+.submenu a:hover {
+    background: rgba(11,114,185,0.12);
+    color: var(--primary);
 }
 
-.section {
-    margin-bottom: 65px;
-    scroll-margin-top: 30px;
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 2500;
+    display: none;
 }
 
-.glass {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 25px;
-    backdrop-filter: blur(22px);
-    box-shadow: 0 15px 40px rgba(0,0,0,.22);
-    transition: .35s;
+.sidebar-overlay.active {
+    display: block;
 }
 
-.glass:hover {
-    border-color: #896bff88;
-    box-shadow: 0 15px 40px rgba(100,70,255,.13);
-}
 
-.section-heading {
-    text-align: center;
-    margin-bottom: 35px;
-}
-
-.section-heading h2 {
-    font-weight: 700;
-    font-size: 2.1rem;
-}
-
-.gradient-text {
-    background: linear-gradient(90deg,#947aff,#ec50bb,#00d9ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.section-heading p {
-    color: var(--muted);
-}
-
-/* =====================================
-   6. HERO SECTION
-===================================== */
+/* ==============================
+   4. HERO SECTION
+   ORIGINAL BACKGROUND IMAGE
+================================ */
 
 .hero {
-    padding: 45px;
-    display: grid;
-    grid-template-columns: 1.05fr .95fr;
-    gap: 35px;
+    background:
+    linear-gradient(var(--hero-overlay),var(--hero-overlay)),
+    url('https://i.ibb.co/b5BmC0BQ/telecom-building.jpg')
+    center/cover no-repeat;
+
+    min-height: 510px;
+    display: flex;
     align-items: center;
-    min-height: 440px;
-    overflow: hidden;
-    position: relative;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero-content {
+    max-width: 950px;
+    color: white;
 }
 
 .hero-label {
     display: inline-block;
-    padding: 8px 16px;
-    border: 1px solid #8265ff66;
+    padding: 8px 18px;
+    border: 1px solid rgba(255,255,255,0.5);
     border-radius: 30px;
-    color: #b8a6ff;
-    background: #8265ff17;
     font-size: 13px;
-    margin-bottom: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 22px;
 }
 
 .hero h1 {
-    font-size: clamp(2.3rem,4vw,3.7rem);
-    line-height: 1.15;
-    font-weight: 800;
+    font-size: clamp(30px,5vw,53px);
+    font-weight: 750;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 2px 3px 8px rgba(0,0,0,0.5);
 }
 
 .hero p {
-    color: var(--muted);
-    line-height: 1.8;
-    margin: 20px 0 27px;
-}
-
-.hero-image {
-    width: 100%;
-    height: 330px;
-    object-fit: cover;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    box-shadow: 0 0 35px #8265ff33;
-    transition: .5s;
-}
-
-.hero-image:hover {
-    transform: scale(1.025);
-    box-shadow: 0 0 45px #8265ff66;
-}
-
-.btn-gradient {
-    display: inline-block;
-    background: linear-gradient(110deg,#7157f4,#d744bd);
+    font-size: 18px;
     color: white;
-    padding: 13px 25px;
-    border-radius: 13px;
-    font-weight: 600;
-    border: none;
-    transition: .3s;
-    box-shadow: 0 5px 22px #8265ff55;
-}
-
-.btn-gradient:hover {
-    color: white;
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px #8265ff88;
-}
-
-.btn-outline-glass {
-    display: inline-block;
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 13px 25px;
-    border-radius: 13px;
-    margin-left: 8px;
-    transition: .3s;
-}
-
-.btn-outline-glass:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-}
-
-/* =====================================
-   7. DEPARTMENT HIGHLIGHT CARDS
-===================================== */
-
-.info-card {
-    padding: 27px;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-}
-
-.info-icon {
-    width: 55px;
-    height: 55px;
-    border-radius: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 23px;
-    margin-bottom: 20px;
-}
-
-.purple { background: #8265ff22; color: #a28aff; }
-.pink { background: #e64bb522; color: #f17acb; }
-.cyan { background: #00d9ff22; color: #00d9ff; }
-.green { background: #3de0ad22; color: #3de0ad; }
-
-.info-card p {
-    color: var(--muted);
-    font-size: 14px;
     line-height: 1.7;
 }
 
-/* =====================================
-   8. DEPARTMENT QUICK ACCESS
-===================================== */
+.hero-btn {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 13px 26px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin: 12px 5px;
+    font-weight: 600;
+    transition: 0.3s;
+}
 
-.quick-card {
-    display: block;
-    padding: 24px;
+.hero-btn:hover {
+    background: #084e80;
+    color: white;
+    transform: translateY(-3px);
+}
+
+.hero-btn-outline {
+    background: transparent;
+    border: 1px solid white;
+}
+
+
+/* ==============================
+   5. GENERAL SECTIONS
+================================ */
+
+.section {
+    padding: 65px 0;
+}
+
+.section-title {
     text-align: center;
-    height: 100%;
-    transition: .3s;
+    font-size: 31px;
+    font-weight: 750;
+    color: var(--text-color);
+    margin-bottom: 12px;
 }
 
-.quick-card:hover {
-    transform: translateY(-7px);
+.section-subtitle {
+    text-align: center;
+    color: var(--text-color);
+    opacity: 0.75;
+    margin-bottom: 42px;
 }
 
-.quick-card i {
-    font-size: 29px;
-    margin-bottom: 15px;
+.section-label {
     color: var(--primary);
-}
-
-.quick-card h5 {
-    font-size: 16px;
-    font-weight: 700;
-}
-
-.quick-card p {
-    color: var(--muted);
     font-size: 12px;
-    margin: 0;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    margin-bottom: 12px;
 }
 
-/* =====================================
-   9. TIMETABLE PREVIEW
-===================================== */
 
-.timetable-card {
-    padding: 30px;
+/* ==============================
+   6. ANNOUNCEMENT BAR
+================================ */
+
+.announcement-bar {
+    background: var(--primary);
+    color: white;
+    padding: 13px 20px;
+}
+
+.announcement-bar a {
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+
+/* ==============================
+   7. CARDS
+================================ */
+
+.info-card,
+.news-card {
+    height: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 11px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.info-card {
+    padding: 28px;
+}
+
+.info-card:hover,
+.news-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(11,114,185,0.15);
+}
+
+.info-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 12px;
+    background: rgba(11,114,185,0.12);
+    color: var(--primary);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 25px;
+    justify-content: center;
+    font-size: 25px;
+    margin-bottom: 20px;
 }
 
-.timetable-card p {
-    color: var(--muted);
+.info-card h4 {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 12px;
 }
 
-.timetable-icon {
-    width: 85px;
-    height: 85px;
-    flex-shrink: 0;
-    border-radius: 22px;
-    display: grid;
-    place-items: center;
-    font-size: 36px;
-    color: #00d9ff;
-    background: #00d9ff18;
-}
-
-/* =====================================
-   10. NEWS CARDS
-===================================== */
-
-.news-card {
-    display: block;
-    height: 100%;
-    overflow: hidden;
-    transition: .35s;
-}
-
-.news-card:hover {
-    transform: translateY(-8px);
+.info-card p {
+    color: var(--text-color);
+    opacity: 0.85;
+    line-height: 1.7;
 }
 
 .news-img {
     width: 100%;
     height: 190px;
     object-fit: cover;
-    transition: .5s;
-}
-
-.news-card:hover .news-img {
-    transform: scale(1.04);
 }
 
 .news-body {
-    padding: 22px;
+    padding: 20px;
 }
 
 .news-date {
-    color: var(--cyan);
     font-size: 12px;
-    font-weight: 600;
+    color: #888;
 }
 
-.news-body h5 {
-    margin-top: 12px;
+.news-title {
     font-size: 17px;
     font-weight: 700;
-}
-
-.news-body p {
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.7;
-}
-
-/* =====================================
-   11. DEPARTMENT FAQ
-===================================== */
-
-.faq-item {
-    margin-bottom: 14px;
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    overflow: hidden;
-    background: var(--panel);
-}
-
-.faq-question {
-    width: 100%;
-    padding: 19px 22px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: left;
-    border: none;
-    color: var(--text);
-    background: transparent;
-    font-weight: 600;
-    gap: 15px;
-}
-
-.faq-question i:first-child {
-    margin-right: 10px;
-}
-
-.faq-answer {
-    display: none;
-    padding: 0 22px 20px;
-    color: var(--muted);
-    line-height: 1.8;
-    font-size: 14px;
-}
-
-.faq-item.open .faq-answer {
-    display: block;
-    animation: fadeIn .3s;
-}
-
-.faq-item.open .faq-arrow {
-    transform: rotate(180deg);
-}
-
-.faq-arrow {
-    transition: .3s;
-}
-
-/* Different FAQ colours */
-
-.faq-item:nth-child(1) .faq-question i:first-child { color: #a78bfa; }
-.faq-item:nth-child(2) .faq-question i:first-child { color: #fb7185; }
-.faq-item:nth-child(3) .faq-question i:first-child { color: #38bdf8; }
-.faq-item:nth-child(4) .faq-question i:first-child { color: #4ade80; }
-.faq-item:nth-child(5) .faq-question i:first-child { color: #fbbf24; }
-.faq-item:nth-child(6) .faq-question i:first-child { color: #e879f9; }
-
-.faq-item:nth-child(1).open { border-color: #a78bfa; }
-.faq-item:nth-child(2).open { border-color: #fb7185; }
-.faq-item:nth-child(3).open { border-color: #38bdf8; }
-.faq-item:nth-child(4).open { border-color: #4ade80; }
-.faq-item:nth-child(5).open { border-color: #fbbf24; }
-.faq-item:nth-child(6).open { border-color: #e879f9; }
-
-/* =====================================
-   12. CONTACT
-===================================== */
-
-.contact-card {
-    padding: 25px;
-    height: 100%;
-}
-
-.contact-card i {
     color: var(--primary);
-    font-size: 23px;
+    margin: 12px 0;
+}
+
+.news-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.85;
+}
+
+.read-more {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+
+/* ==============================
+   8. ABOUT DEPARTMENT
+================================ */
+
+.about-section {
+    background: var(--card-bg);
+}
+
+.about-content h3 {
+    font-size: 27px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    line-height: 1.9;
+    color: var(--text-color);
+    opacity: 0.85;
+}
+
+.about-list {
+    list-style: none;
+    padding: 0;
+}
+
+.about-list li {
+    margin: 14px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.about-list i {
+    color: var(--primary);
+    margin-top: 5px;
+}
+
+
+/* ==============================
+   9. LEARNING AREAS
+================================ */
+
+.learning-item {
+    background: var(--card-bg);
+    border-left: 4px solid var(--primary);
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 7px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+}
+
+.learning-item h5 {
+    font-weight: 700;
+    font-size: 17px;
+}
+
+
+/* ==============================
+   10. HIGHLIGHTS
+================================ */
+
+.highlight-section {
+    background: #0A1929;
+    color: white;
+    padding: 55px 0;
+}
+
+.highlight-box {
+    text-align: center;
+    padding: 20px;
+}
+
+.highlight-box i {
+    color: #40b5ed;
+    font-size: 30px;
     margin-bottom: 15px;
 }
 
-.contact-card p,
-.contact-card a {
-    color: var(--muted);
-    font-size: 13px;
-    overflow-wrap: anywhere;
-}
-
-.contact-card a:hover {
-    color: var(--primary);
-}
-
-/* =====================================
-   13. FOOTER
-===================================== */
-
-footer {
-    text-align: center;
-    padding: 35px 15px;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-}
-
-.dev-name {
-    color: var(--primary);
+.highlight-box h5 {
+    color: white;
     font-weight: 700;
 }
 
-/* =====================================
-   14. MOUSE SPARKLES
-===================================== */
 
-.sparkle {
-    position: fixed;
-    pointer-events: none;
-    z-index: 99999;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: white;
-    box-shadow: 0 0 12px #a78bfa, 0 0 22px #e64bb5;
-    animation: sparkleFade .8s forwards ease-out;
+/* ==============================
+   11. CONTACT
+================================ */
+
+.contact-section {
+    background: var(--contact-bg);
+    color: var(--text-color);
+    padding: 65px 20px;
+    border-top: 1px solid var(--card-border);
 }
 
-@keyframes sparkleFade {
-    to {
-        transform: translate(var(--tx),var(--ty)) scale(0);
-        opacity: 0;
-    }
+.contact-col h5 {
+    font-weight: 700;
+    margin-bottom: 20px;
 }
 
-/* =====================================
-   15. CHATBOT
-===================================== */
+.contact-item {
+    display: flex;
+    gap: 13px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.contact-item i {
+    color: var(--primary);
+    font-size: 19px;
+    margin-top: 3px;
+}
+
+.contact-item a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.contact-item a:hover {
+    color: var(--primary);
+}
+
+
+/* ==============================
+   12. FOOTER
+================================ */
+
+footer {
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    text-align: center;
+    padding: 30px 15px;
+}
+
+footer p {
+    margin: 5px;
+}
+
+
+/* ==============================
+   13. CHATBOT
+================================ */
 
 .chat-btn {
     position: fixed;
     bottom: 25px;
     right: 25px;
-    width: 65px;
-    height: 65px;
-    border: 1px solid #a78bfa;
-    border-radius: 50%;
-    background: linear-gradient(135deg,#7257f5,#df4ab5);
+    background: var(--primary);
     color: white;
+    border: none;
+    border-radius: 50%;
+    width: 58px;
+    height: 58px;
     font-size: 23px;
-    box-shadow: 0 0 30px #8265ff88;
-    z-index: 3000;
+    z-index: 2100;
     cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
 }
 
 .chat-window {
-    display: none;
     position: fixed;
-    bottom: 105px;
+    bottom: 95px;
     right: 25px;
-    width: 350px;
-    max-width: calc(100vw - 35px);
-    height: 440px;
-    background: #111329ee;
-    backdrop-filter: blur(25px);
-    border: 1px solid #8265ff66;
-    border-radius: 20px;
-    z-index: 3000;
+    width: min(350px, calc(100vw - 30px));
+    height: 430px;
+    background: var(--card-bg);
+    border-radius: 14px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    display: none;
     flex-direction: column;
+    z-index: 2100;
     overflow: hidden;
-    box-shadow: 0 15px 50px #0008;
+    border: 1px solid var(--card-border);
 }
 
 .chat-header {
-    background: linear-gradient(110deg,#7257f5,#bc4bd0);
+    background: #0A1929;
     color: white;
-    padding: 17px;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
-    font-weight: 700;
+    align-items: center;
 }
 
 .chat-body {
-    padding: 15px;
     flex: 1;
+    padding: 15px;
     overflow-y: auto;
-    color: white;
-}
-
-.chat-msg {
-    padding: 11px 14px;
-    border-radius: 15px;
-    margin-bottom: 12px;
-    max-width: 85%;
-    font-size: 13px;
-    line-height: 1.6;
-    overflow-wrap: anywhere;
-}
-
-.msg-bot {
-    background: #ffffff15;
-    border: 1px solid #ffffff15;
-}
-
-.msg-user {
-    background: #7557ef;
-    margin-left: auto;
+    background: var(--body-bg);
 }
 
 .chat-input-area {
-    padding: 12px;
     display: flex;
     gap: 8px;
-    border-top: 1px solid #ffffff22;
+    padding: 10px;
+    background: var(--card-bg);
 }
 
-.chat-input-area input {
-    background: #ffffff12;
-    border: 1px solid #ffffff22;
-    color: white;
-}
-
-.chat-input-area input:focus {
-    background: #ffffff18;
-    color: white;
-    border-color: var(--primary);
-    box-shadow: none;
-}
-
-/* =====================================
-   16. MOBILE NAVIGATION
-===================================== */
-
-.mobile-header {
-    display: none;
-    position: sticky;
-    top: 0;
-    z-index: 2500;
-    padding: 12px 18px;
-    background: var(--panel);
-    backdrop-filter: blur(25px);
-    border-bottom: 1px solid var(--border);
-    align-items: center;
-    justify-content: space-between;
-}
-
-.mobile-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 700;
-}
-
-.mobile-brand img {
-    width: 38px;
-    height: 38px;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.hamburger {
-    width: 45px;
-    height: 45px;
-    background: #8265ff22;
-    border: 1px solid #8265ff66;
-    color: var(--text);
+.chat-msg {
+    padding: 10px 14px;
     border-radius: 13px;
-    font-size: 20px;
-}
-
-.mobile-menu {
-    position: fixed;
-    inset: 0;
-    z-index: 4000;
-    background: rgba(5,5,18,.95);
-    backdrop-filter: blur(25px);
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    transform: translateX(105%);
-    transition: transform .4s ease;
-    overflow-y: auto;
-}
-
-.mobile-menu.show {
-    transform: translateX(0);
-}
-
-.mobile-menu-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0 20px;
-    border-bottom: 1px solid #ffffff22;
     margin-bottom: 10px;
+    max-width: 85%;
+    font-size: 14px;
 }
 
-.mobile-menu-top h3 {
+.msg-bot {
+    background: #e3f2fd;
+    color: #0A1929;
+}
+
+.msg-user {
+    background: var(--primary);
     color: white;
-    font-weight: 700;
+    margin-left: auto;
 }
 
-.mobile-menu a,
-.mobile-menu button {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    width: 100%;
-    padding: 17px 20px;
-    border: 1px solid #ffffff18;
-    border-radius: 17px;
-    background: #ffffff09;
-    color: white;
-    text-align: left;
-    font-size: 17px;
-    font-weight: 600;
+
+/* ==============================
+   14. DARK MODE FIXES
+================================ */
+
+body.dark-mode .info-card p,
+body.dark-mode .about-content p,
+body.dark-mode .learning-item,
+body.dark-mode .news-text {
+    color: #e2e8f0;
 }
 
-.mobile-menu a i,
-.mobile-menu button i {
-    color: #a78bfa;
-    width: 25px;
+body.dark-mode .about-section {
+    background: var(--card-bg);
 }
 
-.mobile-menu a:hover {
-    background: #8265ff33;
-    border-color: #8265ff;
+body.dark-mode .submenu a:hover {
+    background: rgba(255,255,255,0.1);
 }
 
-body.menu-open {
-    overflow: hidden;
-}
 
-/* =====================================
-   17. ANIMATIONS
-===================================== */
+/* ==============================
+   15. MOBILE RESPONSIVE
+================================ */
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+@media(max-width:768px) {
 
-.reveal {
-    opacity: 0;
-    transform: translateY(25px);
-    transition: .7s ease;
-}
-
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* =====================================
-   18. RESPONSIVE DESIGN
-===================================== */
-
-@media(max-width: 991px) {
-
-    .sidebar {
-        display: none;
+    .top-header {
+        padding: 10px 12px;
     }
 
-    .mobile-header {
-        display: flex;
+    .brand-name {
+        font-size: 14px;
     }
 
-    .main-content {
-        margin-left: 0;
-        padding: 25px 20px 35px;
+    .brand-subtitle {
+        font-size: 11px;
+    }
+
+    .university-logo {
+        width: 43px;
+        height: 43px;
+    }
+
+    .header-left {
+        gap: 9px;
     }
 
     .hero {
-        grid-template-columns: 1fr;
-        padding: 28px;
+        min-height: 430px;
     }
 
-    .hero-image {
-        height: 270px;
+    .hero p {
+        font-size: 15px;
     }
 
-    .announcement {
-        font-size: 12px;
-    }
-}
-
-@media(max-width: 576px) {
-
-    .main-content {
-        padding: 20px 13px;
+    .section {
+        padding: 45px 0;
     }
 
-    .hero {
-        padding: 22px;
-        gap: 20px;
+    .section-title {
+        font-size: 25px;
     }
 
-    .hero h1 {
-        font-size: 2.2rem;
+    .contact-col {
+        margin-bottom: 25px;
     }
 
-    .hero-image {
-        height: 210px;
-    }
-
-    .section-heading h2 {
-        font-size: 1.7rem;
-    }
-
-    .btn-outline-glass {
-        margin: 10px 0 0;
-    }
-
-    .timetable-card {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .chat-btn {
-        width: 55px;
-        height: 55px;
-        bottom: 18px;
-        right: 18px;
-    }
-
-    .chat-window {
-        right: 12px;
-        bottom: 85px;
-    }
-
-    .announcement {
-        padding: 7px 0;
-    }
-}
-
-/* Accessibility: reduce unnecessary motion */
-
-@media(prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: .01ms !important;
-        transition-duration: .01ms !important;
-        scroll-behavior: auto !important;
+    .theme-toggle-btn {
+        width: 37px;
+        height: 37px;
     }
 }
 
@@ -975,876 +758,345 @@ body.menu-open {
 
 <body>
 
-<!-- =====================================
-     BACKGROUND
-===================================== -->
 
-<div class="aurora-bg">
-    <div class="aurora one"></div>
-    <div class="aurora two"></div>
-    <div class="aurora three"></div>
-</div>
+<!-- ==============================
+     HEADER WITH UNIVERSITY LOGO
+================================ -->
 
-<div id="particles"></div>
+<header class="top-header">
 
-<!-- =====================================
-     ANNOUNCEMENT BAR
-===================================== -->
+    <div class="header-left">
 
-<div class="announcement">
-    <div class="announcement-track">
-        🛡️ QUEST CYBER SECURITY DEPARTMENT
-        &nbsp; ✦ &nbsp;
-        OFFICIAL DEPARTMENT PORTAL
-        &nbsp; ✦ &nbsp;
-        NEWS • FACULTY • PROGRAMS • TIMETABLE
-        &nbsp; ✦ &nbsp;
-        WELCOME TO QUEST NAWABSHAH
-        &nbsp; ✦ &nbsp;
-    </div>
-</div>
+        <button class="menu-toggle"
+                onclick="toggleSidebar()"
+                aria-label="Open navigation menu">
 
-<!-- =====================================
-     DESKTOP SIDEBAR
-===================================== -->
+            <i class="fas fa-bars"></i>
 
-<nav class="sidebar">
+        </button>
 
-    <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg"
-         alt="QUEST Logo"
-         class="sidebar-logo">
+        <img
+        src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg"
+        alt="QUEST University Logo"
+        class="university-logo">
 
-    <div class="sidebar-divider"></div>
+        <div>
 
-    <a href="#home" class="sidebar-link active" data-tooltip="Home">
-        <i class="fas fa-house"></i>
-    </a>
+            <div class="brand-name">
+                Cyber Security Department
+            </div>
 
-    <a href="department.html" class="sidebar-link" data-tooltip="Department">
-        <i class="fas fa-building"></i>
-    </a>
+            <div class="brand-subtitle">
+                QUEST Nawabshah
+            </div>
 
-    <a href="programs.html" class="sidebar-link" data-tooltip="Programs">
-        <i class="fas fa-graduation-cap"></i>
-    </a>
+        </div>
 
-    <a href="people.html" class="sidebar-link" data-tooltip="Faculty">
-        <i class="fas fa-users"></i>
-    </a>
-
-   <!-- NEW LABORATORIES OPTION -->
-    <a href="labs.html" class="sidebar-icon" data-tooltip="Laboratories">
-        <i class="fas fa-microscope"></i>
-    </a>
-
-    <a href="timetable.html" class="sidebar-icon" data-tooltip="Timetable">
-        <i class="fas fa-calendar-alt"></i>
-    </a>
-</div>
-
-    <a href="timetable.html" class="sidebar-link" data-tooltip="Timetable">
-        <i class="fas fa-calendar-days"></i>
-    </a>
-
-    <a href="#news" class="sidebar-link" data-tooltip="News">
-        <i class="fas fa-newspaper"></i>
-    </a>
-
-    <a href="#faq" class="sidebar-link" data-tooltip="FAQs">
-        <i class="fas fa-circle-question"></i>
-    </a>
-
-    <div class="sidebar-divider"></div>
-
-    <button class="sidebar-link" onclick="toggleTheme()" data-tooltip="Change Theme">
-        <i class="fas fa-sun" id="themeIcon"></i>
-    </button>
-
-    <a href="#contact" class="sidebar-link" data-tooltip="Contact">
-        <i class="fas fa-envelope"></i>
-    </a>
-
-</nav>
-
-<!-- =====================================
-     MOBILE HEADER
-===================================== -->
-
-<header class="mobile-header">
-
-    <div class="mobile-brand">
-        <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST">
-        <span>QUEST <span class="gradient-text">Cyber Security</span></span>
     </div>
 
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Open navigation">
-        <i class="fas fa-bars"></i>
+
+    <button class="theme-toggle-btn"
+            onclick="toggleTheme()"
+            title="Change Theme">
+
+        <i class="fas fa-moon" id="theme-icon"></i>
+
     </button>
 
 </header>
 
-<!-- MOBILE MENU -->
 
-<div class="mobile-menu" id="mobileMenu">
+<!-- ==============================
+     LEFT SIDEBAR MENU
+================================ -->
 
-    <div class="mobile-menu-top">
-        <h3>QUEST <span class="gradient-text">Portal</span></h3>
-        <button onclick="toggleMenu()" style="width:auto;padding:10px 15px;">
-            <i class="fas fa-times"></i>
-            Close
-        </button>
-    </div>
-
-    <a href="#home" onclick="closeMenu()"><i class="fas fa-house"></i> Home</a>
-    <a href="department.html"><i class="fas fa-building"></i> Department</a>
-    <a href="programs.html"><i class="fas fa-graduation-cap"></i> Programs</a>
-    <a href="people.html"><i class="fas fa-users"></i> Faculty</a>
-    <a href="timetable.html"><i class="fas fa-calendar-days"></i> Timetable</a>
-    <a href="#news" onclick="closeMenu()"><i class="fas fa-newspaper"></i> News & Announcements</a>
-    <a href="#faq" onclick="closeMenu()"><i class="fas fa-circle-question"></i> FAQs</a>
-    <a href="#contact" onclick="closeMenu()"><i class="fas fa-envelope"></i> Contact</a>
-
-    <button onclick="toggleTheme()">
-        <i class="fas fa-palette"></i> Change Theme
-    </button>
-
+<div class="sidebar-overlay"
+     id="sidebarOverlay"
+     onclick="closeSidebar()">
 </div>
 
-<!-- =====================================
-     MAIN CONTENT
-===================================== -->
 
-<main class="main-content">
+<aside class="sidebar" id="sidebar">
 
-<!-- HERO -->
+    <div class="sidebar-header">
 
-<section id="home" class="section">
-
-    <div class="glass hero">
-
-        <div>
-
-            <span class="hero-label">
-                <i class="fas fa-shield-halved"></i>
-                OFFICIAL DEPARTMENT PORTAL
-            </span>
-
-            <h1>
-                Welcome to the
-                <span class="gradient-text">Cyber Security Department</span>
-            </h1>
-
-            <p>
-                Quaid-e-Awam University of Engineering, Science & Technology,
-                Nawabshah, Sindh, Pakistan.
-
-                Explore department information, academic programs, faculty,
-                official announcements, daily timetables and departmental resources.
-            </p>
-
-            <a href="department.html" class="btn-gradient">
-                Explore Department <i class="fas fa-arrow-right ms-2"></i>
-            </a>
-
-            <a href="people.html" class="btn-outline-glass">
-                Meet Our Faculty
-            </a>
-
+        <div class="sidebar-heading">
+            <i class="fas fa-shield-halved me-2"></i>
+            Navigation
         </div>
 
-        <div>
-            <img src="images/department-building.jpg"
-                 alt="QUEST Department Building"
-                 class="hero-image"
-                 onerror="this.style.display='none';">
-        </div>
+        <button class="sidebar-close"
+                onclick="closeSidebar()">
 
-    </div>
-
-</section>
-
-<!-- DEPARTMENT HIGHLIGHTS -->
-
-<section class="section reveal">
-
-    <div class="section-heading">
-        <h2>Department <span class="gradient-text">Highlights</span></h2>
-        <p>Explore the key areas of the Cyber Security Department.</p>
-    </div>
-
-    <div class="row g-4">
-
-        <div class="col-md-6 col-lg-3">
-            <div class="glass info-card">
-                <div class="info-icon purple">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <h5>Academic Programs</h5>
-                <p>Information about the BS Cyber Security program and its academic structure.</p>
-                <a href="programs.html" class="gradient-text">Explore Programs →</a>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-            <div class="glass info-card">
-                <div class="info-icon cyan">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h5>Faculty Directory</h5>
-                <p>Meet department faculty members and explore their professional profiles.</p>
-                <a href="people.html" class="gradient-text">View Faculty →</a>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-            <div class="glass info-card">
-                <div class="info-icon pink">
-                    <i class="fas fa-bullhorn"></i>
-                </div>
-                <h5>Announcements</h5>
-                <p>Departmental news, events, official notices and important updates.</p>
-                <a href="#news" class="gradient-text">Latest News →</a>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-            <div class="glass info-card">
-                <div class="info-icon green">
-                    <i class="fas fa-calendar-check"></i>
-                </div>
-                <h5>Daily Timetable</h5>
-                <p>Access daily class schedules for Morning and Evening shifts.</p>
-                <a href="timetable.html" class="gradient-text">Open Timetable →</a>
-            </div>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- QUICK ACCESS -->
-
-<section class="section reveal">
-
-    <div class="section-heading">
-        <h2>Quick <span class="gradient-text">Access</span></h2>
-        <p>Department resources and essential information in one place.</p>
-    </div>
-
-    <div class="row g-3">
-
-        <div class="col-6 col-md-4 col-lg-3">
-            <a href="department.html" class="glass quick-card">
-                <i class="fas fa-landmark"></i>
-                <h5>About Department</h5>
-                <p>Department information</p>
-            </a>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-3">
-            <a href="programs.html" class="glass quick-card">
-                <i class="fas fa-book-open"></i>
-                <h5>Programs</h5>
-                <p>Academic programs</p>
-            </a>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-3">
-            <a href="people.html" class="glass quick-card">
-                <i class="fas fa-user-tie"></i>
-                <h5>Faculty</h5>
-                <p>Teaching staff</p>
-            </a>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-3">
-            <a href="timetable.html" class="glass quick-card">
-                <i class="fas fa-clock"></i>
-                <h5>Timetable</h5>
-                <p>Class schedules</p>
-            </a>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-3">
-            <a href="#news" class="glass quick-card">
-                <i class="fas fa-newspaper"></i>
-                <h5>Department News</h5>
-                <p>Latest announcements</p>
-            </a>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-3">
-            <a href="#faq" class="glass quick-card">
-                <i class="fas fa-circle-question"></i>
-                <h5>FAQs</h5>
-                <p>Common questions</p>
-            </a>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-3">
-            <a href="#contact" class="glass quick-card">
-                <i class="fas fa-headset"></i>
-                <h5>Contact</h5>
-                <p>Get in touch</p>
-            </a>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-3">
-            <a href="department.html" class="glass quick-card">
-                <i class="fas fa-shield-halved"></i>
-                <h5>Cyber Security</h5>
-                <p>Department overview</p>
-            </a>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- LIVE TIMETABLE -->
-
-<section class="section reveal">
-
-    <div class="section-heading">
-        <h2>Department <span class="gradient-text">Timetable</span></h2>
-        <p>Quick access to the live daily class schedule.</p>
-    </div>
-
-    <div class="glass timetable-card">
-
-        <div>
-            <span class="hero-label">
-                <i class="fas fa-circle" style="color:#3de0ad;font-size:9px;"></i>
-                LIVE TIMETABLE PORTAL
-            </span>
-
-            <h3>Daily Class Schedule</h3>
-
-            <p>
-                Access Morning and Evening shift schedules through the
-                department's timetable system.
-            </p>
-
-            <a href="timetable.html" class="btn-gradient">
-                Open Live Timetable
-                <i class="fas fa-arrow-up-right-from-square ms-2"></i>
-            </a>
-        </div>
-
-        <div class="timetable-icon">
-            <i class="fas fa-calendar-days"></i>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- NEWS -->
-
-<section id="news" class="section reveal">
-
-    <div class="section-heading">
-        <h2>News & <span class="gradient-text">Announcements</span></h2>
-        <p>Latest activities and updates from the department.</p>
-    </div>
-
-    <div class="row g-4">
-
-        <div class="col-md-6 col-lg-3">
-            <a href="news.html?id=4" class="glass news-card">
-                <img src="https://i.ibb.co/7dbM3CHr/IMG-20261022-WA0032.jpg"
-                     class="news-img" alt="HECK READY 2026">
-                <div class="news-body">
-                    <span class="news-date">October 21, 2026</span>
-                    <h5>HECK READY 2026 – Mini CTF</h5>
-                    <p>An intensive Capture The Flag competition focused on practical cyber security skills.</p>
-                    <span class="gradient-text">Read More →</span>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-            <a href="news.html?id=1" class="glass news-card">
-                <img src="https://i.ibb.co/BK2Yhw81/IMG-20261019-WA0043.jpg"
-                     class="news-img" alt="Awareness Session">
-                <div class="news-body">
-                    <span class="news-date">October 19, 2026</span>
-                    <h5>CYSE 26 Batch Awareness Session</h5>
-                    <p>The department successfully organized an awareness session.</p>
-                    <span class="gradient-text">Read More →</span>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-            <a href="news.html?id=2" class="glass news-card">
-                <img src="https://i.ibb.co/0V2HRXKc/IMG-20261019-WA0044.jpg"
-                     class="news-img" alt="Orientation">
-                <div class="news-body">
-                    <span class="news-date">October 18, 2026</span>
-                    <h5>CYSE 26 Batch Orientation</h5>
-                    <p>The department hosted an orientation ceremony.</p>
-                    <span class="gradient-text">Read More →</span>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-            <a href="news.html?id=3" class="glass news-card">
-                <img src="https://i.ibb.co/B2tzdjFD/IMG-20261019-WA0041.jpg"
-                     class="news-img" alt="Agentic AI Session">
-                <div class="news-body">
-                    <span class="news-date">October 17, 2026</span>
-                    <h5>Agentic AI Session</h5>
-                    <p>An insightful technical session on Agentic AI in Cybersecurity.</p>
-                    <span class="gradient-text">Read More →</span>
-                </div>
-            </a>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- FAQ -->
-
-<section id="faq" class="section reveal">
-
-    <div class="section-heading">
-        <h2>Frequently Asked <span class="gradient-text">Questions</span></h2>
-        <p>Common information about the department and its services.</p>
-    </div>
-
-    <div class="glass p-3 p-md-4">
-
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span><i class="fas fa-building"></i> Where is the department located?</span>
-                <i class="fas fa-chevron-down faq-arrow"></i>
-            </button>
-            <div class="faq-answer">
-                The Department of Cyber Security is located at Quaid-e-Awam
-                University of Engineering, Science & Technology (QUEST),
-                Nawabshah, Sindh, Pakistan.
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span><i class="fas fa-graduation-cap"></i> Which academic program does the department offer?</span>
-                <i class="fas fa-chevron-down faq-arrow"></i>
-            </button>
-            <div class="faq-answer">
-                The department offers the BS Cyber Security program.
-                For the latest curriculum and academic details, visit the
-                Programs section.
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span><i class="fas fa-calendar-days"></i> Where can I find the class timetable?</span>
-                <i class="fas fa-chevron-down faq-arrow"></i>
-            </button>
-            <div class="faq-answer">
-                Visit the Timetable section to access the daily Morning
-                and Evening shift schedules.
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span><i class="fas fa-users"></i> Where can I find faculty information?</span>
-                <i class="fas fa-chevron-down faq-arrow"></i>
-            </button>
-            <div class="faq-answer">
-                Visit the Faculty Directory to view available teaching
-                staff profiles and their professional information.
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span><i class="fas fa-bullhorn"></i> Where are department announcements published?</span>
-                <i class="fas fa-chevron-down faq-arrow"></i>
-            </button>
-            <div class="faq-answer">
-                Department news, events and announcements are available
-                in the News & Announcements section of this portal.
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span><i class="fas fa-envelope"></i> How can I contact the department?</span>
-                <i class="fas fa-chevron-down faq-arrow"></i>
-            </button>
-            <div class="faq-answer">
-                You can use the contact information provided in the
-                Contact Us section of this portal.
-            </div>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- CONTACT -->
-
-<section id="contact" class="section reveal">
-
-    <div class="section-heading">
-        <h2>Contact <span class="gradient-text">Us</span></h2>
-        <p>Get in touch with QUEST and the Cyber Security Department.</p>
-    </div>
-
-    <div class="row g-4">
-
-        <div class="col-md-6 col-lg-3">
-            <div class="glass contact-card">
-                <i class="fas fa-map-marker-alt"></i>
-                <h5>Location</h5>
-                <p>Quaid-e-Awam University of Engineering, Science & Technology, Nawabshah, Sindh, Pakistan.</p>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-            <div class="glass contact-card">
-                <i class="fas fa-phone"></i>
-                <h5>Phone</h5>
-                <p>+92 244 9370367</p>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-            <div class="glass contact-card">
-                <i class="fas fa-envelope"></i>
-                <h5>General Email</h5>
-                <a href="mailto:info@quest.edu.pk">info@quest.edu.pk</a>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-            <div class="glass contact-card">
-                <i class="fas fa-user-tie"></i>
-                <h5>Chairman Email</h5>
-                <a href="mailto:adnan.ahmed03@quest.edu.pk">
-                    adnan.ahmed03@quest.edu.pk
-                </a>
-            </div>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-
-    <h5 class="gradient-text">QUEST Cyber Security Department</h5>
-
-    <p>
-        Quaid-e-Awam University of Engineering, Science & Technology,
-        Nawabshah.
-    </p>
-
-    <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
-
-    <p>
-        Developed with <i class="fas fa-heart" style="color:#ed4caa;"></i>
-        by <span class="dev-name">Mariam Khan</span>
-    </p>
-
-</footer>
-
-</main>
-
-<!-- =====================================
-     CHATBOT
-===================================== -->
-
-<button class="chat-btn" onclick="toggleChat()" aria-label="Open AI assistant">
-    <i class="fas fa-comments"></i>
-</button>
-
-<div class="chat-window" id="chatWindow">
-
-    <div class="chat-header">
-        <span><i class="fas fa-robot me-2"></i>QUEST AI Assistant</span>
-        <button onclick="toggleChat()" style="background:none;border:none;color:white;">
             <i class="fas fa-times"></i>
+
         </button>
+
     </div>
 
-    <div class="chat-body" id="chatBody">
-        <div class="chat-msg msg-bot">
-            Hello! I am the AI assistant for QUEST Cyber Security Department.
-            How can I help you today?
+
+    <!-- HOME -->
+
+    <a href="index.html" class="sidebar-link active"
+       onclick="closeSidebar()">
+
+        <i class="fas fa-home"></i>
+        Home
+
+    </a>
+
+
+    <!-- ABOUT DROPDOWN -->
+
+    <a class="sidebar-link dropdown-toggle"
+       data-bs-toggle="collapse"
+       href="#aboutMenu">
+
+        <i class="fas fa-university"></i>
+        About
+
+    </a>
+
+    <div class="collapse submenu" id="aboutMenu">
+
+        <a href="chairman.html">
+            <i class="fas fa-user-tie me-2"></i>
+            Chairman
+        </a>
+
+        <a href="department.html">
+            <i class="fas fa-building me-2"></i>
+            Department
+        </a>
+
+        <a href="labs.html">
+            <i class="fas fa-microscope me-2"></i>
+            Laboratories
+        </a>
+
+    </div>
+
+
+    <!-- PROGRAMS DROPDOWN -->
+
+    <a class="sidebar-link dropdown-toggle"
+       data-bs-toggle="collapse"
+       href="#programMenu">
+
+        <i class="fas fa-graduation-cap"></i>
+        Programs
+
+    </a>
+
+    <div class="collapse submenu" id="programMenu">
+
+        <a href="programs.html">
+            🎓 Undergraduate (BS)
+        </a>
+
+        <a href="curriculum.html">
+            📚 Curriculum
+        </a>
+
+        <a href="timetable.html">
+            🗓️ Timetable
+        </a>
+
+    </div>
+
+
+    <!-- PEOPLE -->
+
+    <a href="people.html"
+       class="sidebar-link"
+       onclick="closeSidebar()">
+
+        <i class="fas fa-users"></i>
+        People
+
+    </a>
+
+
+    <!-- RESEARCH -->
+
+    <a href="research.html"
+       class="sidebar-link"
+       onclick="closeSidebar()">
+
+        <i class="fas fa-flask"></i>
+        Research
+
+    </a>
+
+
+    <!-- EVENTS -->
+
+    <a href="events.html"
+       class="sidebar-link"
+       onclick="closeSidebar()">
+
+        <i class="fas fa-calendar-alt"></i>
+        Events
+
+    </a>
+
+
+    <!-- CONTACT -->
+
+    <a href="#contact"
+       class="sidebar-link"
+       onclick="closeSidebar()">
+
+        <i class="fas fa-envelope"></i>
+        Contact
+
+    </a>
+
+</aside>
+
+
+<!-- ==============================
+     HERO SECTION
+================================ -->
+
+<section class="hero">
+
+    <div class="container hero-content">
+
+        <span class="hero-label">
+            QUEST NAWABSHAH
+        </span>
+
+        <h1>
+            Shaping Cyber-Smart Innovators
+            for a Safer Digital Tomorrow
+        </h1>
+
+        <p>
+            Cyber Security Department
+            <br>
+
+            Quaid-e-Awam University of Engineering,
+            Science & Technology
+        </p>
+
+        <a href="department.html" class="hero-btn">
+            Explore Department
+            <i class="fas fa-arrow-right ms-2"></i>
+        </a>
+
+        <a href="programs.html"
+           class="hero-btn hero-btn-outline">
+
+            Explore Programs
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ==============================
+     ANNOUNCEMENTS BAR
+================================ -->
+
+<div class="announcement-bar">
+
+    <div class="container d-flex flex-wrap
+                justify-content-between align-items-center gap-2">
+
+        <div>
+            <i class="fas fa-bullhorn me-2"></i>
+
+            <strong>Latest Announcements</strong>
         </div>
-    </div>
 
-    <div class="chat-input-area">
-        <input type="text" id="chatInput" class="form-control"
-               placeholder="Ask a question..."
-               onkeydown="if(event.key==='Enter') sendMessage()">
+        <a href="#news">
+            View All Announcements
+            <i class="fas fa-arrow-right ms-1"></i>
+        </a>
 
-        <button class="btn btn-primary" onclick="sendMessage()"
-                style="background:#8265ff;border:none;">
-            <i class="fas fa-paper-plane"></i>
-        </button>
     </div>
 
 </div>
 
-<!-- =====================================
-     JAVASCRIPT
-===================================== -->
 
-<script>
+<!-- ==============================
+     DEPARTMENT INTRODUCTION
+================================ -->
 
-// MOBILE NAVIGATION
+<section class="section about-section">
 
-function toggleMenu() {
-    const menu = document.getElementById('mobileMenu');
-    menu.classList.toggle('show');
-    document.body.classList.toggle('menu-open');
-}
+    <div class="container">
 
-function closeMenu() {
-    document.getElementById('mobileMenu').classList.remove('show');
-    document.body.classList.remove('menu-open');
-}
+        <span class="section-label">
+            Welcome to Our Department
+        </span>
 
-// CLOSE MENU WITH ESCAPE KEY
+        <h2 class="section-title">
+            About Cyber Security Department
+        </h2>
 
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeMenu();
-});
+        <p class="section-subtitle">
+            Building knowledge, developing skills and
+            preparing students for the digital world.
+        </p>
 
-// THEME SWITCH
 
-function toggleTheme() {
+        <div class="row align-items-center g-5">
 
-    document.body.classList.toggle('light-theme');
+            <div class="col-lg-7">
 
-    const isLight = document.body.classList.contains('light-theme');
+                <div class="about-content">
 
-    const icon = document.getElementById('themeIcon');
+                    <h3>
+                        Empowering the Next Generation
+                        of Cybersecurity Professionals
+                    </h3>
 
-    if (icon) {
-        icon.className = isLight ? 'fas fa-moon' : 'fas fa-sun';
-    }
+                    <p>
+                        The Cyber Security Department at
+                        Quaid-e-Awam University of Engineering,
+                        Science & Technology, Nawabshah,
+                        focuses on academic learning, practical
+                        knowledge and research in the field
+                        of information and digital security.
+                    </p>
 
-    try {
-        localStorage.setItem('quest-theme', isLight ? 'light' : 'dark');
-    } catch(e) {}
-}
+                    <p>
+                        Our academic environment encourages
+                        students to understand modern
+                        cybersecurity challenges, develop
+                        problem-solving abilities and explore
+                        emerging technologies.
+                    </p>
 
-// RESTORE THEME
+                    <ul class="about-list">
 
-try {
-    if (localStorage.getItem('quest-theme') === 'light') {
-        document.body.classList.add('light-theme');
-        document.getElementById('themeIcon').className = 'fas fa-moon';
-    }
-} catch(e) {}
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Practical and theoretical learning.
+                        </li>
 
-// PARTICLES
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Cybersecurity awareness and research.
+                        </li>
 
-const particleContainer = document.getElementById('particles');
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Technical skills and innovation.
+                        </li>
 
-for (let i = 0; i < 35; i++) {
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            Professional development opportunities.
+                        </li>
 
-    const particle = document.createElement('div');
+                    </ul>
 
-    particle.className = 'particle';
+                    <a href="department.html"
+                       class="hero-btn">
 
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.animationDuration = (8 + Math.random() * 15) + 's';
-    particle.style.animationDelay = (Math.random() * 15) + 's';
-
-    particleContainer.appendChild(particle);
-}
-
-// MOUSE SPARKLES
-
-let lastSparkle = 0;
-
-document.addEventListener('mousemove', function(e) {
-
-    if (window.innerWidth < 768) return;
-
-    if (Date.now() - lastSparkle < 45) return;
-
-    lastSparkle = Date.now();
-
-    const sparkle = document.createElement('div');
-
-    sparkle.className = 'sparkle';
-
-    sparkle.style.left = e.clientX + 'px';
-    sparkle.style.top = e.clientY + 'px';
-
-    sparkle.style.setProperty('--tx', (Math.random() * 40 - 20) + 'px');
-    sparkle.style.setProperty('--ty', (Math.random() * 40 - 20) + 'px');
-
-    document.body.appendChild(sparkle);
-
-    setTimeout(() => sparkle.remove(), 800);
-
-});
-
-// FAQ ACCORDION
-
-function toggleFaq(button) {
-
-    const item = button.closest('.faq-item');
-
-    item.classList.toggle('open');
-
-}
-
-// SCROLL REVEAL
-
-const observer = new IntersectionObserver((entries) => {
-
-    entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-
-    });
-
-}, { threshold: 0.08 });
-
-document.querySelectorAll('.reveal').forEach(el => {
-    observer.observe(el);
-});
-
-// CHATBOT
-
-function toggleChat() {
-
-    const windowChat = document.getElementById('chatWindow');
-
-    windowChat.style.display =
-        windowChat.style.display === 'flex' ? 'none' : 'flex';
-
-}
-
-// SEND CHAT MESSAGE
-
-function sendMessage() {
-
-    const input = document.getElementById('chatInput');
-    const body = document.getElementById('chatBody');
-
-    const msg = input.value.trim();
-
-    if (!msg) return;
-
-    const userMessage = document.createElement('div');
-    userMessage.className = 'chat-msg msg-user';
-    userMessage.textContent = msg;
-
-    body.appendChild(userMessage);
-
-    input.value = '';
-
-    body.scrollTop = body.scrollHeight;
-
-    const loading = document.createElement('div');
-    loading.className = 'chat-msg msg-bot';
-    loading.textContent = 'Thinking...';
-
-    body.appendChild(loading);
-
-    body.scrollTop = body.scrollHeight;
-
-    // ORIGINAL GOOGLE APPS SCRIPT API
-
-    const API_URL =
-    "https://script.google.com/macros/s/AKfycbxnC6yvLX7bii8KGFAL6SHgsRUds4AjZo1Vu-V9wpnqh2lwIGE0DeadBPB_gVx9sfJ7rw/exec";
-
-    fetch(API_URL, {
-
-        method: 'POST',
-
-        headers: {
-            'Content-Type': 'text/plain;charset=utf-8'
-        },
-
-        body: JSON.stringify({
-            message: msg
-        }),
-
-        redirect: 'follow'
-
-    })
-
-    .then(response => {
-
-        if (!response.ok) {
-            throw new Error('Server error');
-        }
-
-        return response.json();
-
-    })
-
-    .then(data => {
-
-        loading.textContent =
-            data.reply || 'No response received from the assistant.';
-
-        body.scrollTop = body.scrollHeight;
-
-    })
-
-    .catch(error => {
-
-        loading.textContent =
-        'The AI server is currently busy. Please try again later.';
-
-        body.scrollTop = body.scrollHeight;
-
-    });
-
-}
-
-// ACTIVE DESKTOP NAVIGATION
-
-const sections = document.querySelectorAll('main section[id]');
-
-const navLinks = document.querySelectorAll('.sidebar-link[href^="#"]');
-
-window.addEventListener('scroll', function() {
-
-    let current = 'home';
-
-    sections.forEach(section => {
-
-        if (window.scrollY >= section.offsetTop - 200) {
-            current = section.id;
-        }
-
-    });
-
-    navLinks.forEach(link => {
-
-        link.classList.remove('active');
-
-        if (link.getAttribute('href') === '#' + current) {
-            link.classList.add('active');
-        }
-
-    });
-
-});
-
-</script>
-
-</body>
-</html>
+                        Discover
