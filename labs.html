@@ -691,15 +691,12 @@ footer .dev-name {
 
         </a>
 
-        <!-- HAMBURGER BUTTON -->
+        <!-- HAMBURGER BUTTON (SIDEBAR OPEN) -->
 
         <button
             class="menu-toggle"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#mainNavigation"
-            aria-controls="mainNavigation"
-            aria-expanded="false"
+            onclick="openSidebar()"
             aria-label="Toggle navigation"
             id="menuToggle"
         >
@@ -711,155 +708,63 @@ footer .dev-name {
     </div>
 
     <!-- =====================================
-         NAVIGATION MENU
-         Same links as HOME PAGE
+         NAVIGATION MENU (SIDEBAR)
     ===================================== -->
 
-    <div class="collapse navigation-panel" id="mainNavigation">
-
-        <div class="container">
-
-            <ul class="navbar-nav">
-
-                <!-- HOME -->
-
-                <li class="nav-item">
-
-                    <a class="nav-link" href="index.html">
-                        <i class="fas fa-home me-2"></i>
-                        Home
-                    </a>
-
-                </li>
-
-                <!-- ABOUT DROPDOWN -->
-
-                <li class="nav-item dropdown">
-
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                    >
-
-                        <i class="fas fa-university me-2"></i>
-                        About
-
-                    </a>
-
-                    <ul class="dropdown-menu">
-
-                        <li>
-                            <a class="dropdown-item" href="chairman.html">
-                                <i class="fas fa-user-tie me-2"></i>
-                                Chairman & Dean
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="department.html">
-                                <i class="fas fa-building me-2"></i>
-                                Department
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="labs.html">
-                                <i class="fas fa-microscope me-2"></i>
-                                Laboratories
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </li>
-
-                <!-- PROGRAMS DROPDOWN -->
-
-                <li class="nav-item dropdown">
-
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                    >
-
-                        <i class="fas fa-graduation-cap me-2"></i>
-                        Programs
-
-                    </a>
-
-                    <ul class="dropdown-menu">
-
-                        <li>
-                            <a class="dropdown-item" href="programs.html">
-                                🎓 Undergraduate (BS)
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="curriculum.html">
-                                📚 Curriculum
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="timetable.html">
-                                🕒 Timetable
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </li>
-
-                <!-- PEOPLE -->
-
-                <li class="nav-item">
-
-                    <a class="nav-link" href="people.html">
-                        <i class="fas fa-users me-2"></i>
-                        People
-                    </a>
-
-                </li>
-
-                <!-- CONTACT -->
-
-                <li class="nav-item">
-
-                    <a class="nav-link" href="index.html#contact">
-                        <i class="fas fa-envelope me-2"></i>
-                        Contact
-                    </a>
-
-                </li>
-
-                <!-- THEME BUTTON -->
-
-                <li class="nav-item">
-
-                    <button
-                        class="theme-toggle-btn"
-                        onclick="toggleTheme()"
-                        title="Toggle Dark/Light Mode"
-                    >
-
-                        <i class="fas fa-moon" id="theme-icon"></i>
-
-                    </button>
-
-                </li>
-
-            </ul>
-
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+    
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-heading">
+                <i class="fas fa-shield-halved me-2"></i>Navigation
+            </div>
+            <button class="sidebar-close" onclick="closeSidebar()">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-
-    </div>
+        
+        <a href="index.html" class="sidebar-link active" onclick="closeSidebar()">
+            <i class="fas fa-home"></i> Home
+        </a>
+        
+        <a class="sidebar-link dropdown-toggle" data-bs-toggle="collapse" href="#aboutMenu" role="button">
+            <i class="fas fa-university"></i> About
+        </a>
+        <div class="collapse submenu" id="aboutMenu">
+            <a href="chairman.html"><i class="fas fa-user-tie me-2"></i> Chairman & Dean</a>
+            <a href="department.html"><i class="fas fa-building me-2"></i> Department</a>
+            <a href="labs.html"><i class="fas fa-microscope me-2"></i> Laboratories</a>
+        </div>
+        
+        <a class="sidebar-link dropdown-toggle" data-bs-toggle="collapse" href="#programMenu" role="button">
+            <i class="fas fa-graduation-cap"></i> Programs
+        </a>
+        <div class="collapse submenu" id="programMenu">
+            <a href="programs.html">🎓 Undergraduate (BS)</a>
+            <a href="curriculum.html">📚 Curriculum</a>
+            <a href="timetable.html">🕒 Timetable</a>
+        </div>
+        
+        <a href="people.html" class="sidebar-link" onclick="closeSidebar()">
+            <i class="fas fa-users"></i> People
+        </a>
+        
+        <a href="research.html" class="sidebar-link" onclick="closeSidebar()">
+            <i class="fas fa-flask"></i> Research
+        </a>
+        
+        <a href="events.html" class="sidebar-link" onclick="closeSidebar()">
+            <i class="fas fa-calendar-alt"></i> Events
+        </a>
+        
+        <a href="index.html#contact" class="sidebar-link" onclick="closeSidebar()">
+            <i class="fas fa-envelope"></i> Contact
+        </a>
+        
+        <a href="#" class="sidebar-link theme-switch" onclick="toggleTheme()">
+            <i class="fas fa-moon" id="theme-icon"></i> Toggle Theme
+        </a>
+    </aside>
 
 </header>
 
@@ -887,14 +792,13 @@ footer .dev-name {
 
 
     <!-- =====================================
-         LAB HERO IMAGE
-         OLD IMAGE PRESERVED
+         LAB HERO IMAGE (UPDATED)
     ===================================== -->
 
     <section class="lab-hero">
 
         <img
-            src="https://raw.githubusercontent.com/mariamkhan00/quest-zerotrace.github.io/main/images/network-security-lab.jpg"
+            src="https://raw.githubusercontent.com/mariamkhan00/quest-zerotrace.github.io/main/download%20(2).jpg"
             alt="Cyber Security Department Laboratory"
         >
 
@@ -1619,45 +1523,18 @@ footer .dev-name {
 <script>
 
 /* =====================================
-   HAMBURGER ICON CHANGE
+   SIDEBAR OPEN/CLOSE LOGIC
 ===================================== */
 
-const navigation = document.getElementById('mainNavigation');
-const menuIcon = document.getElementById('menuIcon');
+function openSidebar() {
+    document.getElementById('sidebar').classList.add('active');
+    document.getElementById('sidebarOverlay').classList.add('active');
+}
 
-navigation.addEventListener('show.bs.collapse', function () {
-
-    menuIcon.classList.replace('fa-bars','fa-times');
-
-});
-
-navigation.addEventListener('hide.bs.collapse', function () {
-
-    menuIcon.classList.replace('fa-times','fa-bars');
-
-});
-
-
-/* =====================================
-   CLOSE MENU AFTER CLICKING A LINK
-===================================== */
-
-document.querySelectorAll(
-    '#mainNavigation .nav-link, #mainNavigation .dropdown-item'
-).forEach(link => {
-
-    link.addEventListener('click', function () {
-
-        const menu = bootstrap.Collapse.getOrCreateInstance(
-            navigation,
-            {toggle: false}
-        );
-
-        menu.hide();
-
-    });
-
-});
+function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('active');
+    document.getElementById('sidebarOverlay').classList.remove('active');
+}
 
 
 /* =====================================
