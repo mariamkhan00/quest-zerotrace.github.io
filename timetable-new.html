@@ -19,6 +19,8 @@
     --header-bg: #2b32c2;
     --header-text: #ffffff;
     --dark-bg: #0A1929;
+    --footer-bg: #0A1929;
+    --footer-text: #ffffff;
 }
 
 body.dark-mode {
@@ -28,6 +30,8 @@ body.dark-mode {
     --text-color: #e2e8f0;
     --card-bg: #1e293b;
     --card-border: rgba(255,255,255,0.1);
+    --footer-bg: #020617;
+    --footer-text: #e2e8f0;
 }
 
 body { 
@@ -127,66 +131,437 @@ body.dark-mode .navbar-brand span.text-muted { color: #aaa !important; }
 .filter-select { background: var(--body-bg); border: 1px solid var(--card-border); color: var(--text-color); border-radius: 8px; padding: 12px 20px; }
 .note-text { color: var(--text-color); opacity: 0.7; font-size: 0.9rem; text-align: center; margin-top: 20px; }
 
-/* === FOOTER (Hamesha Dark Rahega) === */
-footer { background: #0A1929 !important; color: #ffffff !important; padding: 30px 20px; text-align: center; margin-top: 50px; transition: 0.3s; }
+/* === HOME PAGE FOOTER — MATCHED EXACTLY === */
+footer {
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    text-align: center;
+    padding: 30px 15px;
+    margin-top: 50px;
+}
+footer p { margin: 5px; }
+
+/* === TIMETABLE PAGE ENHANCEMENTS === */
+.hero-timetable {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(115deg, #0A1929 0%, #123f70 52%, #2b32c2 100%);
+}
+.hero-timetable::after {
+    content: "";
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    right: -90px;
+    top: -145px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 50%;
+    box-shadow: 0 0 0 35px rgba(255,255,255,.035), 0 0 0 75px rgba(255,255,255,.025);
+    pointer-events: none;
+}
+.hero-timetable .container { position: relative; z-index: 1; }
+.hero-timetable h1 { font-size: clamp(2.1rem, 5vw, 3.25rem); }
+.hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 30px;
+    padding: 7px 14px;
+    margin-bottom: 17px;
+    color: #fff;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+.quick-tools {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 18px;
+    margin: 26px 0 34px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.055);
+}
+.quick-tools-heading { font-weight: 750; color: var(--text-color); margin: 0 0 13px; }
+.quick-tool-link, .quick-tool-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid var(--card-border);
+    background: var(--body-bg);
+    color: var(--text-color);
+    border-radius: 9px;
+    padding: 10px 14px;
+    margin: 4px 5px 4px 0;
+    text-decoration: none;
+    font-size: .9rem;
+    font-weight: 650;
+    transition: .25s ease;
+    cursor: pointer;
+}
+.quick-tool-link:hover, .quick-tool-button:hover {
+    color: #fff;
+    background: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+.overview-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+.overview-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.overview-icon {
+    width: 42px; height: 42px; flex: 0 0 42px;
+    display: grid; place-items: center;
+    border-radius: 11px;
+    color: var(--primary);
+    background: rgba(11,114,185,.12);
+    font-size: 18px;
+}
+.overview-item strong { display: block; color: var(--text-color); font-size: 1.15rem; line-height: 1.2; }
+.overview-item small { color: var(--text-color); opacity: .7; }
+.batch-card { transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease; }
+.batch-card:hover { transform: translateY(-4px); box-shadow: 0 16px 35px rgba(11,114,185,.13); border-color: rgba(11,114,185,.3); }
+.latest-box { transition: transform .25s ease, box-shadow .25s ease; }
+.latest-box:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59,130,246,.10); }
+.btn-view, .btn-download, .btn-open, .btn-outline { transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+.btn-view:hover, .btn-download:hover, .btn-open:hover, .btn-outline:hover { transform: translateY(-2px); }
+.shift-divider { scroll-margin-top: 100px; }
+#batch-container { scroll-margin-top: 95px; }
+.back-to-top {
+    position: fixed; right: 22px; bottom: 22px; z-index: 1800;
+    width: 48px; height: 48px; border: 0; border-radius: 50%;
+    display: grid; place-items: center;
+    color: #fff; background: var(--primary);
+    box-shadow: 0 6px 20px rgba(0,0,0,.2);
+    opacity: 0; visibility: hidden; transform: translateY(10px);
+    transition: .25s ease; cursor: pointer;
+}
+.back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+.back-to-top:hover { background: #084e80; }
+@media (max-width: 768px) {
+    .overview-strip { grid-template-columns: 1fr; gap: 9px; }
+    .overview-item { padding: 12px 14px; }
+    .quick-tools { padding: 15px; }
+    .quick-tool-link, .quick-tool-button { font-size: .83rem; padding: 9px 11px; }
+    .hero-timetable { padding: 48px 18px; }
+    .batch-stats { gap: 14px; flex-wrap: wrap; }
+    .batch-stats > div { min-width: 42%; }
+    .smartday-body { padding: 21px; }
+    .smartday-header { padding: 18px 21px; }
+    .smartday-header h4 { font-size: 1.2rem; }
+}
+@media print {
+    .top-header, .sidebar, .sidebar-overlay, .quick-tools, .back-to-top,
+    .btn-outline, .search-section, footer { display: none !important; }
+    body { background: #fff !important; color: #000 !important; }
+    .batch-card, .smartday-card { break-inside: avoid; box-shadow: none !important; }
+}
+
+/* === HOME-PAGE MATCHING HEADER & LEFT SIDEBAR === */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+
+.top-header {
+    background: var(--nav-bg);
+    padding: 12px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 2000;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.university-logo {
+    width: 53px;
+    height: 53px;
+    object-fit: contain;
+    background: white;
+    border-radius: 50%;
+    padding: 3px;
+}
+.brand-name {
+    color: var(--nav-text);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+.brand-subtitle {
+    color: #888;
+    font-size: 12px;
+    font-weight: 500;
+}
+.menu-toggle {
+    width: 43px;
+    height: 43px;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--nav-text);
+    font-size: 19px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.menu-toggle:hover {
+    background: var(--primary);
+    color: white;
+}
+.theme-toggle-btn {
+    background: transparent;
+    border: 1px solid var(--card-border);
+    color: var(--nav-text);
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.theme-toggle-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -290px;
+    width: 280px;
+    max-width: 85vw;
+    height: 100vh;
+    background: var(--nav-bg);
+    color: var(--nav-text);
+    z-index: 3000;
+    padding: 22px 18px;
+    overflow-y: auto;
+    box-shadow: 5px 0 25px rgba(0,0,0,0.15);
+    transition: left 0.3s ease;
+}
+.sidebar.active { left: 0; }
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--card-border);
+}
+.sidebar-heading {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--primary);
+}
+.sidebar-close {
+    border: none;
+    background: transparent;
+    color: var(--nav-text);
+    font-size: 22px;
+    cursor: pointer;
+}
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px 14px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.25s;
+    cursor: pointer;
+}
+.sidebar-link i {
+    width: 22px;
+    text-align: center;
+    color: var(--primary);
+}
+.sidebar-link:hover,
+.sidebar-link.active {
+    background: rgba(11,114,185,0.12);
+    color: var(--primary);
+}
+.sidebar-link.dropdown-toggle::after { margin-left: auto; }
+.submenu {
+    padding-left: 30px;
+    margin-bottom: 8px;
+}
+.submenu a {
+    display: block;
+    padding: 10px 12px;
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 7px;
+}
+.submenu a:hover {
+    background: rgba(11,114,185,0.12);
+    color: var(--primary);
+}
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 2500;
+    display: none;
+}
+.sidebar-overlay.active { display: block; }
+body.dark-mode .sidebar {
+    box-shadow: 5px 0 25px rgba(0,0,0,0.45);
+}
+body.dark-mode .submenu a:hover {
+    background: rgba(255,255,255,0.1);
+}
+@media(max-width:768px) {
+    .top-header { padding: 10px 12px; }
+    .brand-name { font-size: 14px; }
+    .brand-subtitle { font-size: 11px; }
+    .university-logo { width: 43px; height: 43px; }
+    .header-left { gap: 9px; }
+    .theme-toggle-btn { width: 37px; height: 37px; }
+}
+@media(max-width:380px) {
+    .brand-name { font-size: 12px; }
+    .brand-subtitle { font-size: 10px; }
+    .menu-toggle { width: 39px; height: 39px; }
+}
+
 </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">
-      <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo" style="height: 45px; background: white; border-radius: 50%; padding: 2px;">
-      <div>
-        <span style="display: block; line-height: 1.2;">Cyber Security Department</span>
-        <span style="font-size: 0.7rem;" class="text-muted">QUEST Nawabshah</span>
-      </div>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="chairman.html">Chairman & Dean</a></li>
-            <li><a class="dropdown-item" href="department.html">Department</a></li>
-            <li><a class="dropdown-item" href="labs.html">Laboratories</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">Programs</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="programs.html">Undergraduate (BS)</a></li>
-            <li><a class="dropdown-item" href="curriculum.html">Curriculum</a></li>
-            <li><a class="dropdown-item" href="timetable.html">Timetable</a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
-        
-        <li class="nav-item">
-          <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
-            <i class="fas fa-moon" id="theme-icon"></i>
-          </button>
-        </li>
-      </ul>
+<!-- HOME-PAGE MATCHING HEADER -->
+<header class="top-header">
+    <div class="header-left">
+        <button class="menu-toggle"
+                type="button"
+                onclick="toggleSidebar()"
+                aria-label="Open navigation menu"
+                aria-controls="sidebar"
+                aria-expanded="false"
+                id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg"
+             alt="QUEST University Logo"
+             class="university-logo">
+
+        <div>
+            <div class="brand-name">Cyber Security Department</div>
+            <div class="brand-subtitle">QUEST Nawabshah</div>
+        </div>
     </div>
-  </div>
-</nav>
+
+    <button class="theme-toggle-btn"
+            type="button"
+            onclick="toggleTheme()"
+            title="Change Theme"
+            aria-label="Toggle dark and light mode">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+</header>
+
+<!-- LEFT SIDEBAR NAVIGATION — SAME STRUCTURE AS HOME PAGE -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="sidebar-header">
+        <div class="sidebar-heading">
+            <i class="fas fa-shield-halved me-2"></i>Navigation
+        </div>
+        <button class="sidebar-close" type="button"
+                onclick="closeSidebar()" aria-label="Close navigation menu">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <a href="index.html" class="sidebar-link" onclick="closeSidebar()">
+        <i class="fas fa-home"></i>Home
+    </a>
+
+    <a class="sidebar-link dropdown-toggle"
+       data-bs-toggle="collapse" href="#aboutMenu"
+       role="button" aria-expanded="false" aria-controls="aboutMenu">
+        <i class="fas fa-university"></i>About
+    </a>
+    <div class="collapse submenu" id="aboutMenu">
+        <a href="chairman.html"><i class="fas fa-user-tie me-2"></i>Chairman</a>
+        <a href="department.html"><i class="fas fa-building me-2"></i>Department</a>
+        <a href="labs.html"><i class="fas fa-microscope me-2"></i>Laboratories</a>
+    </div>
+
+    <a class="sidebar-link dropdown-toggle"
+       data-bs-toggle="collapse" href="#programMenu"
+       role="button" aria-expanded="true" aria-controls="programMenu">
+        <i class="fas fa-graduation-cap"></i>Programs
+    </a>
+    <div class="collapse show submenu" id="programMenu">
+        <a href="programs.html">🎓 Undergraduate (BS)</a>
+        <a href="curriculum.html">📚 Curriculum</a>
+        <a href="timetable.html" class="active" aria-current="page">🗓️ Timetable</a>
+    </div>
+
+    <a href="people.html" class="sidebar-link" onclick="closeSidebar()">
+        <i class="fas fa-users"></i>People
+    </a>
+
+    <a href="research.html" class="sidebar-link" onclick="closeSidebar()">
+        <i class="fas fa-flask"></i>Research
+    </a>
+
+    <a href="events.html" class="sidebar-link" onclick="closeSidebar()">
+        <i class="fas fa-calendar-alt"></i>Events
+    </a>
+
+    <a href="index.html#contact" class="sidebar-link" onclick="closeSidebar()">
+        <i class="fas fa-envelope"></i>Contact
+    </a>
+</aside>
 
 <!-- HERO SECTION -->
 <div class="hero-timetable">
   <div class="container">
+    <span class="hero-kicker"><i class="fas fa-graduation-cap"></i> QUEST NAWABSHAH · CYBER SECURITY</span>
     <h1>Academic Timetables</h1>
     <p>View the latest and previous semester timetables for each undergraduate batch.</p>
   </div>
 </div>
 
+<!-- QUICK OVERVIEW & PAGE SHORTCUTS -->
+<div class="container">
+  <section class="quick-tools" aria-label="Timetable quick navigation">
+    <h5 class="quick-tools-heading"><i class="fas fa-compass me-2" style="color:var(--primary);"></i>Quick Navigation</h5>
+    <a class="quick-tool-link" href="#morning-shift"><i class="fas fa-sun"></i> Morning Shift</a>
+    <a class="quick-tool-link" href="#evening-shift"><i class="fas fa-moon"></i> Evening Shift</a>
+    <a class="quick-tool-link" href="#batch-container"><i class="fas fa-layer-group"></i> All Batches</a>
+    <a class="quick-tool-link" href="#timetable-search"><i class="fas fa-search"></i> Find a Timetable</a>
+    <button class="quick-tool-button" type="button" onclick="window.print()"><i class="fas fa-print"></i> Print Page</button>
+  </section>
+  <div class="overview-strip" aria-label="Timetable overview">
+    <div class="overview-item"><span class="overview-icon"><i class="fas fa-users"></i></span><div><strong>6 Batch Sections</strong><small>Morning and evening groups</small></div></div>
+    <div class="overview-item"><span class="overview-icon"><i class="fas fa-clock"></i></span><div><strong>2 Shifts</strong><small>Morning & evening</small></div></div>
+    <div class="overview-item"><span class="overview-icon"><i class="fas fa-mobile-screen-button"></i></span><div><strong>SmartDay</strong><small>Daily timetable access</small></div></div>
+  </div>
+</div>
+
 <div class="container pb-5">
-  
+
   <!-- SMARTDAY CARD -->
   <div class="smartday-card">
     <div class="smartday-header">
@@ -198,7 +573,7 @@ footer { background: #0A1929 !important; color: #ffffff !important; padding: 30p
     </div>
     <div class="smartday-body">
       <p>Choose your program and batch to see today's class card on your phone. It is designed for quick checks between classes.</p>
-      
+
       <div class="row">
         <div class="col-md-8">
           <ul class="features-list">
@@ -207,7 +582,7 @@ footer { background: #0A1929 !important; color: #ffffff !important; padding: 30p
             <li><i class="fas fa-bell text-warning"></i> Department events of the day</li>
             <li><i class="fas fa-save text-secondary"></i> Save your day card as an image</li>
           </ul>
-          
+
           <div class="mt-4">
             <a href="smartday.html" class="btn-open"><i class="fas fa-rocket"></i> Open SmartDay</a>
             <button onclick="copyLink()" class="btn-outline"><i class="fas fa-link"></i> Copy link</button>
@@ -215,7 +590,7 @@ footer { background: #0A1929 !important; color: #ffffff !important; padding: 30p
           </div>
           <p class="mt-3" style="font-size: 0.8rem; color: var(--text-color); opacity: 0.6;">The PDF timetables below remain the official published copies.</p>
         </div>
-        
+
         <div class="col-md-4 text-center">
           <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://mariamkhan00.github.io/quest-zerotrace.github.io/smartday.html" alt="QR Code" class="qr-code" id="qrImage">
           <p style="font-size: 0.8rem; color: var(--text-color); opacity: 0.6; margin-top: 10px;">Scan with your phone camera</p>
@@ -226,14 +601,14 @@ footer { background: #0A1929 !important; color: #ffffff !important; padding: 30p
 
   <div class="row">
     <div class="col-lg-9 mx-auto">
-      
+
       <div id="batch-container">
 
         <!-- ================= MORNING SHIFT START ================= -->
-        <div class="shift-divider">☀️ Morning Shift</div>
+        <div class="shift-divider" id="morning-shift">☀️ Morning Shift</div>
 
         <!-- BATCH CYS26 MORNING -->
-        <div class="batch-card" data-batch="CYS26">
+        <div class="batch-card" id="batch-cys26-morning" data-batch="CYS26">
           <div class="batch-header">
             <div>
               <h4>🎓 Batch 2026 (CYS26)</h4>
@@ -273,7 +648,7 @@ footer { background: #0A1929 !important; color: #ffffff !important; padding: 30p
         </div>
 
         <!-- BATCH CYS25 MORNING -->
-        <div class="batch-card" data-batch="CYS25">
+        <div class="batch-card" id="batch-cys25-morning" data-batch="CYS25">
           <div class="batch-header">
             <div>
               <h4>🎓 Batch 2025 (CYS25)</h4>
@@ -313,7 +688,7 @@ footer { background: #0A1929 !important; color: #ffffff !important; padding: 30p
         </div>
 
         <!-- BATCH CYS24 MORNING -->
-        <div class="batch-card" data-batch="CYS24">
+        <div class="batch-card" id="batch-cys24-morning" data-batch="CYS24">
           <div class="batch-header">
             <div>
               <h4>🎓 Batch 2024 (CYS24)</h4>
@@ -353,7 +728,7 @@ footer { background: #0A1929 !important; color: #ffffff !important; padding: 30p
         </div>
 
         <!-- BATCH CYS23 MORNING -->
-        <div class="batch-card" data-batch="CYS23">
+        <div class="batch-card" id="batch-cys23-morning" data-batch="CYS23">
           <div class="batch-header">
             <div>
               <h4>🎓 Batch 2023 (CYS23)</h4>
@@ -392,10 +767,10 @@ footer { background: #0A1929 !important; color: #ffffff !important; padding: 30p
         </div>
 
         <!-- ================= EVENING SHIFT START ================= -->
-        <div class="shift-divider">🌙 Evening Shift</div>
+        <div class="shift-divider" id="evening-shift">🌙 Evening Shift</div>
 
         <!-- BATCH CYS26 EVENING -->
-        <div class="batch-card" data-batch="CYS26-Eve">
+        <div class="batch-card" id="batch-cys26-evening" data-batch="CYS26-Eve">
           <div class="batch-header evening-header">
             <div>
               <h4>🎓 Batch 2026 (CYS26)</h4>
@@ -433,7 +808,7 @@ footer { background: #0A1929 !important; color: #ffffff !important; padding: 30p
         </div>
 
         <!-- BATCH CYS25 EVENING -->
-        <div class="batch-card" data-batch="CYS25-Eve">
+        <div class="batch-card" id="batch-cys25-evening" data-batch="CYS25-Eve">
           <div class="batch-header evening-header">
             <div>
               <h4>🎓 Batch 2025 (CYS25)</h4>
@@ -474,7 +849,7 @@ footer { background: #0A1929 !important; color: #ffffff !important; padding: 30p
       </div>
 
       <!-- SEARCH & FILTER -->
-      <div class="search-section">
+      <div class="search-section" id="timetable-search">
         <div class="row g-3">
           <div class="col-md-8">
             <input type="text" id="searchInput" class="form-control search-input" placeholder="🔍 Search Batch, Study Year..." onkeyup="filterBatches()">
@@ -498,21 +873,57 @@ footer { background: #0A1929 !important; color: #ffffff !important; padding: 30p
   </div>
 </div>
 
-<!-- Footer Hamesha Dark -->
+<!-- FOOTER — SAME CONTENT AND STYLE AS HOME PAGE -->
 <footer>
-  <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
-  <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">Developed by Mariam Khan</p>
+    <p>
+        © 2026 Cyber Security Department, QUEST.
+        All Rights Reserved.
+    </p>
+    <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">
+        Developed by Mariam Khan
+    </p>
 </footer>
+
+<button class="back-to-top" id="backToTop" type="button"
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+        aria-label="Back to top" title="Back to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+  // === HOME-PAGE SIDEBAR MENU LOGIC ===
+  function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+      const toggle = document.getElementById('menuToggle');
+      const isOpen = sidebar.classList.toggle('active');
+      overlay.classList.toggle('active', isOpen);
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  function closeSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+      const toggle = document.getElementById('menuToggle');
+      if (sidebar) sidebar.classList.remove('active');
+      if (overlay) overlay.classList.remove('active');
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') closeSidebar();
+  });
+
   // === THEME TOGGLE LOGIC ===
   function toggleTheme() {
       const body = document.body;
       const icon = document.getElementById('theme-icon');
-      
+
       body.classList.toggle('dark-mode');
-      
+
       if (body.classList.contains('dark-mode')) {
           localStorage.setItem('theme', 'dark');
           icon.classList.remove('fa-moon');
@@ -527,7 +938,7 @@ footer { background: #0A1929 !important; color: #ffffff !important; padding: 30p
   document.addEventListener("DOMContentLoaded", () => {
       const savedTheme = localStorage.getItem('theme');
       const icon = document.getElementById('theme-icon');
-      
+
       if (savedTheme === 'dark') {
           document.body.classList.add('dark-mode');
           if(icon) {
@@ -536,6 +947,14 @@ footer { background: #0A1929 !important; color: #ffffff !important; padding: 30p
           }
       }
   });
+
+  // === BACK TO TOP BUTTON ===
+  const backToTopButton = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+      if (backToTopButton) {
+          backToTopButton.classList.toggle('visible', window.scrollY > 450);
+      }
+  }, { passive: true });
 
   // === TIMETABLE FUNCTIONS ===
   function copyLink() {
