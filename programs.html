@@ -4,14 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Undergraduate Programs - QUEST Cyber Security</title>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
 <style>
-/* === THEME VARIABLES === */
-:root { 
-    --primary: #0B72B9; 
-    --nav-bg: #ffffff; 
-    --nav-text: #333333; 
+/* ===== THEME VARIABLES ===== */
+:root {
+    --primary: #0B72B9;
+    --nav-bg: #ffffff;
+    --nav-text: #333333;
     --body-bg: #f4f7fb;
     --text-color: #333333;
     --card-bg: #ffffff;
@@ -29,175 +31,768 @@ body.dark-mode {
     --card-border: rgba(255,255,255,0.1);
 }
 
-body { 
-    font-family: 'Segoe UI', sans-serif; 
-    background-color: var(--body-bg); 
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--body-bg);
     color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =====================================
+   HOMEPAGE STYLE HAMBURGER MENU
+===================================== */
+
+.menu-toggle {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 1200;
+    width: 46px;
+    height: 46px;
+    border: 0;
+    border-radius: 12px;
+    background: #0A1929;
+    color: #ffffff;
+    font-size: 1.2rem;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.menu-toggle:hover {
+    background: var(--primary);
+    transform: translateY(-2px);
+}
+
+.menu-toggle:focus-visible,
+.sidebar button:focus-visible,
+.sidebar a:focus-visible,
+.sidebar summary:focus-visible {
+    outline: 3px solid #00D4FF;
+    outline-offset: 3px;
+}
+
+/* OVERLAY */
+
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1290;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -290px;
+    width: 280px;
+    max-width: 85vw;
+    height: 100vh;
+    overflow-y: auto;
+    background: #0A1929;
+    color: #ffffff;
+    z-index: 1300;
+    padding: 24px 20px;
+    transition: left 0.3s ease;
+    box-shadow: 8px 0 30px rgba(0,0,0,0.2);
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+/* SIDEBAR HEADER */
+
+.sidebar-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 20px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.sidebar-brand img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #ffffff;
+    padding: 2px;
+}
+
+.sidebar-close {
+    border: 0;
+    background: transparent;
+    color: #ffffff;
+    font-size: 1.7rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* SIDEBAR LINKS */
+
+.sidebar a,
+.sidebar summary {
+    display: block;
+    color: rgba(255,255,255,0.88);
+    text-decoration: none;
+    padding: 11px 12px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.sidebar a:hover,
+.sidebar summary:hover,
+.sidebar a.active {
+    color: #ffffff;
+    background: rgba(11,114,185,0.32);
+    padding-left: 17px;
+}
+
+.sidebar details {
+    margin: 2px 0;
+}
+
+.sidebar details summary {
+    list-style: none;
+}
+
+.sidebar details summary::-webkit-details-marker {
+    display: none;
+}
+
+.sidebar details summary::after {
+    content: "▾";
+    float: right;
+    color: #8ecdf4;
+}
+
+.sidebar details[open] summary::after {
+    content: "▴";
+}
+
+.sidebar details a {
+    padding-left: 30px;
+    font-size: 0.93rem;
+}
+
+.sidebar-divider {
+    border-color: rgba(255,255,255,0.15);
+    margin: 15px 0;
+}
+
+/* THEME BUTTON IN SIDEBAR */
+
+.sidebar-theme-btn {
+    width: 100%;
+    border: 1px solid rgba(255,255,255,0.22);
+    background: rgba(255,255,255,0.07);
+    color: #ffffff;
+    border-radius: 9px;
+    padding: 11px 12px;
+    text-align: left;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.sidebar-theme-btn:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+/* =====================================
+   PAGE HEADER
+===================================== */
+
+.page-header {
+    background: var(--header-bg);
+    color: var(--header-text);
+    padding: 65px 20px 50px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-header h1 {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* =====================================
+   PROGRAM CARD
+===================================== */
+
+.program-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    padding: 40px;
+    margin-bottom: 30px;
+    border-left: 5px solid var(--primary);
+    border-top: 1px solid var(--card-border);
+    border-right: 1px solid var(--card-border);
+    border-bottom: 1px solid var(--card-border);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.program-title {
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.program-info p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.program-info h5 {
+    color: var(--text-color) !important;
+}
+
+.program-info ul {
+    line-height: 1.9;
+}
+
+/* BADGES */
+
+.badge-custom {
+    background: #e3f2fd;
+    color: var(--primary);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    display: inline-block;
+    margin: 5px;
     transition: 0.3s;
 }
 
-/* === NAVBAR === */
-.navbar { background: var(--nav-bg) !important; padding: 10px 0; transition: 0.3s; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-body.dark-mode .navbar { box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-.navbar-brand { color: var(--nav-text) !important; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-.navbar-brand span.text-muted { color: #888 !important; }
-body.dark-mode .navbar-brand span.text-muted { color: #aaa !important; }
-.nav-link { color: var(--nav-text) !important; font-size: 1rem; padding: 8px 15px !important; }
-.nav-link:hover { color: var(--primary) !important; }
-.dropdown-menu { background-color: var(--nav-bg); border: 1px solid var(--card-border); }
-.dropdown-item { color: var(--nav-text) !important; }
-.dropdown-item:hover { background-color: var(--primary) !important; color: white !important; }
-
-/* Theme Toggle Button */
-.theme-toggle-btn { 
-    background: transparent; border: 1px solid var(--card-border); color: var(--nav-text); 
-    border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; 
-    justify-content: center; cursor: pointer; transition: 0.3s; margin-left: 15px; 
+body.dark-mode .badge-custom {
+    background: #334155;
+    color: #e2e8f0;
 }
-.theme-toggle-btn:hover { background: var(--primary); color: white; }
 
-/* === PAGE HEADER === */
-.page-header { background: var(--header-bg); color: var(--header-text); padding: 50px 20px; text-align: center; margin-bottom: 40px; }
-.page-header h1 { font-weight: 700; margin-bottom: 10px; }
+body.dark-mode .text-muted {
+    color: #cbd5e1 !important;
+}
 
-/* === PROGRAM CARD === */
-.program-card { background: var(--card-bg); border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); padding: 40px; margin-bottom: 30px; border-left: 5px solid var(--primary); transition: 0.3s; border-top: 1px solid var(--card-border); border-right: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border); }
-.program-title { color: var(--primary); font-weight: 700; margin-bottom: 20px; }
-.program-info p { font-size: 1.05rem; line-height: 1.8; color: var(--text-color); }
-.program-info h5 { color: var(--text-color) !important; }
+/* CURRICULUM BUTTON */
 
-/* Badges */
-.badge-custom { background: #e3f2fd; color: var(--primary); padding: 8px 15px; border-radius: 20px; font-weight: 600; display: inline-block; margin: 5px; transition: 0.3s; }
-body.dark-mode .badge-custom { background: #334155; color: #e2e8f0; }
+.btn-program {
+    background: var(--primary);
+    border: none;
+    color: #ffffff;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.25s ease;
+}
 
-/* Text Muted Fix for Dark Mode */
-body.dark-mode .text-muted { color: #cbd5e1 !important; }
+.btn-program:hover {
+    background: #095d98;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
 
-/* === FOOTER (Hamesha Dark Rahega) === */
-footer { background: #0A1929 !important; color: #ffffff !important; padding: 30px 20px; text-align: center; margin-top: 50px; transition: 0.3s; }
+/* =====================================
+   HOMEPAGE STYLE FOOTER
+===================================== */
+
+footer {
+    width: 100%;
+    background: #0A1929 !important;
+    color: #ffffff !important;
+    padding: 30px 15px;
+    text-align: center;
+    margin-top: auto;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer .developer {
+    font-size: 0.85rem;
+    color: #aaaaaa;
+    margin-top: 10px;
+}
+
+/* =====================================
+   RESPONSIVE DESIGN
+===================================== */
+
+@media (max-width: 576px) {
+
+    .menu-toggle {
+        top: 14px;
+        left: 14px;
+    }
+
+    .page-header {
+        padding: 75px 15px 38px;
+    }
+
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .program-card {
+        padding: 25px 20px;
+    }
+
+    .program-info p {
+        font-size: 1rem;
+    }
+}
 </style>
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand" href="index.html">
-      <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg" alt="QUEST Logo" style="height: 45px; background: white; border-radius: 50%; padding: 2px;">
-      <div>
-        <span style="display: block; line-height: 1.2;">Cyber Security Department</span>
-        <span style="font-size: 0.7rem;" class="text-muted">QUEST Nawabshah</span>
-      </div>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="chairman.html">Chairman & Dean</a></li>
-            <li><a class="dropdown-item" href="department.html">Department</a></li>
-            <li><a class="dropdown-item" href="labs.html">Laboratories</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">Programs</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="programs.html">Undergraduate (BS)</a></li>
-            <li><a class="dropdown-item" href="curriculum.html">Curriculum</a></li>
-            <li><a class="dropdown-item" href="timetable.html">Timetable</a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
-        
-        <li class="nav-item">
-          <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
-            <i class="fas fa-moon" id="theme-icon"></i>
-          </button>
-        </li>
-      </ul>
+<!-- =====================================
+     HAMBURGER BUTTON
+===================================== -->
+
+<button class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="siteSidebar"
+        aria-expanded="false"
+        onclick="toggleSidebar(true)">
+
+    <i class="fas fa-bars"></i>
+
+</button>
+
+<!-- SIDEBAR OVERLAY -->
+
+<div class="sidebar-overlay"
+     id="sidebarOverlay"
+     onclick="toggleSidebar(false)"
+     aria-hidden="true">
+</div>
+
+<!-- =====================================
+     MAIN SIDEBAR MENU
+===================================== -->
+
+<aside class="sidebar" id="siteSidebar" aria-label="Main navigation">
+
+    <div class="sidebar-head">
+
+        <div class="sidebar-brand">
+
+            <img src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg"
+                 alt="QUEST Logo">
+
+            <span>QUEST Cyber Security</span>
+
+        </div>
+
+        <button class="sidebar-close"
+                type="button"
+                aria-label="Close navigation menu"
+                onclick="toggleSidebar(false)">
+
+            &times;
+
+        </button>
+
     </div>
-  </div>
-</nav>
+
+    <!-- HOME -->
+
+    <a href="index.html">
+        <i class="fas fa-home me-2"></i>
+        Home
+    </a>
+
+    <!-- ABOUT -->
+
+    <details>
+
+        <summary>
+            <i class="fas fa-university me-2"></i>
+            About
+        </summary>
+
+        <a href="chairman.html">Chairman &amp; Dean</a>
+        <a href="department.html">Department</a>
+        <a href="labs.html">Laboratories</a>
+
+    </details>
+
+    <!-- PROGRAMS -->
+
+    <details open>
+
+        <summary>
+            <i class="fas fa-graduation-cap me-2"></i>
+            Programs
+        </summary>
+
+        <a href="programs.html"
+           class="active"
+           aria-current="page">
+            Undergraduate (BS)
+        </a>
+
+        <a href="curriculum.html">
+            Curriculum
+        </a>
+
+        <a href="timetable.html">
+            Timetable
+        </a>
+
+    </details>
+
+    <!-- PEOPLE -->
+
+    <a href="people.html">
+        <i class="fas fa-users me-2"></i>
+        People
+    </a>
+
+    <!-- RESEARCH -->
+
+    <a href="index.html#research">
+        <i class="fas fa-flask me-2"></i>
+        Research
+    </a>
+
+    <!-- EVENTS -->
+
+    <a href="index.html#events">
+        <i class="fas fa-calendar-alt me-2"></i>
+        Events
+    </a>
+
+    <!-- CONTACT -->
+
+    <a href="index.html#contact">
+        <i class="fas fa-envelope me-2"></i>
+        Contact
+    </a>
+
+    <hr class="sidebar-divider">
+
+    <!-- DARK / LIGHT MODE -->
+
+    <button class="sidebar-theme-btn"
+            type="button"
+            onclick="toggleTheme()">
+
+        <i class="fas fa-moon me-2" id="theme-icon"></i>
+
+        <span id="theme-label">Dark Mode</span>
+
+    </button>
+
+</aside>
+
+<!-- =====================================
+     PAGE HEADER
+===================================== -->
 
 <div class="page-header">
-  <div class="container">
-    <h1>Undergraduate Program</h1>
-    <p class="mb-0">Bachelor of Science in Cyber Security</p>
-  </div>
-</div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-10 mx-auto">
-      <div class="program-card">
-        <h2 class="program-title">BS Cyber Security</h2>
-        <div class="program-info">
-          <p>The Bachelor of Science in Cyber Security is a 4-year degree program designed to prepare students for the growing cybersecurity industry. The program equips students with the knowledge and skills to protect computer systems, networks, and data from cyber threats.</p>
-          
-          <h5 class="mt-4 fw-bold">Program Details:</h5>
-          <div class="d-flex flex-wrap mb-3">
-            <span class="badge-custom">Duration: 4 Years (8 Semesters)</span>
-            <span class="badge-custom">Credit Hours: 135</span>
-            <span class="badge-custom">Degree: BS Cyber Security</span>
-          </div>
+    <div class="container">
 
-          <h5 class="mt-4 fw-bold">Eligibility Criteria:</h5>
-          <ul class="text-muted">
-            <li>FSc Pre-Engineering with minimum 60% marks.</li>
-            <li>Must pass the university entry test / interview.</li>
-          </ul>
+        <h1>Undergraduate Program</h1>
 
-          <h5 class="mt-4 fw-bold">Career Opportunities:</h5>
-          <p>Graduates can work as Security Analysts, Penetration Testers, Digital Forensics Experts, SOC Analysts, and Network Security Engineers in public and private sectors.</p>
+        <p class="mb-0">
+            Bachelor of Science in Cyber Security
+        </p>
 
-          <div class="mt-4">
-            <a href="curriculum.html" class="btn btn-primary" style="background: var(--primary); border: none;">View Full Curriculum</a>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
+
 </div>
+
+<!-- =====================================
+     MAIN CONTENT
+===================================== -->
+
+<main class="container">
+
+    <div class="row">
+
+        <div class="col-lg-10 mx-auto">
+
+            <div class="program-card">
+
+                <h2 class="program-title">
+                    BS Cyber Security
+                </h2>
+
+                <div class="program-info">
+
+                    <p>
+                        The Bachelor of Science in Cyber Security is a 4-year
+                        degree program designed to prepare students for the
+                        growing cybersecurity industry. The program equips
+                        students with the knowledge and skills to protect
+                        computer systems, networks, and data from cyber threats.
+                    </p>
+
+                    <!-- PROGRAM DETAILS -->
+
+                    <h5 class="mt-4 fw-bold">
+                        Program Details:
+                    </h5>
+
+                    <div class="d-flex flex-wrap mb-3">
+
+                        <span class="badge-custom">
+                            Duration: 4 Years (8 Semesters)
+                        </span>
+
+                        <span class="badge-custom">
+                            Credit Hours: 135
+                        </span>
+
+                        <span class="badge-custom">
+                            Degree: BS Cyber Security
+                        </span>
+
+                    </div>
+
+                    <!-- ELIGIBILITY -->
+
+                    <h5 class="mt-4 fw-bold">
+                        Eligibility Criteria:
+                    </h5>
+
+                    <ul class="text-muted">
+
+                        <li>
+                            FSc Pre-Engineering with minimum 60% marks.
+                        </li>
+
+                        <li>
+                            Must pass the university entry test / interview.
+                        </li>
+
+                    </ul>
+
+                    <!-- CAREER OPPORTUNITIES -->
+
+                    <h5 class="mt-4 fw-bold">
+                        Career Opportunities:
+                    </h5>
+
+                    <p>
+                        Graduates can work as Security Analysts,
+                        Penetration Testers, Digital Forensics Experts,
+                        SOC Analysts, and Network Security Engineers
+                        in public and private sectors.
+                    </p>
+
+                    <!-- CURRICULUM BUTTON -->
+
+                    <div class="mt-4">
+
+                        <a href="curriculum.html" class="btn-program">
+
+                            <i class="fas fa-book-open me-2"></i>
+
+                            View Full Curriculum
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<!-- =====================================
+     FOOTER - HOMEPAGE STYLE
+===================================== -->
 
 <footer>
-  <p>© 2026 Cyber Security Department, QUEST. All Rights Reserved.</p>
-  <p style="font-size: 0.85rem; color: #aaa; margin-bottom: 0;">Developed by Mariam Khan</p>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-  function toggleTheme() {
-      const body = document.body;
-      const icon = document.getElementById('theme-icon');
-      
-      body.classList.toggle('dark-mode');
-      
-      if (body.classList.contains('dark-mode')) {
-          localStorage.setItem('theme', 'dark');
-          icon.classList.remove('fa-moon');
-          icon.classList.add('fa-sun');
-      } else {
-          localStorage.setItem('theme', 'light');
-          icon.classList.remove('fa-sun');
-          icon.classList.add('fa-moon');
-      }
-  }
 
-  document.addEventListener("DOMContentLoaded", () => {
-      const savedTheme = localStorage.getItem('theme');
-      const icon = document.getElementById('theme-icon');
-      
-      if (savedTheme === 'dark') {
-          document.body.classList.add('dark-mode');
-          if(icon) {
-              icon.classList.remove('fa-moon');
-              icon.classList.add('fa-sun');
-          }
-      }
-  });
+    <p>
+        © 2026 Cyber Security Department, QUEST. All Rights Reserved.
+    </p>
+
+    <p class="developer">
+        Developed by Mariam Khan
+    </p>
+
+</footer>
+
+<!-- BOOTSTRAP JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+/* =====================================
+   SIDEBAR OPEN / CLOSE
+===================================== */
+
+function toggleSidebar(open) {
+
+    const sidebar = document.getElementById('siteSidebar');
+
+    const overlay = document.getElementById('sidebarOverlay');
+
+    const toggleButton = document.getElementById('menuToggle');
+
+    sidebar.classList.toggle('active', open);
+
+    overlay.classList.toggle('active', open);
+
+    toggleButton.setAttribute('aria-expanded', String(open));
+
+    toggleButton.setAttribute(
+        'aria-label',
+        open ? 'Navigation menu open' : 'Open navigation menu'
+    );
+
+    document.body.style.overflow = open ? 'hidden' : '';
+
+}
+
+/* CLOSE MENU WITH ESCAPE KEY */
+
+document.addEventListener('keydown', function(event) {
+
+    if (event.key === 'Escape') {
+
+        toggleSidebar(false);
+
+    }
+
+});
+
+/* CLOSE MENU AFTER CLICKING A LINK */
+
+document.querySelectorAll('#siteSidebar a').forEach(function(link) {
+
+    link.addEventListener('click', function() {
+
+        toggleSidebar(false);
+
+    });
+
+});
+
+
+/* =====================================
+   DARK / LIGHT MODE
+===================================== */
+
+function setTheme(theme) {
+
+    const body = document.body;
+
+    const icon = document.getElementById('theme-icon');
+
+    const label = document.getElementById('theme-label');
+
+    const isDark = theme === 'dark';
+
+    body.classList.toggle('dark-mode', isDark);
+
+    if (icon) {
+
+        icon.classList.toggle('fa-moon', !isDark);
+
+        icon.classList.toggle('fa-sun', isDark);
+
+    }
+
+    if (label) {
+
+        label.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+
+    }
+
+    try {
+
+        localStorage.setItem('theme', theme);
+
+    } catch (error) {
+
+        console.warn('Theme preference could not be saved.', error);
+
+    }
+
+}
+
+/* TOGGLE THEME */
+
+function toggleTheme() {
+
+    const isDark = document.body.classList.contains('dark-mode');
+
+    setTheme(isDark ? 'light' : 'dark');
+
+}
+
+/* RESTORE SAVED THEME */
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    let savedTheme = 'light';
+
+    try {
+
+        savedTheme = localStorage.getItem('theme') || 'light';
+
+    } catch (error) {
+
+        console.warn('Saved theme could not be accessed.', error);
+
+    }
+
+    setTheme(savedTheme);
+
+});
+
 </script>
+
 </body>
 </html>
