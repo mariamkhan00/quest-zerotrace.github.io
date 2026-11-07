@@ -13,9 +13,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
 <style>
-
 /* =====================================
-   OLD PROFESSIONAL QUEST THEME
+   QUEST THEME
 ===================================== */
 
 :root {
@@ -26,10 +25,8 @@
     --text-color: #333333;
     --card-bg: #ffffff;
     --card-border: rgba(0,0,0,0.08);
-    --hero-overlay: rgba(10,25,41,0.65);
     --footer-bg: #0A1929;
     --footer-text: #ffffff;
-    --contact-bg: #ffffff;
 }
 
 body.dark-mode {
@@ -39,10 +36,8 @@ body.dark-mode {
     --text-color: #e2e8f0;
     --card-bg: #1e293b;
     --card-border: rgba(255,255,255,0.1);
-    --hero-overlay: rgba(10,25,41,0.85);
     --footer-bg: #020617;
     --footer-text: #e2e8f0;
-    --contact-bg: #0f172a;
 }
 
 * {
@@ -59,7 +54,7 @@ body {
     background: var(--body-bg);
     color: var(--text-color);
     overflow-x: hidden;
-    transition: background 0.3s, color 0.3s;
+    transition: background .3s, color .3s;
 }
 
 a {
@@ -67,16 +62,16 @@ a {
 }
 
 /* =====================================
-   HEADER / UNIVERSITY BRANDING
+   HEADER
 ===================================== */
 
 .main-header {
     background: var(--nav-bg);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    box-shadow: 0 2px 10px rgba(0,0,0,.07);
     position: sticky;
     top: 0;
     z-index: 2000;
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .header-container {
@@ -87,8 +82,6 @@ a {
     padding-top: 10px;
     padding-bottom: 10px;
 }
-
-/* University Logo and Name */
 
 .brand-area {
     display: flex;
@@ -121,7 +114,6 @@ a {
 
 /* =====================================
    HAMBURGER MENU
-   Visible on BOTH laptop and mobile
 ===================================== */
 
 .menu-toggle {
@@ -136,7 +128,7 @@ a {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .menu-toggle:hover {
@@ -151,12 +143,16 @@ a {
 .sidebar-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.45);
+    background: rgba(0,0,0,.55);
     z-index: 2500;
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s ease;
 }
+
 .sidebar-overlay.active {
-    display: block;
+    opacity: 1;
+    visibility: visible;
 }
 
 .sidebar {
@@ -164,14 +160,16 @@ a {
     top: 0;
     left: -290px;
     width: 280px;
+    max-width: 85vw;
     height: 100vh;
     background: var(--nav-bg);
     z-index: 3000;
     padding: 22px 18px;
     overflow-y: auto;
-    box-shadow: 5px 0 25px rgba(0,0,0,0.15);
-    transition: left 0.3s ease;
+    box-shadow: 5px 0 25px rgba(0,0,0,.15);
+    transition: left .3s ease;
 }
+
 .sidebar.active {
     left: 0;
 }
@@ -180,15 +178,25 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 28px;
+    margin-bottom: 22px;
     padding-bottom: 18px;
     border-bottom: 1px solid var(--card-border);
 }
 
-.sidebar-heading {
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
     font-weight: 700;
-    font-size: 18px;
     color: var(--primary);
+}
+
+.sidebar-brand img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .sidebar-close {
@@ -203,14 +211,13 @@ a {
     display: flex;
     align-items: center;
     gap: 13px;
-    padding: 13px 14px;
+    padding: 12px 14px;
     margin-bottom: 5px;
     border-radius: 8px;
     color: var(--nav-text);
-    text-decoration: none;
     font-size: 15px;
     font-weight: 600;
-    transition: 0.25s;
+    transition: .25s;
 }
 
 .sidebar-link i {
@@ -221,7 +228,7 @@ a {
 
 .sidebar-link:hover,
 .sidebar-link.active {
-    background: rgba(11,114,185,0.12);
+    background: rgba(11,114,185,.12);
     color: var(--primary);
 }
 
@@ -238,14 +245,18 @@ a {
     display: block;
     padding: 10px 12px;
     color: var(--nav-text);
-    text-decoration: none;
     font-size: 14px;
     border-radius: 7px;
 }
 
 .submenu a:hover {
-    background: rgba(11,114,185,0.12);
+    background: rgba(11,114,185,.12);
     color: var(--primary);
+}
+
+.sidebar-divider {
+    border-color: var(--card-border);
+    margin: 15px 0;
 }
 
 /* =====================================
@@ -259,7 +270,7 @@ a {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+    box-shadow: 0 5px 15px rgba(0,0,0,.04);
 }
 
 .page-hero h1 {
@@ -273,11 +284,11 @@ a {
     color: var(--text-color);
     font-size: 1.05rem;
     margin: 0;
-    opacity: 0.85;
+    opacity: .85;
 }
 
 /* =====================================
-   GENERAL CARDS
+   GENERAL SECTIONS
 ===================================== */
 
 .section-panel {
@@ -286,7 +297,7 @@ a {
     border-radius: 12px;
     padding: 30px;
     margin-top: 35px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+    box-shadow: 0 5px 15px rgba(0,0,0,.04);
 }
 
 .section-title {
@@ -304,14 +315,13 @@ a {
 
 .section-description {
     color: var(--text-color);
-    opacity: 0.8;
+    opacity: .8;
     line-height: 1.8;
     margin-bottom: 25px;
 }
 
 /* =====================================
-   LABORATORY HERO IMAGE
-   NEW IMAGE LINK
+   LAB HERO IMAGE
 ===================================== */
 
 .lab-hero {
@@ -320,7 +330,7 @@ a {
     overflow: hidden;
     border-radius: 12px;
     margin-top: 35px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 25px rgba(0,0,0,.15);
     background: #0A1929;
 }
 
@@ -341,7 +351,7 @@ a {
     padding: 40px;
     background: linear-gradient(
         transparent,
-        rgba(3,8,25,0.9)
+        rgba(3,8,25,.9)
     );
 }
 
@@ -363,7 +373,7 @@ a {
 }
 
 .lab-hero p {
-    color: #eeeeee;
+    color: #eee;
     max-width: 750px;
     line-height: 1.7;
 }
@@ -378,14 +388,14 @@ a {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-    transition: 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,.04);
+    transition: .3s;
 }
 
 .feature-card:hover {
     transform: translateY(-5px);
     border-color: var(--primary);
-    box-shadow: 0 10px 25px rgba(11,114,185,0.12);
+    box-shadow: 0 10px 25px rgba(11,114,185,.12);
 }
 
 .feature-icon {
@@ -403,7 +413,7 @@ a {
 
 .feature-card p {
     color: var(--text-color);
-    opacity: 0.85;
+    opacity: .85;
     line-height: 1.7;
     margin-bottom: 0;
 }
@@ -415,12 +425,12 @@ a {
 .tech-tag {
     display: inline-block;
     padding: 9px 16px;
-    border: 1px solid rgba(11,114,185,0.25);
-    background: rgba(11,114,185,0.08);
+    border: 1px solid rgba(11,114,185,.25);
+    background: rgba(11,114,185,.08);
     color: var(--primary);
     border-radius: 30px;
     margin: 5px;
-    font-size: 0.9rem;
+    font-size: .9rem;
     font-weight: 600;
 }
 
@@ -452,7 +462,7 @@ a {
 
 .activity-item p {
     color: var(--text-color);
-    opacity: 0.8;
+    opacity: .8;
     margin-bottom: 0;
     line-height: 1.6;
 }
@@ -497,10 +507,6 @@ a {
     padding: 20px;
 }
 
-.faq-item button::after {
-    filter: none;
-}
-
 body.dark-mode .faq-item button::after {
     filter: invert(1);
 }
@@ -511,7 +517,7 @@ body.dark-mode .faq-item button::after {
 
 .faq-body {
     color: var(--text-color);
-    opacity: 0.85;
+    opacity: .85;
     padding: 5px 20px 20px;
     line-height: 1.7;
 }
@@ -541,7 +547,7 @@ body.dark-mode .faq-item button::after {
     border-radius: 30px;
     padding: 12px 30px;
     display: inline-block;
-    transition: 0.3s;
+    transition: .3s;
 }
 
 .contact-btn:hover {
@@ -550,23 +556,25 @@ body.dark-mode .faq-item button::after {
 }
 
 /* =====================================
-   FOOTER
+   FOOTER - HOMEPAGE STYLE
 ===================================== */
 
-footer {
-    background: var(--footer-bg);
-    color: var(--footer-text);
+.site-footer {
+    background: #0A1929;
+    color: #fff;
     text-align: center;
     margin-top: 50px;
-    padding: 30px 10px;
+    padding: 30px 15px;
+    width: 100%;
 }
 
-footer p {
+.site-footer p {
     margin: 5px 0;
-    color: var(--footer-text);
+    color: #fff;
+    font-size: 14px;
 }
 
-footer .dev-name {
+.site-footer .dev-name {
     color: #58b8f0;
     font-weight: 700;
 }
@@ -586,9 +594,18 @@ footer .dev-name {
     color: white;
     border: none;
     z-index: 900;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,.2);
     cursor: pointer;
-    transition: 0.3s;
+    transition: .3s;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+}
+
+.back-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 .back-top:hover {
@@ -601,30 +618,6 @@ footer .dev-name {
 ===================================== */
 
 @media(max-width:991px) {
-
-    .navigation-panel .navbar-nav {
-        align-items: stretch;
-        gap: 3px;
-    }
-
-    .navigation-panel .nav-link {
-        padding: 12px 15px !important;
-    }
-
-    .navigation-panel .theme-toggle-btn {
-        margin: 10px 15px;
-    }
-
-    .dropdown-menu {
-        border: none;
-        box-shadow: none;
-        padding-left: 15px;
-    }
-
-    .main-content {
-        padding-top: 0;
-    }
-
     .lab-hero {
         height: 350px;
     }
@@ -635,7 +628,6 @@ footer .dev-name {
 }
 
 @media(max-width:576px) {
-
     .brand-title {
         font-size: 14px;
     }
@@ -687,6 +679,10 @@ footer .dev-name {
         padding: 15px;
         gap: 12px;
     }
+
+    .sidebar {
+        max-width: 85vw;
+    }
 }
 
 </style>
@@ -695,62 +691,161 @@ footer .dev-name {
 <body>
 
 <!-- =====================================
-     SIDEBAR OVERLAY & MENU
+     SIDEBAR OVERLAY
 ===================================== -->
 
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+    onclick="closeSidebar()">
+</div>
+
+
+<!-- =====================================
+     SIDEBAR NAVIGATION
+===================================== -->
 
 <aside class="sidebar" id="sidebar">
+
     <div class="sidebar-header">
-        <div class="sidebar-heading">
-            <i class="fas fa-shield-halved me-2"></i>Navigation
+
+        <div class="sidebar-brand">
+
+            <img
+                src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg"
+                alt="QUEST Logo">
+
+            <span>QUEST Cyber Security</span>
+
         </div>
-        <button class="sidebar-close" onclick="closeSidebar()">
+
+        <button
+            class="sidebar-close"
+            type="button"
+            onclick="closeSidebar()"
+            aria-label="Close menu">
+
             <i class="fas fa-times"></i>
+
         </button>
+
     </div>
-    
+
+
+    <!-- HOME -->
+
     <a href="index.html" class="sidebar-link">
-        <i class="fas fa-home"></i> Home
-    </a>
-    
-    <a class="sidebar-link dropdown-toggle" data-bs-toggle="collapse" href="#aboutMenu" role="button">
-        <i class="fas fa-university"></i> About
-    </a>
-    <div class="collapse submenu" id="aboutMenu">
-        <a href="chairman.html"><i class="fas fa-user-tie me-2"></i> Chairman & Dean</a>
-        <a href="department.html"><i class="fas fa-building me-2"></i> Department</a>
-        <a href="labs.html" class="active"><i class="fas fa-microscope me-2"></i> Laboratories</a>
-    </div>
-    
-    <a class="sidebar-link dropdown-toggle" data-bs-toggle="collapse" href="#programMenu" role="button">
-        <i class="fas fa-graduation-cap"></i> Programs
-    </a>
-    <div class="collapse submenu" id="programMenu">
-        <a href="programs.html">🎓 Undergraduate (BS)</a>
-        <a href="curriculum.html">📚 Curriculum</a>
-        <a href="timetable.html">🕒 Timetable</a>
-    </div>
-    
-    <a href="people.html" class="sidebar-link">
-        <i class="fas fa-users"></i> People
-    </a>
-    
-    <a href="research.html" class="sidebar-link">
-        <i class="fas fa-flask"></i> Research
-    </a>
-    
-    <a href="events.html" class="sidebar-link">
-        <i class="fas fa-calendar-alt"></i> Events
-    </a>
-    
-    <a href="index.html#contact" class="sidebar-link">
-        <i class="fas fa-envelope"></i> Contact
+        <i class="fas fa-home"></i>
+        Home
     </a>
 
-    <a href="#" class="sidebar-link" onclick="toggleTheme()">
-        <i class="fas fa-moon" id="theme-icon"></i> Toggle Theme
+
+    <!-- ABOUT -->
+
+    <a
+        class="sidebar-link dropdown-toggle"
+        data-bs-toggle="collapse"
+        href="#aboutMenu"
+        role="button"
+        aria-expanded="false">
+
+        <i class="fas fa-university"></i>
+        About
+
     </a>
+
+    <div class="collapse submenu" id="aboutMenu">
+
+        <a href="chairman.html">
+            <i class="fas fa-user-tie me-2"></i>
+            Chairman
+        </a>
+
+        <a href="department.html">
+            <i class="fas fa-building me-2"></i>
+            Department
+        </a>
+
+        <a href="labs.html" class="active">
+            <i class="fas fa-microscope me-2"></i>
+            Laboratories
+        </a>
+
+    </div>
+
+
+    <!-- PROGRAMS -->
+
+    <a
+        class="sidebar-link dropdown-toggle"
+        data-bs-toggle="collapse"
+        href="#programMenu"
+        role="button"
+        aria-expanded="false">
+
+        <i class="fas fa-graduation-cap"></i>
+        Programs
+
+    </a>
+
+    <div class="collapse submenu" id="programMenu">
+
+        <a href="programs.html">
+            <i class="fas fa-user-graduate me-2"></i>
+            Undergraduate (BS)
+        </a>
+
+        <a href="curriculum.html">
+            <i class="fas fa-book me-2"></i>
+            Curriculum
+        </a>
+
+        <a href="timetable.html">
+            <i class="fas fa-clock me-2"></i>
+            Timetable
+        </a>
+
+    </div>
+
+
+    <!-- OTHER LINKS -->
+
+    <a href="people.html" class="sidebar-link">
+        <i class="fas fa-users"></i>
+        People
+    </a>
+
+    <a href="research.html" class="sidebar-link">
+        <i class="fas fa-flask"></i>
+        Research
+    </a>
+
+    <a href="events.html" class="sidebar-link">
+        <i class="fas fa-calendar-alt"></i>
+        Events
+    </a>
+
+    <a href="index.html#contact" class="sidebar-link">
+        <i class="fas fa-envelope"></i>
+        Contact
+    </a>
+
+
+    <hr class="sidebar-divider">
+
+
+    <!-- THEME BUTTON -->
+
+    <a
+        href="#"
+        class="sidebar-link"
+        onclick="toggleTheme(); return false;">
+
+        <i class="fas fa-moon" id="theme-icon"></i>
+        Toggle Theme
+
+    </a>
+
 </aside>
 
 
@@ -762,17 +857,15 @@ footer .dev-name {
 
     <div class="container header-container">
 
-        <!-- LOGO AND DEPARTMENT NAME -->
-
         <a href="index.html" class="brand-area">
 
             <img
                 src="https://i.ibb.co/HfBDmCbn/quest-logo.jpg"
                 alt="QUEST University Logo"
-                class="university-logo"
-            >
+                class="university-logo">
 
             <div>
+
                 <p class="brand-title">
                     Cyber Security Department
                 </p>
@@ -780,19 +873,22 @@ footer .dev-name {
                 <p class="brand-subtitle">
                     QUEST Nawabshah
                 </p>
+
             </div>
 
         </a>
 
-        <!-- HAMBURGER BUTTON (SIDEBAR OPEN) -->
+
+        <!-- HAMBURGER BUTTON -->
 
         <button
             class="menu-toggle"
             type="button"
             onclick="openSidebar()"
-            aria-label="Toggle navigation"
-            id="menuToggle"
-        >
+            aria-label="Open navigation menu"
+            aria-controls="sidebar"
+            aria-expanded="false"
+            id="menuToggle">
 
             <i class="fas fa-bars" id="menuIcon"></i>
 
@@ -811,6 +907,7 @@ footer .dev-name {
 
 <div class="container">
 
+
     <!-- PAGE INTRO -->
 
     <section class="page-hero">
@@ -826,15 +923,14 @@ footer .dev-name {
 
 
     <!-- =====================================
-         LAB HERO IMAGE (NEW IMAGE LINK)
+         LAB HERO IMAGE
     ===================================== -->
 
     <section class="lab-hero">
 
         <img
             src="https://raw.githubusercontent.com/mariamkhan00/quest-zerotrace.github.io/main/download%20(2).jpg"
-            alt="Cyber Security Department Laboratory"
-        >
+            alt="Cyber Security Department Laboratory">
 
         <div class="lab-hero-overlay">
 
@@ -896,6 +992,7 @@ footer .dev-name {
 
             </div>
 
+
             <div class="col-md-4">
 
                 <div class="feature-card">
@@ -912,6 +1009,7 @@ footer .dev-name {
                 </div>
 
             </div>
+
 
             <div class="col-md-4">
 
@@ -947,6 +1045,7 @@ footer .dev-name {
         Key technical areas related to cybersecurity laboratory work.
     </p>
 
+
     <div class="row g-4">
 
         <div class="col-md-6 col-lg-4">
@@ -966,6 +1065,7 @@ footer .dev-name {
 
         </div>
 
+
         <div class="col-md-6 col-lg-4">
 
             <div class="feature-card">
@@ -982,6 +1082,7 @@ footer .dev-name {
             </div>
 
         </div>
+
 
         <div class="col-md-6 col-lg-4">
 
@@ -1000,6 +1101,7 @@ footer .dev-name {
 
         </div>
 
+
         <div class="col-md-6 col-lg-4">
 
             <div class="feature-card">
@@ -1017,6 +1119,7 @@ footer .dev-name {
 
         </div>
 
+
         <div class="col-md-6 col-lg-4">
 
             <div class="feature-card">
@@ -1033,6 +1136,7 @@ footer .dev-name {
             </div>
 
         </div>
+
 
         <div class="col-md-6 col-lg-4">
 
@@ -1092,6 +1196,7 @@ footer .dev-name {
 
             </div>
 
+
             <div class="col-md-6">
 
                 <div class="feature-card">
@@ -1109,6 +1214,7 @@ footer .dev-name {
 
             </div>
 
+
             <div class="col-md-6">
 
                 <div class="feature-card">
@@ -1125,6 +1231,7 @@ footer .dev-name {
                 </div>
 
             </div>
+
 
             <div class="col-md-6">
 
@@ -1190,12 +1297,11 @@ footer .dev-name {
     </h2>
 
     <p class="section-description">
-
         Examples of supervised technical activities and demonstrations.
-
     </p>
 
     <section class="section-panel">
+
 
         <div class="activity-item">
 
@@ -1214,6 +1320,7 @@ footer .dev-name {
 
         </div>
 
+
         <div class="activity-item">
 
             <i class="fas fa-chart-line"></i>
@@ -1231,6 +1338,7 @@ footer .dev-name {
 
         </div>
 
+
         <div class="activity-item">
 
             <i class="fas fa-shield-alt"></i>
@@ -1247,6 +1355,7 @@ footer .dev-name {
             </div>
 
         </div>
+
 
         <div class="activity-item">
 
@@ -1284,6 +1393,7 @@ footer .dev-name {
             responsible and productive laboratory environment.
 
         </p>
+
 
         <div class="guideline">
             <i class="fas fa-check-circle"></i>
@@ -1328,6 +1438,7 @@ footer .dev-name {
 
     <div class="accordion" id="labFAQ">
 
+
         <div class="accordion-item faq-item">
 
             <h2 class="accordion-header">
@@ -1336,8 +1447,7 @@ footer .dev-name {
                     class="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#faq1"
-                >
+                    data-bs-target="#faq1">
 
                     What is the purpose of the Network Security Lab?
 
@@ -1348,8 +1458,7 @@ footer .dev-name {
             <div
                 id="faq1"
                 class="accordion-collapse collapse"
-                data-bs-parent="#labFAQ"
-            >
+                data-bs-parent="#labFAQ">
 
                 <div class="faq-body">
 
@@ -1372,8 +1481,7 @@ footer .dev-name {
                     class="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#faq2"
-                >
+                    data-bs-target="#faq2">
 
                     Which software tools are relevant to cybersecurity?
 
@@ -1384,8 +1492,7 @@ footer .dev-name {
             <div
                 id="faq2"
                 class="accordion-collapse collapse"
-                data-bs-parent="#labFAQ"
-            >
+                data-bs-parent="#labFAQ">
 
                 <div class="faq-body">
 
@@ -1409,8 +1516,7 @@ footer .dev-name {
                     class="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#faq3"
-                >
+                    data-bs-target="#faq3">
 
                     Can students perform practical security testing?
 
@@ -1421,8 +1527,7 @@ footer .dev-name {
             <div
                 id="faq3"
                 class="accordion-collapse collapse"
-                data-bs-parent="#labFAQ"
-            >
+                data-bs-parent="#labFAQ">
 
                 <div class="faq-body">
 
@@ -1445,8 +1550,7 @@ footer .dev-name {
                     class="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#faq4"
-                >
+                    data-bs-target="#faq4">
 
                     Who supervises the laboratory?
 
@@ -1457,8 +1561,7 @@ footer .dev-name {
             <div
                 id="faq4"
                 class="accordion-collapse collapse"
-                data-bs-parent="#labFAQ"
-            >
+                data-bs-parent="#labFAQ">
 
                 <div class="faq-body">
 
@@ -1494,14 +1597,13 @@ footer .dev-name {
             Dr. Adnan Ahmed
         </h4>
 
-        <p style="color:var(--text-color);opacity:0.7;">
+        <p style="color:var(--text-color);opacity:.7;">
             Laboratory Supervisor
         </p>
 
         <a
             href="index.html#contact"
-            class="contact-btn"
-        >
+            class="contact-btn">
 
             <i class="fas fa-envelope me-2"></i>
             Department Contact
@@ -1510,16 +1612,17 @@ footer .dev-name {
 
     </section>
 
+
 </div>
 
 </main>
 
 
 <!-- =====================================
-     FOOTER
+     FOOTER - MATCHING HOMEPAGE
 ===================================== -->
 
-<footer>
+<footer class="site-footer">
 
     <p>
         © 2026 Cyber Security Department, QUEST.
@@ -1534,13 +1637,15 @@ footer .dev-name {
 </footer>
 
 
-<!-- BACK TO TOP -->
+<!-- =====================================
+     BACK TO TOP BUTTON
+===================================== -->
 
 <button
     class="back-top"
+    id="backTop"
     onclick="window.scrollTo({top:0,behavior:'smooth'})"
-    aria-label="Back to top"
->
+    aria-label="Back to top">
 
     <i class="fas fa-arrow-up"></i>
 
@@ -1557,18 +1662,83 @@ footer .dev-name {
 <script>
 
 /* =====================================
-   SIDEBAR OPEN/CLOSE LOGIC
+   SIDEBAR OPEN
 ===================================== */
 
 function openSidebar() {
+
     document.getElementById('sidebar').classList.add('active');
+
     document.getElementById('sidebarOverlay').classList.add('active');
+
+    document.getElementById('menuToggle').setAttribute(
+        'aria-expanded',
+        'true'
+    );
+
+    document.body.style.overflow = 'hidden';
+
 }
 
+
+/* =====================================
+   SIDEBAR CLOSE
+===================================== */
+
 function closeSidebar() {
+
     document.getElementById('sidebar').classList.remove('active');
+
     document.getElementById('sidebarOverlay').classList.remove('active');
+
+    document.getElementById('menuToggle').setAttribute(
+        'aria-expanded',
+        'false'
+    );
+
+    document.body.style.overflow = '';
+
 }
+
+
+/* =====================================
+   CLOSE SIDEBAR WITH ESCAPE KEY
+===================================== */
+
+document.addEventListener('keydown', function(event) {
+
+    if (event.key === 'Escape') {
+
+        closeSidebar();
+
+    }
+
+});
+
+
+/* =====================================
+   CLOSE SIDEBAR WHEN A LINK IS CLICKED
+===================================== */
+
+document.querySelectorAll('.sidebar a[href]').forEach(function(link) {
+
+    link.addEventListener('click', function(event) {
+
+        const href = link.getAttribute('href');
+
+        if (
+            href &&
+            href !== '#' &&
+            !href.startsWith('javascript:')
+        ) {
+
+            closeSidebar();
+
+        }
+
+    });
+
+});
 
 
 /* =====================================
@@ -1584,6 +1754,7 @@ function applyTheme(theme) {
         document.body.classList.add('dark-mode');
 
         icon.classList.remove('fa-moon');
+
         icon.classList.add('fa-sun');
 
     } else {
@@ -1591,6 +1762,7 @@ function applyTheme(theme) {
         document.body.classList.remove('dark-mode');
 
         icon.classList.remove('fa-sun');
+
         icon.classList.add('fa-moon');
 
     }
@@ -1600,7 +1772,9 @@ function applyTheme(theme) {
 }
 
 
-/* THEME TOGGLE */
+/* =====================================
+   THEME TOGGLE
+===================================== */
 
 function toggleTheme() {
 
@@ -1611,9 +1785,11 @@ function toggleTheme() {
 }
 
 
-/* RESTORE SAVED THEME */
+/* =====================================
+   RESTORE SAVED THEME
+===================================== */
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
 
     const savedTheme = localStorage.getItem('theme');
 
@@ -1628,6 +1804,39 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
+
+
+/* =====================================
+   BACK TO TOP BUTTON
+===================================== */
+
+const backTopButton = document.getElementById('backTop');
+
+window.addEventListener('scroll', function() {
+
+    if (window.scrollY > 300) {
+
+        backTopButton.classList.add('show');
+
+    } else {
+
+        backTopButton.classList.remove('show');
+
+    }
+
+});
+
+
+/* =====================================
+   CLOSE SIDEBAR AFTER NAVIGATION
+===================================== */
+
+window.addEventListener('pageshow', function() {
+
+    closeSidebar();
+
+});
+
 
 </script>
 
